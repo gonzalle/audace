@@ -1,8 +1,11 @@
 # audace
 
 
-Usage : 
+## Usage : 
+
 Placer le dossier images quelque part... (?)
+
+Referencer le script dans le header
 
 Placer avant la fermeture de <Body> un appel à la fonction du type 
 
