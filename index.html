@@ -1,1 +1,44 @@
-test
+<!DOCTYPE html>
+<!--[if IE 8]>    <html class="lt-ie9" dir="ltr" prefix="og: http://ogp.me/ns#" lang="fr_fr"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html dir="ltr" prefix="og: http://ogp.me/ns#" lang="fr_fr">
+  <!--<![endif]-->
+  <html class="ltr" dir="ltr" prefix="og: http://ogp.me/ns#" lang="fr_fr">
+    <head itemscope itemtype="http://schema.org/WebSite">
+      <meta charset="UTF-8" />
+      <title>
+        Krups Audace POC
+      </title>
+      <meta name="robots" content="index,follow" />
+      <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+      <meta name="format-detection" content="telephone=no" />
+      <meta name="HandheldFriendly" content="true" />
+      <script type="text/javascript">
+        if (
+          (screen.width <= 1024 &&
+            window.matchMedia('(orientation: portrait)').matches) ||
+          (screen.width <= 1366 &&
+            window.matchMedia('(orientation: landscape)').matches)
+        )
+          document.write(
+            '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >',
+          );
+        else
+          document.write(
+            '<meta name="viewport" content="width=1280,target-densitydpi=160,maximum-scale= 3.0" >',
+          );
+      </script>
+      <script type="text/javascript" src="js/ihm.js"></script>
+    </head>
+    <body>
+    <h1>POC Audace</h1>
+    <div id="ihm">
+
+    </div>
+    <script>
+        let test = new ihm("ihm", "images/");
+    </script>
+  </body>
+</html>
