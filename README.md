@@ -1,13 +1,21 @@
 # audace
 
 
+Le projet est désormais nommé et préfixé kx
+pour Krups Xperience
+
 ## Usage : 
 
-Placer le dossier images quelque part... (?)
+Une demo de cette version est visible ici : https://seb.estech-design.fr/KRUPS-POC/
 
-Referencer le script dans le header
+Usage : cloner l'ensemble
 
-Placer avant la fermeture de <Body> un appel à la fonction du type 
+Depuis la page index, outre le script kx.js 
+Il faut créer l'objet puis initialiser les images en leur donnant une source valide à la mode Hybris
 
-var test = new ihm( id_du_container , chemin_d_acces_au_dossier_images );
+Se référer à index.html pour voir le fonctionnement
+
+Tout le reste (css, html, svg est géré par le script)
+
+Le but de cette version est de valider la substitution d'images.
 
