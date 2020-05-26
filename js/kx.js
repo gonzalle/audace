@@ -94,7 +94,7 @@ let kxapp = function () {
     }
 
     app.buildPage = function (pageId, data, callback) {
-        var tempBuild = new DOMParser().parseFromString( app.data.pages[pageId].html() , 'text/html').body.firstChild;
+        var tempBuild = new DOMParser().parseFromString( app.data.pages[pageId].html(data) , 'text/html').body.firstChild;
         app.data.pages[pageId].built = tempBuild;
         app.data.pages[pageId].build(data, function(){
             callback();
@@ -270,7 +270,8 @@ let kxapp = function () {
                         //debugger;
                         var recipes = this.built.querySelectorAll('.recetteScrollerItem');
                         recipes.forEach(el => el.addEventListener('click', event => {
-                            app.loadPage("prepare", "capuccino");
+                            //console.log("CLICK",el.dataset.val);
+                            app.loadPage("prepare", el.dataset.val);
                         }));
                         callback();
                     },
@@ -303,11 +304,9 @@ let kxapp = function () {
 
             <section id="recetteScroller" >
                 `;
-            var cards = '';
-            //debugger;
             for (let [key, value] of Object.entries(app.data.recipes)) {
                // console.log(`${key}: ${value}`);
-               rhtml += ` <div class="recetteScrollerItem"> <span>${value.name}</span><img src="${imag('ristretto')}"></div>  `
+               rhtml += ` <div class="recetteScrollerItem" data-val="${key}"><span>${value.name}</span><img src="${imag('ristretto')}"></div>  `
             }
             
 
@@ -322,10 +321,9 @@ let kxapp = function () {
                     name: "prepare",
                     built:false,
                     build : function(data, callback){
-                        console.log("VSCROLLER"+data)
-                        //debugger;
+                        //this.recipe = app.data.recipes[data];
+                        console.log("PREP " , this.recipe);
                         let strength = new vscroller(this.built.querySelector('.strengthScroller'), this.built.querySelector('.strengthScroller_target'));
-                       // console.log(strength);
                         let quantity = new vscroller(this.built.querySelector('.quantityScroller'), this.built.querySelector('.quantityScroller_target'));
     
                         this.built.querySelector('.backToMain').addEventListener('click', function (e) {
@@ -353,10 +351,14 @@ let kxapp = function () {
                         console.log('quitting '+this.name)
                         callback();
                     },
-                    html:function(){ return( `
-            <div class="pageContent bgHome">
+                    html:function(d){ 
+                        var recipe = app.data.recipes[d];
+                        console.log("RECIPE",recipe);
+                        //debugger;
+                        return( `
+                <div class="pageContent bgHome prepare">
                 <div class="backToMain" style="position:absolute;left:12px;top:12px;width:26px;height:26px">
-        
+                <span class="title">${recipe.name}</span>
                 <svg style="" viewBox="0 0 26 26" >
                 <use href="#backArrow" />
                 </svg>
@@ -365,7 +367,7 @@ let kxapp = function () {
                 <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:red; left:384px; top:160px"></div>
 
                 <div class="wheel vWheel right quantityScroller">
-                <div class="wheelItem first"></div>
+                <div class="wheelItem"></div>
                 <div class="wheelItem selected">60</div>
                 <div class="wheelItem">70</div>
                 <div class="wheelItem">80</div>
@@ -393,8 +395,8 @@ let kxapp = function () {
         
                 <div class="target strengthScroller_target" style = "position:absolute; width:5px; height:5px;background-color:red; left:96px; top:160px"></div>
                 <div class="wheel vWheel left strengthScroller">
-                    <div class="wheelItem selected"></div>
-                    <div class="wheelItem">80</div>
+                    <div class="wheelItem "></div>
+                    <div class="wheelItem selected">80</div>
                     <div class="wheelItem">90</div>
                     <div class="wheelItem">100</div>
                     <div class="wheelItem"></div>
@@ -803,6 +805,24 @@ let kxapp = function () {
         top: 37px;
         left: 4px;
     }
+
+
+    .prepare span.title{
+            width: 120px;
+            height: 32px;
+            position: absolute;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            top: 14px;
+            border-bottom: solid 1px #8c8c8c;
+            left: 18px;
+    }
+
+
+
     .clock{
         transition: opacity .6s;
         opacity:0;
@@ -866,7 +886,8 @@ var vscroller = function (e,centerTarget) {
               that.element.querySelectorAll('.wheelItem.selected')[0].classList.remove("selected");
             } 
             that.bb = that.centerTarget.getBoundingClientRect(); // Should be set once at init...
-            that.selected = document.elementFromPoint(that.bb.x, that.bb.y)
+            that.selected = document.elementFromPoint(that.bb.left, that.bb.top)
+            //debugger;
             that.selected.classList.add("selected");
         }, 100)
     })
@@ -964,7 +985,7 @@ var vscroller = function (e,centerTarget) {
         //return
         //console.log(that.scrollCenter.x, that.scrollCenter.y);
         that.bb = that.centerTarget.getBoundingClientRect(); // Should be set once at init...
-        that.selected = document.elementFromPoint(that.bb.x, that.bb.y)
+        that.selected = document.elementFromPoint(that.bb.left, that.bb.top)
 
        // let selected = document.elementFromPoint(that.scrollCenter.x, that.scrollCenter.y);
         smoothScrollTo(that.selected);
