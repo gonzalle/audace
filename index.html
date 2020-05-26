@@ -6,6 +6,7 @@
     <meta name="author" content="Estech">
     <title>Intuition Preference Demo</title>
     <script type="text/javascript" src="js/scroll-polyfill.js"></script>
+    <script type="text/javascript" src="js/kx.js"></script>
 </head>
 
 <body style="background-color: #2b2b2b;">
@@ -18,7 +19,7 @@
 
     <script>
             // 1 - Create the new demo Object
-            let demoScreen = new kscreen();
+            var demoScreen = new kxapp();
 
             // 2 - Loop through all images within the demo (images are in demoScreen.imgDB)
             var i = 0;
@@ -28,13 +29,16 @@
                 // ('hsrc' is for "Hybris source")
                 // eg :
                 if (demoScreen.imgDB[o].uri === "ristretto.png") demoScreen.imgDB[o].hsrc = "images/lungo.png"
+                console.log(o);
 
                 // End of stuff
                 i++;
-                if(i == (Object.keys(demoScreen.imgDB).length)) { 
+                if(i == (Object.keys(demoScreen.imgDB).length)) {
+
             // 3 - When all images are replaced  
                     // init the demo into the target div (eg #instance)
-                   demoScreen.init("instance")}
+                  demoScreen.init("instance")
+                }
             }
 
     </script>

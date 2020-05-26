@@ -26,12 +26,13 @@ let kxapp = function () {
         ristretto: { uri: 'ristretto.png', hsrc: false },
         backgroundhome: { uri: 'background_home.jpg', hsrc: false },
     };
-    if (Cookies.get('lg') !== undefined){
+
+    if (Cookies.get('lg') !== 'undefined'){
         app.lg = Cookies.get('lg');
     } else {
         Cookies.set('lg', app.lg);
     }
-
+/*
     var Clock = function(){
       var thisClock = this;
       thisClock.getTime = function(){
@@ -57,7 +58,7 @@ let kxapp = function () {
     };
 
     app.clock = new Clock();
-
+*/
     const _ = app.loc = function(string){
     return ksLg[app.lg][string];
     }
@@ -70,7 +71,6 @@ let kxapp = function () {
             <div class="kxScreen " id="kxScreen">
             <div id="tempBackground"></div>
             <div id="pageHolder"></div>
-            <div id="pageHolderB"></div>
             <div id="debugger" style="font-size:4px"></div>
 
             
@@ -94,73 +94,44 @@ let kxapp = function () {
     }
 
     app.buildPage = function (pageId, data, callback) {
-        var tempBuild = new DOMParser().parseFromString( app.data.pages[pageId].html() , 'text/html').body.firstChild;
+        var tempBuild = new DOMParser().parseFromString( app.data.pages[pageId].html , 'text/html').body.firstChild;
         app.data.pages[pageId].built = tempBuild;
         app.data.pages[pageId].build(data, function(){
             callback();
         });
     }
 
-    app.showPage = function(page, fade){
-        page.classList.remove('onScreen');
-        if (fade) {
-          var timout = clearTimeout(); 
-          var speed = 500;  
-          Object.assign(app.pageHolderB.style, { "opacity": 0, "transition": "opacity 500ms" });
-          app.pageHolderB.innerHTML = "";
-          var pageB = page.cloneNode(true);
-          app.pageHolderB.appendChild(pageB);
-          setTimeout(function () {
-            Object.assign(app.pageHolderB.style, {"opacity": 1});
-                timout = setTimeout(function () {  // The timout before class transition
-                    app.pageHolder.innerHTML = "";
-                    console.log("displaying page contents");
-                    app.pageHolder.appendChild(page);
-                    app.pageHolderB.innerHTML = "";
-                    Object.assign(app.pageHolderB.style, { "opacity": 0 });
-                    setTimeout(function () {
-                        page.classList.add('built');
-                        page.classList.add('onScreen');
-                        app.currentPage.run();
-                        //debugger;
-                        var clockDom = page.querySelector(".clock");
-                        app.clock.stop();
-                        if (clockDom !== null) {
-                            app.clock.run(clockDom);
-                        } 
-                        //app.currentPage.run();
-                    }, 100)
-                },500)
-          }, 10)
-          //app.pageHolder.appendChild(page);
-        }
-        else {
-            app.pageHolder.innerHTML = "";
-            app.pageHolder.appendChild(page);
-        }
+    app.runPage = function(page){
+        app.pageHolder.innerHTML = "";
+        app.pageHolder.appendChild(page);
         //app.currentPage = app.data.pages[pageId];
-        //if ()
+        setTimeout(function () {
+            page.classList.add('active');
+            var clockDom = page.querySelector(".clock");
+            app.clock.stop();
+            if (clockDom !== null) {
+                app.clock.run(clockDom);
+            } 
 
+            //app.currentPage.run();
+        }, 100)
     }
 
     app.loadPage = function (pageId, data) {
-        console.log("loading " + pageId)
+        //console.log(app.currentPage);
+        console.log("load " + pageId)
+        //console.log("load wtf3")
 
-        if (app.currentPage) {
-          //  app.currentPage.built = app.pageHolder.innerHTML;
-        }
 
         if (app.data.pages[pageId].built == false) {
+            //runPageFunction();
             app.buildPage(pageId, data, function () {
                 app.currentPage = app.data.pages[pageId];
-                app.showPage(app.currentPage.built, true);
+                app.runPage(app.currentPage.built)
             });
         } else {
-            //debugger;
-            app.currentPage.built.classList.remove('onScreen');
-            app.currentPage.quit( () => {});
             app.currentPage = app.data.pages[pageId];
-            app.showPage(app.currentPage.built, true);
+            app.runPage(app.currentPage.built);
         }
 
 
@@ -178,7 +149,26 @@ let kxapp = function () {
 
     }
 
- 
+    app.changeBkg = function (path) {
+        var timout = clearTimeout();
+        var speed = 500;
+        var tempBkg = document.getElementById("tempBackground");
+        Object.assign(tempBkg.style, { "opacity": 0 });
+        var img = new Image();
+        img.onload = function () {
+            Object.assign(tempBkg.style, { "background-image": 'url(' + this.src + ')', "transition": "opacity 500ms" });
+            setTimeout(function () {
+                Object.assign(tempBkg.style, { "opacity": 1 });
+            }, 1)
+            console.log(path);
+            timout = setTimeout(function () {
+                Object.assign(tempBkg.style, { "transition": "opacity 0" });
+                Object.assign(app.holder.style, { "opacity": 1 });
+                Object.assign(tempBkg.style, { "opacity": 0 });
+            }, 500)
+        }
+        img.src = path;
+    }
     
     app.init = function (kxhost) {
        // return;
@@ -199,11 +189,11 @@ let kxapp = function () {
                         callback();
                     }, 100)
                 },
-                html:function(){ return(`
+                html: `
         <div class="pageContent" style="background-color:black;">
     
         </div>
-        `)}},
+        `},
     
                 starting: {
                     name: "starting",
@@ -231,14 +221,12 @@ let kxapp = function () {
                         })*/
                     },
                     quit: function (callback) {
-                        console.log('quitting '+this.name)
-                        debugger;
                         let unloadTime = setTimeout(function () {
                             callback();
                         }, 1000)
                     },
-                    html:function(){ return( `
-            <div class="pageContent bgHome">
+                    html: `
+            <div class="pageContent">
         
             <svg style="position:absolute; top:110px; left:167px; width:146px;height:34px;" viewBox="0 0 146 34">
             <use href="#krupsLogo" style="fill: white;" />
@@ -258,8 +246,7 @@ let kxapp = function () {
             <div>
             </div>
             </div>
-            `)}
-        },
+            `},
     
                 recettes: {
                     name: "recettes",
@@ -275,58 +262,56 @@ let kxapp = function () {
                         callback();
                     },
                     run: function () {
-                        console.log('running recettes');
+                        
                     },
                     quit: function (callback) {
-                        console.log('quitting '+this.name)
                         let unloadTime = setTimeout(function () {
                             callback();
                         }, 10)
                     },
-                    html:function(){ 
-                        var rhtml = `
-            <div class="pageContent bgHome">
-            <!--   
-            <svg style="position:absolute; width:31px;height:25px;top:12px;left:31px" viewBox="0 0 32 27" >
-            <use href="#recette" />
-            </svg>
-
-            <div style="position:absolute; height:25px;top:12px;left:31px;font-size:18px;padding-left:36px;height:34px;  border-bottom: solid 2px orange;">${_('drink')}</div>
-            -->
-            <div class="clock">00:00</div>
-            <!--
-            <svg style="position:absolute; width:26px;height:25px;top:12px;right:29px" viewBox="0 0 26 25" >
-            <use href="#fav" />
-            </svg>
-            <div style="position:absolute; height:25px;top:12px;right:31px;font-size:18px;padding-right:36px;text-align:right;height:34px;  border-bottom: solid 2px transparent;">${_("profile")}</div>
-            -->
-
-            <section id="recetteScroller" >
-                `;
-            var cards = '';
-            //debugger;
-            for (let [key, value] of Object.entries(app.data.recipes)) {
-               // console.log(`${key}: ${value}`);
-               rhtml += ` <div class="recetteScrollerItem"> <span>${value.name}</span><img src="${imag('ristretto')}"></div>  `
-            }
-            
-
-                rhtml += `
-            </section>
+                    html: `
+            <div class="pageContent">
+        
+        
+        
+                <svg style="position:absolute; width:31px;height:25px;top:12px;left:31px" viewBox="0 0 32 27" >
+                <use href="#recette" />
+                </svg>
+        
+        
+        
+                <div style="position:absolute; height:25px;top:12px;left:31px;font-size:18px;padding-left:36px;height:34px;  border-bottom: solid 2px orange;">${_('drink')}</div>
+        
+        
+                    <div class="clock">00:00</div>
+        
+        
+                <svg style="position:absolute; width:26px;height:25px;top:12px;right:29px" viewBox="0 0 26 25" >
+                <use href="#fav" />
+                </svg>
+        
+                <div style="position:absolute; height:25px;top:12px;right:31px;font-size:18px;padding-right:36px;text-align:right;height:34px;  border-bottom: solid 2px transparent;">${_("profile")}</div>
+                <section id="recetteScroller" >
+                    <div class="recetteScrollerItem"><img src="${imag('ristretto')}"></div>
+                    <div class="recetteScrollerItem"><img src="${imag('ristretto')}"></div>
+                    <div class="recetteScrollerItem"><img src="${imag('ristretto')}"></div>
+                    <div class="recetteScrollerItem"><img src="${imag('ristretto')}"></div>
+                    <div class="recetteScrollerItem"><img src="${imag('ristretto')}"></div>
+                    <div class="recetteScrollerItem"><img src="${imag('ristretto')}"></div>
+                    <div class="recetteScrollerItem"><img src="${imag('ristretto')}"></div>
+                    <div class="recetteScrollerItem"></div>
+                </section>
             </div>
-            `
-            return (rhtml);
-        }},
+            `},
     
                 prepare: {
                     name: "prepare",
                     built:false,
                     build : function(data, callback){
-                        console.log("VSCROLLER"+data)
-                        //debugger;
-                        let strength = new vscroller(this.built.querySelector('.strengthScroller'), this.built.querySelector('.strengthScroller_target'));
-                       // console.log(strength);
-                        let quantity = new vscroller(this.built.querySelector('.quantityScroller'), this.built.querySelector('.quantityScroller_target'));
+                        console.log(this.built)
+                        let strength = new vscroller(this.built.querySelector('#strengthScroller'));
+                        //console.log(strength);
+                        let quantity = new vscroller(this.built.querySelector('#quantityScroller'));
     
                         this.built.querySelector('.backToMain').addEventListener('click', function (e) {
                             console.log("back");
@@ -335,8 +320,6 @@ let kxapp = function () {
                         callback();
                     },
                     run: function () {
-                        console.log('running prepare');
-
                         //debugger;
                         // changeBkg("images/test.png")
                         //if (this.built) console.log ('built');
@@ -348,13 +331,10 @@ let kxapp = function () {
                         })*/
                     },
                     quit: function (callback) {
-                        this.built = false // We reset the built as next recipe will not be the same
-
-                        console.log('quitting '+this.name)
                         callback();
                     },
-                    html:function(){ return( `
-            <div class="pageContent bgHome">
+                    html: `
+            <div class="pageContent">
                 <div class="backToMain" style="position:absolute;left:12px;top:12px;width:26px;height:26px">
         
                 <svg style="" viewBox="0 0 26 26" >
@@ -362,9 +342,7 @@ let kxapp = function () {
                 </svg>
                     <!-- <img src="images/back-white.svg">-->
                 </div>
-                <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:red; left:384px; top:160px"></div>
-
-                <div class="wheel vWheel right quantityScroller">
+                <div class="wheel vWheel right" id="quantityScroller">
                 <div class="wheelItem first"></div>
                 <div class="wheelItem selected">60</div>
                 <div class="wheelItem">70</div>
@@ -391,8 +369,7 @@ let kxapp = function () {
                 <div class="vwheelCenter right">&nbsp;</div>
                 <div class="vwheelUnit right">ml</div>
         
-                <div class="target strengthScroller_target" style = "position:absolute; width:5px; height:5px;background-color:red; left:96px; top:160px"></div>
-                <div class="wheel vWheel left strengthScroller">
+                <div class="wheel vWheel left" id="strengthScroller">
                     <div class="wheelItem selected"></div>
                     <div class="wheelItem">80</div>
                     <div class="wheelItem">90</div>
@@ -402,44 +379,17 @@ let kxapp = function () {
                 <div class="vwheelCenter left">&nbsp;</div>
                 <div class="vwheelUnit left">ml</div>
             </div>
-            `)}
+            `,
                 }
-            },
-            recipes:{
-                ristretto:{
-                    name : "Ristretto",
-                    image : "ristretto.png",
-                },
-                espresso:{
-                    name : "Espresso",
-                    image : "ristretto.png",
-                },
-                lungo:{
-                    name : "Lungo",
-                    image : "ristretto.png",
-                },
-                cafelong:{
-                    name : "Café long",
-                    image : "ristretto.png",
-                },
-                doppio:{
-                    name : "Doppio",
-                    image : "ristretto.png",
-                },
-                americano:{
-                    name : "Americano",
-                    image : "ristretto.png",
-                },
             }
         }
+    
         app.kxhost = document.getElementById(kxhost);
-        //debugger;
         app.kxhost.innerHTML = baseHtml;
         addStyles(app.kxhost);
-        app.kxunit = app.kxhost.querySelector("#kxUnit");
-        app.holder = app.kxhost.querySelector("#kxScreen");
-        app.pageHolder = app.kxhost.querySelector("#pageHolder");
-        app.pageHolderB = app.kxhost.querySelector("#pageHolderB");
+        app.holder = document.getElementById("kxScreen");
+        app.kxunit = document.getElementById("kxUnit");
+        app.pageHolder = document.getElementById("pageHolder");
         app.fit();
         app.loadPage("recettes", null); // Show first page
 
@@ -549,11 +499,6 @@ let kxapp = function () {
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-
-
-            -webkit-tap-highlight-color: transparent;
-
-
             cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA/dJREFUeNrMV0tMU0EU5WMppRQoEpTaJoYCITQRNnwSQkIiH9GdrhTY+wlVdm50w9KERGNMjEtQN0p3VgNGwA2BBUHUENBEpeWjSH8KSIF6zstM89SCbW3VSQ7vZd6de06HOzNnUlL+cUuNNrCtrU27urp6Bmjzer1HAoHAwWAwqOc3jUbz1WAwLOXl5b3Iz893AvecTue3mJSEQqGIaGlpKayoqLidmZnpZ1g00Gq1fo7h2N3yRiWgurr6Ioi9MnF9ff3SwMDA65WVlfdbW1s+xAQJvrOP3xgj4zmWOWIW0NjYuK+kpMQhE7W3t897PJ75UJSNsR0dHfNyPHMxZ1QCGGixWJ6zS6/Xb05OTs6if0fk/go8A24Cl4HzgB24KvqeiRi2HY5lDuZiTrWIX4pQdpaVlT2Ym5s7VVRUtD4zM7Oak5NzCN1BwAkMAb8rLi3QxLplffr9fnd5eXn+4uKirrS0dGB2dvaUQpya+quAmpoa+8TExHWQBl0u1ydUtgmfPgO3AFeMK4zCLwD7sWIWzGZzAcRksCbGx8dvSAFpMrq1tbVwenq6h+8jIyPvBbkHuBYHOZtbjPUw1+jo6Ad2koNcMigsAL+4Z2NjIwcF56qqqrKKab8tRMTbPCJHsLKy0orCdJGDXD/UAIojc2xs7CM+GlDBbmwonL7HgCNBG95JTjI2MJfRaDRjeQbq6uoKh4eHN5QZWF9fP03ypqamZUG+JgQkqrGA15Db3NzcvEwucob/Bdhej/PZ3d3tEwOmqCuBAphrXM0BzhNhAZgaG5+1tbU6lYBEt1dqDsmpCMAyMfOJKcoVwe+SIIA7Y0oumuA8FBawubmpqEpPT88SwYEkCAioOSRn2i7B+/6WH1AEZGRkKAW3vb29Jvpzk8BlUHNITkUAdiq3KAy5CkxJEGDhHx+amjNNFN9LPrFHy6V3JAkCbGoOcL4KC4CFesRnb2+vnPpKQJdAcuaqUXMUFBQ4wwJ0Ot192KgvQ0NDB7hdoote71gCBTBXFnMPDg4e4FYMvrthAdyTrVbrPb53dXVJb3cUOJwA8sMiV8hutysdxcXF98n5wzLEeX2FxrO/v98CJ/OWZgI4Cxj/gNwocmimpqbe9PX1KQcRuSI6or9kSC6hEK9HdETCkj2EJTtpMpnWYMm8QgS9wVPgiTgp92rc6VqELdOQHJYsb2FhISuSJdvTlGZnZ//OlJ4TuLybKcUP2NOURmXLabFpVGKw5e7Ozs74bHmEi4lPJmpoaFhyOBy8mHzAZcSPmC2C7+zjN8aoLia+uC4mP1/NbDbbHazbQAxXswDHRHM1i+dyelxeTnGk6sXBor6cPuLGJtf5f9++CzAAfBCRRGu7bLYAAAAASUVORK5CYII=) 16 16, pointer;
             box-shadow: 3px 3px 16px rgba(0,0,0,0.5);
             /*
@@ -584,6 +529,7 @@ let kxapp = function () {
             font-family: 'Open Sans', sans-serif;
             color: white;
             font-weight: 300;
+            background-image: url(${imag('backgroundhome')});
             background-size: cover;
             opacity: 1;
             width: 480px;
@@ -597,20 +543,19 @@ let kxapp = function () {
             transform: translate(-50%, -50%)
         }
 
-        .kxScreen .pageContent.bgHome {
-            background-image: url(${imag('backgroundhome')});
-        }
-
-        #pageHolder, #pageHolderB, .pageContent{
+        #pageHolder, .pageContent{
           width: 100%;
           height: 100%;
-          position:absolute;
         }
 
-         #pageHolderB {
-            pointer-events: none;
-        }
 
+        #tempBackground{
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        position: absolute;
+
+        }
 
        /* .kxScreen.centered{
             top: 0;
@@ -776,21 +721,7 @@ let kxapp = function () {
       transition-delay:2s;
     }
 
-    .recetteScrollerItem span{
-        width: 120px;
-        height: 32px;
-        position: absolute;
-        color: white;
-        font-size: 16px;
-        text-align: center;
-        font-weight: bold;
-        text-transform: uppercase;
-        top: 14px;
-        border-bottom: solid 1px #8c8c8c;
-        left: 18px;
-    }
-
-    .pageContent.built .recetteScrollerItem{
+    .pageContent.active .recetteScrollerItem{
       transform:translateX(0);
     }
 
@@ -803,34 +734,13 @@ let kxapp = function () {
         top: 37px;
         left: 4px;
     }
-    .clock{
-        transition: opacity .6s;
-        opacity:0;
-        text-align: center;
-        position: absolute;
-        width: 136px;
-        font-size: 20px;
-        left: 183px;
-        top: 14px;
-        height: 32px;
-        line-height: 25px;
-        border-bottom:solid 3px orange;
-    }
-    
-
-    .onScreen .clock{
-        opacity:1;
-
-    }
-
-
     `;
         document.head.appendChild(sheet);
 
     }
 
     function imag(s) {
-        //debugger;
+        debugger;
         console.log(app.imgDB);
         console.log(s);
         console.log(app.imgDB[s]);
@@ -847,7 +757,7 @@ let kxapp = function () {
 
 
 
-var vscroller = function (e,centerTarget) {
+var vscroller = function (e) {
     let that = this;
     that.pointingDevice = "mouse"; // Sorry Mobile first !
     that.isDown = false;
@@ -856,7 +766,14 @@ var vscroller = function (e,centerTarget) {
     that.mouseMove = false;
     that.element = (e);
     that.element.classList.add(that.pointingDevice);
-    that.centerTarget = centerTarget;
+    that.dims = that.element.getBoundingClientRect();
+    console.log("dims", that.dims);
+    // TODO : check if this keeps the same at resizing ?
+    that.scrollCenter = { x: that.dims.left + that.dims.width / 2, y: that.dims.top + that.dims.height / 2 };
+    console.log(e, that.scrollCenter);
+    //debugger;
+    //let offset = document.querySelector(e+' .wheelItem:first-child').offsetHeight;
+    let offset = that.element.querySelector('.wheelItem:first-child').offsetHeight;
 
     var timout;
     that.element.addEventListener('scroll', function (e) {
@@ -864,12 +781,19 @@ var vscroller = function (e,centerTarget) {
         timout = setTimeout(function () {
             if(that.element.querySelectorAll('.wheelItem.selected').length > 0) {
               that.element.querySelectorAll('.wheelItem.selected')[0].classList.remove("selected");
-            } 
-            that.bb = that.centerTarget.getBoundingClientRect(); // Should be set once at init...
-            that.selected = document.elementFromPoint(that.bb.x, that.bb.y)
-            that.selected.classList.add("selected");
+            } /*else debugger*/;
+            let selected = document.elementFromPoint(that.scrollCenter.x, that.scrollCenter.y);
+            //console.log('SSSS', selected, that.scrollCenter.x, that.scrollCenter.y);
+            if (selected == null) debugger;
+            selected.classList.add("selected");
         }, 100)
     })
+
+    /* document.getElementsByClassName('wheelItem').addEventListener('click', function(e) {
+        console.log('clickietm');
+
+     })*/
+
 
     var divs = that.element.querySelectorAll('.wheelItem');
 
@@ -877,6 +801,8 @@ var vscroller = function (e,centerTarget) {
         console.log('click', this);
 
         if (that.mouseMove) return;
+        // console.log('click',this);
+        //debugger;
         smoothScrollTo(el);
     }));
 
@@ -891,12 +817,13 @@ var vscroller = function (e,centerTarget) {
     */
 
     function smoothScrollTo(thisItem) {
+        //$(e+" .wheelItem.selected").removeClass("selected");
+        //debugger;
         if( thisItem == null) return;
         console.log(thisItem);
         if(that.element.querySelectorAll('.wheelItem.selected').length > 0) {
           that.element.querySelectorAll('.wheelItem.selected')[0].classList.remove("selected");
-        } 
-        var offset = that.element.querySelector('.wheelItem').offsetHeight;
+        } /*else debugger;*/
         that.element.scrollTo({ top: thisItem.offsetTop - offset, behavior: 'smooth' });
         thisItem.classList.add("selected");
     }
@@ -921,9 +848,11 @@ var vscroller = function (e,centerTarget) {
 
     that.element.addEventListener('mouseleave', (e) => {
         console.log('mouseleave');
+
         if (that.pointingDevice == "touch") return;
         that.isDown = false;
         that.mouseMove = false;
+        //recenter ()
     });
 
     that.element.addEventListener('mouseup', (e) => {
@@ -961,13 +890,9 @@ var vscroller = function (e,centerTarget) {
     });
 
     function recenter() {
-        //return
-        //console.log(that.scrollCenter.x, that.scrollCenter.y);
-        that.bb = that.centerTarget.getBoundingClientRect(); // Should be set once at init...
-        that.selected = document.elementFromPoint(that.bb.x, that.bb.y)
-
-       // let selected = document.elementFromPoint(that.scrollCenter.x, that.scrollCenter.y);
-        smoothScrollTo(that.selected);
+        console.log(that.scrollCenter.x, that.scrollCenter.y);
+        let selected = document.elementFromPoint(that.scrollCenter.x, that.scrollCenter.y);
+        smoothScrollTo(selected);
     }
 
 }
