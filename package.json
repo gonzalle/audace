@@ -1,0 +1,23 @@
+{
+  "name": "audace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/kx.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gonzalle/audace.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gonzalle/audace/issues"
+  },
+  "homepage": "https://github.com/gonzalle/audace#readme",
+  "dependencies": {
+    "jshint": "^2.11.1"
+  }
+}

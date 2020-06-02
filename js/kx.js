@@ -1,18 +1,19 @@
-
 var kxapp = function () {
     "use strict";
-    const ksLg  = {
+    const kxLg  = {
         en : {
           "drink" : "Drinks",
-          "profile" : "Profile"
+          "profile" : "Profile",
+          "start":"Start",
         },
         fr: {
           "drink" : "Boissons",
-          "profile" : "Profile"
+          "profile" : "Profile",
+          "start" : "Démarrer",
         }
       };
 
-
+    
 
     // Check ES6
     // return false;
@@ -61,14 +62,54 @@ var kxapp = function () {
     app.clock = new Clock();
 
     var _ = app.loc = function(string){
-    return ksLg[app.lg][string];
+    return kxLg[app.lg][string];
     };
+    
+
+    app.beep = function () {
+        var snd = new Audio('beep.mp3');
+        snd.loop = false;
+        snd.play(); 
+    }
+
+   app.bleep = function () {
+        var snd = new Audio('bleep.mp3');
+        snd.loop = false;
+        snd.play(); 
+    }
+
 
 
     var baseHtml = `
         <div id="kxUnit">
 
+            <div class="unitButton kxUnitButtonStart" id="kxUnitButtonStart">
+                <svg style="" viewBox="0 0 64 64">
+                <use href="#start" />
+                </svg>
+            </div>
 
+            <div class="unitButton kxUnitButtonHome" id="kxUnitButtonHome">
+                <svg style="" viewBox="0 0 64 64">
+                <use href="#home" />
+                </svg>
+            </div>
+
+            <div class="unitButton kxUnitButtonUserOne" id="kxUnitButtonUserOne">
+                <svg style="" viewBox="0 0 64 64">
+                <use href="#userOne" />
+                </svg>
+            </div>
+
+
+            <div class="unitButton kxUnitButtonUserTwo" id="kxUnitButtonUserTwo">
+                <svg style="" viewBox="0 0 64 64">
+                <use href="#userTwo" />
+                </svg>
+            </div>
+
+
+            
             <div class="kxScreen " id="kxScreen">
             <div id="tempBackground"></div>
             <div id="pageHolder"></div>
@@ -194,6 +235,7 @@ var kxapp = function () {
     
                 off: {
                 name: "off",
+                built:false,
                 build : function(data, callback){
                     callback();
                 },
@@ -206,7 +248,7 @@ var kxapp = function () {
                     }, 100);
                 },
                 html:function(){ return(`
-        <div class="pageContent" style="background-color:black;">
+                <div class="pageContent" style="background-color:black;">
     
         </div>
         `);}},
@@ -214,7 +256,7 @@ var kxapp = function () {
                 starting: {
                     name: "starting",
                     built:false,
-                    build : function(data, callback){
+                    build : function(callback){
                         callback();
                     },
                     beforeShow: function () {},
@@ -340,12 +382,15 @@ var kxapp = function () {
                         //this.recipe = app.data.recipes[data];
                         //console.log("PREP " , this.recipe);
                         var thisBuilt = this.built;
-                        this.strengthScroller = new vscroller(thisBuilt.querySelector('.strengthScroller'), thisBuilt.querySelector('.strengthScroller_target'));
-                        this.quantityScroller = new vscroller(thisBuilt.querySelector('.quantityScroller'), thisBuilt.querySelector('.quantityScroller_target'));
-    
-                        thisBuilt.querySelector('.backToMain').addEventListener('click', function (e) {
-                            app.loadPage("recettes", null);
-                        });
+
+                        if (app.currentRecipe){
+                            this.strengthScroller = new vscroller(thisBuilt.querySelector('.strengthScroller'), thisBuilt.querySelector('.strengthScroller_target'));
+                            this.quantityScroller = new vscroller(thisBuilt.querySelector('.quantityScroller'), thisBuilt.querySelector('.quantityScroller_target'));
+        
+                            thisBuilt.querySelector('.backToMain').addEventListener('click', function (e) {
+                                app.loadPage("recettes", null);
+                            });
+                        }
 
                         if (app.currentRecipe.canx2) {
                             thisBuilt.querySelector('.plus').addEventListener('click', function (e) {
@@ -368,10 +413,11 @@ var kxapp = function () {
                         callback();
                     },
                     beforeShow: function () {
+                        if (this.quantityScroller){
                         var a = this.built.querySelector('.quantityScroller .wheelItem:nth-child(5)');
                         this.quantityScroller.scrollToFunction(a);
-
-                       //  debugger;
+                    }
+                    //  debugger;
                     },
                     run: function () {
                         console.log('running prepare');
@@ -437,7 +483,7 @@ var kxapp = function () {
                     </div>
                     `:``  }
 
-                    <div class="startButton borderOrange" style="    position: absolute;
+                    <div class="startButton borderOrange" style="position: absolute;
                     width: 175px;
                     height: 42px;
                     left: 23px;
@@ -446,7 +492,7 @@ var kxapp = function () {
                     border: solid 2px orange;
                     text-align: center;
                     font-weight: 600;
-                }">START</div>
+                }">${_('start')}</div>
 
 
                 </div>
@@ -507,290 +553,290 @@ var kxapp = function () {
             recipes:{
 
                 ristretto:{code:'ristretto',
-name:'RISTRETTO',
-spritexy:'0;0',
-spritexy_x1:'1;0',
-spritexy_x2:'2;0',
-bkg:'bkg2',
-family:'black',
-sequences:'cafe',
-canx2:true,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'ml',
-rightmenuvalues:'20;25;30;35;40',
-righmenudefault:'60',
-runmenutyp:'ml',
-runmenuvalues:'20;25;30;35;40',
-runmenudefault:'60',
-},
-espresso:{code:'espresso',
-name:'ESPRESSO',
-spritexy:'3;0',
-spritexy_x1:'4;0',
-spritexy_x2:'5;0',
-bkg:'bkg4',
-family:'black',
-sequences:'cafe',
-canx2:true,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'ml',
-rightmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
-righmenudefault:'130',
-runmenutyp:'ml',
-runmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
-runmenudefault:'130',
-},
-lungo:{code:'lungo',
-name:'LUNGO',
-spritexy:'0;1',
-spritexy_x1:'1;1',
-spritexy_x2:'2;1',
-bkg:'bkg4',
-family:'black',
-sequences:'cafe',
-canx2:true,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'ml',
-rightmenuvalues:'20;25;30;35;40',
-righmenudefault:'60',
-runmenutyp:'ml',
-runmenuvalues:'20;25;30;35;42',
-runmenudefault:'60',
-},
-cafelong:{code:'cafelong',
-name:'CAFE LONG',
-spritexy:'3;1',
-spritexy_x1:'4;1',
-spritexy_x2:'5;1',
-bkg:'bkg3',
-family:'black',
-sequences:'cafe',
-canx2:true,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'ml',
-rightmenuvalues:'20;25;30;35;40',
-righmenudefault:'60',
-runmenutyp:'ml',
-runmenuvalues:'20;25;30;35;43',
-runmenudefault:'60',
-},
-doppio:{code:'doppio',
-name:'DOPPIO',
-spritexy:'0;2',
-spritexy_x1:'1;2',
-spritexy_x2:'2;2',
-bkg:'bkg2',
-family:'black',
-sequences:'cafe',
-canx2:true,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'ml',
-rightmenuvalues:'20;25;30;35;40',
-righmenudefault:'60',
-runmenutyp:'ml',
-runmenuvalues:'20;25;30;35;44',
-runmenudefault:'60',
-},
-americano:{code:'americano',
-name:'AMERICANO',
-spritexy:'3;2',
-spritexy_x1:'3;2',
-spritexy_x2:'3;2',
-bkg:'bkg3',
-family:'black',
-sequences:'cafe;hotwater',
-canx2:false,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'ml',
-rightmenuvalues:'20;25;30;35;40',
-righmenudefault:'60',
-runmenutyp:'ml',
-runmenuvalues:'20;25;30;35;45',
-runmenudefault:'60',
-},
-espressomacchiato:{code:'espressomacchiato',
-name:'E.MACCHIATO',
-spritexy:'0;3',
-spritexy_x1:'1;3',
-spritexy_x2:'2;3',
-bkg:'bkg7',
-family:'latte',
-sequences:'steam;cafe',
-canx2:true,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'vol',
-rightmenuvalues:'M;L;XL',
-righmenudefault:'M',
-runmenutyp:'ml',
-runmenuvalues:'20;25;30;35;42',
-runmenudefault:'60',
-},
-cappucino:{code:'cappucino',
-name:'CAPPUCCINO ',
-spritexy:'3;3',
-spritexy_x1:'4;3',
-spritexy_x2:'5;3',
-bkg:'bkg10',
-family:'latte',
-sequences:'steam;cafe',
-canx2:true,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'vol',
-rightmenuvalues:'M;L;XL',
-righmenudefault:'L',
-runmenutyp:'ml',
-runmenuvalues:'20;25;30;35;46',
-runmenudefault:'60',
-},
-lattemacchiato:{code:'lattemacchiato',
-name:'LATTE MACCHIATO',
-spritexy:'0;4',
-spritexy_x1:'1;4',
-spritexy_x2:'2;4',
-bkg:'bkg9',
-family:'latte',
-sequences:'steam;cafe',
-canx2:true,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'vol',
-rightmenuvalues:'M;L;XL',
-righmenudefault:'M',
-runmenutyp:'ml',
-runmenuvalues:'20;25;30;35;47',
-runmenudefault:'60',
-},
-laitmousse:{code:'laitmousse',
-name:'LAIT MOUSSÉ',
-spritexy:'3;4',
-spritexy_x1:'4;4',
-spritexy_x2:'5;4',
-bkg:'bkg8',
-family:'latte',
-sequences:'steam;cafe',
-canx2:true,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'vol',
-rightmenuvalues:'M;L;XL',
-righmenudefault:'M',
-runmenutyp:'sec',
-runmenuvalues:'FALSE',
-runmenudefault:'FALSE',
-},
-caffelatte:{code:'caffelatte',
-name:'CAFFE LATTE',
-spritexy:'0;5',
-spritexy_x1:'1;5',
-spritexy_x2:'2;5',
-bkg:'bkg9',
-family:'latte',
-sequences:'steam;cafe',
-canx2:true,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'vol',
-rightmenuvalues:'M;L;XL',
-righmenudefault:'M',
-runmenutyp:'ml',
-runmenuvalues:'20;25;30;35;40',
-runmenudefault:'60',
-},
-flatwhite:{code:'flatwhite',
-name:'FLAT WHITE',
-spritexy:'3;5',
-spritexy_x1:'3;5',
-spritexy_x2:'3;5',
-bkg:'bkg10',
-family:'latte',
-sequences:'cafe;cafe;steam',
-canx2:false,
-leftmenutyp:'strength',
-leftmenuvalues:'1;2;3',
-leftmenudefault:'1',
-rightmenutyp:'vol',
-rightmenuvalues:'M;L;XL',
-righmenudefault:'M',
-runmenutyp:'ml',
-runmenuvalues:'20;25;30;35;41',
-runmenudefault:'60',
-},
-thevert:{code:'thevert',
-name:'THÉ Vert',
-spritexy:'4;5',
-spritexy_x1:'4;5',
-spritexy_x2:'4;5',
-bkg:'bkg11',
-family:'water',
-sequences:'hotwater',
-canx2:false,
-leftmenutyp:'FALSE',
-leftmenuvalues:'FALSE',
-leftmenudefault:'FALSE',
-rightmenutyp:'vol',
-rightmenuvalues:'M;L;XL',
-righmenudefault:'130',
-runmenutyp:'ml',
-runmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
-runmenudefault:'130',
-},
-thenoir:{code:'thenoir',
-name:'THÉ Noir',
-spritexy:'5;5',
-spritexy_x1:'5;5',
-spritexy_x2:'5;5',
-bkg:'bkg12',
-family:'water',
-sequences:'hotwater',
-canx2:false,
-leftmenutyp:'FALSE',
-leftmenuvalues:'FALSE',
-leftmenudefault:'FALSE',
-rightmenutyp:'vol',
-rightmenuvalues:'M;L;XL',
-righmenudefault:'130',
-runmenutyp:'ml',
-runmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
-runmenudefault:'130',
-},
-infusion:{code:'infusion',
-name:'Infusion',
-spritexy:'5;2',
-spritexy_x1:'5;2',
-spritexy_x2:'5;2',
-bkg:'bkg14',
-family:'water',
-sequences:'hotwater',
-canx2:false,
-leftmenutyp:'FALSE',
-leftmenuvalues:'FALSE',
-leftmenudefault:'FALSE',
-rightmenutyp:'vol',
-rightmenuvalues:'M;L;XL',
-righmenudefault:'130',
-runmenutyp:'ml',
-runmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
-runmenudefault:'130',
-},
+                name:'RISTRETTO',
+                spritexy:'0;0',
+                spritexy_x1:'1;0',
+                spritexy_x2:'2;0',
+                bkg:'bkg2',
+                family:'black',
+                sequences:'cafe',
+                canx2:true,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'ml',
+                rightmenuvalues:'20;25;30;35;40',
+                righmenudefault:'60',
+                runmenutyp:'ml',
+                runmenuvalues:'20;25;30;35;40',
+                runmenudefault:'60',
+                },
+                espresso:{code:'espresso',
+                name:'ESPRESSO',
+                spritexy:'3;0',
+                spritexy_x1:'4;0',
+                spritexy_x2:'5;0',
+                bkg:'bkg4',
+                family:'black',
+                sequences:'cafe',
+                canx2:true,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'ml',
+                rightmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
+                righmenudefault:'130',
+                runmenutyp:'ml',
+                runmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
+                runmenudefault:'130',
+                },
+                lungo:{code:'lungo',
+                name:'LUNGO',
+                spritexy:'0;1',
+                spritexy_x1:'1;1',
+                spritexy_x2:'2;1',
+                bkg:'bkg4',
+                family:'black',
+                sequences:'cafe',
+                canx2:true,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'ml',
+                rightmenuvalues:'20;25;30;35;40',
+                righmenudefault:'60',
+                runmenutyp:'ml',
+                runmenuvalues:'20;25;30;35;42',
+                runmenudefault:'60',
+                },
+                cafelong:{code:'cafelong',
+                name:'CAFE LONG',
+                spritexy:'3;1',
+                spritexy_x1:'4;1',
+                spritexy_x2:'5;1',
+                bkg:'bkg3',
+                family:'black',
+                sequences:'cafe',
+                canx2:true,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'ml',
+                rightmenuvalues:'20;25;30;35;40',
+                righmenudefault:'60',
+                runmenutyp:'ml',
+                runmenuvalues:'20;25;30;35;43',
+                runmenudefault:'60',
+                },
+                doppio:{code:'doppio',
+                name:'DOPPIO',
+                spritexy:'0;2',
+                spritexy_x1:'1;2',
+                spritexy_x2:'2;2',
+                bkg:'bkg2',
+                family:'black',
+                sequences:'cafe',
+                canx2:true,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'ml',
+                rightmenuvalues:'20;25;30;35;40',
+                righmenudefault:'60',
+                runmenutyp:'ml',
+                runmenuvalues:'20;25;30;35;44',
+                runmenudefault:'60',
+                },
+                americano:{code:'americano',
+                name:'AMERICANO',
+                spritexy:'3;2',
+                spritexy_x1:'3;2',
+                spritexy_x2:'3;2',
+                bkg:'bkg3',
+                family:'black',
+                sequences:'cafe;hotwater',
+                canx2:false,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'ml',
+                rightmenuvalues:'20;25;30;35;40',
+                righmenudefault:'60',
+                runmenutyp:'ml',
+                runmenuvalues:'20;25;30;35;45',
+                runmenudefault:'60',
+                },
+                espressomacchiato:{code:'espressomacchiato',
+                name:'E.MACCHIATO',
+                spritexy:'0;3',
+                spritexy_x1:'1;3',
+                spritexy_x2:'2;3',
+                bkg:'bkg7',
+                family:'latte',
+                sequences:'steam;cafe',
+                canx2:true,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'vol',
+                rightmenuvalues:'M;L;XL',
+                righmenudefault:'M',
+                runmenutyp:'ml',
+                runmenuvalues:'20;25;30;35;42',
+                runmenudefault:'60',
+                },
+                cappucino:{code:'cappucino',
+                name:'CAPPUCCINO ',
+                spritexy:'3;3',
+                spritexy_x1:'4;3',
+                spritexy_x2:'5;3',
+                bkg:'bkg10',
+                family:'latte',
+                sequences:'steam;cafe',
+                canx2:true,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'vol',
+                rightmenuvalues:'M;L;XL',
+                righmenudefault:'L',
+                runmenutyp:'ml',
+                runmenuvalues:'20;25;30;35;46',
+                runmenudefault:'60',
+                },
+                lattemacchiato:{code:'lattemacchiato',
+                name:'LATTE MACCHIATO',
+                spritexy:'0;4',
+                spritexy_x1:'1;4',
+                spritexy_x2:'2;4',
+                bkg:'bkg9',
+                family:'latte',
+                sequences:'steam;cafe',
+                canx2:true,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'vol',
+                rightmenuvalues:'M;L;XL',
+                righmenudefault:'M',
+                runmenutyp:'ml',
+                runmenuvalues:'20;25;30;35;47',
+                runmenudefault:'60',
+                },
+                laitmousse:{code:'laitmousse',
+                name:'LAIT MOUSSÉ',
+                spritexy:'3;4',
+                spritexy_x1:'4;4',
+                spritexy_x2:'5;4',
+                bkg:'bkg8',
+                family:'latte',
+                sequences:'steam;cafe',
+                canx2:true,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'vol',
+                rightmenuvalues:'M;L;XL',
+                righmenudefault:'M',
+                runmenutyp:'sec',
+                runmenuvalues:'FALSE',
+                runmenudefault:'FALSE',
+                },
+                caffelatte:{code:'caffelatte',
+                name:'CAFFE LATTE',
+                spritexy:'0;5',
+                spritexy_x1:'1;5',
+                spritexy_x2:'2;5',
+                bkg:'bkg9',
+                family:'latte',
+                sequences:'steam;cafe',
+                canx2:true,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'vol',
+                rightmenuvalues:'M;L;XL',
+                righmenudefault:'M',
+                runmenutyp:'ml',
+                runmenuvalues:'20;25;30;35;40',
+                runmenudefault:'60',
+                },
+                flatwhite:{code:'flatwhite',
+                name:'FLAT WHITE',
+                spritexy:'3;5',
+                spritexy_x1:'3;5',
+                spritexy_x2:'3;5',
+                bkg:'bkg10',
+                family:'latte',
+                sequences:'cafe;cafe;steam',
+                canx2:false,
+                leftmenutyp:'strength',
+                leftmenuvalues:'1;2;3',
+                leftmenudefault:'1',
+                rightmenutyp:'vol',
+                rightmenuvalues:'M;L;XL',
+                righmenudefault:'M',
+                runmenutyp:'ml',
+                runmenuvalues:'20;25;30;35;41',
+                runmenudefault:'60',
+                },
+                thevert:{code:'thevert',
+                name:'THÉ Vert',
+                spritexy:'4;5',
+                spritexy_x1:'4;5',
+                spritexy_x2:'4;5',
+                bkg:'bkg11',
+                family:'water',
+                sequences:'hotwater',
+                canx2:false,
+                leftmenutyp:'FALSE',
+                leftmenuvalues:'FALSE',
+                leftmenudefault:'FALSE',
+                rightmenutyp:'vol',
+                rightmenuvalues:'M;L;XL',
+                righmenudefault:'130',
+                runmenutyp:'ml',
+                runmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
+                runmenudefault:'130',
+                },
+                thenoir:{code:'thenoir',
+                name:'THÉ Noir',
+                spritexy:'5;5',
+                spritexy_x1:'5;5',
+                spritexy_x2:'5;5',
+                bkg:'bkg12',
+                family:'water',
+                sequences:'hotwater',
+                canx2:false,
+                leftmenutyp:'FALSE',
+                leftmenuvalues:'FALSE',
+                leftmenudefault:'FALSE',
+                rightmenutyp:'vol',
+                rightmenuvalues:'M;L;XL',
+                righmenudefault:'130',
+                runmenutyp:'ml',
+                runmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
+                runmenudefault:'130',
+                },
+                infusion:{code:'infusion',
+                name:'Infusion',
+                spritexy:'5;2',
+                spritexy_x1:'5;2',
+                spritexy_x2:'5;2',
+                bkg:'bkg14',
+                family:'water',
+                sequences:'hotwater',
+                canx2:false,
+                leftmenutyp:'FALSE',
+                leftmenuvalues:'FALSE',
+                leftmenudefault:'FALSE',
+                rightmenutyp:'vol',
+                rightmenuvalues:'M;L;XL',
+                righmenudefault:'130',
+                runmenutyp:'ml',
+                runmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
+                runmenudefault:'130',
+                },
                 
 
 
@@ -816,6 +862,17 @@ runmenudefault:'130',
                 app.fit();
                 //todo include method for checking mouse events
             }, 500);
+        });
+        app.kxunit.querySelector("#kxUnitButtonStart").addEventListener('click', event => {
+            app.loadPage("starting", null); // Show first page
+        });
+        app.kxunit.querySelector("#kxUnitButtonHome").addEventListener('click', event => {
+            console.log('click', this);
+        });
+        app.kxunit.querySelector("#kxUnitButtonUserOne").addEventListener('click', event => {
+        });
+        app.kxunit.querySelector("#kxUnitButtonUserTwo").addEventListener('click', event => {
+            console.log('click', this);
         });
     };
 
@@ -854,15 +911,15 @@ runmenudefault:'130',
           </g>
         
           <g id="plusButton" class="plusMinus" fill-rule="evenodd"  viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet">
-            <circle class="st0" cx="16" cy="16" r="13.5" fill="white"/>
+            <circle  cx="16" cy="16" r="13.5" fill="white"/>
             <circle class="userFIllColor" cx="16" cy="16" r="13" fill="#f38230"/>
             <path  d="M14.9,17.1h-3.8V15h3.8v-3.8h2.1V15h3.8v2.1h-3.8v3.8h-2.1V17.1z" fill="white"/>
         </g>
 
         <g id="minusButton" class="plusMinus"  fill-rule="evenodd"  viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet">
-            <circle class="st0" cx="16" cy="16" r="13.5" fill="white"/>
+            <circle  cx="16" cy="16" r="13.5" fill="white"/>
             <circle class="profileColor"  class="userFIllColor" cx="16" cy="16" r="13" fill="#f38230"/>
-            <rect x="12.2" y="15" class="st2" width="7.7" height="2.1" fill="white"/>
+            <rect x="12.2" y="15"  width="7.7" height="2.1" fill="white"/>
         </g>
 
 
@@ -1006,8 +1063,46 @@ runmenudefault:'130',
     </g>
 
 
+<g id="start" viewBox="0 0 64 64">
+	<path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M61.089,24.79
+		C58.431,14.033,49.967,5.569,39.21,2.911"/>
+	<path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M2.911,39.21
+		C5.569,49.967,14.033,58.431,24.79,61.089"/>
+	<path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M24.79,2.911
+		C14.033,5.569,5.569,14.033,2.911,24.79"/>
+	<path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M39.21,61.089
+		c10.757-2.658,19.221-11.122,21.879-21.879"/>
+	<path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M39.21,38.247"/>
+	<path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M24.79,20.865
+		C21.144,23.231,18.727,27.33,18.727,32c0,7.331,5.943,13.273,13.273,13.273S45.273,39.331,45.273,32
+		c0-4.67-2.417-8.769-6.064-11.135"/>
+	<line fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" x1="32" y1="30.069" x2="32" y2="12.843"/>
+</g>
 
+<g id="userTwo" viewBox="0 0 64 64">
+	<circle fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" cx="32" cy="32" r="21.621"/>
+	<path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M46.36,39.518c-2.152-2.97-5.203-5.241-8.752-6.425
+		c-1.568,1.165-3.504,1.863-5.608,1.863c-2.104,0-4.04-0.698-5.608-1.863c-3.549,1.185-6.6,3.456-8.752,6.425"/>
+	<circle fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="32" cy="25.534" r="6.756"/>
+	<path fill="#FFFFFF" d="M29.595,44.89c1.863-1.563,3.116-2.665,3.116-3.603c0-0.629-0.391-0.973-1.073-0.973
+		c-0.518,0-0.94,0.318-1.308,0.659l-0.809-0.813c0.675-0.682,1.327-1.029,2.322-1.029c1.369,0,2.299,0.819,2.299,2.072
+		c0,1.095-1.125,2.261-2.386,3.359c0.373-0.038,0.844-0.073,1.181-0.073h1.541v1.266h-4.884V44.89z"/>
+</g>
 
+<g id="userOne" viewBox="0 0 64 64">
+	<circle fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" cx="32" cy="32" r="21.621"/>
+	<path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M46.36,39.518c-2.152-2.97-5.203-5.241-8.752-6.425
+		c-1.568,1.165-3.504,1.863-5.608,1.863c-2.104,0-4.04-0.698-5.608-1.863c-3.549,1.185-6.6,3.456-8.752,6.425"/>
+	<circle fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="32" cy="25.534" r="6.756"/>
+	<path fill="#FFFFFF" d="M32.492,45.935h-1.301v-4.908c-0.477,0.444-1.037,0.773-1.683,0.987v-1.182
+		c0.34-0.111,0.709-0.322,1.107-0.633s0.672-0.673,0.82-1.087h1.056V45.935z"/>
+</g>
+
+<g id="home" viewBox="0 0 64 64">
+	<circle fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" cx="32" cy="32" r="21.621"/>
+	<polygon fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" points="42.119,39.874 21.881,39.874 
+		21.881,29.3 32,20.126 42.119,29.3 	"/>
+</g>
 
 
 
@@ -1053,6 +1148,35 @@ runmenudefault:'130',
 
 
         /* UI */
+
+
+        .unitButton {
+            position: absolute;
+            opacity: 0.58;
+            width: 72px;
+            height: 72px;
+        }
+
+        .unitButton.kxUnitButtonStart{
+            left: 30px;
+            top: 86px;
+        }
+
+        .unitButton.kxUnitButtonHome{
+            left: 673px;
+            top: 86px;
+        }
+
+        .unitButton.kxUnitButtonUserOne{
+            left: 30px;
+            top: 254px;
+        }
+
+        .unitButton.kxUnitButtonUserTwo{
+            left: 673px;
+            top: 254px;
+        }
+
 
         /*BACKGROUNDS*/
 
