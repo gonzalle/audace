@@ -28,6 +28,8 @@
             unitfrg: { uri: 'unitfrg.png', hsrc: false },
             bkgSheet: { uri: 'bkgSheet.jpg', hsrc: false },
             recipesSheet: { uri: 'recipesSheet.png', hsrc: false },
+            beep: { uri: 'beep.mp3', hsrc: false },
+            bleep: { uri: 'bleep.mp3', hsrc: false },
         };
         if (Cookies.get('lg') !== undefined){
             app.lg = Cookies.get('lg');
@@ -67,13 +69,13 @@
         
 
         app.beep = function () {
-            var snd = new Audio('beep.mp3');
+            var snd = new Audio('images/beep.mp3');
             snd.loop = false;
             snd.play(); 
         }
 
     app.bleep = function () {
-            var snd = new Audio('bleep.mp3');
+            var snd = new Audio('images/bleep.mp3');
             snd.loop = false;
             snd.play(); 
         }
@@ -236,8 +238,10 @@
                     off: {
                     name: "off",
                     built:false,
-                    build : function(data, callback){
+                    build : function(callback){
                         callback();
+                    },
+                    beforeShow: function () {
                     },
                     run: function () {
                         
@@ -259,7 +263,9 @@
                         build : function(callback){
                             callback();
                         },
-                        beforeShow: function () {},
+                        beforeShow: function () {
+
+                        },
                         run: function () {
                             // app.loadPage("prepare", null);
                             var delay = 2;
@@ -387,8 +393,9 @@
                                 if (app.currentRecipe.leftmenutyp==="strength") {
                                     this.strengthScroller = new vscroller(thisBuilt.querySelector('.strengthScroller'), thisBuilt.querySelector('.strengthScroller_target'));
                                 }
-                                this.quantityScroller = new vscroller(thisBuilt.querySelector('.quantityScroller'), thisBuilt.querySelector('.quantityScroller_target'));
-            
+                                if (app.currentRecipe.rightmenutyp) {
+                                    this.quantityScroller = new vscroller(thisBuilt.querySelector('.quantityScroller'), thisBuilt.querySelector('.quantityScroller_target'));
+                                }
                                 thisBuilt.querySelector('.backToMain').addEventListener('click', function (e) {
                                     app.loadPage("recettes", null);
                                 });
@@ -416,8 +423,12 @@
                         },
                         beforeShow: function () {
                             if (this.quantityScroller){
-                            var a = this.built.querySelector('.quantityScroller .wheelItem:nth-child(5)');
+                            let a = this.built.querySelector('.quantityScroller .wheelItem:nth-child(3)');
                             this.quantityScroller.scrollToFunction(a);
+                        }
+                        if (this.strengthScroller){
+                            let a = this.built.querySelector('.strengthScroller .wheelItem:nth-child(3)');
+                            this.strengthScroller.scrollToFunction(a);
                         }
                         //  debugger;
                         },
@@ -443,6 +454,42 @@
                         // var recipe = app.currentRecipe;
                         // console.log("RECIPE",recipe);
                             //debugger;
+                            var rightMenu = '';
+                            if (app.currentRecipe.rightmenutyp == 'ml' ) {
+                            rightMenu = `
+                            
+                                <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
+
+                                <div class="wheel vWheel right quantityScroller">
+                                <div class="wheelItem"></div>`;
+
+                                (app.currentRecipe.rightmenuvalues.split(';')).forEach(function(val){
+                                rightMenu +=  `
+                                <div data-val="${val}" class="wheelItem">${val}</div>`;
+                                });
+
+                                rightMenu +=  `<div class="wheelItem last"></div>
+                                </div>
+                                <div class="vwheelCenter right">&nbsp;</div>
+                                <div class="vwheelUnit right">ml</div>
+                                `;
+                            } else if (app.currentRecipe.rightmenutyp == 'vol') {
+                                rightMenu = `
+                                <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
+
+                                <div class="wheel vWheel right quantityScroller">
+                                <div class="wheelItem"></div>
+
+                                <div data-val="1" class="wheelItem selected">M</div>
+                                <div data-val="2" class="wheelItem">L</div>
+                                <div data-val="3" class="wheelItem">XL</div>
+
+                                <div class="wheelItem last"></div>
+                                </div>
+                                <div class="vwheelCenter right">&nbsp;</div>
+                                <div class="vwheelUnit right">ml</div>
+                                `;
+                            }
                             return( `
                     <div class="pageContent bgHome prepare ${app.currentRecipe.bkg}">
                     <div class="backToMain" style="position:absolute;left:12px;top:12px;width:26px;height:26px">
@@ -499,24 +546,8 @@
 
                     </div>
 
-                    <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
+                    ${rightMenu}
 
-                    <div class="wheel vWheel right quantityScroller">
-                    <div class="wheelItem"></div>
-                    <div data-val="60" class="wheelItem selected">60</div>
-                    <div data-val="70" class="wheelItem">70</div>
-                    <div data-val="80" class="wheelItem">80</div>
-                    <div data-val="90" class="wheelItem">90</div>
-                    <div data-val="100" class="wheelItem">100</div>
-                    <div data-val="110" class="wheelItem">110</div>
-                    <div data-val="120" class="wheelItem">120</div>
-                    <div data-val="130" class="wheelItem">130</div>
-                    <div data-val="140" class="wheelItem">140</div>
-                    <div class="wheelItem last"></div>
-                    </div>
-                    <div class="vwheelCenter right">&nbsp;</div>
-                    <div class="vwheelUnit right">ml</div>
-                    
                     ${app.currentRecipe.leftmenutyp === "strength" ? `
                     <div class="target strengthScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:96px; top:160px"></div>
                     <div class="wheel vWheel left strengthScroller">
@@ -553,7 +584,6 @@
                     }
                 },
                 recipes:{
-
                     ristretto:{code:'ristretto',
                     name:'RISTRETTO',
                     spritexy:'0;0',
@@ -586,10 +616,10 @@
                     leftmenuvalues:'1;2;3',
                     leftmenudefault:'1',
                     rightmenutyp:'ml',
-                    rightmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
+                    rightmenuvalues:'40;50;60;70',
                     righmenudefault:'130',
                     runmenutyp:'ml',
-                    runmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
+                    runmenuvalues:'40;50;60;70',
                     runmenudefault:'130',
                     },
                     lungo:{code:'lungo',
@@ -605,10 +635,10 @@
                     leftmenuvalues:'1;2;3',
                     leftmenudefault:'1',
                     rightmenutyp:'ml',
-                    rightmenuvalues:'20;25;30;35;40',
+                    rightmenuvalues:'80;90;100;110;120;130;140;150;160;170;180',
                     righmenudefault:'60',
                     runmenutyp:'ml',
-                    runmenuvalues:'20;25;30;35;42',
+                    runmenuvalues:'80;90;100;110;120;130;140;150;160;170;180',
                     runmenudefault:'60',
                     },
                     cafelong:{code:'cafelong',
@@ -627,7 +657,7 @@
                     rightmenuvalues:'20;25;30;35;40',
                     righmenudefault:'60',
                     runmenutyp:'ml',
-                    runmenuvalues:'20;25;30;35;43',
+                    runmenuvalues:'20;25;30;35;40',
                     runmenudefault:'60',
                     },
                     doppio:{code:'doppio',
@@ -643,10 +673,10 @@
                     leftmenuvalues:'1;2;3',
                     leftmenudefault:'1',
                     rightmenutyp:'ml',
-                    rightmenuvalues:'20;25;30;35;40',
+                    rightmenuvalues:'20;30;40;50;60;70',
                     righmenudefault:'60',
                     runmenutyp:'ml',
-                    runmenuvalues:'20;25;30;35;44',
+                    runmenuvalues:'20;30;40;50;60;70',
                     runmenudefault:'60',
                     },
                     americano:{code:'americano',
@@ -662,10 +692,10 @@
                     leftmenuvalues:'1;2;3',
                     leftmenudefault:'1',
                     rightmenutyp:'ml',
-                    rightmenuvalues:'20;25;30;35;40',
+                    rightmenuvalues:'20;30;40;50;60;70',
                     righmenudefault:'60',
                     runmenutyp:'ml',
-                    runmenuvalues:'20;25;30;35;45',
+                    runmenuvalues:'20;30;40;50;60;70',
                     runmenudefault:'60',
                     },
                     espressomacchiato:{code:'espressomacchiato',
@@ -684,7 +714,7 @@
                     rightmenuvalues:'M;L;XL',
                     righmenudefault:'M',
                     runmenutyp:'ml',
-                    runmenuvalues:'20;25;30;35;42',
+                    runmenuvalues:'20;25;30',
                     runmenudefault:'60',
                     },
                     cappucino:{code:'cappucino',
@@ -732,17 +762,17 @@
                     spritexy_x2:'5;4',
                     bkg:'bkg8',
                     family:'latte',
-                    sequences:'steam;cafe',
+                    sequences:'foaming;',
                     canx2:true,
-                    leftmenutyp:false,
-                    leftmenuvalues:false,
-                    leftmenudefault:false,
+                    leftmenutyp:'false',
+                    leftmenuvalues:'1;2;3',
+                    leftmenudefault:'1',
                     rightmenutyp:'vol',
                     rightmenuvalues:'M;L;XL',
                     righmenudefault:'M',
                     runmenutyp:'sec',
                     runmenuvalues:'FALSE',
-                    runmenudefault:'FALSE',
+                    runmenudefault:'false',
                     },
                     caffelatte:{code:'caffelatte',
                     name:'CAFFE LATTE',
@@ -791,9 +821,9 @@
                     family:'water',
                     sequences:'hotwater',
                     canx2:false,
-                    leftmenutyp:'FALSE',
-                    leftmenuvalues:'FALSE',
-                    leftmenudefault:'FALSE',
+                    leftmenutyp:'false',
+                    leftmenuvalues:'false',
+                    leftmenudefault:'false',
                     rightmenutyp:'vol',
                     rightmenuvalues:'M;L;XL',
                     righmenudefault:'130',
@@ -810,9 +840,9 @@
                     family:'water',
                     sequences:'hotwater',
                     canx2:false,
-                    leftmenutyp:'FALSE',
-                    leftmenuvalues:'FALSE',
-                    leftmenudefault:'FALSE',
+                    leftmenutyp:'false',
+                    leftmenuvalues:'false',
+                    leftmenudefault:'false',
                     rightmenutyp:'vol',
                     rightmenuvalues:'M;L;XL',
                     righmenudefault:'130',
@@ -829,9 +859,9 @@
                     family:'water',
                     sequences:'hotwater',
                     canx2:false,
-                    leftmenutyp:'FALSE',
-                    leftmenuvalues:'FALSE',
-                    leftmenudefault:'FALSE',
+                    leftmenutyp:'false',
+                    leftmenuvalues:'false',
+                    leftmenudefault:'false',
                     rightmenutyp:'vol',
                     rightmenuvalues:'M;L;XL',
                     righmenudefault:'130',
@@ -839,6 +869,8 @@
                     runmenuvalues:'80;90;100;110;120;130;140;150,;160;170;180',
                     runmenudefault:'130',
                     },
+                    
+
                     
 
 
@@ -866,14 +898,27 @@
                 }, 500);
             });
             app.kxunit.querySelector("#kxUnitButtonStart").addEventListener('click', event => {
-                app.loadPage("starting", null); // Show first page
+                if (app.currentPage.name=="off"){
+                    app.bleep();
+                    app.loadPage("starting", null); // Show first page
+                } else {
+                    app.beep();
+                    app.loadPage("off", null); // Show first page
+                    for (var [key, value] of Object.entries(app.data.pages)) {
+                        //console.log(key,value.built); 
+                        value.built = false;
+                    }
+                }
             });
             app.kxunit.querySelector("#kxUnitButtonHome").addEventListener('click', event => {
+                if (app.currentPage.name=="off") return;
                 console.log('click', this);
             });
             app.kxunit.querySelector("#kxUnitButtonUserOne").addEventListener('click', event => {
+                if (app.currentPage.name=="off") return;
             });
             app.kxunit.querySelector("#kxUnitButtonUserTwo").addEventListener('click', event => {
+                if (app.currentPage.name=="off") return;
                 console.log('click', this);
             });
         };
@@ -1565,17 +1610,17 @@
 
         .recetteScrollerItem:nth-child(1),.recetteScrollerItem:nth-child(2),.recetteScrollerItem:nth-child(3){
         transform:translateX(480px);
-        transition:transform 1s;
+        transition:transform .8s;
         }
 
         .recetteScrollerItem:first-child{
-        transition-delay:1s;
+        transition-delay:0;
         }
         .recetteScrollerItem:nth-child(2){
-        transition-delay:1.5s;
+        transition-delay:.2s;
         }
         .recetteScrollerItem:nth-child(3){
-        transition-delay:2s;
+        transition-delay:.4s;
         }
 
         .recetteScrollerItem .title{
