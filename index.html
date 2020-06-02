@@ -16,33 +16,24 @@
 
 </div>
 
-
     <script>
-            // 1 - Create the new demo Object
-            var demoScreen = new kxapp();
+        window.onload = function() {
 
-            // 2 - Loop through all images within the demo (images are in demoScreen.imgDB)
-            var i = 0;
-            for(var o in demoScreen.imgDB) {
-                // Do your stuff for replacing images 
-                // by setting a new hsrc for each image
-                // ('hsrc' is for "Hybris source")
-                // eg :
-                if (demoScreen.imgDB[o].uri === "ristretto.png") demoScreen.imgDB[o].hsrc = "images/lungo.png"
-                console.log(o);
-                if (demoScreen.imgDB[o].uri === "bkgSheet.jpg") demoScreen.imgDB[o].hsrc = "images/bkgSheet.jpg"
-                console.log(o);
+            // Optionnaly replace all media by alternative source
+            // (Media list is in kx.imgDB)
+            kx.imgDB['unitbkg'].hsrc = "images/unitbkg.png";
+            kx.imgDB['unitfrg'].hsrc = "images/unitfrg.png";
+            kx.imgDB['bkgSheet'].hsrc = "images/bkgSheet.jpg";
+            kx.imgDB['recipesSheet'].hsrc = "images/recipesSheet.png";
+            kx.imgDB['beep'].hsrc = "images/beep.mp3";
+            kx.imgDB['bleep'].hsrc = "images/bleep.mp3";
 
-                // End of stuff
-                i++;
-                if(i == (Object.keys(demoScreen.imgDB).length)) {
 
-            // 3 - When all images are replaced  
-                    // init the demo into the target div (eg #instance)
-                  demoScreen.init("instance")
-                }
-            }
-
+            //then init the app in whatever element of the DOM with its ID.
+            //WIP : As long as the destination element has calculated dimensions.
+            kx.init("instance");
+        }
+          
     </script>
 
 </body>
