@@ -9,13 +9,25 @@
             "drink" : "Drinks",
             "profile" : "Profile",
             "start":"Start",
+            "foaming":"Milk Foaming",
+            "cafe":"Coffee Making",
+            "hotwater":"Hot Water",
+            "steam":"Steam",
+            "preheat":"Pre Heating",
             },
             fr: {
             "drink" : "Boissons",
             "profile" : "Profile",
             "start" : "Démarrer",
+            "foaming":"Moussage lait",
+            "cafe":"Café en cours",
+            "hotwater":"Eau Chaude",
+            "steam":"Vapeur",
+            "preheat":"Préchauffage",
+
             }
         };
+        const recipeDuration = 4000; // ms
 
         // Check ES6
         // return false;
@@ -64,7 +76,8 @@
         app.clock = new Clock();
 
         var _ = app.loc = function(string){
-        return kxLg[app.lg][string];
+            if (kxLg[app.lg][string] )return kxLg[app.lg][string];
+            return string;
         };
         
 
@@ -211,20 +224,7 @@
                 app.currentPage = app.data.pages[pageId];
                 app.showPage(app.currentPage.built, true);
             }
-
-
             return;
-
-
-            //  }
-
-                /*if (app.pageNode.classList.contains('thatClass')) {
-                // do some stuff
-                }*/
-
-
-
-
         };
 
     
@@ -234,28 +234,20 @@
             console.log('init');
             app.data = {
                 pages: {
-        
                     off: {
-                    name: "off",
-                    built:false,
-                    build : function(callback){
-                        callback();
+                        name: "off",
+                        built:false,
+                        build : function(callback){ callback(); },
+                        beforeShow: function () { },
+                        run: function () { },
+                        quit: function (callback) { callback(); },
+                        html:function(){ 
+                            return(`
+                            <div class="pageContent" style="background-image:none; background-color:black;">
+                            </div>`);
+                        }
                     },
-                    beforeShow: function () {
-                    },
-                    run: function () {
-                        
-                    },
-                    quit: function (callback) {
-                        setTimeout(function () {
-                            callback();
-                        }, 100);
-                    },
-                    html:function(){ return(`
-                    <div class="pageContent" style="background-color:black;">
-        
-            </div>
-            `);}},
+
         
                     starting: {
                         name: "starting",
@@ -292,7 +284,7 @@
                             }, 1000);
                         },
                         html:function(){ return( `
-                <div class="pageContent bgHome">
+                <div class="pageContent">
             
                 <svg style="position:absolute; top:110px; left:167px; width:146px;height:34px;" viewBox="0 0 146 34">
                 <use href="#krupsLogo" style="fill: white;" />
@@ -348,7 +340,7 @@
                         },
                         html:function(){ 
                             var rhtml = `
-                <div class="pageContent bgHome">
+                <div class="pageContent">
                 <!--   
                 <svg style="position:absolute; width:31px;height:25px;top:12px;left:31px" viewBox="0 0 32 27" >
                 <use href="#recette" />
@@ -402,7 +394,7 @@
                             }
 
                             if (app.currentRecipe.canx2) {
-                                thisBuilt.querySelector('.plus').addEventListener('click', function (e) {
+                                thisBuilt.querySelector('.plusMinusButton').addEventListener('click', function (e) {
                                     var svgUse = this.querySelector('use');
                                     console.log("PROD", app.currentRecipe);
 
@@ -419,6 +411,24 @@
                                     }
                                 });
                             }
+                            thisBuilt.querySelector('.startButton').addEventListener('click', function (e) {
+                                var seqOutput = thisBuilt.querySelector(".sequence span");
+                                thisBuilt.classList.add("running");
+                                var seq = [
+                                    {fn:()=>{ seqOutput.innerHTML = _("preheat");},delay:0 },
+                                ];
+                                var addedseq = app.currentRecipe.sequences.split(';');
+                                var intertime = recipeDuration/(addedseq.length+1);
+                                addedseq.forEach(function(val){
+                                    seq.push({fn:()=>{ seqOutput.innerHTML = _(val);},delay:intertime });
+                                });
+                                seq.push({fn:()=>{ seqOutput.innerHTML = "";},delay:intertime+200 });
+                                sync(seq,()=>{console.log('sync done');app.loadPage("ready", null);});
+                            });
+
+                            
+
+
                             callback();
                         },
                         beforeShow: function () {
@@ -461,14 +471,14 @@
                                 <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
 
                                 <div class="wheel vWheel right quantityScroller">
-                                <div class="wheelItem"></div>`;
+                                <div class="wheelItem noAction"></div>`;
 
                                 (app.currentRecipe.rightmenuvalues.split(';')).forEach(function(val){
                                 rightMenu +=  `
                                 <div data-val="${val}" class="wheelItem">${val}</div>`;
                                 });
 
-                                rightMenu +=  `<div class="wheelItem last"></div>
+                                rightMenu +=  `<div class="wheelItem noAction last"></div>
                                 </div>
                                 <div class="vwheelCenter right">&nbsp;</div>
                                 <div class="vwheelUnit right">ml</div>
@@ -491,8 +501,8 @@
                                 `;
                             }
                             return( `
-                    <div class="pageContent bgHome prepare ${app.currentRecipe.bkg}">
-                    <div class="backToMain" style="position:absolute;left:12px;top:12px;width:26px;height:26px">
+                    <div class="pageContent prepare ${app.currentRecipe.bkg}">
+                    <div class="backToMain">
                     <svg style="" viewBox="0 0 26 26" >
                     <use href="#backArrow" />
                     </svg>
@@ -503,25 +513,24 @@
                         <div class="title" style="position: absolute; width: 173px;left: 25px; top: 0; height: 46px; border-bottom: solid 1px #8c8c8c;">
                             <span class="title">${app.currentRecipe.name}</span>
                         </div>
+                        <div class="sequence" style="position: absolute; width: 173px;left: 25px; top: 54px; height: 46px; text-align:center">
+                            <span></span>
+                        </div>
+
                     
-                        <div class="" style="  position: absolute;
-                        width: 150px;
-                        height: 150px;
-                        top: 85px;
-                        left: 36px;
-                        overflow: hidden;
-                        transform-origin: 50% 35%;
-                        transform: scale(1.1);
-                        ">
-                        <img class="recipeImage" nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style="width: 900px;
-                        position:absolute;
-                        height: 900px;
-                        pointer-events: none; object-position: ${'-'+((app.currentRecipe.spritexy_x1.split(';'))[0]*150)+'px'} ${'-'+((app.currentRecipe.spritexy_x1.split(';'))[1]*150)+'px'}
+                        <div class="imageHolder">
+
+                        <img class="recipeImage" nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style="
+                         object-position: ${'-'+((app.currentRecipe.spritexy_x1.split(';'))[0]*150)+'px'} ${'-'+((app.currentRecipe.spritexy_x1.split(';'))[1]*150)+'px'}
+                        "/>
+                        
+                        <img class="recipeImage onrun" nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style="
+                         object-position: ${'-'+((app.currentRecipe.spritexy.split(';'))[0]*150)+'px'} ${'-'+((app.currentRecipe.spritexy.split(';'))[1]*150)+'px'}
                         "/>
 
                         </div>
                         ${app.currentRecipe.canx2 ? `
-                        <div class="plus" style="position: absolute;
+                        <div class="plusMinusButton" style="position: absolute;
                         left: 151px;
                         top: 104px;
                         width: 32px;
@@ -531,6 +540,12 @@
                             </svg>
                         </div>
                         `:``  }
+
+                        <div class="progressBarBkg">
+                        <div class="progressBar">
+                        </div>
+
+                        </div>
 
                         <div class="startButton borderOrange" style="position: absolute;
                         width: 175px;
@@ -551,7 +566,7 @@
                     ${app.currentRecipe.leftmenutyp === "strength" ? `
                     <div class="target strengthScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:96px; top:160px"></div>
                     <div class="wheel vWheel left strengthScroller">
-                        <div class="wheelItem "></div>
+                        <div class="wheelItem noAction"></div>
 
                             <div class="wheelItem  strength">
                             <svg viewBox="0 0 57 54" class="">
@@ -571,7 +586,7 @@
                             </svg>
                         </div>
 
-                        <div class="wheelItem "></div>
+                        <div class="wheelItem noAction"></div>
 
                     </div>
                     <div class="vwheelCenter left">&nbsp;</div>
@@ -581,7 +596,52 @@
 
                 </div>
                 `);}
-                    }
+                    },
+                
+                    ready: {
+                        name: "ready",
+                        built:false,
+                        build : function(callback){ callback(); },
+                        beforeShow: function () { },
+                        run: function () { },
+                        quit: function (callback) { callback(); },
+                        html:function(){ 
+                            return(`
+                            <div class="pageContent ready ${app.currentRecipe.bkg}">
+
+                            <div class="centralArea" style="position:absolute;width:360px;left:60px;height:100%;background-color:rgba(255,255,255,0.2)">
+                            <div class="title" style=" position: absolute;
+                            width: 173px;
+                            left: 91px;
+                            top: 0;
+                            height: 46px;
+                            border-bottom: solid 1px #8c8c8c;">
+                                <span class="title">${app.currentRecipe.name}</span>
+                            </div>
+                            <div class="enjoy" style="position: absolute;
+                            width: 100%;
+                            left: 0;
+                            top: 90px;
+                            height: 46px;
+                            text-align: center;
+                            font-size: 24px;">
+                                <span>Bonne Dégustation</span>
+                            </div>
+                            
+                                <div class="imageHolder" style="    top: 122px;
+                                left: 90px;
+                                transform: scale(1.4);">
+                                    <img class="recipeImage " nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style="
+                                    object-position: ${'-'+((app.currentRecipe.spritexy.split(';'))[0]*150)+'px'} ${'-'+((app.currentRecipe.spritexy.split(';'))[1]*150)+'px'}
+                            "/>
+                            </div>
+                            </div>
+                            </div>
+                            `);
+                        }
+                    },
+
+
                 },
                 recipes:{
                     ristretto:{code:'ristretto',
@@ -591,7 +651,7 @@
                     spritexy_x2:'2;0',
                     bkg:'bkg2',
                     family:'black',
-                    sequences:'cafe',
+                    sequences:'cafe;foaming;hotwater;steam',
                     canx2:true,
                     leftmenutyp:'strength',
                     leftmenuvalues:'1;2;3',
@@ -972,14 +1032,6 @@
 
 
 
-
-
-
-
-
-
-
-
             <g id="sizeM" fill="rgba(255,255,255,0.6)" viewBox="0 0 57 54">
             <path d="M43.085,19.825c-0.158-2.177-1.505-3.096-2.07-3.387c-0.836-0.442-1.621-0.527-2.029-0.538h-4.104v17.8
                 c-0.006,0.629-0.115,1.136-0.332,1.551c-0.273,0.521-0.666,0.788-0.969,0.959c-0.353,0.19-0.708,0.286-1.34,0.375L21.63,36.547
@@ -1340,10 +1392,7 @@
                 border-color:#2855ff;
             }
 
-
-
             #kxUnit{
-                background-color: #333; */
                 background-color: rgb(41, 41, 41);
                 width: 768px;
                 height: 400px;
@@ -1410,7 +1459,7 @@
                 transform: translate(-50%, -50%)
             }
 
-            .kxScreen .pageContent.bgHome {
+            .kxScreen .pageContent {
                 background-image: url(${imag('bkgSheet')});
             }
 
@@ -1433,6 +1482,18 @@
                 margin-left:50%;
             
             }*/
+            .backToMain{
+            position:absolute;
+            left:12px;top:12px;
+            width:26px;
+            height:26px;
+            transition:opacity .3s;
+            }
+
+            .running .backToMain{
+             opacity : 0;
+            }
+
 
             .vWheel.wheel{
                 width: 80px;
@@ -1494,12 +1555,11 @@
                 text-shadow: 0 0 2px white, 0 0 4px white, 0 0 6px white;
             }
 
-
+            
             
 
 
-            .vWheel .wheelItem svg{
-
+            .vWheel .wheelItem svg, .vWheel .wheelItem.noAction{
                 pointer-events: none;       
             }
 
@@ -1509,7 +1569,7 @@
             }
 
 
-            .vWheel .wheelItem:first-child{
+            .vWheel .wheelItem:first-child{ 
                 height:133.33px;
             /* margin-top:126px;*/
             }
@@ -1519,7 +1579,21 @@
             /*   margin-bottom:139px;*/
             }
 
+            .vWheel.strengthScroller .wheelItem{
+                transition:opacity .3s;
+            }
 
+            .running .vWheel.strengthScroller .wheelItem:not(.selected){
+                opacity:0;
+            }
+
+            .running .vWheel.strengthScroller .wheelItem{
+                border-color:transparent!important;
+            }
+
+            .running .vWheel.quantityScroller .wheelItem.selected ~ .wheelItem{
+                opacity:0;
+            }
 
 
         .vwheelCenter{
@@ -1558,6 +1632,77 @@
             #api-frame{
                 height:calc(100% - 320px);
             }
+
+            .imageHolder{
+                position: absolute;
+                width: 150px;
+                height: 150px;
+                top: 85px;
+                left: 36px;
+                overflow: hidden;
+                transform-origin: 50% 35%;
+                transform: scale(1.1);
+            }
+
+            img.recipeImage{
+                width: 900px;
+                position:absolute;
+                height: 900px;
+                pointer-events: none;
+                opacity:1;
+                transition:opacity .5s;
+
+            }
+            
+            img.recipeImage.onrun {
+                opacity:0;
+            }
+            
+            .running img.recipeImage{
+                opacity:0;
+            }
+            
+            .running img.recipeImage.onrun {
+                opacity:1;
+            }
+
+            .plusMinusButton{
+                position: absolute;
+                left: 151px;
+                top: 104px;
+                width: 32px;
+                height: 32px
+                transition:opacity .3s;
+            }
+
+            .running .plusMinusButton{
+                opacity:0;
+            }
+
+
+            .progressBarBkg {
+                position: absolute;
+                width: 175px;
+                height: 3px;
+                left: 23px;
+                top: 250px; background-color:rgba(255,255,255,0.2)
+            }
+
+            .progressBar{
+                position: absolute;
+                width: 0%;
+                height: 3px;
+                left: 0;
+                top: 0;
+                box-shadow: 0 0 5px rgba(255,255,255,1);
+                transition: width 4000ms linear 100ms;
+                background-color: white;
+            }
+
+            .running .progressBar{
+                width: 100%;
+            }
+
 
 
 
@@ -1662,7 +1807,7 @@
     }
 
 
-        .prepare span.title{
+    .prepare span.title,.ready span.title{
                 width: 120px;
                 height: 32px;
                 position: absolute;
@@ -1717,7 +1862,23 @@
             }
         }
 
-
+    function sync(fns, callback) {
+        // This method allows to run fn one after an other with a delay
+        var ret = function(t) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+            t.fn();
+            resolve(t);
+            }, t.delay);
+        });
+        }
+        let result = fns.reduce( (accumulatorPromise, nextID) => {
+        return accumulatorPromise.then(() => {
+            return ret(nextID);
+        });
+        }, Promise.resolve());
+        result.then(()=>{callback()});
+    }
 
     var hscroller = function (e) {
         var that = this;
