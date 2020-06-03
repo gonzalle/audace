@@ -641,6 +641,39 @@
                         }
                     },
 
+                    userOne: {
+                        name: "userOne",
+                        built:false,
+                        build : function(callback){ callback(); },
+                        beforeShow: function () { },
+                        run: function () { },
+                        quit: function (callback) { callback(); },
+                        html:function(){ 
+                            return(`
+                            <div class="pageContent ready bkg13">
+                            USER ONE
+                            
+                            </div>
+                            `);
+                        }
+                    },
+
+                    userTwo: {
+                        name: "userTwo",
+                        built:false,
+                        build : function(callback){ callback(); },
+                        beforeShow: function () { },
+                        run: function () { },
+                        quit: function (callback) { callback(); },
+                        html:function(){ 
+                            return(`
+                            <div class="pageContent ready bkg6">
+                            USER TWO
+                            </div>
+                            `);
+                        }
+                    },
+
 
                 },
                 recipes:{
@@ -973,13 +1006,17 @@
             app.kxunit.querySelector("#kxUnitButtonHome").addEventListener('click', event => {
                 if (app.currentPage.name=="off") return;
                 console.log('click', this);
+                app.loadPage("recettes", null);
             });
             app.kxunit.querySelector("#kxUnitButtonUserOne").addEventListener('click', event => {
                 if (app.currentPage.name=="off") return;
+                app.loadPage("userOne", null);
+
             });
             app.kxunit.querySelector("#kxUnitButtonUserTwo").addEventListener('click', event => {
                 if (app.currentPage.name=="off") return;
                 console.log('click', this);
+                app.loadPage("userTwo", null);
             });
         };
 
