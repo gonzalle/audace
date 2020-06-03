@@ -628,9 +628,10 @@
                                 <span>Bonne Dégustation</span>
                             </div>
                             
-                                <div class="imageHolder" style="    top: 122px;
-                                left: 90px;
-                                transform: scale(1.4);">
+                                <div class="imageHolder" style="
+                                top: 133px;
+                                left: 104px;
+                                transform: scale(1.3);">
                                     <img class="recipeImage " nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style="
                                     object-position: ${'-'+((app.currentRecipe.spritexy.split(';'))[0]*150)+'px'} ${'-'+((app.currentRecipe.spritexy.split(';'))[1]*150)+'px'}
                             "/>
