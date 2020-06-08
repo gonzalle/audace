@@ -242,6 +242,7 @@
   
     var baseHtml = (`
         <div id="kxUnit">
+        <div id="kxBackdrop"></div>          
 
             <div class="unitButton kxUnitButtonStart" id="kxUnitButtonStart">
                 <svg style="" viewBox="0 0 64 64">
@@ -297,19 +298,7 @@
         },1)
     };
   
-    app.fit = function() {
-    // 768 x 400 (was 480x320)
-        app.ratio = window.innerWidth / 768;
-        console.log(app.ratio);
-        Object.assign(app.kxunit.style, {
-            transform: 'scale(' + Math.min(1.5, app.ratio) + ') translateX(-50%)',
-        });
-        // if (app.currentPage.name != undefined) app.reloadPage()
-    };
-  
-    app.reloadPage = function() {
-        app.loadPage(app.currentPage.name, null);
-    };
+
   
     app.buildPage = function(pageId, data, callback) {
     var tempBuild = new DOMParser().parseFromString(
@@ -1568,18 +1557,59 @@
     app.pageHolder = app.kxhost.querySelector('#pageHolder');
     app.pageHolderB = app.kxhost.querySelector('#pageHolderB');
     app.toaster = app.kxhost.querySelector('.kxToast');
-    app.fit();
     app.loadPage('recettes', null); // Show first page
 
-    // Global events
+    // Global events    
+
+    app.fit = function() {
+        // 768 x 400 (was 480x320)
+            //const kxScaler = document.querySelector('#kxScaler');
+            var parentRatio = app.kxunit.parentElement.offsetHeight / app.kxunit.parentElement.offsetWidth;
+            console.log("parentRatio:"+parentRatio);
+
+            var screenW = app.kxunit.offsetWidth;
+            var screenH = app.kxunit.offsetHeight;
+            var screenRatio = screenH / screenW;
+      
+            console.log("screenRatio:"+screenRatio);
+
+            /*app.ratio = parentRatio > screenRatio
+            ? app.kxunit.parentElement.offsetWidth / screenW
+            : app.kxunit.parentElement.offsetHeight / screenH;*/
+
+            app.ratio = parentRatio > screenRatio
+            ? app.kxunit.parentElement.offsetWidth / screenW
+            : app.kxunit.parentElement.offsetHeight / screenH;
+            console.log("ratio:"+app.ratio);
+
+            //var shift = document.querySelector('#kxBackdrop').getBoundingClientRect().y;
+            // var shift = ;
+            //var shift = ((400-330)*ratio)>0?((400-330)*ratio):0;
+            //console.log(shift);
+
+
+            //app.ratio = window.innerWidth / 768;
+            Object.assign(app.kxunit.style, {
+                transform: 'scale(' + Math.min(1.5, app.ratio) + ') translate(-50%, -50%)',
+            });
+            // if (app.currentPage.name != undefined) app.reloadPage()
+    };
+
+    app.fit();
+
     window.addEventListener('resize', function() {
         clearTimeout(app.resizeWindowTimeOut);
         app.resizeWindowTimeOut = setTimeout(function() {
         console.log('resized');
         app.fit();
         //todo include method for checking mouse events
-        }, 500);
+        }, 100);
     });
+      
+    app.reloadPage = function() {
+        app.loadPage(app.currentPage.name, null);
+    };
+
     app.kxunit
         .querySelector('#kxUnitButtonStart')
         .addEventListener('click', event => {
@@ -1603,20 +1633,24 @@
         console.log('click', this);
         app.loadPage('recettes', null);
         });
-    app.kxunit
+        app.kxunit
         .querySelector('#kxUnitButtonUserOne')
         .addEventListener('click', event => {
         if (app.currentPage.name == 'off') return;
         app.currentProfile = app.profiles.userOne;
         app.loadPage('profile', null);
         });
-    app.kxunit
+        app.kxunit
         .querySelector('#kxUnitButtonUserTwo')
         .addEventListener('click', event => {
         if (app.currentPage.name == 'off') return;
         app.currentProfile = app.profiles.userTwo;
         app.loadPage('profile', null);
         });
+
+    
+
+
     };
 
     function addStyles(destination) {
@@ -1975,6 +2009,7 @@
             }
 
             #kxUnit{
+                position:absolute;
                 background-color: rgb(41, 41, 41);
                 width: 768px;
                 height: 400px;
@@ -1982,9 +2017,10 @@
                 border-radius: 16px;
                 transition: transform .5s;
                 transform-origin: 0 0;
-                transform: scale(1) translate(-50%, 0px);
-                margin-left: 50%;
-                overflow: hidden;
+                transform: scale(1) translate(-50%, -50%);
+                left: 50%;
+                top: 50%;
+                overflow: visible;
                 background-image: url(${imag('unitbkg')});
                 -webkit-overflow-scrolling: auto;
                 -webkit-touch-callout: none;
@@ -2000,17 +2036,19 @@
 
                 cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA/dJREFUeNrMV0tMU0EU5WMppRQoEpTaJoYCITQRNnwSQkIiH9GdrhTY+wlVdm50w9KERGNMjEtQN0p3VgNGwA2BBUHUENBEpeWjSH8KSIF6zstM89SCbW3VSQ7vZd6de06HOzNnUlL+cUuNNrCtrU27urp6Bmjzer1HAoHAwWAwqOc3jUbz1WAwLOXl5b3Iz893AvecTue3mJSEQqGIaGlpKayoqLidmZnpZ1g00Gq1fo7h2N3yRiWgurr6Ioi9MnF9ff3SwMDA65WVlfdbW1s+xAQJvrOP3xgj4zmWOWIW0NjYuK+kpMQhE7W3t897PJ75UJSNsR0dHfNyPHMxZ1QCGGixWJ6zS6/Xb05OTs6if0fk/go8A24Cl4HzgB24KvqeiRi2HY5lDuZiTrWIX4pQdpaVlT2Ym5s7VVRUtD4zM7Oak5NzCN1BwAkMAb8rLi3QxLplffr9fnd5eXn+4uKirrS0dGB2dvaUQpya+quAmpoa+8TExHWQBl0u1ydUtgmfPgO3AFeMK4zCLwD7sWIWzGZzAcRksCbGx8dvSAFpMrq1tbVwenq6h+8jIyPvBbkHuBYHOZtbjPUw1+jo6Ad2koNcMigsAL+4Z2NjIwcF56qqqrKKab8tRMTbPCJHsLKy0orCdJGDXD/UAIojc2xs7CM+GlDBbmwonL7HgCNBG95JTjI2MJfRaDRjeQbq6uoKh4eHN5QZWF9fP03ypqamZUG+JgQkqrGA15Db3NzcvEwucob/Bdhej/PZ3d3tEwOmqCuBAphrXM0BzhNhAZgaG5+1tbU6lYBEt1dqDsmpCMAyMfOJKcoVwe+SIIA7Y0oumuA8FBawubmpqEpPT88SwYEkCAioOSRn2i7B+/6WH1AEZGRkKAW3vb29Jvpzk8BlUHNITkUAdiq3KAy5CkxJEGDhHx+amjNNFN9LPrFHy6V3JAkCbGoOcL4KC4CFesRnb2+vnPpKQJdAcuaqUXMUFBQ4wwJ0Ot192KgvQ0NDB7hdoote71gCBTBXFnMPDg4e4FYMvrthAdyTrVbrPb53dXVJb3cUOJwA8sMiV8hutysdxcXF98n5wzLEeX2FxrO/v98CJ/OWZgI4Cxj/gNwocmimpqbe9PX1KQcRuSI6or9kSC6hEK9HdETCkj2EJTtpMpnWYMm8QgS9wVPgiTgp92rc6VqELdOQHJYsb2FhISuSJdvTlGZnZ//OlJ4TuLybKcUP2NOURmXLabFpVGKw5e7Ozs74bHmEi4lPJmpoaFhyOBy8mHzAZcSPmC2C7+zjN8aoLia+uC4mP1/NbDbbHazbQAxXswDHRHM1i+dyelxeTnGk6sXBor6cPuLGJtf5f9++CzAAfBCRRGu7bLYAAAAASUVORK5CYII=) 16 16, pointer;
                 box-shadow: 3px 3px 16px rgba(0,0,0,0.5);
-                /*
-                .cursor {
-                    cursor: url("cursor.png") 0 0, pointer; 
-                    cursor: url("cursor.svg") 0 0, pointer; 
-                    cursor: -webkit-image-set(url("cursor.png") 1x, url("cursor@2x.png") 2x) 0 0, pointer;
-                }
-                */
-
-
 
             }
+
+            #kxBackdrop{
+                position: absolute;
+                width: 1161px;
+                height: 1760px;
+                background-image: url(images/kbkg.png);
+                top: -1050px;
+                left: -212px;
+                /* opacity: .2; */
+                background-size: cover;
+              }
 
             #kxFrg {
                 background-image: url(${imag('unitfrg')});
@@ -2020,7 +2058,7 @@
                 width: 100%;
                 height: 100%;
                 pointer-events: none;
-                opacity: 0.7;
+                opacity: 0;
             }
 
 
