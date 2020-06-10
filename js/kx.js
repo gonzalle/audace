@@ -1,7 +1,9 @@
 (function() {
     'use strict';
   
-    var kxapp = function() {
+var kxapp = function() {
+      // Check ES6
+      // return false;
       var app = this;
       app.lg = 'fr';
       const kxLg = {
@@ -50,7 +52,8 @@
           selectYourProfile:'Select your Profile',
           selectKeyword:"Choose Keyword",
           finnished:"Finnished",
-  
+          beforeThxs : "Your drink ",
+          afterThxs : "has&nbsp;been added to your profile",
         },
         fr: {
           unsupported:"Cette fonction n'est pas disponible<br>dans le cadre de ce démonstrateur",
@@ -97,12 +100,13 @@
           selectYourProfile:'Sélectionnez votre profil',
           selectKeyword:"Choisissez un mot-clef",
           finnished:"Terminé",
-  
+          beforeThxs : "Votre boisson",
+          afterThxs : "a&nbsp;été ajoutée à votre profil",
   
         },
       };
       const kxkeywords = [
-          'none',
+        'none',
         'week',
         'weekend',
         'morning',
@@ -134,8 +138,6 @@
       };
       const recipeDuration = 4000; // ms
   
-      // Check ES6
-      // return false;
       app.ratio = 1;
       app.currentPage = false;
       app.currentRecipe = false;
@@ -143,7 +145,7 @@
       app.pointingDevice = 'mouse';
       app.imgDB = {
         unitbkg: { uri: 'unitbkg.png', hsrc: false },
-        unitfrg: { uri: 'unitfrg.png', hsrc: false },
+        unitfrg: { uri: 'unitfrg2.png', hsrc: false },
         bkgSheet: { uri: 'bkgSheet.jpg', hsrc: false },
         recipesSheet: { uri: 'recipesSheet.png', hsrc: false },
         beep: { uri: 'beep.mp3', hsrc: false },
@@ -151,40 +153,48 @@
       };
       app.profiles = {
         userOne: {
-          name: 'PROFILE 1',
+          name: 'LAURA',
           color: 'red',
           bkg: 'bkg13',
           favs: [
             {
               recipe: 'ristretto',
-              rightmenuvalues: '2',
-              leftmenuvalues: '3',
+              rightmenuval: '20',
+              leftmenuval: '1',
               keyword: 'morning',
+              isDouble : false,
+
             },
             {
               recipe: 'americano',
-              rightmenuvalues: '2',
-              leftmenuvalues: '3',
+              rightmenuval: '2',
+              leftmenuval: '3',
               keyword: 'yummy',
+              isDouble : false,
+
             },
           ],
         },
         userTwo: {
-          name: 'PROFILE 2',
+          name: 'THOMAS',
           color: 'green',
           bkg: 'bkg6',
           favs: [
             {
-              recipe: 'ristretto',
-              rightmenuvalues: '2',
-              leftmenuvalues: '3',
+              recipe: 'cappucino',
+              rightmenuval: '2',
+              leftmenuval: '3',
               keyword: 'morning',
+              isDouble : true,
+
             },
             {
-              recipe: 'americano',
-              rightmenuvalues: '2',
-              leftmenuvalues: '3',
+              recipe: 'lattemacchiato',
+              rightmenuval: '2',
+              leftmenuval: '3',
               keyword: 'yummy',
+              isDouble : false,
+
             },
           ],
         },
@@ -270,8 +280,7 @@
 
             <div class="kxScreen " id="kxScreen">
                 <div id="tempBackground"></div>
-                <div id="pageHolder"></div>
-                <div id="pageHolderB"></div>
+                <div class="pageHolder currentHolder"></div>
             </div>
         
         <div class="kxToast" style="display:none">
@@ -298,8 +307,6 @@
         },1)
     };
   
-
-  
     app.buildPage = function(pageId, data, callback) {
     var tempBuild = new DOMParser().parseFromString(
         app.data.pages[pageId].html(),
@@ -311,59 +318,40 @@
     });
     };
   
-    app.showPage = function(page, fade) {
-    page.classList.remove('onScreen'); // if any
-    if (fade) {
-        var timout = clearTimeout();
-        var speed = 500;
-        Object.assign(app.pageHolderB.style, {
-        opacity: 0,
-        transition: 'opacity 500ms',
-        });
-        app.pageHolderB.innerHTML = '';
-        var pageB = page.cloneNode(true);
 
-        app.pageHolderB.appendChild(pageB);
-        //app.currentPage.beforeShow(pageB);
-
-        setTimeout(function() {
-        Object.assign(app.pageHolderB.style, { opacity: 1 });
-        timout = setTimeout(function() {
-            // The timout before class transition
-            app.pageHolder.innerHTML = '';
-            console.log('displaying page contents');
-            app.pageHolder.appendChild(page);
-            app.currentPage.beforeShow();
-            app.pageHolderB.innerHTML = '';
-            Object.assign(app.pageHolderB.style, { opacity: 0 });
-            setTimeout(function() {
-            page.classList.add('built');
-            page.classList.add('onScreen');
-            app.currentPage.run();
-            //debugger;
-            var clockDom = page.querySelector('.clock');
-            app.clock.stop();
-            if (clockDom !== null) {
-                app.clock.run(clockDom);
-            }
-            //app.currentPage.run();
-            }, 100);
-        }, 500);
-        }, 10);
-        //app.pageHolder.appendChild(page);
-    } else {
-        app.pageHolder.innerHTML = '';
-        app.pageHolder.appendChild(page);
-        page.classList.add('built', 'onScreen');
-        app.currentPage.run();
-    }
-    //app.currentPage = app.data.pages[pageId];
-    //if ()
-    };
   
+    app.showPage = function(page, fade) {
+        page.classList.remove('onScreen'); // if any
+        if (fade) {
+
+                var newholder = document.createElement("div");
+                newholder.classList.add("pageHolder","newPageHolder");
+                app.holder.insertBefore(newholder, app.pageHolder );
+                newholder.appendChild(page);
+                app.pageHolder = newholder;
+                var prevHolder = app.kxhost.querySelector('.currentHolder');
+                    Object.assign(prevHolder.style, {opacity: 0,transition: 'opacity 500ms',pointerEvents:"none"});
+                    app.currentPage.beforeShow();
+                setTimeout(()=>{
+                    //prevHolder.remove();
+                    app.pageHolder.classList.add('currentHolder');
+                    page.classList.add('built','onScreen');
+                    app.currentPage.run();
+                },600);
+
+        } else {
+            app.pageHolder.innerHTML = '';
+            app.pageHolder.appendChild(page);
+            page.classList.add('built', 'onScreen');
+            app.currentPage.beforeShow();
+            app.currentPage.run();
+        }
+        //app.currentPage = app.data.pages[pageId];
+        //if ()
+        };
+          
     app.loadPage = function(pageId, data) {
     console.log('loading ' + pageId);
-
     if (app.currentPage) {
         //  app.currentPage.built = app.pageHolder.innerHTML;
         //debugger;
@@ -391,7 +379,6 @@
     };
 
     app.init = function(kxhost) {
-    // return;
     console.log('init');
     app.data = {
         pages: {
@@ -472,8 +459,10 @@
 
         recettes: {
             name: 'recettes',
+            sliderPosition : 0,
             built: false,
             build: function(callback) {
+            app.currentProfile = false;
             var selection = new hscroller(
                 this.built.querySelector('#recetteScroller'),
             );
@@ -495,14 +484,23 @@
 
             callback();
             },
-            beforeShow: function() {},
+            beforeShow: function() {
+                document.querySelector('#recetteScroller').scrollTo({left:this.sliderPosition})
+            },
             run: function() {
-            console.log('running recettes');
+                app.currentProfile = false;
+                console.log('running recettes');
+                var zeClock = this.built.querySelector('.clock');
+                //debugger;
+                app.clock.run(zeClock);
             },
             quit: function() {
-            // fn called on quit ,, Must send true to allow quitting.
-            console.log('quitting ' + this.name);
-            return true;
+            // fn called on quit, Must send true to allow quitting.
+                this.sliderPosition = document.querySelector('#recetteScroller').scrollLeft;
+                console.log('quitting ');
+                console.log( this);
+                app.clock.stop();
+                return true;
             },
             html: function() {
             var rhtml = `
@@ -512,18 +510,14 @@
                 <use href="#recette" />
                 </svg>
 
-                <div style="position:absolute; height:25px;top:12px;left:31px;font-size:18px;padding-left:36px;height:34px;  border-bottom: solid 2px orange;">${_(
-                'drink',
-                )}</div>
+                <div style="position:absolute; height:25px;top:12px;left:31px;font-size:18px;padding-left:36px;height:34px;  border-bottom: solid 2px orange;">${_('drink')}</div>
                 -->
                 <div class="clock borderOrange">00:00</div>
                 <!--
                 <svg style="position:absolute; width:26px;height:25px;top:12px;right:29px" viewBox="0 0 26 25" >
                 <use href="#fav" />
                 </svg>
-                <div style="position:absolute; height:25px;top:12px;right:31px;font-size:18px;padding-right:36px;text-align:right;height:34px;  border-bottom: solid 2px transparent;">${_(
-                'profile',
-                )}</div>
+                <div style="position:absolute; height:25px;top:12px;right:31px;font-size:18px;padding-right:36px;text-align:right;height:34px;  border-bottom: solid 2px transparent;">${_('profile')}</div>
                 -->
 
                 <section id="recetteScroller" class="hScroller" >
@@ -531,18 +525,8 @@
             for (var [key, value] of Object.entries(app.data.recipes)) {
                 // console.log(`${key}: ${value}`);
                 rhtml += `
-                    <div class="recetteScrollerItem" data-val="${key}"><div class="title"><span>${_(
-                value.code,
-                )}</span></div><div class="thumb"><img nopin = "nopin" data-alt="${imag(
-                'recipesSheet',
-                )}" src="${imag(
-                'recipesSheet',
-                )}" style="object-position: ${'-' +
-                value.spritexy.split(';')[0] * 150 +
-                'px'} ${'-' +
-                value.spritexy.split(';')[1] * 150 +
-                'px'}"></div></div> 
-                    `;
+                <div class="recetteScrollerItem" data-val="${key}"><div class="title"><span>${_(
+                value.code)}</span></div><div class="thumb"><img nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style="object-position: ${'-' + value.spritexy.split(';')[0] * 150 + 'px'} ${'-' + value.spritexy.split(';')[1] * 150 + 'px'}"></div></div>`;
             }
 
             rhtml += `
@@ -563,6 +547,11 @@
             var zat = this;
             zat.recipeSequence = false;
             if (app.currentRecipe) {
+
+                if (app.currentProfile){
+                 //   debugger;
+                }
+
                 if (app.currentRecipe.leftmenutyp === 'strength') {
                 this.strengthScroller = new vscroller(
                     thisBuilt.querySelector('.strengthScroller'),
@@ -591,9 +580,7 @@
                     svgUse.setAttribute('href', '#minusButton');
                     app.currentRecipe.x2 = true;
                     console.log(thisBuilt.querySelector('img.recipeImage'));
-                    thisBuilt.querySelector(
-                        'img.recipeImage',
-                    ).style.objectPosition = `${'-' +
+                    thisBuilt.querySelector('img.recipeImage').style.objectPosition = `${'-' +
                         app.currentRecipe.spritexy_x2.split(';')[0] * 150 +
                         'px'} ${'-' +
                         app.currentRecipe.spritexy_x2.split(';')[1] * 150 +
@@ -611,9 +598,15 @@
                     }
                 });
             }
+
             thisBuilt.querySelector('.startButton').addEventListener('click', function(e) {
                 var seqOutput = thisBuilt.querySelector('.sequence span');
                 thisBuilt.classList.add('running');
+                //debugger;
+                app.currentRecipe.lastSelectedQuantity = thisBuilt.querySelector('.quantityScroller .wheelItem.selected').dataset.val;
+                if(app.currentRecipe.leftmenutyp === 'strength') {
+                    app.currentRecipe.lastSelectedStrength = thisBuilt.querySelector('.strengthScroller .wheelItem.selected').dataset.val;
+                }
                 var seq = [
                     {
                     fn: () => {
@@ -626,10 +619,8 @@
                 var intertime = recipeDuration / (addedseq.length + 1);
                 addedseq.forEach(function(val) {
                     seq.push({
-                    fn: () => {
-                        seqOutput.innerHTML = _(val);
-                    },
-                    delay: intertime,
+                    fn: () => { seqOutput.innerHTML = _(val); },
+                     delay: intertime
                     });
                 });
                 seq.push({
@@ -661,38 +652,31 @@
             beforeShow: function() {
             if (this.quantityScroller) {
                 let a = this.built.querySelector(
-                '[data-val="' + app.currentRecipe.righmenudefault + '"]',
+                '[data-val="' + app.currentRecipe.rightmenudefault + '"]',
                 );
                 //debugger;
                 this.quantityScroller.scrollToFunction(a);
+                this.lastSelectedQuantity = app.currentRecipe.rightmenudefault;
             }
             if (this.strengthScroller) {
                 let a = this.built.querySelector(
-                '.strengthScroller .wheelItem:nth-child(3)',
+                    '[data-val="' + app.currentRecipe.leftmenudefault + '"]',
                 );
                 this.strengthScroller.scrollToFunction(a);
+                this.lastSelectedStrength = app.currentRecipe.leftmenudefault;
             }
             //  debugger;
             },
             run: function() {
-            console.log('running prepare');
-            //debugger;
-            // changeBkg("images/test.png")
-            //if (this.built) console.log ('built');
-            //let strength = new vscroller('strengthScroller');
-            //console.log(strength);
-            //let quantity = new vscroller('quantityScroller');
-            /*$(".backToMain").on("click", function(){
-                                app.loadPage("recettes", null);
-                            })*/
+                console.log('running prepare');
             },
             quit: function() {
-            console.log(this.recipeSequence);
-            //debugger;
-            if (this.recipeSequence) this.recipeSequence.stop();
-            this.built = false; // We reset the built as next recipe will not be the same
-            //console.log('quitting '+this.name);
-            return true;
+                console.log(this.recipeSequence);
+                //debugger;
+                if (this.recipeSequence) this.recipeSequence.stop();
+                this.built = false; // We reset the built as next recipe will not be the same
+                //console.log('quitting '+this.name);
+                return true;
             },
             html: function() {
             // var recipe = app.currentRecipe;
@@ -702,87 +686,83 @@
             if (app.currentRecipe.rightmenutyp == 'ml') {
                 rightMenu = `
                             
-                                <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
+                    <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
 
-                                <div class="wheel vWheel right quantityScroller">
-                                <div class="wheelItem noAction"></div>`;
+                    <div class="wheel vWheel right quantityScroller">
+                    <div class="wheelItem noAction"></div>`;
 
                 app.currentRecipe.rightmenuvalues
                 .split(';')
                 .forEach(function(val) {
                     rightMenu += `
-                                <div data-val="${val}" class="wheelItem">${val}</div>`;
+                                <div data-val="${val}" class="wheelItem">${val}</div>
+                               `;
+
                 });
 
                 rightMenu += `<div class="wheelItem noAction last"></div>
                                 </div>
-                                <div class="vwheelCenter right">&nbsp;</div>
+                                <div class="vwheelCenter right userBorderColor">&nbsp;</div>
                                 <div class="vwheelUnit right">ml</div>
                                 `;
             } else if (app.currentRecipe.rightmenutyp == 'vol') {
                 rightMenu = `
-                                <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
+                    <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
 
-                                <div class="wheel vWheel right quantityScroller">
-                                <div class="wheelItem"></div>
+                    <div class="wheel vWheel right quantityScroller">
+                    <div class="wheelItem"></div>
 
-                                <div data-val="1" class="wheelItem size selected">
-                                    <svg viewBox="0 0 32 32" class="">
-                                        <use href="#sizeM" />
-                                    </svg>
-                                </div>
+                    <div data-val="M" class="wheelItem size">
+                        <svg viewBox="0 0 32 32" class="">
+                            <use href="#sizeM" />
+                        </svg>
+                    </div>
 
-                                <div data-val="2" class="wheelItem size">
-                                    <svg viewBox="0 0 32 32" class="">
-                                        <use href="#sizeL" />
-                                    </svg>
-                                </div>
+                    <div data-val="L" class="wheelItem size">
+                        <svg viewBox="0 0 32 32" class="">
+                            <use href="#sizeL" />
+                        </svg>
+                    </div>
 
-                                <div data-val="3" class="wheelItem size">
-                                    <svg viewBox="0 0 32 32" class="">
-                                        <use href="#sizeXL" />
-                                    </svg>
-                                </div>
+                    <div data-val="XL" class="wheelItem size">
+                        <svg viewBox="0 0 32 32" class="">
+                            <use href="#sizeXL" />
+                        </svg>
+                    </div>
 
-                                <div class="wheelItem last"></div>
-                                </div>
-                                <div class="vwheelCenter right">&nbsp;</div>
-                                <div class="vwheelUnit right">ml</div>
-                                `;
+                    <div class="wheelItem last"></div>
+                    </div>
+                    <div class="vwheelCenter userBorderColor right">&nbsp;</div>
+                    `;
             }
             return `
-                    <div class="pageContent prepare ${app.currentRecipe.bkg}">
+                    <div class="pageContent prepare ${app.currentRecipe.bkg} ${(app.currentProfile)?app.currentProfile.color:'orange'}">
                     <div class="backToMain backButton">
                     <svg style="" viewBox="0 0 26 26" >
                     <use href="#backArrow" />
                     </svg>
                     </div>
 
+                        <div class="titleBlock">
+                            <span class="title">${_(app.currentRecipe.code)} </span>
+                       ${(app.currentProfile)?'<div class="userTitleClip userBorderColor"></div>':''}
+                        </div>
+
                     <div class="centralArea" style="position:absolute;width:222px;left:129px;height:100%;background-color:rgba(255,255,255,.15)">
                         
+
+
                         <div class="sequence" style="position: absolute; width: 173px;left: 25px; top: 54px; height: 46px; text-align:center">
                             <span></span>
                         </div>
 
-                    
                         <div class="imageHolder">
 
                         <img class="recipeImage" nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style=" object-position: ${'-' +
                             app.currentRecipe.spritexy_x1.split(';')[0] * 150 +
-                            'px'} ${'-' +
-                app.currentRecipe.spritexy_x1.split(';')[1] * 150 +
-                'px'}
+                            'px'} ${'-' + app.currentRecipe.spritexy_x1.split(';')[1] * 150 + 'px'}
                         "/>
                         
-                        <img class="recipeImage onrun" nopin = "nopin" data-alt="${imag(
-                        'recipesSheet',
-                        )}" src="${imag('recipesSheet')}" style="
-                        object-position: ${'-' +
-                            app.currentRecipe.spritexy.split(';')[0] * 150 +
-                            'px'} ${'-' +
-                app.currentRecipe.spritexy.split(';')[1] * 150 +
-                'px'}
-                        "/>
 
                         </div>
                         ${
@@ -807,8 +787,8 @@
                         </div>
 
                     </div>
-                    <div class="stopButton borderOrange">${_('stop')}</div>
-                    <div class="startButton borderOrange">${_('start')}</div>
+                    <div class="stopButton userBorderColor" style="text-transform:uppercase">${_('stop')}</div>
+                    <div class="startButton userBorderColor" style="text-transform:uppercase">${_('start')}</div>
 
                     ${rightMenu}
 
@@ -818,39 +798,27 @@
                     <div class="target strengthScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:96px; top:160px"></div>
                     <div class="wheel vWheel left strengthScroller">
                         <div class="wheelItem noAction"></div>
-
-                            <div class="wheelItem  strength">
+                            <div class="wheelItem  strength"  data-val="1">
                             <svg viewBox="0 0 57 54" class="">
                             <use href="#force1" />
                             </svg>
                         </div>
-
-                        <div class="wheelItem selected strength">
+                        <div class="wheelItem strength " data-val="2">
                             <svg viewBox="0 0 57 54" class="">
                             <use href="#force2" />
                             </svg>
                         </div>
-
-                        <div class="wheelItem strength">
+                        <div class="wheelItem strength" data-val="3">
                             <svg viewBox="0 0 57 54" class="">
                             <use href="#force3" />
                             </svg>
                         </div>
-
                         <div class="wheelItem noAction"></div>
-
                     </div>
-                    <div class="vwheelCenter left">&nbsp;</div>
-                    <!--<div class="vwheelUnit left">ml</div>-->
-
+                    <div class="vwheelCenter left userBorderColor">&nbsp;</div>
                     `
                         : ''
                     }
-                    <div class="titleBlock">
-                    <span class="title">${_(
-                    app.currentRecipe.code
-                    )}</span>
-                </div>
                 </div>
                 `;
             },
@@ -859,6 +827,7 @@
         ready: {
             name: 'ready',
             built: false,
+            thisTimeOut : null,
             build: function(callback) {
                 var thisBuilt = this.built;
                 thisBuilt.querySelector('.profileButton').addEventListener('click', function(e) {
@@ -869,15 +838,20 @@
             callback();
             },
             beforeShow: function() {},
-            run: function() {},
+            run: function() {
+                this.thisTimeOut = setTimeout(()=>{
+                    app.loadPage("recettes",null);
+                },4000)
+            },
             quit: function() {
-            this.built = false; // We reset the built as next recipe will not be the same
-            return true;
+                clearTimeout(this.thisTimeOut);
+                this.built = false; // We reset the built as next recipe will not be the same
+                return true;
             },
             html: function() {
             return `
 
-            <div class="pageContent ready bkg5">
+            <div class="pageContent ready ${app.currentRecipe.bkg} orange">
 
             <div class="centralArea" style="position:absolute;width:360px;left:60px;height:100%;background-color:rgba(255,255,255,.15)">
 
@@ -895,8 +869,11 @@
                 <img class="recipeImage " nopin = "nopin" data-alt="${imag(
                     'recipesSheet',
                 )}" src="${imag('recipesSheet')}" style="
-                object-position: ${'-' +
-                    app.currentRecipe.spritexy.split(';')[0] * 150 + 'px'} ${'-' + app.currentRecipe.spritexy.split(';')[1] * 150 + 'px'} "/>
+                object-position: ${
+                    (!app.currentRecipe.x2)
+                    ?  ('-' + app.currentRecipe.spritexy.split(';')[0] * 150 + 'px -' + app.currentRecipe.spritexy.split(';')[1] * 150 + 'px')
+                    :  ('-' + app.currentRecipe.spritexy_x2.split(';')[0] * 150 + 'px -' + app.currentRecipe.spritexy_x2.split(';')[1] * 150 + 'px')
+                } "/>
             </div>
                 <div class="profileButton"  style="position:absolute;top: 232px; left: 274px; width:60px;height:60px">
                     <svg style="" viewBox="0 0 32 32">
@@ -915,7 +892,6 @@
                             `;
             },
         },
-
 
         profileSelection: {
             name: 'profileSelection',
@@ -942,7 +918,9 @@
             callback();
             },
             beforeShow: function() {},
-            run: function() {},
+            run: function() {
+
+            },
             quit: function() {
             this.built = false; // We reset the built as next recipe will not be the same
             return true;
@@ -950,7 +928,7 @@
             html: function() {
             return `
                         
-            <div class="pageContent profileSelection bkg5">
+            <div class="pageContent profileSelection bkg5 orange">
 
             <div class="backToMain backButton">
             <svg style="" viewBox="0 0 26 26" >
@@ -1025,7 +1003,6 @@
             },
         },
 
-
         keywordSelection: {
             name: 'keywordSelection',
             built: false,
@@ -1038,17 +1015,19 @@
 
                 var keywordsElems = thisBuilt.querySelectorAll('.kword');
                 //console.log(keywordsElems);
-                keywordsElems.forEach(el =>
-                el.addEventListener('click', event => {
-                    console.log('click', el);
-                    if(thisBuilt.querySelector('.kword.selected')){
-                        thisBuilt.querySelector('.kword.selected').classList.remove('selected');
-                    }
-                    //if (that.mouseMove) return;
-                    //that.scrollToFunction(el, true);
-                    el.classList.add("selected");
-                    app.lastSelectedKeyword = el.getAttribute("data-id");
-                }),
+                keywordsElems.forEach(function(el,k) {
+                    el.addEventListener('click', event => {
+                        console.log('click', el);
+
+                        if(thisBuilt.querySelector('.kword.selected')){
+                            thisBuilt.querySelector('.kword.selected').classList.remove('selected');
+                        }
+                        //if (that.mouseMove) return;
+                        //that.scrollToFunction(el, true);
+                        el.classList.add("selected");
+                        app.lastSelectedKeyword = el.dataset.id;
+                    })
+                }
                 );
 
                 thisBuilt.querySelector('.backbutton').addEventListener('click', function(e) {
@@ -1132,8 +1111,8 @@
                 ${
                     (function(){
                         var keywordList = '';
-                        kxkeywords.forEach(function(val) {
-                            keywordList += '<div class="kword" data-id='+val+'>'+_(val)+'</div>';
+                        kxkeywords.forEach(function(val,key) {
+                            keywordList += '<div class="kword '+(key==0?'selected':'')+'" data-id='+val+'>'+_(val)+'</div>';
                         })
                         return(keywordList)
                     })()
@@ -1151,15 +1130,25 @@
             },
         },
 
-
-
         profileSuccess: {
             name: 'profileSuccess',
             built: false,
             build: function(callback) {
-                debugger;
+                //debugger;
                 var thisBuilt = this.built;
+                //debugger;
                 callback();
+                var newFav = {
+                    keyword: app.lastSelectedKeyword,
+                    leftmenuval: app.currentRecipe.lastSelectedStrength,
+                    recipe: app.currentRecipe.code,
+                    rightmenuval: app.currentRecipe.lastSelectedQuantity,
+                }
+                app.currentProfile.favs.push(newFav);
+
+                setTimeout(function(){
+                    app.loadPage('profile',null)
+                },2000)
             },
             beforeShow: function() {},
             run: function() {},
@@ -1170,43 +1159,41 @@
             html: function() {
             return `
                         
-            <div class="pageContent profileSuccess bkg5 ${app.currentProfile.color}">
+            <div class="pageContent profileSuccess bkg5 ${app.currentProfile.color}" style="display: flex;
+            justify-content: center;">
 
 
-            <div class="titleBlock light" style="
-            width: 188px;
-            left: 147px;
-            top: 35px;
-            text-align:center;
+            <div style="background: rgba(255,255,255,.2);
             height: 125px;
-            padding-top: 8px;
-            border-bottom: none;
-            ">
-                <span class="title" style="width: 100%; left: 0;">
+            text-align: center;
+            padding: 4px 20px;
+            margin-top: 35px;">
+                <span class="title" style="    text-transform: uppercase;
+                font-weight: bold;">
                     ${_(app.currentRecipe.code)}
                 </span>
-                <div class="userTitleClip userBorderColor" style="
-                    bottom: initial;
-                    top: 38px; left:78px;
-                "></div>
+                <div class=" userBorderColor" style="    width: 30px;
+                display: block;
+                border-bottom-style: solid;
+                border-bottom-width: 3px;
+                bottom: -2px;
+                left: 72px;
+                margin: 6px auto 0;"></div>
             <div style="
-            position: absolute;
-            top: 53px;
-            left: 68px;
-            text-align: initial;
+            position: relative;
+            display: block;
             width: 50px;
             height: 50px;
             overflow: hidden;
-            transform: scale(1.8);
-            ">
-                <img class="recipeImage " nopin="nopin" data-alt="images/recipesSheet.png" src="${imag('recipesSheet')}" style="width:300px;height:300px; object-position: ${'-' +
+            transform: scale(1.3);
+            margin: 0 auto;
+            text-align: left;
+            top: 12px;
+                        ">
+                <img class="recipeImage " nopin="nopin" data-alt="images/recipesSheet.png" src="${imag('recipesSheet')}" style="width:300px;height:300px; text-align:left;object-position: ${'-' +
                 app.currentRecipe.spritexy.split(';')[0] * 50 + 'px'} ${'-' + app.currentRecipe.spritexy.split(';')[1] * 50 + 'px'} ">
             </div>
-            <div class="keyword" style="
-            position: absolute;
-            width: 100%;
-            bottom: 5px;
-        ">${_(app.lastSelectedKeyword)}</div>
+            <div class="keyword" style="width: 100%;margin-top:25px">${_(app.lastSelectedKeyword)}</div>
 
 
                 
@@ -1218,13 +1205,11 @@
                 width: 100%;
                 text-align: center;
                 position: absolute;
-                font-size: 20px;
-                font-weight: 400;">
-                    Thanks for ${_(app.lastSelectedKeyword)} ${_(app.currentRecipe.code)}
+                font-size: 28px;
+                font-weight: 100;">
+                ${_("beforeThxs")} <span style="font-weight:600">${_(app.currentRecipe.code)} ${_(app.lastSelectedKeyword)}</span> ${_("afterThxs")}
                 </div>
-
-
-
+                
             </div>
 
 
@@ -1232,35 +1217,188 @@
             },
         },
 
-
-        
-
         profile: {
-            name: 'profile',
             built: false,
             build: function(callback) {
+            var recipes = this.built.querySelectorAll('.atile.userRecipe');
+            recipes.forEach(el => el.addEventListener('click', event => {
+                debugger;
+                    var thisFav = app.currentProfile.favs[el.dataset.val];
+                    app.currentRecipe = Object.assign({}, app.data.recipes[thisFav.recipe]);
+                    console.log("click", app.currentRecipe);
+                    app.currentRecipe.leftmenudefault=thisFav.leftmenuval;
+                    app.currentRecipe.rightmenudefault=thisFav.rightmenuval;
+                    app.loadPage('prepare',null);
+                }),
+            );
+
+            this.built.querySelector('.userSettings').addEventListener('click', event => {
+                console.log("userSettings");
+                app.toast(_("unsupported"))
+
+            })
+            this.built.querySelector('.addFavToUser').addEventListener('click', event => {
+                console.log("addFavToUser");
+                app.toast(_("unsupported"))
+            })
+
+            
             callback();
             },
             beforeShow: function() {},
-            run: function() {},
+            run: function() {
+            console.log('running recettes');
+            },
             quit: function() {
+            // fn called on quit ,, Must send true to allow quitting.
+            console.log('quitting ' + this.name);
             this.built = false;
             return true;
             },
             html: function() {
-            return `
-                <div class="pageContent profile ${app.currentProfile.bkg} ${app.currentProfile.color}">
-                <div class="titleBlock light">
-                <span class="title">${_(app.currentProfile.name)}</span>
+            var rhtml = `
+            <div class="pageContent profile ${app.currentProfile.bkg} ${app.currentProfile.color}">
+            <div class="titleBlock light">
+            <span class="title">${_(app.currentProfile.name)}</span>
+            <div class="userTitleClip userBorderColor"></div>
+            </div>
+                <style>
+                .tiles {
+                    display: flex;
+                    flex-flow: row wrap;
+                    flex-grow: initial;
+                    position: absolute;
+                    top: 58px;
+                    height: 253px;
+                    overflow: hidden;
+                    width: 452px;
+                    left: 16px;
+                  }
+                  .tiles .atile {
+                    background: rgba(255,255,255,.2);
+                    margin: 0 0 3px 0;
+                    height: 125px;
+                    width: 110px;
+                    padding: 8px;
+                    box-sizing: border-box;
+                    position:relative;
+                    margin-right:3px;
+                  }
+                  .atile .thumb {
+                    position: absolute;
+                    width: 75px;
+                    height: 75px;
+                    top: 30px;
+                    left: 16px;
+                    overflow: hidden;
+                }
+
+                  .atile .thumb img {
+                    width: 450px;
+                    height: 450px;
+                    pointer-events: none;
+                }
+
+                .atile .titleBlock {
+                    height: 24px;
+                    overflow: hidden;
+                    position: relative;
+                    left: 0;
+                    width: 100%;
+                    border-bottom:none;
+                }
+
+                    .atile .titleBlock .title {
+                        text-align: center;
+                        position:absolute;
+                        left:0;
+                        width:100%;
+                        height: 21px;
+                        white-space: nowrap;
+                        line-height: 13px;
+                        text-overflow: ellipsis;
+                        border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+                    }
+
+                    .atile .titleBlock .title span {
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        font-size: 14px;
+                    }
+
+                    .atile .titleBlock .userTitleClip{
+                        left:32px;
+                        bottom:1px;
+                    }
+
+                    .atile .tileIcon{
+                        position:absolute;
+                        width:44px;
+                        height:44px;
+                        left:33px;
+                        top:41px;
+                    }
+                    .atile .keyword{
+                        position: absolute;
+                        width: 44px;
+                        left: 0;
+                        bottom: 3px;
+                        top: unset;
+                        width: 100%;
+                        text-align: center;
+                        font-size: 14px;
+                    }
+
+                </style>
+
+                <section class="tiles" >
+                    `;
+                    app.currentProfile.favs.forEach(function(v,k) {
+                    var thisRecipe = app.data.recipes[v.recipe];
+                rhtml += `
+                <div class="atile userRecipe" data-val="${k}">
+
+                <div class="titleBlock">
+                <div class="title">
+                <span>${_(thisRecipe.code)}</span>
+                </div>
                 <div class="userTitleClip userBorderColor"></div>
                 </div>
-                
+                <div class="keyword"><span>${_(v.keyword)}</span></div>
+                <div class="thumb">
+                <img nopin = "nopin" data-alt="${imag('recipesSheet')}"
+                src="${imag('recipesSheet')}" 
+                style="object-position: ${'-' + thisRecipe.spritexy.split(';')[0] * 75 +
+                'px'} ${'-' + thisRecipe.spritexy.split(';')[1] * 75 +
+                'px'}"></div></div>`;
+            })
+            rhtml += `
+                <div class="atile addFavToUser">
+                    <div class="tileIcon">
+                        <svg style="" viewBox="0 0 44 44">
+                            <use href="#plus" />
+                        </svg>
+                    </div>
                 </div>
+                <div class="atile userSettings">
+                <div class="tileIcon">
+                    <svg style="" viewBox="0 0 44 44">
+                        <use href="#userSettings" />
+                    </svg>
+                    </div>
+                </div>
+
+                </section>
                 `;
+            return rhtml;
             },
         },
-        },
-        recipes: {
+    },
+
+
+
+
+    recipes: {
         ristretto: {
             code: 'ristretto',
             spritexy: '0;0',
@@ -1275,10 +1413,10 @@
             leftmenudefault: '2',
             rightmenutyp: 'ml',
             rightmenuvalues: '20;25;30;35;40',
-            righmenudefault: '40',
+            rightmenudefault: '20',
             runmenutyp: 'ml',
-            runmenuvalues: '20;25;30;35;40',
-            runmenudefault: '60',
+            runmenuvalues: '20;25;30;35;40;',
+            runmenudefault: '40',
         },
         espresso: {
             code: 'espresso',
@@ -1291,13 +1429,13 @@
             canx2: true,
             leftmenutyp: 'strength',
             leftmenuvalues: '1;2;3',
-            leftmenudefault: '2',
+            leftmenudefault: '3',
             rightmenutyp: 'ml',
             rightmenuvalues: '40;50;60;70',
-            righmenudefault: '50',
+            rightmenudefault: '60',
             runmenutyp: 'ml',
             runmenuvalues: '40;50;60;70',
-            runmenudefault: '130',
+            runmenudefault: '70',
         },
         lungo: {
             code: 'lungo',
@@ -1313,7 +1451,7 @@
             leftmenudefault: '2',
             rightmenutyp: 'ml',
             rightmenuvalues: '80;90;100;110;120;130;140;150;160;170;180',
-            righmenudefault: '120',
+            rightmenudefault: '120',
             runmenutyp: 'ml',
             runmenuvalues: '80;90;100;110;120;130;140;150;160;170;180',
             runmenudefault: '60',
@@ -1332,7 +1470,7 @@
             leftmenudefault: '2',
             rightmenutyp: 'ml',
             rightmenuvalues: '20;25;30;35;40',
-            righmenudefault: '30',
+            rightmenudefault: '30',
             runmenutyp: 'ml',
             runmenuvalues: '20;25;30;35;40',
             runmenudefault: '60',
@@ -1351,7 +1489,7 @@
             leftmenudefault: '2',
             rightmenutyp: 'ml',
             rightmenuvalues: '20;30;40;50;60;70',
-            righmenudefault: '30',
+            rightmenudefault: '30',
             runmenutyp: 'ml',
             runmenuvalues: '20;30;40;50;60;70',
             runmenudefault: '60',
@@ -1370,7 +1508,7 @@
             leftmenudefault: '2',
             rightmenutyp: 'ml',
             rightmenuvalues: '20;30;40;50;60;70',
-            righmenudefault: '30',
+            rightmenudefault: '30',
             runmenutyp: 'ml',
             runmenuvalues: '20;30;40;50;60;70',
             runmenudefault: '60',
@@ -1389,7 +1527,7 @@
             leftmenudefault: '2',
             rightmenutyp: 'vol',
             rightmenuvalues: 'M;L;XL',
-            righmenudefault: 'M',
+            rightmenudefault: 'M',
             runmenutyp: 'ml',
             runmenuvalues: 'M;L;XL',
             runmenudefault: 'M',
@@ -1405,10 +1543,10 @@
             canx2: true,
             leftmenutyp: 'strength',
             leftmenuvalues: '1;2;3',
-            leftmenudefault: '2',
+            leftmenudefault: '1',
             rightmenutyp: 'vol',
             rightmenuvalues: 'M;L;XL',
-            righmenudefault: 'L',
+            rightmenudefault: 'M',
             runmenutyp: 'ml',
             runmenuvalues: 'M;L;XL',
             runmenudefault: 'L',
@@ -1427,7 +1565,7 @@
             leftmenudefault: '2',
             rightmenutyp: 'vol',
             rightmenuvalues: 'M;L;XL',
-            righmenudefault: 'M',
+            rightmenudefault: 'M',
             runmenutyp: 'ml',
             runmenuvalues: 'M;L;XL',
             runmenudefault: 'M',
@@ -1446,7 +1584,7 @@
             leftmenudefault: 'false',
             rightmenutyp: 'vol',
             rightmenuvalues: 'M;L;XL',
-            righmenudefault: 'M',
+            rightmenudefault: 'L',
             runmenutyp: 'sec',
             runmenuvalues: 'M;L;XL',
             runmenudefault: 'M',
@@ -1465,7 +1603,7 @@
             leftmenudefault: '2',
             rightmenutyp: 'vol',
             rightmenuvalues: 'M;L;XL',
-            righmenudefault: 'M',
+            rightmenudefault: 'M',
             runmenutyp: 'ml',
             runmenuvalues: 'M;L;XL',
             runmenudefault: 'M',
@@ -1484,7 +1622,7 @@
             leftmenudefault: '2',
             rightmenutyp: 'vol',
             rightmenuvalues: 'M;L;XL',
-            righmenudefault: 'M',
+            rightmenudefault: 'M',
             runmenutyp: 'ml',
             runmenuvalues: 'M;L;XL',
             runmenudefault: 'M',
@@ -1503,7 +1641,7 @@
             leftmenudefault: 'false',
             rightmenutyp: 'vol',
             rightmenuvalues: 'M;L;XL',
-            righmenudefault: 'M',
+            rightmenudefault: 'M',
             runmenutyp: 'ml',
             runmenuvalues: 'M;L;XL',
             runmenudefault: 'M',
@@ -1522,7 +1660,7 @@
             leftmenudefault: 'false',
             rightmenutyp: 'vol',
             rightmenuvalues: 'M;L;XL',
-            righmenudefault: 'M',
+            rightmenudefault: 'M',
             runmenutyp: 'ml',
             runmenuvalues: 'M;L;XL',
             runmenudefault: 'M',
@@ -1541,12 +1679,12 @@
             leftmenudefault: 'false',
             rightmenutyp: 'vol',
             rightmenuvalues: 'M;L;XL',
-            righmenudefault: 'M',
+            rightmenudefault: 'M',
             runmenutyp: 'ml',
             runmenuvalues: 'M;L;XL',
             runmenudefault: 'M',
         },
-        },
+    },
     };
     app.kxhost = document.getElementById(kxhost);
     //debugger;
@@ -1554,8 +1692,7 @@
     addStyles(app.kxhost);
     app.kxunit = app.kxhost.querySelector('#kxUnit');
     app.holder = app.kxhost.querySelector('#kxScreen');
-    app.pageHolder = app.kxhost.querySelector('#pageHolder');
-    app.pageHolderB = app.kxhost.querySelector('#pageHolderB');
+    app.pageHolder = app.kxhost.querySelector('.pageHolder');
     app.toaster = app.kxhost.querySelector('.kxToast');
     app.loadPage('recettes', null); // Show first page
 
@@ -1611,8 +1748,7 @@
     };
 
     app.kxunit
-        .querySelector('#kxUnitButtonStart')
-        .addEventListener('click', event => {
+        .querySelector('#kxUnitButtonStart').addEventListener('click', event => {
         if (app.currentPage.name == 'off') {
             app.bleep();
             app.loadPage('starting', null); // Show first page
@@ -1627,30 +1763,24 @@
         });
 
     app.kxunit
-        .querySelector('#kxUnitButtonHome')
-        .addEventListener('click', event => {
+        .querySelector('#kxUnitButtonHome').addEventListener('click', event => {
         if (app.currentPage.name == 'off') return;
         console.log('click', this);
         app.loadPage('recettes', null);
         });
         app.kxunit
-        .querySelector('#kxUnitButtonUserOne')
-        .addEventListener('click', event => {
+        .querySelector('#kxUnitButtonUserOne').addEventListener('click', event => {
         if (app.currentPage.name == 'off') return;
         app.currentProfile = app.profiles.userOne;
         app.loadPage('profile', null);
         });
-        app.kxunit
-        .querySelector('#kxUnitButtonUserTwo')
-        .addEventListener('click', event => {
+        app.kxunit.querySelector('#kxUnitButtonUserTwo').addEventListener('click', event => {
         if (app.currentPage.name == 'off') return;
         app.currentProfile = app.profiles.userTwo;
         app.loadPage('profile', null);
         });
 
     
-
-
     };
 
     function addStyles(destination) {
@@ -1688,17 +1818,17 @@
                 
                 <g id="plusButton" class="plusMinus" fill-rule="evenodd" viewBox="0 0 32 32"  preserveAspectRatio="xMidYMid meet">
                     <circle  cx="16" cy="16" r="13.5" fill="white"/>
-                    <circle class="userFIllColor" cx="16" cy="16" r="13" fill="#f38230"/>
+                    <circle class="userFIllColor"  cx="16" cy="16" r="13"/>
                     <path  d="M14.9,17.1h-3.8V15h3.8v-3.8h2.1V15h3.8v2.1h-3.8v3.8h-2.1V17.1z" fill="white"/>
                 </g>
 
                 <g id="minusButton" class="plusMinus"  fill-rule="evenodd"  viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet">
                     <circle  cx="16" cy="16" r="13.5" fill="white"/>
-                    <circle class="profileColor"  class="userFIllColor" cx="16" cy="16" r="13" fill="#f38230"/>
+                    <circle class="profileColor"  class="userFIllColor" cx="16" cy="16" r="13"/>
                     <rect x="12.2" y="15"  width="7.7" height="2.1" fill="white"/>
                 </g>
 
-                    <g id="sizeXL"  viewBox="0 0 32 32">
+                    <g id="sizeXL" style="fill:white" viewBox="0 0 32 32">
                     <path  d="M27.1,3.2h-5.4V25c0,1.8-1.5,3.3-3.3,3.3H5c-1.8,0-3.3-1.5-3.3-3.3V3.2H0V25c0,2.8,2.3,5,5,5h13.4
                         c2.8,0,5-2.3,5-5V14.7h3.6c2.7,0,4.9-2.2,4.9-4.9V8.1C32,5.4,29.8,3.2,27.1,3.2z M30.3,9.7c0,1.8-1.5,3.2-3.2,3.2h-3.6V4.9h3.6
                         c1.8,0,3.2,1.5,3.2,3.2V9.7z"/>
@@ -1706,7 +1836,7 @@
                         l-1.4,2.3H6.3L8.4,19l-1.9-3.1H8L9.3,18h0.1l1.2-2.1h1.5L10.1,19l2.1,3.4H10.7z M17.1,22.3h-3.9v-6.4h1.2v5.3h2.7V22.3z"/>
                 </g>
 
-                <g id="sizeL" viewBox="0 0 32 32">
+                <g id="sizeL" style="fill:white" viewBox="0 0 32 32">
                     <path  d="M24.1,6.7h-3.9v16.1c0,1.3-1.1,2.4-2.4,2.4H7.9c-1.3,0-2.4-1.1-2.4-2.4V6.7H4.2v16.1
                         c0,2,1.7,3.7,3.7,3.7h9.8c2,0,3.7-1.7,3.7-3.7v-7.6h2.7c2,0,3.6-1.6,3.6-3.6v-1.2C27.8,8.3,26.1,6.7,24.1,6.7z M26.5,11.6
                         c0,1.3-1.1,2.4-2.4,2.4h-2.7V8h2.7c1.3,0,2.4,1.1,2.4,2.4V11.6z"/>
@@ -1714,7 +1844,7 @@
                         h2.8V21.6z"/>
                 </g>
 
-                <g id="sizeM" viewBox="0 0 32 32">
+                <g id="sizeM" style="fill:white" viewBox="0 0 32 32">
                     <path  d="M21.8,9.6H19V21c0,0.9-0.8,1.7-1.7,1.7h-7c-0.9,0-1.7-0.8-1.7-1.7V9.6H7.7V21c0,1.4,1.2,2.6,2.6,2.6
                         h7c1.4,0,2.6-1.2,2.6-2.6v-5.4h1.9c1.4,0,2.6-1.2,2.6-2.6v-0.9C24.3,10.8,23.2,9.6,21.8,9.6z M23.4,13c0,0.9-0.8,1.7-1.7,1.7h-1.9
                         v-4.2h1.9c0.9,0,1.7,0.8,1.7,1.7V13z"/>
@@ -1722,8 +1852,8 @@
                         h-0.1l-1.6,4.3h-1l-1.7-4.3h-0.1l0.1,1.1v3.2h-1.2v-6.5H12l1.7,4.6h0.1l1.7-4.6h1.6V21.2z"/>
                 </g>
 
-                <g id="force1"  viewBox="0 0 57 54">
-                    <path id="a_2_" d="M29.523,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
+                <g id="force1"  style="fill:white"  viewBox="0 0 57 54">
+                    <path d="M29.523,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
                         c-4.791,0.51-8.564,5.429-8.564,11.411c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
                         c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C37.884,21.102,34.217,16.235,29.523,15.61z M20.616,27
                         c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007c0.759,1.392,1.367,3.199,1.095,5.211
@@ -1733,7 +1863,7 @@
                         c3.408,1.099,5.939,4.999,5.939,9.643C36.384,32.493,32.847,36.962,28.5,36.962z"/>
                 </g>
 
-                <g id="force2"  viewBox="0 0 57 54">
+                <g id="force2" style="fill:white" viewBox="0 0 57 54">
                     <path d="M19.388,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
                         C12.755,16.099,8.982,21.018,8.982,27c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
                         c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C27.749,21.102,24.083,16.235,19.388,15.61z M10.482,27
@@ -1752,7 +1882,7 @@
                         c3.408,1.099,5.939,4.999,5.939,9.643C46.518,32.493,42.981,36.962,38.635,36.962z"/>
                 </g>
 
-                <g id="force3" viewBox="0 0 57 54">
+                <g id="force3" style="fill:white" viewBox="0 0 57 54">
                         <path d="M10.756,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
                         C4.122,16.099,0.349,21.018,0.349,27c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
                         c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C19.116,21.102,15.45,16.235,10.756,15.61z M7.391,36.513
@@ -1837,6 +1967,45 @@
                         <path id="Shape" class="st0" d="M16,16.1c2,0,4-0.8,5.4-2.2c1.4-1.4,2.2-3.4,2.2-5.4s-0.8-4-2.2-5.4C20,1.6,18,0.8,16,0.8 s-4,0.8-5.4,2.2C9.2,4.5,8.4,6.5,8.4,8.5c0,2,0.8,4,2.2,5.4S14,16.1,16,16.1L16,16.1z M16,3.1c1.4,0,2.8,0.6,3.8,1.6 c1,1,1.6,2.4,1.6,3.8c0,1.4-0.6,2.8-1.6,3.8c-1,1-2.4,1.6-3.8,1.6c-1.4,0-2.8-0.6-3.8-1.6c-1-1-1.6-2.4-1.6-3.8 c0-1.4,0.6-2.8,1.6-3.8C13.2,3.7,14.6,3.1,16,3.1L16,3.1z"/>
                         <path class="st0" d="M3.9,31.4c0-6.6,5.4-12.1,12.1-12.1s12.1,5.4,12.1,12.1h2.3c0-3.8-1.5-7.4-4.2-10.1c-2.7-2.7-6.3-4.2-10.1-4.2 s-7.4,1.5-10.1,4.2c-2.7,2.7-4.2,6.3-4.2,10.1H3.9z"/>
                     </g>
+
+                    <g id="userSettings" viewBox="0 0 44 44">
+	<path style="fill:#FFFFFF;" d="M41.3,13.4c-0.1-0.2-0.2-0.3-0.4-0.4c-0.7-0.3-1.3-0.7-2-1l-0.1-0.9c0.4-0.5,0.8-1.1,1.2-1.6
+		c0.1-0.1,0.1-0.2,0.2-0.3L40.3,9c0-0.1,0-0.2,0-0.4c0-0.2-0.1-0.4-0.2-0.5l-2-2.6l-0.3-0.4c-0.2-0.2-0.6-0.3-0.9-0.2
+		c-0.7,0.3-1.5,0.6-2.2,0.9c0,0,0,0,0,0l-0.5-0.3c-0.2-0.6-0.3-1.2-0.5-1.8l-0.1-0.3c-0.1-0.4-0.5-0.7-0.9-0.7H29
+		c-0.4,0-0.8,0.3-0.9,0.7c-0.2,0.7-0.4,1.4-0.6,2.1L27,5.8L25,5c-0.1,0-0.2-0.1-0.3-0.1c-0.3-0.1-0.7,0-0.9,0.2l-2,2.6l-0.3,0.4
+		c-0.1,0.2-0.2,0.3-0.2,0.5c0,0.2,0,0.4,0.1,0.6c0.5,0.6,0.9,1.2,1.4,1.9c0,0,0,0,0,0l-0.1,0.9c-0.6,0.3-1.1,0.6-1.7,0.9
+		c-0.1,0-0.2,0.1-0.3,0.1c-0.2,0.1-0.3,0.3-0.4,0.4c-0.1,0.2-0.1,0.4,0,0.6c0.2,1,0.4,2,0.6,3.1l0.1,0.4c0,0.2,0.2,0.4,0.3,0.5
+		c0.2,0.1,0.3,0.2,0.5,0.2c0.7,0.1,1.5,0.1,2.2,0.2l0.4,0.6c-0.1,0.7-0.2,1.3-0.2,2l0,0.3c0,0.3,0.2,0.7,0.4,0.8l2.8,1.4l0.4,0.2
+		c0.2,0.1,0.4,0.1,0.6,0.1c0.2,0,0.4-0.1,0.5-0.3l1.4-1.5h0.9l1.2,1.3c0.1,0.1,0.1,0.2,0.2,0.2c0.1,0.1,0.3,0.2,0.5,0.3
+		c0.2,0,0.4,0,0.6-0.1c0.9-0.5,1.9-0.9,2.8-1.4c0.1-0.1,0.3-0.1,0.4-0.2c0.3-0.1,0.5-0.5,0.4-0.8c-0.1-0.7-0.2-1.5-0.3-2.2
+		c0,0,0,0,0-0.1l0.4-0.6c0.6-0.1,1.2-0.1,1.9-0.2l0.3,0c0.2,0,0.4-0.1,0.5-0.2c0.1-0.1,0.3-0.3,0.3-0.5c0.2-1,0.4-2,0.6-3.1
+		c0-0.1,0.1-0.3,0.1-0.4C41.4,13.8,41.4,13.6,41.3,13.4z M36.8,16.6c-0.2,0.1-0.4,0.2-0.5,0.4l0,0.1L36,17.4
+		c-0.2,0.2-0.3,0.5-0.5,0.7c-0.1,0.2-0.2,0.3-0.2,0.6c0,0,0,0.1,0,0.1c0,0.3,0.1,0.5,0.1,0.8l0.1,1.1l-2,1c-0.2-0.2-0.3-0.4-0.5-0.5
+		c-0.2-0.2-0.4-0.4-0.6-0.6l-0.2-0.2c-0.2-0.2-0.4-0.3-0.7-0.3c-0.5,0-1,0-1.6,0c-0.3,0-0.5,0.1-0.8,0.3c0,0-0.1,0.1-0.1,0.1
+		l-0.5,0.6L28,21.6l-2-1l0.1-0.8c0-0.3,0.1-0.6,0.1-0.9c0-0.3,0.1-0.5-0.1-0.8c-0.3-0.4-0.6-0.8-0.8-1.2c-0.1-0.2-0.3-0.4-0.5-0.4
+		c-0.2-0.1-0.2,0-0.2,0c0,0,0,0-0.1,0l-0.2,0c-0.3,0-0.6,0-0.8-0.1l-0.8-0.1c-0.1-0.7-0.3-1.4-0.4-2.1c0.2-0.1,0.5-0.2,0.7-0.3
+		l0.8-0.4c0.3-0.2,0.6-0.3,0.7-0.7c0.1-0.5,0.2-1.1,0.3-1.6c0-0.3,0.1-0.6-0.1-0.8c0,0-0.1-0.1-0.1-0.1l-0.5-0.7
+		c-0.2-0.3-0.4-0.6-0.6-0.9l1.5-1.9l0.7,0.3c0.4,0.2,0.9,0.4,1.3,0.5c0.4,0.1,0.8-0.1,1.1-0.3L28.6,7c0.2-0.1,0.4-0.3,0.5-0.6
+		c0,0,0-0.1,0-0.1c0.1-0.3,0.1-0.5,0.2-0.8l0.3-0.9H32l0.2,0.6c0.1,0.3,0.2,0.6,0.2,0.9c0.1,0.3,0.2,0.7,0.5,0.8
+		c0.4,0.2,0.8,0.4,1.2,0.7c0.2,0.1,0.5,0.2,0.8,0.1l0.2-0.1c0.3-0.1,0.5-0.2,0.8-0.3c0.3-0.1,0.6-0.2,0.9-0.4l1.5,1.9
+		c-0.3,0.3-0.5,0.7-0.8,1c-0.1,0.2-0.3,0.4-0.4,0.6C36.9,10.6,37,11,37,11.2l0.1,0.5c0.1,0.3,0.1,0.7,0.2,1c0,0.2,0.2,0.4,0.4,0.5
+		c0,0,0,0,0.1,0c0.6,0.3,1.1,0.6,1.7,0.9c-0.1,0.7-0.3,1.4-0.4,2.1c-0.6,0.1-1.3,0.1-1.9,0.2C37,16.5,37,16.5,36.8,16.6z"/>
+	<path style="fill:#FFFFFF;" d="M13.2,29.9c1.5,0,2.9-0.6,4-1.7c1.1-1.1,1.6-2.5,1.6-4s-0.6-3-1.6-4c-1.1-1.1-2.5-1.7-4-1.7
+		c-1.5,0-2.9,0.6-4,1.7c-1.1,1.1-1.6,2.5-1.6,4c0,1.5,0.6,3,1.7,4C10.3,29.3,11.7,29.9,13.2,29.9z M13.2,20.2c1,0,2.1,0.4,2.8,1.2
+		c0.7,0.8,1.2,1.8,1.2,2.8c0,1.1-0.4,2.1-1.2,2.8c-0.7,0.8-1.7,1.2-2.8,1.2s-2.1-0.4-2.8-1.2c-0.7-0.8-1.2-1.8-1.2-2.8
+		c0-1.1,0.4-2.1,1.2-2.8C11.1,20.6,12.2,20.2,13.2,20.2C13.2,20.2,13.2,20.2,13.2,20.2z M4.3,41.4c0-5,4-9,8.9-9c4.9,0,8.9,4,8.9,9
+		h1.7c0-2.8-1.1-5.6-3.1-7.6c-2-2-4.7-3.1-7.5-3.1s-5.5,1.1-7.5,3.1c-2,2-3.1,4.7-3.1,7.6H4.3z"/>
+	<g>
+		<path style="fill:#FFFFFF;" d="M30.8,17.5c-2.4,0-4.3-1.9-4.3-4.3s1.9-4.3,4.3-4.3s4.3,1.9,4.3,4.3S33.2,17.5,30.8,17.5z
+			 M30.8,10.9c-1.3,0-2.3,1.1-2.3,2.3s1.1,2.3,2.3,2.3c1.3,0,2.3-1.1,2.3-2.3S32.1,10.9,30.8,10.9z"/>
+	</g>
+</g>
+<g id="plus" viewBox="0 0 44 44">
+	<path style="fill:#FFFFFF;" d="M42.1,21.1H22.9V1.9C22.9,1.4,22.5,1,22,1s-0.9,0.4-0.9,0.9v19.2H1.9C1.4,21.1,1,21.5,1,22
+		s0.4,0.9,0.9,0.9h19.2v19.2c0,0.5,0.4,0.9,0.9,0.9s0.9-0.4,0.9-0.9V22.9h19.2c0.5,0,0.9-0.4,0.9-0.9S42.6,21.1,42.1,21.1z"/>
+</g>
+
+
                 </svg>
     `;
     svgLib.innerHTML = data;
@@ -1869,29 +2038,29 @@
 
             .unitButton {
                 position: absolute;
-                opacity: 0.58;
-                width: 72px;
-                height: 72px;
+                opacity: 0.38;
+                width: 90px;
+                height: 90px;
             }
 
             .unitButton.kxUnitButtonStart{
-                left: 30px;
-                top: 86px;
+                left: 27px;
+                top: 78px;
             }
 
             .unitButton.kxUnitButtonHome{
-                left: 673px;
-                top: 86px;
+                left: 658px;
+                top: 78px;
             }
 
             .unitButton.kxUnitButtonUserOne{
-                left: 30px;
-                top: 254px;
+                left: 27px;
+                top: 244px;
             }
 
             .unitButton.kxUnitButtonUserTwo{
-                left: 673px;
-                top: 254px;
+                left: 658px;
+                top: 244px;
             }
 
 
@@ -1929,8 +2098,8 @@
             }
 
             .orange .userFIllColor{
-                fill:var(--orange);
-                background-color:var(--orange);
+                fill:var(--orange)!important;
+                background-color:var(--orange)!important;
             }
             .orange .userBorderColor,.borderOrange{
                 border-color:var(--orange)!important;
@@ -1941,7 +2110,7 @@
                 background-color:#13aec0;
             }
             .cyan .userBorderColor{
-                border-color:#13aec0;
+                border-color:#13aec0!important;
             }
 
             .turquoise .userFIllColor{
@@ -1949,7 +2118,7 @@
                 background-color:#0f8768;
             }
             .turquoise .userBorderColor{
-                border-color:#0f8768;
+                border-color:#0f8768!important;
             }
 
             .green .userFIllColor{
@@ -1957,7 +2126,7 @@
                 background-color:#6c9106;
             }
             .green .userBorderColor{
-                border-color:#6c9106;
+                border-color:#6c9106!important;
             }
 
             .gold .userFIllColor{
@@ -1965,15 +2134,31 @@
                 background-color:#fffb01;
             }
             .gold .userBorderColor{
-                border-color:#fffb01;
+                border-color:#fffb01!important;
             }
 
-            .red .userFIllColor{
-                fill:#c80000;
+            .red use  {
+                fill:red;
+            }
+
+            .green use {
+                fill:green;
+            }
+
+
+
+            body div .svg use * {
+                fill:initial;
+            }
+
+
+
+            .red .userFIllColor, .red use .userFIllColor{
+                fill:#c80000!important;
                 background-color:#c80000;
             }
             .red .userBorderColor{
-                border-color:#c80000;
+                border-color:#c80000!important;
             }
 
             .fushia .userFIllColor{
@@ -1981,7 +2166,7 @@
                 background-color:#c90563;
             }
             .fushia .userBorderColor{
-                border-color:#c90563;
+                border-color:#c90563!important;
             }
 
             .pink .userFIllColor{
@@ -1989,7 +2174,7 @@
                 background-color:#ef52bb;
             }
             .pink .userBorderColor{
-                border-color:#ef52bb;
+                border-color:#ef52bb!important;
             }
 
             .violet .userFIllColor{
@@ -1997,7 +2182,7 @@
                 background-color:#8d3fcf;
             }
             .violet .userBorderColor{
-                border-color:#8d3fcf;
+                border-color:#8d3fcf!important;
             }
 
             .blue .userFIllColor{
@@ -2005,7 +2190,7 @@
                 background-color:#2855ff;
             }
             .blue .userBorderColor{
-                border-color:#2855ff;
+                border-color:#2855ff!important;
             }
 
             #kxUnit{
@@ -2041,11 +2226,11 @@
 
             #kxBackdrop{
                 position: absolute;
-                width: 1161px;
-                height: 1760px;
+                width: 1789px;
+                height: 1789px;
                 background-image: url(images/kbkg.png);
-                top: -1050px;
-                left: -212px;
+                top: -781px;
+                left: -512px;
                 /* opacity: .2; */
                 background-size: cover;
               }
@@ -2053,15 +2238,13 @@
             #kxFrg {
                 background-image: url(${imag('unitfrg')});
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
+                top: 40px;
+                left: 144px;
+                width: 480px;
+                height: 320px;
                 pointer-events: none;
-                opacity: 0;
+                opacity: 0.5;
             }
-
-
 
             .kxToast{
                 background-color: black;
@@ -2122,15 +2305,12 @@
                 background-image: url(${imag('bkgSheet')});
             }
 
-            #pageHolder, #pageHolderB, .pageContent{
+            #pageHolder, .pageContent{
             width: 100%;
             height: 100%;
             position:absolute;
             }
 
-            #pageHolderB {
-                pointer-events: none;
-            }
 
             .titleBlock{
             position: absolute;
@@ -2253,23 +2433,31 @@
                 font-weight: 300;
                 scroll-snap-align: center;
                 scroll-padding-top: 15px;
-                color:rgba(255,255,255,0.6)
+                color:rgba(255,255,255,0.5)
             } 
 
             .vWheel .wheelItem{
-                fill:rgba(255,255,255,.6);
+                fill:rgba(255,255,255,.5);
             }
 
             
-
-
-
             .vWheel .wheelItem.selected{
                 color:white;
-                text-shadow: 0 0 2px white, 0 0 4px white, 0 0 6px white;
+                /*text-shadow: 0 0 2px white, 0 0 4px white, 0 0 6px white;*/
             }
 
-            .vWheel .wheelItem:first-child{
+            .vWheel .wheelItem svg{
+                opacity:.5;
+            }
+
+
+            .vWheel .wheelItem.selected svg{
+                opacity:1;
+            }
+
+
+            .vWheel .wheelItem:first-child, .vWheel .wheelItem:last-child{
+                pointer-events: none;       
             }
 
             
@@ -2293,12 +2481,6 @@
             }
 
 
-            .vWheel .wheelItem.selected svg{
-                filter: drop-shadow(0 0 4px white);
-                fill:rgba(255,255,255,1);
-            }
-
-
             .vWheel .wheelItem:first-child{ 
                 height:133.33px;
                 border-bottom:none;
@@ -2309,6 +2491,11 @@
                 height:133.33px;
             /*   margin-bottom:139px;*/
             }
+
+
+
+
+
 
             .vWheel.strengthScroller .wheelItem{
                 transition:opacity .3s;
@@ -2328,11 +2515,11 @@
 
 
         .vwheelCenter{
-                position:absolute;
-                width: 26px;
-                height: 3px;
-                background-color: #f38230;
-                top:159px;
+            position: absolute;
+            width: 26px;
+            height: 0;
+            top: 159px;
+            border-bottom: solid 3px;
             }
 
 
@@ -2384,7 +2571,7 @@
                 transition:opacity .5s;
 
             }
-            
+            /*
             img.recipeImage.onrun {
                 opacity:0;
             }
@@ -2396,7 +2583,7 @@
             .running img.recipeImage.onrun {
                 opacity:1;
             }
-
+            */
             .plusMinusButton{
                 position: absolute;
                 left: 151px;
@@ -2526,6 +2713,7 @@
         }
 
         .recetteScrollerItem:first-child{
+        margin-left: 19px;
         transition-delay:0;
         }
         .recetteScrollerItem:nth-child(2){
@@ -2533,6 +2721,10 @@
         }
         .recetteScrollerItem:nth-child(3){
         transition-delay:.4s;
+        }
+        .recetteScrollerItem:last-child{
+            margin-right: 19px;
+            transition-delay:0;
         }
 
         .recetteScrollerItem .title{
@@ -2612,9 +2804,9 @@
 
     function imag(s) {
     //debugger;
-    console.log(app.imgDB);
-    console.log(s);
-    console.log(app.imgDB[s]);
+    //console.log(app.imgDB);
+    //console.log(s);
+    //console.log(app.imgDB[s]);
     //console.log('-' + app.imgDB[s].hsrc);
     //debugger;
     if (app.imgDB[s].hsrc) {
@@ -2753,17 +2945,14 @@
         that.scrollToFunction = function(thisItem, smooth) {
             if (thisItem == null) return;
             console.log(thisItem);
-            if (that.element.querySelectorAll('.wheelItem.selected').length > 0) {
-            that.element
-                .querySelectorAll('.wheelItem.selected')[0]
-                .classList.remove('selected');
+            if (that.element.querySelector('.wheelItem.selected')) {
+               that.element.querySelector('.wheelItem.selected').classList.remove('selected');
             }
             var offset = that.element.querySelector('.wheelItem').offsetHeight;
-            that.element.scrollTo({
-            top: thisItem.offsetTop - offset,
-            behavior: smooth ? 'smooth' : 'auto',
-            });
             thisItem.classList.add('selected');
+            that.element.scrollTo({ top: thisItem.offsetTop - offset, behavior: smooth ? 'smooth' : 'auto'});
+            //console.log("SELECTEEEEEEED!")
+            //console.log(thisItem);
         };
 
         var divs = that.element.querySelectorAll('div.wheelItem');
@@ -2840,9 +3029,10 @@
         that.scrollToFunction(that.selected, true);
         }
     };
-    };
+
+};
   
-    window.kx = new kxapp();
+window.kx = new kxapp();
 
 })();
   
