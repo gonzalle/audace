@@ -8,6 +8,8 @@ var kxapp = function() {
       app.lg = 'fr';
       const kxLg = {
         en: {
+            display : "english",
+            strings:{
           unsupported:'Feature unavailable<br>in this demonstrator',
           ristretto: 'Ristretto',
           espresso: 'Espresso',
@@ -54,8 +56,29 @@ var kxapp = function() {
           finnished:"Finnished",
           beforeThxs : "Your drink ",
           afterThxs : "has&nbsp;been added to your profile",
-        },
+          settings:"settings",
+          setups : "Setups",
+          care : "Care",
+          informations : "informations",
+          help : "Help & Tutorials",
+          language : "Language",
+          dateTime : "Date/Time",
+          screenLight : "Backlight",
+          light : "Light",
+          display : "Display",
+          autoOff : "Auto Off",
+          volUnity : "Volume Unity",
+          autoRinse : " Auto Rinse",
+          waterHardness : "Water Hardness",
+          coffeeTemp : "Coffee Temp",
+          teaTemp :"Tea Temp",
+          cafeTyp : "Coffee type",
+          reset : "Init unit",
+
+        }},
         fr: {
+          display:"français",
+          strings :  {
           unsupported:"Cette fonction n'est pas disponible<br>dans le cadre de ce démonstrateur",
           ristretto: 'Ristretto',
           espresso: 'Espresso',
@@ -102,7 +125,27 @@ var kxapp = function() {
           finnished:"Terminé",
           beforeThxs : "Votre boisson",
           afterThxs : "a&nbsp;été ajoutée à votre profil",
-  
+          settings:"Paramètres",
+          
+          setups : "Réglages",
+          care : "Entretien",
+          informations : "Informations",
+          help : "Aide & Tutoriels",
+          language : "Langue",
+          dateTime : "Date/Heure",
+          screenLight : "Lumière écran",
+          light : "Lumière",
+          display : "affichage",
+          autoOff : "Arrêt auto",
+          volUnity : "Unité Volume",
+          autoRinse : "Rinçage auto",
+          waterHardness : "Dureté eau",
+          coffeeTemp : "Température Café",
+          teaTemp :"température Thé",
+          cafeTyp : "type de café",
+          reset : "Réinitialiser produit",
+}
+
         },
       };
       const kxkeywords = [
@@ -173,6 +216,14 @@ var kxapp = function() {
               isDouble : false,
 
             },
+            {
+                recipe: 'americano',
+                rightmenuval: '2',
+                leftmenuval: '3',
+                keyword: 'yummy',
+                isDouble : false,
+              },
+  
           ],
         },
         userTwo: {
@@ -234,7 +285,7 @@ var kxapp = function() {
       app.clock = new Clock();
   
       var _ = app.loc = function(string) {
-        if (kxLg[app.lg][string]) return kxLg[app.lg][string];
+        if (kxLg[app.lg].strings[string]) return kxLg[app.lg].strings[string];
         return string;
       };
   
@@ -333,7 +384,8 @@ var kxapp = function() {
                     Object.assign(prevHolder.style, {opacity: 0,transition: 'opacity 500ms',pointerEvents:"none"});
                     app.currentPage.beforeShow();
                 setTimeout(()=>{
-                    //prevHolder.remove();
+                    prevHolder.remove();
+                    // TODO : remove all prevholders that should have been created by hysterical multiple clicks....
                     app.pageHolder.classList.add('currentHolder');
                     page.classList.add('built','onScreen');
                     app.currentPage.run();
@@ -469,7 +521,7 @@ var kxapp = function() {
 
             // Here we can work on app.pageNode before inserting it then callback to keep on
             //debugger;
-            var recipes = this.built.querySelectorAll('.recetteScrollerItem');
+            var recipes = this.built.querySelectorAll('.recetteScrollerItem.recette');
             recipes.forEach(el =>
                 el.addEventListener('click', event => {
                 // console.log("CLICK",selection.isClicked);
@@ -479,6 +531,9 @@ var kxapp = function() {
                 }
                 }),
             );
+
+            this.built.querySelector('.recetteScrollerItem.plus').addEventListener('click',
+            event => {app.loadPage("settings")});
 
             //debugger
 
@@ -525,11 +580,24 @@ var kxapp = function() {
             for (var [key, value] of Object.entries(app.data.recipes)) {
                 // console.log(`${key}: ${value}`);
                 rhtml += `
-                <div class="recetteScrollerItem" data-val="${key}"><div class="title"><span>${_(
-                value.code)}</span></div><div class="thumb"><img nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style="object-position: ${'-' + value.spritexy.split(';')[0] * 150 + 'px'} ${'-' + value.spritexy.split(';')[1] * 150 + 'px'}"></div></div>`;
+                <div class="recetteScrollerItem recette" data-val="${key}">
+                <div class="title">
+                <span>${_(value.code)}</span>
+                </div><div class="thumb">
+                <img nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style="object-position: ${'-' + value.spritexy.split(';')[0] * 150 + 'px'} ${'-' + value.spritexy.split(';')[1] * 150 + 'px'}">
+                </div>
+                </div>`;
             }
 
             rhtml += `
+                <div class="recetteScrollerItem plus" data-val="">
+                <div class="thumb" style="width: 75px; top: 67px; left: 40px;">
+                <svg style="" viewBox="0 0 44 44">
+                <use href="#settings"></use>
+                </svg>
+                </div>
+                </div>
+
                 </section>
                 </div>
                 `;
@@ -646,7 +714,6 @@ var kxapp = function() {
                 zat.recipeSequence.stop();
                 zat.recipeSequence = false;
                 });
-
             callback();
             },
             beforeShow: function() {
@@ -1232,6 +1299,10 @@ var kxapp = function() {
                 }),
             );
 
+            var favorites = new hscroller(
+                this.built.querySelector('.slides'),
+            );
+
             this.built.querySelector('.userSettings').addEventListener('click', event => {
                 console.log("userSettings");
                 app.toast(_("unsupported"))
@@ -1263,138 +1334,615 @@ var kxapp = function() {
             <div class="userTitleClip userBorderColor"></div>
             </div>
                 <style>
-                .tiles {
-                    display: flex;
-                    flex-flow: row wrap;
-                    flex-grow: initial;
-                    position: absolute;
-                    top: 58px;
-                    height: 253px;
-                    overflow: hidden;
-                    width: 452px;
-                    left: 16px;
-                  }
-                  .tiles .atile {
-                    background: rgba(255,255,255,.2);
-                    margin: 0 0 3px 0;
-                    height: 125px;
-                    width: 110px;
-                    padding: 8px;
-                    box-sizing: border-box;
-                    position:relative;
-                    margin-right:3px;
-                  }
-                  .atile .thumb {
-                    position: absolute;
-                    width: 75px;
-                    height: 75px;
-                    top: 30px;
-                    left: 16px;
-                    overflow: hidden;
+
+
+                </style>
+
+                <section class="slides" >
+                    `;
+                    var chunks = [];
+                    for(var i = 0; i < app.currentProfile.favs.length+2; i += 8) {
+                        chunks.push(app.currentProfile.favs.slice(i, i+8));
+                    }
+                    chunks.forEach(function(aChunk,key) {
+                        rhtml += `<div class="tilesBlock"><div class="tiles" data-key="${key}">`;
+
+                        aChunk.forEach(function(v,k) {
+                            var thisRecipe = app.data.recipes[v.recipe];
+                                rhtml += `
+                                <div class="atile userRecipe" data-val="${k}">
+                                <div class="titleBlock">
+                                <div class="title">
+                                <span>${_(thisRecipe.code)}</span>
+                                </div>
+                                <div class="userTitleClip userBorderColor"></div>
+                                </div>
+                                <div class="keyword"><span>${_(v.keyword)}</span></div>
+                                <div class="thumb">
+                                <img nopin = "nopin" data-alt="${imag('recipesSheet')}"
+                                src="${imag('recipesSheet')}" 
+                                style="object-position: ${'-' + thisRecipe.spritexy.split(';')[0] * 75 +
+                                'px'} ${'-' + thisRecipe.spritexy.split(';')[1] * 75 +
+                                'px'}"></div></div>`;
+
+                        })
+                        if (key+1 == chunks.length) {
+                            rhtml += `
+                            <div class="atile addFavToUser">
+                                <div class="tileIcon">
+                                    <svg style="" viewBox="0 0 44 44">
+                                        <use href="#plus" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="atile userSettings">
+                            <div class="tileIcon">
+                                <svg style="" viewBox="0 0 44 44">
+                                    <use href="#userSettings" />
+                                </svg>
+                                </div>
+                            </div>`;
+                        }
+
+                        rhtml += `</div></div>`;
+                    })
+                    // console.log(chunks);
+
+
+            rhtml += `</section>
+            </div>
+            `;
+            return rhtml;
+            },
+        },
+
+        settings: {
+            built: false,
+            build: function(callback) {
+
+
+                var buttons = this.built.querySelectorAll('.paramMenuButton');
+                //console.log(keywordsElems);
+                buttons.forEach(function(el,k) {
+                    el.addEventListener('click', event => {
+                        //console.log('click', el.dataset.target);
+                        app.loadPage(el.dataset.target,null)
+                    })
                 }
+            )
+            
+            callback();
+            },
+            beforeShow: function() {
 
-                  .atile .thumb img {
-                    width: 450px;
-                    height: 450px;
-                    pointer-events: none;
+
+            },
+            run: function() {
+            console.log('running settings');
+            },
+            quit: function() {
+            // fn called on quit ,, Must send true to allow quitting.
+            console.log('quitting ' + this.name);
+            //this.built = false;
+            return true;
+            },
+            html: function() {
+            var rhtml = `
+            <div class="pageContent settings bkg16">
+            <div class="titleBlock light" style="left:99px;width:282px">
+            <span class="title">${_("settings")}</span>
+            </div>
+                <style>
+                .params {
+                    margin-top: 56px;
                 }
-
-                .atile .titleBlock {
-                    height: 24px;
-                    overflow: hidden;
-                    position: relative;
-                    left: 0;
-                    width: 100%;
-                    border-bottom:none;
-                }
-
-                    .atile .titleBlock .title {
-                        text-align: center;
-                        position:absolute;
-                        left:0;
-                        width:100%;
-                        height: 21px;
-                        white-space: nowrap;
-                        line-height: 13px;
-                        text-overflow: ellipsis;
-                        border-bottom: solid 1px rgba(255, 255, 255, 0.2);
-                    }
-
-                    .atile .titleBlock .title span {
-                        font-weight: bold;
-                        text-transform: uppercase;
-                        font-size: 14px;
-                    }
-
-                    .atile .titleBlock .userTitleClip{
-                        left:32px;
-                        bottom:1px;
-                    }
-
-                    .atile .tileIcon{
-                        position:absolute;
-                        width:44px;
-                        height:44px;
-                        left:33px;
-                        top:41px;
-                    }
-                    .atile .keyword{
-                        position: absolute;
-                        width: 44px;
-                        left: 0;
-                        bottom: 3px;
-                        top: unset;
-                        width: 100%;
-                        text-align: center;
-                        font-size: 14px;
+                    .paramMenuButton{
+                        position:relative;
+                        width:412px;
+                        height:60px;
+                        line-height:60px;
+                        box-sizing:border-box;
+                        background-color: rgba(0, 0, 0, 0.4);
+                        border:solid 1px white;
+                        margin-left:38px;
+                        text-align:center;
+                        font-size:20px;
+                        font-weight:bold;
+                        text-transform:uppercase;
+                        margin-bottom:5px;
                     }
 
                 </style>
 
-                <section class="tiles" >
-                    `;
-                    app.currentProfile.favs.forEach(function(v,k) {
-                    var thisRecipe = app.data.recipes[v.recipe];
-                rhtml += `
-                <div class="atile userRecipe" data-val="${k}">
 
-                <div class="titleBlock">
-                <div class="title">
-                <span>${_(thisRecipe.code)}</span>
-                </div>
-                <div class="userTitleClip userBorderColor"></div>
-                </div>
-                <div class="keyword"><span>${_(v.keyword)}</span></div>
-                <div class="thumb">
-                <img nopin = "nopin" data-alt="${imag('recipesSheet')}"
-                src="${imag('recipesSheet')}" 
-                style="object-position: ${'-' + thisRecipe.spritexy.split(';')[0] * 75 +
-                'px'} ${'-' + thisRecipe.spritexy.split(';')[1] * 75 +
-                'px'}"></div></div>`;
-            })
-            rhtml += `
-                <div class="atile addFavToUser">
-                    <div class="tileIcon">
-                        <svg style="" viewBox="0 0 44 44">
-                            <use href="#plus" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="atile userSettings">
-                <div class="tileIcon">
-                    <svg style="" viewBox="0 0 44 44">
-                        <use href="#userSettings" />
-                    </svg>
-                    </div>
-                </div>
+                <section class="params" >
+                <div class ="paramMenuButton" data-target="setups"> ${_("setups")} </div>
+                <div class ="paramMenuButton" data-target="care"> ${_("care")} </div>
+                <div class ="paramMenuButton" data-target="informations"> ${_("informations")} </div>
+                <div class ="paramMenuButton" data-target="help"> ${_("help")} </div>
 
                 </section>
+
+                </div>
+
                 `;
             return rhtml;
             },
         },
-    },
 
+        setups: {
+            name:"setups",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('settings', null);
+                });
+
+                var buttons = this.built.querySelectorAll('.atile.settings.active');
+                //console.log(keywordsElems);
+                buttons.forEach(function(el,k) {
+                    el.addEventListener('click', event => {
+                        app.loadPage(el.dataset.target,null)
+                    })
+                });
+
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {console.log('running' + this.name);},
+            quit: function() {console.log('quitting ' + this.name);return true;},
+            html: function() {
+            var rhtml = `
+
+            <div class="pageContent ${this.name} bkg16">
+            <div class="titleBlock light" style="left:99px;width:282px">
+            <span class="title">${_(this.name)}</span>
+            </div>
+            <style>
+            .atile.settings {
+                padding: 1px 6px 6px 6px;
+            }
+            .atile.settings .titleBlock {
+                overflow:unset;
+            }
+            .atile.settings .titleBlock .title {
+                height: 21px;
+                line-height: 20px;
+                white-space: initial;
+
+            }
+
+            .atile.settings .tileIcon {
+                top: 53px;
+            }
+            
+            </style>
+            <div class="backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+
+            <section class="slides">
+
+                <div class="tilesBlock">
+                <div class="tiles" data-key="0">
+
+                
+                <div class="atile settings active" data-target="language" data-val="0">
+                <div class="titleBlock">
+                <div class="title">
+                <span>${_('language')}</span>
+                </div>
+                </div>
+                    <div class="tileIcon">
+                    <svg style="" viewBox="0 0 44 44">
+                        <use href="#plus"></use>
+                    </svg>
+                    </div>
+                </div>
+
+                <div class="atile settings" data-val="0">
+                <div class="titleBlock">
+                <div class="title">
+                <span>${_('dateTime')}</span>
+                </div>
+                </div>
+                    <div class="tileIcon">
+                    <svg style="" viewBox="0 0 44 44">
+                        <use href="#plus"></use>
+                    </svg>
+                    </div>
+                </div>
+
+
+                <div class="atile settings" data-val="0">
+                <div class="titleBlock">
+                <div class="title">
+                <span>${_('screenLight')}</span>
+                </div>
+                </div>
+                    <div class="tileIcon">
+                    <svg style="" viewBox="0 0 44 44">
+                        <use href="#plus"></use>
+                    </svg>
+                    </div>
+                </div>
+
+                <div class="atile settings" data-val="0">
+                <div class="titleBlock">
+                <div class="title">
+                <span>${_('light')}</span>
+                </div>
+                </div>
+                    <div class="tileIcon">
+                    <svg style="" viewBox="0 0 44 44">
+                        <use href="#plus"></use>
+                    </svg>
+                    </div>
+                </div>
+
+
+
+                <div class="atile settings" data-val="0">
+                <div class="titleBlock">
+                <div class="title">
+                <span>${_('display')}</span>
+                </div>
+                </div>
+                    <div class="tileIcon">
+                    <svg style="" viewBox="0 0 44 44">
+                        <use href="#plus"></use>
+                    </svg>
+                    </div>
+                </div>
+
+                <div class="atile settings" data-val="0">
+                <div class="titleBlock">
+                <div class="title">
+                <span>${_('autoOff')}</span>
+                </div>
+                </div>
+                    <div class="tileIcon">
+                    <svg style="" viewBox="0 0 44 44">
+                        <use href="#plus"></use>
+                    </svg>
+                    </div>
+                </div>
+
+                <div class="atile settings" data-val="0">
+                <div class="titleBlock">
+                <div class="title">
+                <span>${_('volUnity')}</span>
+                </div>
+                </div>
+                    <div class="tileIcon">
+                    <svg style="" viewBox="0 0 44 44">
+                        <use href="#plus"></use>
+                    </svg>
+                    </div>
+                </div>
+
+
+                <div class="atile settings" data-val="0">
+                <div class="titleBlock">
+                <div class="title">
+                <span>${_('autoRinse')}</span>
+                </div>
+                </div>
+                    <div class="tileIcon">
+                    <svg style="" viewBox="0 0 44 44">
+                        <use href="#plus"></use>
+                    </svg>
+                    </div>
+                </div>
+
+
+                </div>
+                </div>
+                <div class="tilesBlock">
+
+            <div class="tiles" data-key="0">
+
+
+
+            <div class="atile settings" data-val="0">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('waterHardness')}</span>
+            </div>
+            </div>
+                <div class="tileIcon">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#plus"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile settings" data-val="0">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('coffeeTemp')}</span>
+            </div>
+            </div>
+                <div class="tileIcon">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#plus"></use>
+                </svg>
+                </div>
+            </div>
+
+
+            <div class="atile settings" data-val="0">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('teaTemp')}</span>
+            </div>
+            </div>
+                <div class="tileIcon">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#plus"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile settings" data-val="0">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('cafeTyp')}</span>
+            </div>
+            </div>
+                <div class="tileIcon">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#plus"></use>
+                </svg>
+                </div>
+            </div>
+
+
+            <div class="atile settings" data-val="0">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('reset')}</span>
+            </div>
+            </div>
+                <div class="tileIcon">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#plus"></use>
+                </svg>
+                </div>
+            </div>
+
+
+                </div>
+                </div>
+
+                </section>
+                <style>
+            
+                </style>
+
+                </div>
+
+
+
+                `;
+            return rhtml;
+            },
+        },
+
+        care: {
+            name:"care",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('settings', null);
+                });
+
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {console.log('running' + this.name);},
+            quit: function() {console.log('quitting ' + this.name);return true;},
+            html: function() {
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+            <div class="titleBlock light" style="left:99px;width:282px">
+            <span class="title">${_(this.name)}</span>
+            </div>
+            <div class=" backButton">
+                <svg style="" viewBox="0 0 26 26" >
+            <use href="#backArrow" />
+                <style>
+            
+                </style>
+
+                </div>
+
+                `;
+            return rhtml;
+            },
+        },
+
+        informations: {
+            name:"informations",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('settings', null);
+                });
+
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {console.log('running' + this.name);},
+            quit: function() {console.log('quitting ' + this.name);return true;},
+            html: function() {
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+            <div class="titleBlock light" style="left:99px;width:282px">
+            <span class="title">${_(this.name)}</span>
+            </div>
+            <div class=" backButton">
+                <svg style="" viewBox="0 0 26 26" >
+            <use href="#backArrow" />
+                <style>
+            
+                </style>
+
+                </div>
+
+                `;
+            return rhtml;
+            },
+        },
+
+        help: {
+            name:"help",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('settings', null);
+                });
+
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {console.log('running' + this.name);},
+            quit: function() {console.log('quitting ' + this.name);return true;},
+            html: function() {
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+            <div class="titleBlock light" style="left:99px;width:282px">
+            <span class="title">${_(this.name)}</span>
+            </div>
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+            <use href="#backArrow" />
+                <style>
+            
+                </style>
+
+                </div>
+
+                `;
+            return rhtml;
+            },
+        },
+
+        language: {
+            name:"language",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('settings', null);
+                });
+
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {
+                    app.lg = thisBuilt.querySelector('.langScroller .wheelItem.selected').dataset.val;
+                    console.log(app.lg);
+                    app.resetBuilds();
+                    app.loadPage("language",null)
+                })
+
+                this.lgScroller = new vscroller(
+                    thisBuilt.querySelector('.langScroller'),
+                    thisBuilt.querySelector('.langScroller_target'),
+                );
+
+                callback();
+            },
+            beforeShow: function() {
+                if (this.lgScroller) {
+                    let a = this.built.querySelector(
+                        '[data-val="' + app.lg + '"]',
+                    );
+                    this.lgScroller.scrollToFunction(a);
+                    //this.lastSelectedStrength = app.currentRecipe.leftmenudefault;
+                }
+            },
+            run: function() {console.log('running' + this.name);},
+            quit: function() {console.log('quitting ' + this.name);return true;},
+            html: function() {
+            
+            var lgScrollerItems = '';
+
+            for (var [k, v] of Object.entries(kxLg)) {
+                lgScrollerItems +=`<div class="wheelItem langScroller" data-val="${k}">${v.display}</div>
+                `;
+            }
+
+            var rhtml = `
+
+            <div class="pageContent ${this.name} orange bkg16">
+            <div class="titleBlock light" style="left:99px;width:282px">
+            <span class="title">${_(this.name)}</span>
+            </div>
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+                <style>
+                .langScroller.wheel.vWheel.left {
+                    width: 208px;
+                    left: 45px;
+                    height: 271px;
+                    top: 47px;
+                }
+
+                .language .vWheel .wheelItem:first-child {
+                    height: 83.33px;
+                }
+
+                .language .vWheel .wheelItem:last-child {
+                    height: 129.33px;
+                }
+
+                .vWheel .wheelItem {
+                    text-align: left;
+                    text-transform:uppercase;
+                }
+
+                .okButton{
+                    position: absolute;
+                    right: 32px;
+                    bottom: 32px;
+                    border: solid 2px;
+                    height: 60px;
+                    width: 60px;
+                    text-transform: uppercase;
+                    line-height: 60px;
+                    text-align: center;
+                    font-weight: bold;
+                }
+
+                </style>
+
+
+
+                <div class="target langScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:96px; top:160px"></div>
+                <div class="wheel vWheel left langScroller">
+
+                    <div class="wheelItem noAction"></div>
+                        ${lgScrollerItems}
+                    <div class="wheelItem noAction"></div>
+                </div>
+                <div class="vwheelCenter left userBorderColor">&nbsp;</div>
+
+                <div class="okButton borderOrange">${_('ok')}</div>
+
+                </div>
+
+                `;
+            return rhtml;
+            },
+        },
+
+},
 
 
 
@@ -1747,6 +2295,12 @@ var kxapp = function() {
         app.loadPage(app.currentPage.name, null);
     };
 
+    app.resetBuilds = function() {
+        for (var [key, value] of Object.entries(app.data.pages)) {
+            value.built = false;
+        }
+    }
+
     app.kxunit
         .querySelector('#kxUnitButtonStart').addEventListener('click', event => {
         if (app.currentPage.name == 'off') {
@@ -1755,10 +2309,7 @@ var kxapp = function() {
         } else {
             app.beep();
             app.loadPage('off', null); // Show first page
-            for (var [key, value] of Object.entries(app.data.pages)) {
-            //console.log(key,value.built);
-            value.built = false;
-            }
+            app.resetBuilds();
         }
         });
 
@@ -1964,8 +2515,8 @@ var kxapp = function() {
                         10.2,11.3 12.7,11.3 12.7,12.7 10.2,12.7 10.2,15.1 8.8,15.1 "/>
                     </g>
                     <g id="profileIcon" viewBox="0 0 32 32">
-                        <path id="Shape" class="st0" d="M16,16.1c2,0,4-0.8,5.4-2.2c1.4-1.4,2.2-3.4,2.2-5.4s-0.8-4-2.2-5.4C20,1.6,18,0.8,16,0.8 s-4,0.8-5.4,2.2C9.2,4.5,8.4,6.5,8.4,8.5c0,2,0.8,4,2.2,5.4S14,16.1,16,16.1L16,16.1z M16,3.1c1.4,0,2.8,0.6,3.8,1.6 c1,1,1.6,2.4,1.6,3.8c0,1.4-0.6,2.8-1.6,3.8c-1,1-2.4,1.6-3.8,1.6c-1.4,0-2.8-0.6-3.8-1.6c-1-1-1.6-2.4-1.6-3.8 c0-1.4,0.6-2.8,1.6-3.8C13.2,3.7,14.6,3.1,16,3.1L16,3.1z"/>
-                        <path class="st0" d="M3.9,31.4c0-6.6,5.4-12.1,12.1-12.1s12.1,5.4,12.1,12.1h2.3c0-3.8-1.5-7.4-4.2-10.1c-2.7-2.7-6.3-4.2-10.1-4.2 s-7.4,1.5-10.1,4.2c-2.7,2.7-4.2,6.3-4.2,10.1H3.9z"/>
+                        <path id="Shape" fill="white" class="st0" d="M16,16.1c2,0,4-0.8,5.4-2.2c1.4-1.4,2.2-3.4,2.2-5.4s-0.8-4-2.2-5.4C20,1.6,18,0.8,16,0.8 s-4,0.8-5.4,2.2C9.2,4.5,8.4,6.5,8.4,8.5c0,2,0.8,4,2.2,5.4S14,16.1,16,16.1L16,16.1z M16,3.1c1.4,0,2.8,0.6,3.8,1.6 c1,1,1.6,2.4,1.6,3.8c0,1.4-0.6,2.8-1.6,3.8c-1,1-2.4,1.6-3.8,1.6c-1.4,0-2.8-0.6-3.8-1.6c-1-1-1.6-2.4-1.6-3.8 c0-1.4,0.6-2.8,1.6-3.8C13.2,3.7,14.6,3.1,16,3.1L16,3.1z"/>
+                        <path fill="white" class="st0" d="M3.9,31.4c0-6.6,5.4-12.1,12.1-12.1s12.1,5.4,12.1,12.1h2.3c0-3.8-1.5-7.4-4.2-10.1c-2.7-2.7-6.3-4.2-10.1-4.2 s-7.4,1.5-10.1,4.2c-2.7,2.7-4.2,6.3-4.2,10.1H3.9z"/>
                     </g>
 
                     <g id="userSettings" viewBox="0 0 44 44">
@@ -2000,6 +2551,15 @@ var kxapp = function() {
 			 M30.8,10.9c-1.3,0-2.3,1.1-2.3,2.3s1.1,2.3,2.3,2.3c1.3,0,2.3-1.1,2.3-2.3S32.1,10.9,30.8,10.9z"/>
 	</g>
 </g>
+
+<g id="settings" viewBox="0 0 44 44">
+<circle style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" cx="22" cy="22" r="6.5"/>
+<polygon style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" points="36.3,20.3 
+	35.7,17.6 38.6,13.4 34.2,7.9 29.4,9.8 27,8.6 25.5,3.7 18.5,3.7 17,8.6 14.6,9.8 9.8,7.9 5.4,13.4 8.3,17.6 7.7,20.3 3.2,22.8 
+	4.8,29.7 9.9,30 11.6,32.2 10.8,37.2 17.2,40.3 20.6,36.5 23.4,36.5 26.8,40.3 33.2,37.3 32.4,32.2 34.1,30 39.2,29.7 40.8,22.8 "/>
+</g>
+
+
 <g id="plus" viewBox="0 0 44 44">
 	<path style="fill:#FFFFFF;" d="M42.1,21.1H22.9V1.9C22.9,1.4,22.5,1,22,1s-0.9,0.4-0.9,0.9v19.2H1.9C1.4,21.1,1,21.5,1,22
 		s0.4,0.9,0.9,0.9h19.2v19.2c0,0.5,0.4,0.9,0.9,0.9s0.9-0.4,0.9-0.9V22.9h19.2c0.5,0,0.9-0.4,0.9-0.9S42.6,21.1,42.1,21.1z"/>
@@ -2097,7 +2657,7 @@ var kxapp = function() {
                 --blue:#2855ff;
             }
 
-            .orange .userFIllColor{
+            .orange .userFIllColor, .orange use{
                 fill:var(--orange)!important;
                 background-color:var(--orange)!important;
             }
@@ -2121,7 +2681,7 @@ var kxapp = function() {
                 border-color:#0f8768!important;
             }
 
-            .green .userFIllColor{
+            .green .userFIllColor, .green use{
                 fill:#6c9106;
                 background-color:#6c9106;
             }
@@ -2137,23 +2697,7 @@ var kxapp = function() {
                 border-color:#fffb01!important;
             }
 
-            .red use  {
-                fill:red;
-            }
-
-            .green use {
-                fill:green;
-            }
-
-
-
-            body div .svg use * {
-                fill:initial;
-            }
-
-
-
-            .red .userFIllColor, .red use .userFIllColor{
+            .red .userFIllColor, .red use{
                 fill:#c80000!important;
                 background-color:#c80000;
             }
@@ -2796,6 +3340,111 @@ var kxapp = function() {
             color:rgb(255, 255, 255);
             text-shadow: 0 0 2px #ffffff57, 0 0 6px #ffffff91, 0 0 10px white;
         }
+
+        .slides {
+            position: absolute;
+            width: 480px;
+            height: 267px;
+            top: 53px;
+            overflow-x: scroll;
+            white-space: nowrap;
+        }
+
+          .tilesBlock {
+            display: inline-block;
+            width: 480px;
+            height: 256px;
+            position: relative;
+        }
+
+        .tiles {
+            display: flex;
+            flex-flow: row wrap;
+            flex-grow: initial;
+            position: absolute;
+            top: 0;
+            height: 253px;
+            overflow: hidden;
+            width: 452px;
+            left: 16px;
+          }
+
+          .tiles .atile {
+            background: rgba(255,255,255,.2);
+            margin: 0 0 3px 0;
+            height: 125px;
+            width: 110px;
+            padding: 8px;
+            box-sizing: border-box;
+            position:relative;
+            margin-right:3px;
+          }
+          .atile .thumb {
+            position: absolute;
+            width: 75px;
+            height: 75px;
+            top: 30px;
+            left: 16px;
+            overflow: hidden;
+        }
+
+          .atile .thumb img {
+            width: 450px;
+            height: 450px;
+            pointer-events: none;
+        }
+
+        .atile .titleBlock {
+            height: 24px;
+            overflow: hidden;
+            position: relative;
+            left: 0;
+            width: 100%;
+            border-bottom:none;
+        }
+
+            .atile .titleBlock .title {
+                text-align: center;
+                position:absolute;
+                left:0;
+                width:100%;
+                height: 21px;
+                white-space: nowrap;
+                line-height: 13px;
+                text-overflow: ellipsis;
+                border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+            }
+
+            .atile .titleBlock .title span {
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 14px;
+            }
+
+            .atile .titleBlock .userTitleClip{
+                left:32px;
+                bottom:1px;
+            }
+
+            .atile .tileIcon{
+                position:absolute;
+                width:44px;
+                height:44px;
+                left:33px;
+                top:41px;
+            }
+            .atile .keyword{
+                position: absolute;
+                width: 44px;
+                left: 0;
+                bottom: 3px;
+                top: unset;
+                width: 100%;
+                text-align: center;
+                font-size: 14px;
+            }
+
+
 
 
         `;
