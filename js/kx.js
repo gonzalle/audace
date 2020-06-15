@@ -1,6 +1,7 @@
 (function() {
     'use strict';
-  
+
+
 var kxapp = function() {
       // Check ES6
       // return false;
@@ -74,6 +75,14 @@ var kxapp = function() {
           teaTemp :"Tea Temp",
           cafeTyp : "Coffee type",
           reset : "Init unit",
+          firstName: "first name",
+          typeYourName : "Type your Name",
+          remain:"carachter left",
+          remains:"carachters left",
+          color:"Color",
+          planning:"Planning",
+          on:"On",
+          off:"Off",
 
         }},
         fr: {
@@ -144,6 +153,16 @@ var kxapp = function() {
           teaTemp :"température Thé",
           cafeTyp : "type de café",
           reset : "Réinitialiser produit",
+          firstName: "Prénom",
+          typeYourName : "Tapez votre prénom",
+          remain:"caractère restant",
+          remains:"caractères restants",
+          color:"couleur",
+          planning:"programmation",
+          on:"actif",
+          off:"inactif",
+
+
 }
 
         },
@@ -205,7 +224,7 @@ var kxapp = function() {
               rightmenuval: '20',
               leftmenuval: '1',
               keyword: 'morning',
-              isDouble : false,
+              x2 : false,
 
             },
             {
@@ -213,7 +232,7 @@ var kxapp = function() {
               rightmenuval: '2',
               leftmenuval: '3',
               keyword: 'yummy',
-              isDouble : false,
+              x2 : false,
 
             },
             {
@@ -221,7 +240,7 @@ var kxapp = function() {
                 rightmenuval: '2',
                 leftmenuval: '3',
                 keyword: 'yummy',
-                isDouble : false,
+                x2 : false,
               },
   
           ],
@@ -236,7 +255,7 @@ var kxapp = function() {
               rightmenuval: '2',
               leftmenuval: '3',
               keyword: 'morning',
-              isDouble : true,
+              x2 : true,
 
             },
             {
@@ -244,7 +263,7 @@ var kxapp = function() {
               rightmenuval: '2',
               leftmenuval: '3',
               keyword: 'yummy',
-              isDouble : false,
+              x2 : false,
 
             },
           ],
@@ -369,26 +388,34 @@ var kxapp = function() {
     });
     };
   
+    app.isFading = false;
 
-  
     app.showPage = function(page, fade) {
+        if(app.isFading) {
+            console.log("wait a second !");
+            return false
+        };
         page.classList.remove('onScreen'); // if any
         if (fade) {
-
+                app.isFading = true;
                 var newholder = document.createElement("div");
                 newholder.classList.add("pageHolder","newPageHolder");
-                app.holder.insertBefore(newholder, app.pageHolder );
+                app.screen.insertBefore(newholder, app.pageHolder );
                 newholder.appendChild(page);
                 app.pageHolder = newholder;
                 var prevHolder = app.kxhost.querySelector('.currentHolder');
                     Object.assign(prevHolder.style, {opacity: 0,transition: 'opacity 500ms',pointerEvents:"none"});
                     app.currentPage.beforeShow();
-                setTimeout(()=>{
+                
+                app.ttimout = setTimeout(()=>{
+                    console.log("TIMOUT",app.ttimout)
                     prevHolder.remove();
                     // TODO : remove all prevholders that should have been created by hysterical multiple clicks....
                     app.pageHolder.classList.add('currentHolder');
+                    app.pageHolder.classList.remove('newPageHolder');
                     page.classList.add('built','onScreen');
                     app.currentPage.run();
+                    app.isFading = false;
                 },600);
 
         } else {
@@ -461,7 +488,7 @@ var kxapp = function() {
             beforeShow: function() {},
             run: function() {
             var delay = 800;
-
+            app.data.pages.recettes.sliderPosition = 0;
             Object.assign(document.querySelector('.glowPoint').style, {
                 transitionDuration: delay + 'ms',
                 left: '350px',
@@ -480,7 +507,7 @@ var kxapp = function() {
                             })*/
             },
             quit: function() {
-            return true;
+                return true;
             },
 
             html: function() {
@@ -616,9 +643,6 @@ var kxapp = function() {
             zat.recipeSequence = false;
             if (app.currentRecipe) {
 
-                if (app.currentProfile){
-                 //   debugger;
-                }
 
                 if (app.currentRecipe.leftmenutyp === 'strength') {
                 this.strengthScroller = new vscroller(
@@ -635,19 +659,20 @@ var kxapp = function() {
                 thisBuilt.querySelector('.backToMain').addEventListener('click', function(e) {
                     app.loadPage('recettes', null);
                 });
+
             }
 
-            if (app.currentRecipe.canx2) {
-                thisBuilt
-                .querySelector('.plusMinusButton')
+            if (app.currentRecipe.canx2 && !app.currentProfile) {
+                
+                thisBuilt.querySelector('.plusMinusButton')
                 .addEventListener('click', function(e) {
                     var svgUse = this.querySelector('use');
-                    console.log('PROD', app.currentRecipe);
+                    //console.log('PROD', app.currentRecipe);
 
                     if (svgUse.href.baseVal == '#plusButton') {
                     svgUse.setAttribute('href', '#minusButton');
                     app.currentRecipe.x2 = true;
-                    console.log(thisBuilt.querySelector('img.recipeImage'));
+                    //console.log(thisBuilt.querySelector('img.recipeImage'));
                     thisBuilt.querySelector('img.recipeImage').style.objectPosition = `${'-' +
                         app.currentRecipe.spritexy_x2.split(';')[0] * 150 +
                         'px'} ${'-' +
@@ -665,9 +690,14 @@ var kxapp = function() {
                         'px'}`;
                     }
                 });
+
             }
 
             thisBuilt.querySelector('.startButton').addEventListener('click', function(e) {
+                runRecipe();
+            });
+
+            function runRecipe(){
                 var seqOutput = thisBuilt.querySelector('.sequence span');
                 thisBuilt.classList.add('running');
                 //debugger;
@@ -677,9 +707,7 @@ var kxapp = function() {
                 }
                 var seq = [
                     {
-                    fn: () => {
-                        seqOutput.innerHTML = _('preheat');
-                    },
+                    fn: () => { seqOutput.innerHTML = _('preheat'); },
                     delay: 0,
                     },
                 ];
@@ -706,7 +734,7 @@ var kxapp = function() {
                     }
                     zat.recipeSequence = false;
                 });
-                });
+            }
 
             thisBuilt.querySelector('.stopButton').addEventListener('click', function(e) {
                 console.log('stopping');
@@ -714,28 +742,38 @@ var kxapp = function() {
                 zat.recipeSequence.stop();
                 zat.recipeSequence = false;
                 });
+
+    
             callback();
             },
             beforeShow: function() {
             if (this.quantityScroller) {
                 let a = this.built.querySelector(
-                '[data-val="' + app.currentRecipe.rightmenudefault + '"]',
+                '[data-val="' + app.currentRecipe.rightmenudefault + '"]'
                 );
                 //debugger;
                 this.quantityScroller.scrollToFunction(a);
                 this.lastSelectedQuantity = app.currentRecipe.rightmenudefault;
+
             }
             if (this.strengthScroller) {
                 let a = this.built.querySelector(
-                    '[data-val="' + app.currentRecipe.leftmenudefault + '"]',
+                    '[data-val="' + app.currentRecipe.leftmenudefault + '"]'
                 );
                 this.strengthScroller.scrollToFunction(a);
                 this.lastSelectedStrength = app.currentRecipe.leftmenudefault;
+
             }
             //  debugger;
             },
             run: function() {
+
                 console.log('running prepare');
+                if (app.currentProfile) {
+                    this.strengthScroller.pause = true;
+                    this.quantityScroller.pause = true;
+                    this.built.querySelector('.startButton').click(); // Olé !
+                }
             },
             quit: function() {
                 console.log(this.recipeSequence);
@@ -803,21 +841,19 @@ var kxapp = function() {
                     `;
             }
             return `
-                    <div class="pageContent prepare ${app.currentRecipe.bkg} ${(app.currentProfile)?app.currentProfile.color:'orange'}">
+                    <div class="pageContent prepare ${app.currentRecipe.bkg} ${(app.currentProfile)?app.currentProfile.color + ' userMode':'orange'}">
                     <div class="backToMain backButton">
                     <svg style="" viewBox="0 0 26 26" >
                     <use href="#backArrow" />
                     </svg>
                     </div>
 
+                    <div class="centralArea" style="position:absolute;width:222px;left:129px;height:100%;background-color:rgba(255,255,255,.15)">
+                        
                         <div class="titleBlock">
                             <span class="title">${_(app.currentRecipe.code)} </span>
                        ${(app.currentProfile)?'<div class="userTitleClip userBorderColor"></div>':''}
                         </div>
-
-                    <div class="centralArea" style="position:absolute;width:222px;left:129px;height:100%;background-color:rgba(255,255,255,.15)">
-                        
-
 
                         <div class="sequence" style="position: absolute; width: 173px;left: 25px; top: 54px; height: 46px; text-align:center">
                             <span></span>
@@ -825,15 +861,26 @@ var kxapp = function() {
 
                         <div class="imageHolder">
 
-                        <img class="recipeImage" nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style=" object-position: ${'-' +
-                            app.currentRecipe.spritexy_x1.split(';')[0] * 150 +
-                            'px'} ${'-' + app.currentRecipe.spritexy_x1.split(';')[1] * 150 + 'px'}
+                        <img class="recipeImage" nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style=" object-position:${
+                                app.currentProfile ?
+                                    app.currentRecipe.x2 ? 
+                                    ' -' + app.currentRecipe.spritexy_x2.split(';')[0] * 150 + 'px'+
+                                    ' -' + app.currentRecipe.spritexy_x2.split(';')[1] * 150 + 'px'
+                                    : 
+                                    ' -' + app.currentRecipe.spritexy.split(';')[0] * 150 + 'px'+
+                                    ' -' + app.currentRecipe.spritexy.split(';')[1] * 150 + 'px'
+                                : 
+                                ' -' + app.currentRecipe.spritexy_x1.split(';')[0] * 150 + 'px'+
+                                ' -' + app.currentRecipe.spritexy_x1.split(';')[1] * 150 + 'px'
+
+                            }
+                        
                         "/>
                         
 
                         </div>
                         ${
-                        app.currentRecipe.canx2
+                        app.currentRecipe.canx2 && !app.currentProfile
                             ? `
                         <div class="plusMinusButton" style="position: absolute;
                         left: 151px;
@@ -922,7 +969,7 @@ var kxapp = function() {
 
             <div class="centralArea" style="position:absolute;width:360px;left:60px;height:100%;background-color:rgba(255,255,255,.15)">
 
-            <div class="enjoy" style="position: absolute;
+            <div class="ready" style="position: absolute;
             width: 100%;
             left: 0;
             top: 90px;
@@ -942,7 +989,7 @@ var kxapp = function() {
                     :  ('-' + app.currentRecipe.spritexy_x2.split(';')[0] * 150 + 'px -' + app.currentRecipe.spritexy_x2.split(';')[1] * 150 + 'px')
                 } "/>
             </div>
-                <div class="profileButton"  style="position:absolute;top: 232px; left: 274px; width:60px;height:60px">
+                <div class="profileButton" style="${app.currentProfile?'display:none;':'' }position:absolute;top: 232px; left: 274px; width:60px;height:60px">
                     <svg style="" viewBox="0 0 32 32">
                         <use href="#profileButton" />
                     </svg>
@@ -1028,8 +1075,16 @@ var kxapp = function() {
             margin-right: 10px;
             transform: scale(1.3);">
                 <img class="recipeImage " nopin = "nopin" data-alt="${imag('recipesSheet')}"
-                    src="${imag('recipesSheet')}" style="width:300px;height:300px; object-position: ${'-' +
-                    app.currentRecipe.spritexy.split(';')[0] * 50 + 'px'} ${'-' + app.currentRecipe.spritexy.split(';')[1] * 50 + 'px'} "/>
+                    src="${
+
+                        imag('recipesSheet')}" style="width:300px;height:300px; object-position: ${
+                            
+                            (!app.currentRecipe.x2)
+                            ?  ('-' + app.currentRecipe.spritexy.split(';')[0] * 50 + 'px -' + app.currentRecipe.spritexy.split(';')[1] * 50 + 'px')
+                            :  ('-' + app.currentRecipe.spritexy_x2.split(';')[0] * 50 + 'px -' + app.currentRecipe.spritexy_x2.split(';')[1] * 50 + 'px')
+                    
+                
+                } "/>
             </div>
 
 
@@ -1101,7 +1156,6 @@ var kxapp = function() {
                 app.loadPage('profileSelection', null);
                 });
 
-
                 thisBuilt.querySelector('.validateKeyWord').addEventListener('click', function(e) {
                     console.log('validating keyword');
                     app.loadPage('profileSuccess');
@@ -1165,8 +1219,12 @@ var kxapp = function() {
             margin-right: 10px;
             transform: scale(1.3);">
                 <img class="recipeImage " nopin = "nopin" data-alt="${imag('recipesSheet')}"
-                    src="${imag('recipesSheet')}" style="width:300px;height:300px; object-position: ${'-' +
-                    app.currentRecipe.spritexy.split(';')[0] * 50 + 'px'} ${'-' + app.currentRecipe.spritexy.split(';')[1] * 50 + 'px'} "/>
+                    src="${imag('recipesSheet')}" style="width:300px;height:300px; object-position: ${
+                        (!app.currentRecipe.x2)
+                        ?  ('-' + app.currentRecipe.spritexy.split(';')[0] * 50 + 'px -' + app.currentRecipe.spritexy.split(';')[1] * 50 + 'px')
+                        :  ('-' + app.currentRecipe.spritexy_x2.split(';')[0] * 50 + 'px -' + app.currentRecipe.spritexy_x2.split(';')[1] * 50 + 'px')
+                
+                } "/>
             </div>
 
 
@@ -1210,7 +1268,8 @@ var kxapp = function() {
                     leftmenuval: app.currentRecipe.lastSelectedStrength,
                     recipe: app.currentRecipe.code,
                     rightmenuval: app.currentRecipe.lastSelectedQuantity,
-                }
+                    x2 : app.currentRecipe.x2
+                };
                 app.currentProfile.favs.push(newFav);
 
                 setTimeout(function(){
@@ -1257,8 +1316,13 @@ var kxapp = function() {
             text-align: left;
             top: 12px;
                         ">
-                <img class="recipeImage " nopin="nopin" data-alt="images/recipesSheet.png" src="${imag('recipesSheet')}" style="width:300px;height:300px; text-align:left;object-position: ${'-' +
-                app.currentRecipe.spritexy.split(';')[0] * 50 + 'px'} ${'-' + app.currentRecipe.spritexy.split(';')[1] * 50 + 'px'} ">
+                <img class="recipeImage " nopin="nopin" data-alt="images/recipesSheet.png" src="${imag('recipesSheet')}" style="width:300px;height:300px; text-align:left;object-position: ${
+                    (!app.currentRecipe.x2)
+                    ?  ('-' + app.currentRecipe.spritexy.split(';')[0] * 50 + 'px -' + app.currentRecipe.spritexy.split(';')[1] * 50 + 'px')
+                    :  ('-' + app.currentRecipe.spritexy_x2.split(';')[0] * 50 + 'px -' + app.currentRecipe.spritexy_x2.split(';')[1] * 50 + 'px')
+            } 
+                
+                ">
             </div>
             <div class="keyword" style="width: 100%;margin-top:25px">${_(app.lastSelectedKeyword)}</div>
 
@@ -1295,6 +1359,7 @@ var kxapp = function() {
                     console.log("click", app.currentRecipe);
                     app.currentRecipe.leftmenudefault=thisFav.leftmenuval;
                     app.currentRecipe.rightmenudefault=thisFav.rightmenuval;
+                    app.currentRecipe.x2 = thisFav.x2;
                     app.loadPage('prepare',null);
                 }),
             );
@@ -1305,9 +1370,10 @@ var kxapp = function() {
 
             this.built.querySelector('.userSettings').addEventListener('click', event => {
                 console.log("userSettings");
-                app.toast(_("unsupported"))
+                app.loadPage('userSettingsHome', null);
+            });
 
-            })
+
             this.built.querySelector('.addFavToUser').addEventListener('click', event => {
                 console.log("addFavToUser");
                 app.toast(_("unsupported"))
@@ -1361,9 +1427,13 @@ var kxapp = function() {
                                 <div class="thumb">
                                 <img nopin = "nopin" data-alt="${imag('recipesSheet')}"
                                 src="${imag('recipesSheet')}" 
-                                style="object-position: ${'-' + thisRecipe.spritexy.split(';')[0] * 75 +
-                                'px'} ${'-' + thisRecipe.spritexy.split(';')[1] * 75 +
-                                'px'}"></div></div>`;
+                                style="object-position: 
+                                ${
+                                (!v.x2)
+                                ?  ('-' + thisRecipe.spritexy.split(';')[0] * 75 + 'px -' + thisRecipe.spritexy.split(';')[1] * 75 + 'px')
+                                :  ('-' + thisRecipe.spritexy_x2.split(';')[0] * 75 + 'px -' + thisRecipe.spritexy_x2.split(';')[1] * 75 + 'px')
+                                }
+                                "></div></div>`;
 
                         })
                         if (key+1 == chunks.length) {
@@ -1491,12 +1561,16 @@ var kxapp = function() {
             },
             beforeShow: function() {},
             run: function() {console.log('running' + this.name);},
-            quit: function() {console.log('quitting ' + this.name);return true;},
+            quit: function() {
+                console.log('quitting ' + this.name);
+                this.built = false;
+                return true;
+            },
             html: function() {
             var rhtml = `
 
             <div class="pageContent ${this.name} bkg16">
-            <div class="titleBlock light" style="left:99px;width:282px">
+            <div class="titleBlock light wide">
             <span class="title">${_(this.name)}</span>
             </div>
             <style>
@@ -1844,7 +1918,8 @@ var kxapp = function() {
 
                 thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {
                     app.lg = thisBuilt.querySelector('.langScroller .wheelItem.selected').dataset.val;
-                    console.log(app.lg);
+                    Cookies.set('lg', app.lg);
+                    //console.log(app.lg);
                     app.resetBuilds();
                     app.loadPage("language",null)
                 })
@@ -1882,10 +1957,10 @@ var kxapp = function() {
             <div class="titleBlock light" style="left:99px;width:282px">
             <span class="title">${_(this.name)}</span>
             </div>
-            <div class="backToMain backButton">
-                <svg style="" viewBox="0 0 26 26" >
-                <use href="#backArrow" />
-            </div>
+                <div class="backToMain backButton">
+                    <svg style="" viewBox="0 0 26 26" >
+                    <use href="#backArrow" />
+                </div>
                 <style>
                 .langScroller.wheel.vWheel.left {
                     width: 208px;
@@ -1909,8 +1984,8 @@ var kxapp = function() {
 
                 .okButton{
                     position: absolute;
-                    right: 32px;
-                    bottom: 32px;
+                    right: 36px;
+                    bottom: 36px;
                     border: solid 2px;
                     height: 60px;
                     width: 60px;
@@ -1941,6 +2016,356 @@ var kxapp = function() {
             return rhtml;
             },
         },
+
+        firstName: {
+            name:"firstName",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                var name = app.currentProfile.name;
+                var maxChar = 12;
+                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('userSettingsHome', null);
+                });
+
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {
+                    app.currentProfile.name = name;
+                    app.loadPage('userSettingsHome', null);
+
+                })
+
+                this.lgScroller = new hscroller(
+                    thisBuilt.querySelector('.langScroller'),
+                );
+
+                var nameField = thisBuilt.querySelector('.nameField')
+                var backSpace = thisBuilt.querySelector('.backSpaceButton')
+                var keys = this.built.querySelectorAll('.hScrollerItem');
+                var remain = this.built.querySelector('.remain');
+                //console.log(keywordsElems);
+                function nameToField(n){
+                    name = n = n.substring(0, maxChar);
+                    var strlength = maxChar - n.length
+                    var str2field = name;
+                    for (var i = 0; i < strlength; i++) {
+                        str2field += '<span class="dash"> _ </span>';
+                    }
+                    console.log(maxChar - n.length);
+                    nameField.innerHTML=str2field;
+                    debugger;
+                    remain.innerHTML = (maxChar - n.length <=1)
+                    ? '( '+(maxChar - n.length) +' '+ _('remain')+' )'
+                    : '( '+(maxChar - n.length) +' '+ _('remains')+' )'  ;
+                }
+
+                keys.forEach(function(el,k) {
+                    el.addEventListener('click', event => {
+                        name = name + el.dataset.val;
+                        nameToField(name);
+                        //app.loadPage(el.dataset.target,null);
+
+                    })
+                });
+
+                backSpace.addEventListener('click', event => {
+                    name = name.slice(0, -1);
+                    nameToField(name);
+                })
+
+
+                nameToField(name);
+
+                callback();
+            },
+            beforeShow: function() {
+               // if (this.lgScroller) {
+               // }
+            },
+            run: function() {console.log('running' + this.name);},
+            quit: function() {this.built = false;return true;},
+            html: function() {
+            
+            var lgScrollerItems = '';
+            var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ&-123567890".split('');
+            alpha.forEach(function(char,k) {
+                lgScrollerItems +=`<div class="hScrollerItem" data-val="${char}"><span>${char}</span></div>`;
+            })
+
+
+
+            var rhtml = `
+
+           <div class="pageContent firstName ${app.currentProfile.bkg} ${app.currentProfile.color}">
+           <div class="titleBlock wide light">
+           <span class="title">${_('firstName')}</span>
+           <div class="userTitleClip wide userBorderColor"></div>
+           </div>
+
+
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+                <style>
+                .firstName .hScroller{
+                    top: 185px;
+                    height: 50px;
+                    padding-top: 10px;
+                }
+
+                .firstName .hScrollerItem {
+                    width: 47px;
+                    height: 42px;
+                    text-align: center;
+                    margin-right: 0;
+                    background-color: transparent;
+                    border-right: solid 1px rgba(255,255,255,0.2);
+                    box-sizing: border-box;
+                }
+
+
+                .firstName .hScrollerItem:last-child {
+                    border-right:none;
+                }
+
+                .firstName .hScrollerItem span {
+                    font-size:28px;
+                    line-height:36px;
+                }
+
+                /*span.dash{
+                    font-size:21px
+                }*/
+
+                </style>
+
+                <div class="typeYourName" style="font-size:24px;position:absolute;top:70px;left:10px;width:460px;text-align:center">${_('typeYourName')}</div>
+
+                <div class = "nameFieldHolder" style="position:absolute;height:60px; width:282px;top:109px;left:99px;  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+                background-color: rgba(0, 0, 0, 0.3);">
+                    <div class = "nameField" style="width: 200px;
+                    position: absolute;
+                    top: 14px;
+                    left: 14px;
+                    font-size: 20px;
+                    text-overflow: clip;
+                    white-space: nowrap;
+                    text-align: center;
+                    line-height: 32px;
+                    overflow: hidden;">_____</div>
+                    <div class="backSpaceButton" style="    position: absolute;
+                    right: 18px;
+                    width: 32px;
+                    height: 32px;
+                    top: 13px;">
+                        <svg style="" viewBox="0 0 32 32">
+                        <use href="#backspace" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="remain" style="position:absolute;height:60px;top:169px;left:99px;  width: 282px;
+                height: 19px;
+                font-size: 14px;
+                font-weight: 300;
+                text-align: center;
+                color: #9b9b9b;"></div>
+
+                <div class=" hScroller langScroller">
+
+                        ${lgScrollerItems}
+                </div>
+
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}</div>
+
+                </div>
+
+                `;
+            return rhtml;
+            },
+        },
+
+
+        userSettingsHome: {
+            name:"userSettingsHome",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                var name = app.currentProfile.name;
+                var maxChar = 12;
+                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('profile', null);
+                });
+
+                var buttons = thisBuilt.querySelectorAll('.atile.settings.active');
+                console.log(buttons);
+                buttons.forEach(function(el,k) {
+                    console.log('->',el.dataset.target)
+                    el.addEventListener('click', event => {
+                        app.loadPage(el.dataset.target,null)
+                    })
+                });
+
+                /*thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {
+                    app.currentProfile.name = name;
+                })*/
+
+               // this.lgScroller = new hscroller(
+                  //  thisBuilt.querySelector('.langScroller'),
+               // );
+
+               
+
+                callback();
+            },
+            beforeShow: function() {
+               // if (this.lgScroller) {
+               // }
+            },
+            run: function() {console.log('running' + this.name);},
+            quit: function() {this.built = false;return true;},
+            html: function() {
+            
+
+
+            var rhtml = `
+
+           <div class="pageContent userSettingsHome ${app.currentProfile.bkg} ${app.currentProfile.color}">
+           <div class="titleBlock wide light">
+           <span class="title">${app.currentProfile.name}</span>
+           <div class="userTitleClip wide userBorderColor"></div>
+           </div>
+
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+
+            <style>
+            </style>
+
+            <section class="slides">
+
+
+            <div class="tilesBlock">
+            <div class="tiles" data-key="0">
+
+            
+            <div class="atile settings"  data-val="0">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('color')}</span>
+            </div>
+            </div>
+                <div class="tileIcon">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#plus"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile settings active" data-target="firstName" data-val="0" style="">
+                <div class="titleBlock">
+                    <div class="title ">
+                        <span>${_('firstName')}</span>
+                    </div>
+                </div>
+                    <div class="atileContents">
+                        <div class="ellipsis">${app.currentProfile.name}</div>
+                    </div>
+            </div>
+
+            <div class="atile settings" data-val="0">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('display')}</span>
+            </div>
+            </div>
+                <div class="tileIcon">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#plus"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile settings" data-val="0">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('light')}</span>
+            </div>
+            </div>
+                <div class="tileIcon">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#plus"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile double settings" data-val="0">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('planning')}</span>
+            </div>
+            </div>
+            <style>
+
+            .atileContents{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                height: 82px;
+                overflow:hidden;
+            }
+            .atileContents .ellipsis{
+
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            }
+
+            .atile.double .atileContents{
+                width: 103px;
+                position: absolute;
+            }
+            .atile.double .atileContents:first-child{
+            }
+            .atile.double .atileContents:last-child{
+
+                left:110px;
+            }
+
+            .atile.double .atileContents:last-child div{
+                width:100%;
+                border-left:solid 1px rgba(255,255,255,0.2);
+            }
+
+
+
+            </style>
+
+                <div class="atileContents">
+                <div>${_('week')}<br>${_('on').toUpperCase()}</div>
+                </div>
+
+                <div class="atileContents">
+                <div>${_('weekend')}<br>${_('off').toUpperCase()}</div>
+                </div>
+
+            </div>
+
+
+            </div>
+            </div>
+   
+
+            </section>
+            </div>
+                `;
+            return rhtml;
+            },
+        },
+
 
 },
 
@@ -2234,12 +2659,12 @@ var kxapp = function() {
         },
     },
     };
-    app.kxhost = document.getElementById(kxhost);
+    app.kxhost = document.querySelector(kxhost);
     //debugger;
     app.kxhost.innerHTML = baseHtml;
     addStyles(app.kxhost);
     app.kxunit = app.kxhost.querySelector('#kxUnit');
-    app.holder = app.kxhost.querySelector('#kxScreen');
+    app.screen = app.kxhost.querySelector('#kxScreen');
     app.pageHolder = app.kxhost.querySelector('.pageHolder');
     app.toaster = app.kxhost.querySelector('.kxToast');
     app.loadPage('recettes', null); // Show first page
@@ -2301,8 +2726,7 @@ var kxapp = function() {
         }
     }
 
-    app.kxunit
-        .querySelector('#kxUnitButtonStart').addEventListener('click', event => {
+    app.kxunit.querySelector('#kxUnitButtonStart').addEventListener('click', event => {
         if (app.currentPage.name == 'off') {
             app.bleep();
             app.loadPage('starting', null); // Show first page
@@ -2313,8 +2737,7 @@ var kxapp = function() {
         }
         });
 
-    app.kxunit
-        .querySelector('#kxUnitButtonHome').addEventListener('click', event => {
+    app.kxunit.querySelector('#kxUnitButtonHome').addEventListener('click', event => {
         if (app.currentPage.name == 'off') return;
         console.log('click', this);
         app.loadPage('recettes', null);
@@ -2335,16 +2758,16 @@ var kxapp = function() {
     };
 
     function addStyles(destination) {
-    var link = document.createElement('link');
-    link.id = 'id2';
-    link.rel = 'stylesheet';
-    link.href =
-        'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap';
-    document.head.appendChild(link);
+        var link = document.createElement('link');
+        link.id = 'id2';
+        link.rel = 'stylesheet';
+        link.href =
+            'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap';
+        document.head.appendChild(link);
 
-    var svgLib = document.createElement('div');
-    svgLib.style = 'display:none';
-    var data = `
+        var svgLib = document.createElement('div');
+        svgLib.style = 'display:none';
+        var data = `
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="display:none">
 
                 <g id="circle" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet">
@@ -2520,50 +2943,57 @@ var kxapp = function() {
                     </g>
 
                     <g id="userSettings" viewBox="0 0 44 44">
-	<path style="fill:#FFFFFF;" d="M41.3,13.4c-0.1-0.2-0.2-0.3-0.4-0.4c-0.7-0.3-1.3-0.7-2-1l-0.1-0.9c0.4-0.5,0.8-1.1,1.2-1.6
-		c0.1-0.1,0.1-0.2,0.2-0.3L40.3,9c0-0.1,0-0.2,0-0.4c0-0.2-0.1-0.4-0.2-0.5l-2-2.6l-0.3-0.4c-0.2-0.2-0.6-0.3-0.9-0.2
-		c-0.7,0.3-1.5,0.6-2.2,0.9c0,0,0,0,0,0l-0.5-0.3c-0.2-0.6-0.3-1.2-0.5-1.8l-0.1-0.3c-0.1-0.4-0.5-0.7-0.9-0.7H29
-		c-0.4,0-0.8,0.3-0.9,0.7c-0.2,0.7-0.4,1.4-0.6,2.1L27,5.8L25,5c-0.1,0-0.2-0.1-0.3-0.1c-0.3-0.1-0.7,0-0.9,0.2l-2,2.6l-0.3,0.4
-		c-0.1,0.2-0.2,0.3-0.2,0.5c0,0.2,0,0.4,0.1,0.6c0.5,0.6,0.9,1.2,1.4,1.9c0,0,0,0,0,0l-0.1,0.9c-0.6,0.3-1.1,0.6-1.7,0.9
-		c-0.1,0-0.2,0.1-0.3,0.1c-0.2,0.1-0.3,0.3-0.4,0.4c-0.1,0.2-0.1,0.4,0,0.6c0.2,1,0.4,2,0.6,3.1l0.1,0.4c0,0.2,0.2,0.4,0.3,0.5
-		c0.2,0.1,0.3,0.2,0.5,0.2c0.7,0.1,1.5,0.1,2.2,0.2l0.4,0.6c-0.1,0.7-0.2,1.3-0.2,2l0,0.3c0,0.3,0.2,0.7,0.4,0.8l2.8,1.4l0.4,0.2
-		c0.2,0.1,0.4,0.1,0.6,0.1c0.2,0,0.4-0.1,0.5-0.3l1.4-1.5h0.9l1.2,1.3c0.1,0.1,0.1,0.2,0.2,0.2c0.1,0.1,0.3,0.2,0.5,0.3
-		c0.2,0,0.4,0,0.6-0.1c0.9-0.5,1.9-0.9,2.8-1.4c0.1-0.1,0.3-0.1,0.4-0.2c0.3-0.1,0.5-0.5,0.4-0.8c-0.1-0.7-0.2-1.5-0.3-2.2
-		c0,0,0,0,0-0.1l0.4-0.6c0.6-0.1,1.2-0.1,1.9-0.2l0.3,0c0.2,0,0.4-0.1,0.5-0.2c0.1-0.1,0.3-0.3,0.3-0.5c0.2-1,0.4-2,0.6-3.1
-		c0-0.1,0.1-0.3,0.1-0.4C41.4,13.8,41.4,13.6,41.3,13.4z M36.8,16.6c-0.2,0.1-0.4,0.2-0.5,0.4l0,0.1L36,17.4
-		c-0.2,0.2-0.3,0.5-0.5,0.7c-0.1,0.2-0.2,0.3-0.2,0.6c0,0,0,0.1,0,0.1c0,0.3,0.1,0.5,0.1,0.8l0.1,1.1l-2,1c-0.2-0.2-0.3-0.4-0.5-0.5
-		c-0.2-0.2-0.4-0.4-0.6-0.6l-0.2-0.2c-0.2-0.2-0.4-0.3-0.7-0.3c-0.5,0-1,0-1.6,0c-0.3,0-0.5,0.1-0.8,0.3c0,0-0.1,0.1-0.1,0.1
-		l-0.5,0.6L28,21.6l-2-1l0.1-0.8c0-0.3,0.1-0.6,0.1-0.9c0-0.3,0.1-0.5-0.1-0.8c-0.3-0.4-0.6-0.8-0.8-1.2c-0.1-0.2-0.3-0.4-0.5-0.4
-		c-0.2-0.1-0.2,0-0.2,0c0,0,0,0-0.1,0l-0.2,0c-0.3,0-0.6,0-0.8-0.1l-0.8-0.1c-0.1-0.7-0.3-1.4-0.4-2.1c0.2-0.1,0.5-0.2,0.7-0.3
-		l0.8-0.4c0.3-0.2,0.6-0.3,0.7-0.7c0.1-0.5,0.2-1.1,0.3-1.6c0-0.3,0.1-0.6-0.1-0.8c0,0-0.1-0.1-0.1-0.1l-0.5-0.7
-		c-0.2-0.3-0.4-0.6-0.6-0.9l1.5-1.9l0.7,0.3c0.4,0.2,0.9,0.4,1.3,0.5c0.4,0.1,0.8-0.1,1.1-0.3L28.6,7c0.2-0.1,0.4-0.3,0.5-0.6
-		c0,0,0-0.1,0-0.1c0.1-0.3,0.1-0.5,0.2-0.8l0.3-0.9H32l0.2,0.6c0.1,0.3,0.2,0.6,0.2,0.9c0.1,0.3,0.2,0.7,0.5,0.8
-		c0.4,0.2,0.8,0.4,1.2,0.7c0.2,0.1,0.5,0.2,0.8,0.1l0.2-0.1c0.3-0.1,0.5-0.2,0.8-0.3c0.3-0.1,0.6-0.2,0.9-0.4l1.5,1.9
-		c-0.3,0.3-0.5,0.7-0.8,1c-0.1,0.2-0.3,0.4-0.4,0.6C36.9,10.6,37,11,37,11.2l0.1,0.5c0.1,0.3,0.1,0.7,0.2,1c0,0.2,0.2,0.4,0.4,0.5
-		c0,0,0,0,0.1,0c0.6,0.3,1.1,0.6,1.7,0.9c-0.1,0.7-0.3,1.4-0.4,2.1c-0.6,0.1-1.3,0.1-1.9,0.2C37,16.5,37,16.5,36.8,16.6z"/>
-	<path style="fill:#FFFFFF;" d="M13.2,29.9c1.5,0,2.9-0.6,4-1.7c1.1-1.1,1.6-2.5,1.6-4s-0.6-3-1.6-4c-1.1-1.1-2.5-1.7-4-1.7
-		c-1.5,0-2.9,0.6-4,1.7c-1.1,1.1-1.6,2.5-1.6,4c0,1.5,0.6,3,1.7,4C10.3,29.3,11.7,29.9,13.2,29.9z M13.2,20.2c1,0,2.1,0.4,2.8,1.2
-		c0.7,0.8,1.2,1.8,1.2,2.8c0,1.1-0.4,2.1-1.2,2.8c-0.7,0.8-1.7,1.2-2.8,1.2s-2.1-0.4-2.8-1.2c-0.7-0.8-1.2-1.8-1.2-2.8
-		c0-1.1,0.4-2.1,1.2-2.8C11.1,20.6,12.2,20.2,13.2,20.2C13.2,20.2,13.2,20.2,13.2,20.2z M4.3,41.4c0-5,4-9,8.9-9c4.9,0,8.9,4,8.9,9
-		h1.7c0-2.8-1.1-5.6-3.1-7.6c-2-2-4.7-3.1-7.5-3.1s-5.5,1.1-7.5,3.1c-2,2-3.1,4.7-3.1,7.6H4.3z"/>
-	<g>
-		<path style="fill:#FFFFFF;" d="M30.8,17.5c-2.4,0-4.3-1.9-4.3-4.3s1.9-4.3,4.3-4.3s4.3,1.9,4.3,4.3S33.2,17.5,30.8,17.5z
-			 M30.8,10.9c-1.3,0-2.3,1.1-2.3,2.3s1.1,2.3,2.3,2.3c1.3,0,2.3-1.1,2.3-2.3S32.1,10.9,30.8,10.9z"/>
-	</g>
-</g>
+                    <path style="fill:#FFFFFF;" d="M41.3,13.4c-0.1-0.2-0.2-0.3-0.4-0.4c-0.7-0.3-1.3-0.7-2-1l-0.1-0.9c0.4-0.5,0.8-1.1,1.2-1.6
+                        c0.1-0.1,0.1-0.2,0.2-0.3L40.3,9c0-0.1,0-0.2,0-0.4c0-0.2-0.1-0.4-0.2-0.5l-2-2.6l-0.3-0.4c-0.2-0.2-0.6-0.3-0.9-0.2
+                        c-0.7,0.3-1.5,0.6-2.2,0.9c0,0,0,0,0,0l-0.5-0.3c-0.2-0.6-0.3-1.2-0.5-1.8l-0.1-0.3c-0.1-0.4-0.5-0.7-0.9-0.7H29
+                        c-0.4,0-0.8,0.3-0.9,0.7c-0.2,0.7-0.4,1.4-0.6,2.1L27,5.8L25,5c-0.1,0-0.2-0.1-0.3-0.1c-0.3-0.1-0.7,0-0.9,0.2l-2,2.6l-0.3,0.4
+                        c-0.1,0.2-0.2,0.3-0.2,0.5c0,0.2,0,0.4,0.1,0.6c0.5,0.6,0.9,1.2,1.4,1.9c0,0,0,0,0,0l-0.1,0.9c-0.6,0.3-1.1,0.6-1.7,0.9
+                        c-0.1,0-0.2,0.1-0.3,0.1c-0.2,0.1-0.3,0.3-0.4,0.4c-0.1,0.2-0.1,0.4,0,0.6c0.2,1,0.4,2,0.6,3.1l0.1,0.4c0,0.2,0.2,0.4,0.3,0.5
+                        c0.2,0.1,0.3,0.2,0.5,0.2c0.7,0.1,1.5,0.1,2.2,0.2l0.4,0.6c-0.1,0.7-0.2,1.3-0.2,2l0,0.3c0,0.3,0.2,0.7,0.4,0.8l2.8,1.4l0.4,0.2
+                        c0.2,0.1,0.4,0.1,0.6,0.1c0.2,0,0.4-0.1,0.5-0.3l1.4-1.5h0.9l1.2,1.3c0.1,0.1,0.1,0.2,0.2,0.2c0.1,0.1,0.3,0.2,0.5,0.3
+                        c0.2,0,0.4,0,0.6-0.1c0.9-0.5,1.9-0.9,2.8-1.4c0.1-0.1,0.3-0.1,0.4-0.2c0.3-0.1,0.5-0.5,0.4-0.8c-0.1-0.7-0.2-1.5-0.3-2.2
+                        c0,0,0,0,0-0.1l0.4-0.6c0.6-0.1,1.2-0.1,1.9-0.2l0.3,0c0.2,0,0.4-0.1,0.5-0.2c0.1-0.1,0.3-0.3,0.3-0.5c0.2-1,0.4-2,0.6-3.1
+                        c0-0.1,0.1-0.3,0.1-0.4C41.4,13.8,41.4,13.6,41.3,13.4z M36.8,16.6c-0.2,0.1-0.4,0.2-0.5,0.4l0,0.1L36,17.4
+                        c-0.2,0.2-0.3,0.5-0.5,0.7c-0.1,0.2-0.2,0.3-0.2,0.6c0,0,0,0.1,0,0.1c0,0.3,0.1,0.5,0.1,0.8l0.1,1.1l-2,1c-0.2-0.2-0.3-0.4-0.5-0.5
+                        c-0.2-0.2-0.4-0.4-0.6-0.6l-0.2-0.2c-0.2-0.2-0.4-0.3-0.7-0.3c-0.5,0-1,0-1.6,0c-0.3,0-0.5,0.1-0.8,0.3c0,0-0.1,0.1-0.1,0.1
+                        l-0.5,0.6L28,21.6l-2-1l0.1-0.8c0-0.3,0.1-0.6,0.1-0.9c0-0.3,0.1-0.5-0.1-0.8c-0.3-0.4-0.6-0.8-0.8-1.2c-0.1-0.2-0.3-0.4-0.5-0.4
+                        c-0.2-0.1-0.2,0-0.2,0c0,0,0,0-0.1,0l-0.2,0c-0.3,0-0.6,0-0.8-0.1l-0.8-0.1c-0.1-0.7-0.3-1.4-0.4-2.1c0.2-0.1,0.5-0.2,0.7-0.3
+                        l0.8-0.4c0.3-0.2,0.6-0.3,0.7-0.7c0.1-0.5,0.2-1.1,0.3-1.6c0-0.3,0.1-0.6-0.1-0.8c0,0-0.1-0.1-0.1-0.1l-0.5-0.7
+                        c-0.2-0.3-0.4-0.6-0.6-0.9l1.5-1.9l0.7,0.3c0.4,0.2,0.9,0.4,1.3,0.5c0.4,0.1,0.8-0.1,1.1-0.3L28.6,7c0.2-0.1,0.4-0.3,0.5-0.6
+                        c0,0,0-0.1,0-0.1c0.1-0.3,0.1-0.5,0.2-0.8l0.3-0.9H32l0.2,0.6c0.1,0.3,0.2,0.6,0.2,0.9c0.1,0.3,0.2,0.7,0.5,0.8
+                        c0.4,0.2,0.8,0.4,1.2,0.7c0.2,0.1,0.5,0.2,0.8,0.1l0.2-0.1c0.3-0.1,0.5-0.2,0.8-0.3c0.3-0.1,0.6-0.2,0.9-0.4l1.5,1.9
+                        c-0.3,0.3-0.5,0.7-0.8,1c-0.1,0.2-0.3,0.4-0.4,0.6C36.9,10.6,37,11,37,11.2l0.1,0.5c0.1,0.3,0.1,0.7,0.2,1c0,0.2,0.2,0.4,0.4,0.5
+                        c0,0,0,0,0.1,0c0.6,0.3,1.1,0.6,1.7,0.9c-0.1,0.7-0.3,1.4-0.4,2.1c-0.6,0.1-1.3,0.1-1.9,0.2C37,16.5,37,16.5,36.8,16.6z"/>
+                    <path style="fill:#FFFFFF;" d="M13.2,29.9c1.5,0,2.9-0.6,4-1.7c1.1-1.1,1.6-2.5,1.6-4s-0.6-3-1.6-4c-1.1-1.1-2.5-1.7-4-1.7
+                        c-1.5,0-2.9,0.6-4,1.7c-1.1,1.1-1.6,2.5-1.6,4c0,1.5,0.6,3,1.7,4C10.3,29.3,11.7,29.9,13.2,29.9z M13.2,20.2c1,0,2.1,0.4,2.8,1.2
+                        c0.7,0.8,1.2,1.8,1.2,2.8c0,1.1-0.4,2.1-1.2,2.8c-0.7,0.8-1.7,1.2-2.8,1.2s-2.1-0.4-2.8-1.2c-0.7-0.8-1.2-1.8-1.2-2.8
+                        c0-1.1,0.4-2.1,1.2-2.8C11.1,20.6,12.2,20.2,13.2,20.2C13.2,20.2,13.2,20.2,13.2,20.2z M4.3,41.4c0-5,4-9,8.9-9c4.9,0,8.9,4,8.9,9
+                        h1.7c0-2.8-1.1-5.6-3.1-7.6c-2-2-4.7-3.1-7.5-3.1s-5.5,1.1-7.5,3.1c-2,2-3.1,4.7-3.1,7.6H4.3z"/>
+                    <g>
+                        <path style="fill:#FFFFFF;" d="M30.8,17.5c-2.4,0-4.3-1.9-4.3-4.3s1.9-4.3,4.3-4.3s4.3,1.9,4.3,4.3S33.2,17.5,30.8,17.5z
+                            M30.8,10.9c-1.3,0-2.3,1.1-2.3,2.3s1.1,2.3,2.3,2.3c1.3,0,2.3-1.1,2.3-2.3S32.1,10.9,30.8,10.9z"/>
+                    </g>
+                </g>
 
-<g id="settings" viewBox="0 0 44 44">
-<circle style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" cx="22" cy="22" r="6.5"/>
-<polygon style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" points="36.3,20.3 
-	35.7,17.6 38.6,13.4 34.2,7.9 29.4,9.8 27,8.6 25.5,3.7 18.5,3.7 17,8.6 14.6,9.8 9.8,7.9 5.4,13.4 8.3,17.6 7.7,20.3 3.2,22.8 
-	4.8,29.7 9.9,30 11.6,32.2 10.8,37.2 17.2,40.3 20.6,36.5 23.4,36.5 26.8,40.3 33.2,37.3 32.4,32.2 34.1,30 39.2,29.7 40.8,22.8 "/>
-</g>
+                <g id="settings" viewBox="0 0 44 44">
+                <circle style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" cx="22" cy="22" r="6.5"/>
+                <polygon style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" points="36.3,20.3 
+                    35.7,17.6 38.6,13.4 34.2,7.9 29.4,9.8 27,8.6 25.5,3.7 18.5,3.7 17,8.6 14.6,9.8 9.8,7.9 5.4,13.4 8.3,17.6 7.7,20.3 3.2,22.8 
+                    4.8,29.7 9.9,30 11.6,32.2 10.8,37.2 17.2,40.3 20.6,36.5 23.4,36.5 26.8,40.3 33.2,37.3 32.4,32.2 34.1,30 39.2,29.7 40.8,22.8 "/>
+                </g>
 
 
-<g id="plus" viewBox="0 0 44 44">
-	<path style="fill:#FFFFFF;" d="M42.1,21.1H22.9V1.9C22.9,1.4,22.5,1,22,1s-0.9,0.4-0.9,0.9v19.2H1.9C1.4,21.1,1,21.5,1,22
-		s0.4,0.9,0.9,0.9h19.2v19.2c0,0.5,0.4,0.9,0.9,0.9s0.9-0.4,0.9-0.9V22.9h19.2c0.5,0,0.9-0.4,0.9-0.9S42.6,21.1,42.1,21.1z"/>
-</g>
+                <g id="plus" viewBox="0 0 44 44">
+                    <path style="fill:#FFFFFF;" d="M42.1,21.1H22.9V1.9C22.9,1.4,22.5,1,22,1s-0.9,0.4-0.9,0.9v19.2H1.9C1.4,21.1,1,21.5,1,22
+                        s0.4,0.9,0.9,0.9h19.2v19.2c0,0.5,0.4,0.9,0.9,0.9s0.9-0.4,0.9-0.9V22.9h19.2c0.5,0,0.9-0.4,0.9-0.9S42.6,21.1,42.1,21.1z"/>
+                </g>
+
+                <g id="backspace" viewBox="0 0 32 32">
+                    <path style="fill:#FFFFFF;" d="M7.9,6C7.8,6,7.7,6,7.6,6.2l-7.5,9.5c-0.1,0.2-0.1,0.4,0,0.6l7.4,9.5C7.6,26,7.8,26,7.9,26h23.6
+                        c0.3,0,0.5-0.2,0.5-0.5V6.5C32,6.2,31.8,6,31.5,6H7.9z M31.1,25.1H8.2L1.1,16l7.1-9.1h22.9L31.1,25.1L31.1,25.1z"/>
+                    <path style="fill:#FFFFFF;" d="M16.7,20l3.3-3.3l3.3,3.3l0.7-0.7L20.7,16l3.3-3.3L23.3,12L20,15.3L16.7,12L16,12.7l3.3,3.3L16,19.3
+                        L16.7,20z"/>
+                </g>
 
 
                 </svg>
@@ -2865,6 +3295,16 @@ var kxapp = function() {
             border-bottom: solid 1px rgba(255, 255, 255, 0.3);
             }
 
+            .titleBlock.wide{
+                width: 282px;
+                left: 99px;
+                }
+
+
+            .prepare .titleBlock {
+                left: 25px;
+            }
+
             .titleBlock.light{
                 background-color:rgba(255,255,255,.15)
             }
@@ -2891,6 +3331,12 @@ var kxapp = function() {
                 bottom: -2px;
                 left: 72px;
             }
+
+            .userTitleClip.wide {
+
+                left: 124px;
+            }
+
 
             .clock{
                 transition: opacity .6s;
@@ -3048,6 +3494,15 @@ var kxapp = function() {
             .running .vWheel.strengthScroller .wheelItem:not(.selected){
                 opacity:0;
             }
+
+
+            .userMode .vWheel .wheelItem:not(.selected) {
+                opacity:0!important;
+            }
+            .userMode .vWheel .wheelItem {
+                border-color:transparent!important;
+            }
+
 
             .running .vWheel.strengthScroller .wheelItem{
                 border-color:transparent!important;
@@ -3221,18 +3676,14 @@ var kxapp = function() {
 
         /* recetteScroller*/
         .hScroller{
-            overflow-x: scroll;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            scroll-snap-type: x mandatory;
-            white-space: nowrap;
+
         }   
 
         .hScroller::-webkit-scrollbar {
             display: none;
         }
 
-        #recetteScroller{
+        .hScroller{
             position: absolute;
             top: 71px;
             height: 220px;
@@ -3241,8 +3692,13 @@ var kxapp = function() {
             background: none;
             font-size: 0;
             white-space: nowrap;
+            overflow-x: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+            white-space: nowrap;
             }
-        .recetteScrollerItem{
+        .recetteScrollerItem, .hScrollerItem{
             display:inline-block;
             position:relative;
             height:100%;
@@ -3444,6 +3900,10 @@ var kxapp = function() {
                 font-size: 14px;
             }
 
+            .atile.double {
+                width:223px;
+            }
+
 
 
 
@@ -3574,9 +4034,10 @@ var kxapp = function() {
         that.element = e;
         that.element.classList.add(app.pointingDevice);
         that.centerTarget = centerTarget;
-
+        that.pause = false;
         var timout;
         that.element.addEventListener('scroll', function(e) {
+            if (that.pause) return;
             clearTimeout(timout);
             timout = setTimeout(function() {
             if (that.element.querySelectorAll('.wheelItem.selected').length > 0) {
@@ -3607,7 +4068,7 @@ var kxapp = function() {
         var divs = that.element.querySelectorAll('div.wheelItem');
         divs.forEach(el => el.addEventListener('click', event => {
             console.log('click', this);
-            if (that.mouseMove) return;
+            if (that.mouseMove||that.pause) return;
             that.scrollToFunction(el, true); }),
         );
     
@@ -3648,6 +4109,7 @@ var kxapp = function() {
 
         that.element.addEventListener('mousemove', e => {
         // console.log('mousemove');
+        if (that.pause) return;
 
         //e.stopImmediatePropagation();
         //console.log("move");
@@ -3665,7 +4127,7 @@ var kxapp = function() {
         });
 
         that.element.addEventListener('touchstart', e => {
-        app.pointingDevice = 'touch';
+            app.pointingDevice = 'touch';
         });
 
         function recenter() {
@@ -3681,6 +4143,7 @@ var kxapp = function() {
 
 };
   
+
 window.kx = new kxapp();
 
 })();
