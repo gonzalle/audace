@@ -20,7 +20,7 @@ var kxapp = function() {
           americano: 'Americano',
           espressomacchiato: 'e.Macchiato',
           cappucino: 'Cappucino',
-          lattemacchiato: 'Latte Macchiato',
+          lattemacchiato: 'LMacchiato',
           laitmousse: 'Lait Moussé',
           caffelatte: 'Caffe Latte',
           flatwhite: 'Flat White',
@@ -83,6 +83,7 @@ var kxapp = function() {
           planning:"Planning",
           on:"On",
           off:"Off",
+          chooseColor:"Choose your color",
 
         }},
         fr: {
@@ -97,7 +98,7 @@ var kxapp = function() {
           americano: 'Americano',
           espressomacchiato: 'e.Macchiato',
           cappucino: 'Cappucino',
-          lattemacchiato: 'Latte Macchiato',
+          lattemacchiato: 'LMacchiato',
           laitmousse: 'Lait Moussé',
           caffelatte: 'Caffe Latte',
           flatwhite: 'Flat White',
@@ -161,6 +162,8 @@ var kxapp = function() {
           planning:"programmation",
           on:"actif",
           off:"inactif",
+          chooseColor:"Choisissez votre couleur",
+
 
 
 }
@@ -956,6 +959,7 @@ var kxapp = function() {
                 this.thisTimeOut = setTimeout(()=>{
                     app.loadPage("recettes",null);
                 },4000)
+                
             },
             quit: function() {
                 clearTimeout(this.thisTimeOut);
@@ -965,7 +969,7 @@ var kxapp = function() {
             html: function() {
             return `
 
-            <div class="pageContent ready ${app.currentRecipe.bkg} orange">
+            <div class="pageContent ready ${app.currentRecipe.bkg} ${(app.currentProfile)?app.currentProfile.color + ' userMode':'orange'}">
 
             <div class="centralArea" style="position:absolute;width:360px;left:60px;height:100%;background-color:rgba(255,255,255,.15)">
 
@@ -999,6 +1003,8 @@ var kxapp = function() {
             <span class="title">${_(
                 app.currentRecipe.code,
             )}</span>
+            ${(app.currentProfile)?'<div class="userTitleClip userBorderColor"></div>':''}
+
             </div>
             </div>
                 
@@ -1549,6 +1555,15 @@ var kxapp = function() {
                     app.loadPage('settings', null);
                 });
 
+                var slider = new hslider(
+                    thisBuilt.querySelector('.slides'),
+                    function(c){
+                        console.log(c);
+                        thisBuilt.querySelector('.pager.selected').classList.remove('selected');
+                        thisBuilt.querySelector('.pager_'+c).classList.add('selected');
+                    }
+                )
+
                 var buttons = this.built.querySelectorAll('.atile.settings.active');
                 //console.log(keywordsElems);
                 buttons.forEach(function(el,k) {
@@ -1573,25 +1588,6 @@ var kxapp = function() {
             <div class="titleBlock light wide">
             <span class="title">${_(this.name)}</span>
             </div>
-            <style>
-            .atile.settings {
-                padding: 1px 6px 6px 6px;
-            }
-            .atile.settings .titleBlock {
-                overflow:unset;
-            }
-            .atile.settings .titleBlock .title {
-                height: 21px;
-                line-height: 20px;
-                white-space: initial;
-
-            }
-
-            .atile.settings .tileIcon {
-                top: 53px;
-            }
-            
-            </style>
             <div class="backButton">
                 <svg style="" viewBox="0 0 26 26" >
                 <use href="#backArrow" />
@@ -1609,10 +1605,8 @@ var kxapp = function() {
                 <span>${_('language')}</span>
                 </div>
                 </div>
-                    <div class="tileIcon">
-                    <svg style="" viewBox="0 0 44 44">
-                        <use href="#plus"></use>
-                    </svg>
+                    <div class="atileContents">
+                    <div>${kxLg[app.lg].display.toUpperCase()}</div>
                     </div>
                 </div>
 
@@ -1638,7 +1632,7 @@ var kxapp = function() {
                 </div>
                     <div class="tileIcon">
                     <svg style="" viewBox="0 0 44 44">
-                        <use href="#plus"></use>
+                        <use href="#backLight"></use>
                     </svg>
                     </div>
                 </div>
@@ -1649,9 +1643,9 @@ var kxapp = function() {
                 <span>${_('light')}</span>
                 </div>
                 </div>
-                    <div class="tileIcon">
+                    <div class="tileIcon ">
                     <svg style="" viewBox="0 0 44 44">
-                        <use href="#plus"></use>
+                        <use href="#lightOn"></use>
                     </svg>
                     </div>
                 </div>
@@ -1664,9 +1658,12 @@ var kxapp = function() {
                 <span>${_('display')}</span>
                 </div>
                 </div>
-                    <div class="tileIcon">
-                    <svg style="" viewBox="0 0 44 44">
-                        <use href="#plus"></use>
+                    <div class="tileIcon" style="width: 64px;
+                    height: 64px;
+                    left: 23px;
+                    top: 42px;">
+                    <svg viewBox="0 0 64 64"">
+                        <use href="#tiles"></use>
                     </svg>
                     </div>
                 </div>
@@ -1677,11 +1674,9 @@ var kxapp = function() {
                 <span>${_('autoOff')}</span>
                 </div>
                 </div>
-                    <div class="tileIcon">
-                    <svg style="" viewBox="0 0 44 44">
-                        <use href="#plus"></use>
-                    </svg>
-                    </div>
+                <div class="atileContents">
+                <div>${"15mn."}</div>
+                </div>
                 </div>
 
                 <div class="atile settings" data-val="0">
@@ -1690,11 +1685,9 @@ var kxapp = function() {
                 <span>${_('volUnity')}</span>
                 </div>
                 </div>
-                    <div class="tileIcon">
-                    <svg style="" viewBox="0 0 44 44">
-                        <use href="#plus"></use>
-                    </svg>
-                    </div>
+                <div class="atileContents">
+                <div>${"ml."}</div>
+                </div>
                 </div>
 
 
@@ -1704,10 +1697,8 @@ var kxapp = function() {
                 <span>${_('autoRinse')}</span>
                 </div>
                 </div>
-                    <div class="tileIcon">
-                    <svg style="" viewBox="0 0 44 44">
-                        <use href="#plus"></use>
-                    </svg>
+                    <div class="atileContents">
+                    <div>${_("off").toUpperCase()}</div>
                     </div>
                 </div>
 
@@ -1793,8 +1784,44 @@ var kxapp = function() {
 
                 </section>
                 <style>
-            
+                .slides {
+                    scroll-snap-type: x mandatory;
+                }
+                .tilesBlock{
+                    scroll-snap-align: start;
+                }
+                .pagers{
+                    position:absolute;
+                    width:100%;
+                    bottom:8px;
+                    height:9px;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    justify-content: center;
+                    align-content: stretch;
+                    align-items: flex-end;
+                }
+
+                .pager{
+                    width:8px;
+                    height:8px;
+                    border-radius:4px;
+                    box-sizing:border-box;
+                    border:solid 1px orange;
+                    margin:0 3px;
+                }
+                .pager.selected{
+                    background-color: orange;
+                }
                 </style>
+
+
+                <div class="pagers">
+                    <div class="pager pager_1 selected"></div>
+                    <div class="pager pager_2"></div>
+                </div>
+
 
                 </div>
 
@@ -1995,6 +2022,7 @@ var kxapp = function() {
                     font-weight: bold;
                 }
 
+
                 </style>
 
 
@@ -2009,7 +2037,6 @@ var kxapp = function() {
                 <div class="vwheelCenter left userBorderColor">&nbsp;</div>
 
                 <div class="okButton borderOrange">${_('ok')}</div>
-
                 </div>
 
                 `;
@@ -2052,7 +2079,7 @@ var kxapp = function() {
                     }
                     console.log(maxChar - n.length);
                     nameField.innerHTML=str2field;
-                    debugger;
+                   // debugger;
                     remain.innerHTML = (maxChar - n.length <=1)
                     ? '( '+(maxChar - n.length) +' '+ _('remain')+' )'
                     : '( '+(maxChar - n.length) +' '+ _('remains')+' )'  ;
@@ -2184,6 +2211,129 @@ var kxapp = function() {
             },
         },
 
+        color: {
+            name:"color",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                var color = app.currentProfile.color;
+                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('userSettingsHome', null);
+                });
+
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {
+                    app.currentProfile.color = color;
+                    app.loadPage('userSettingsHome', null);
+                })
+
+                this.colorScroller = new hscroller(
+                    thisBuilt.querySelector('.colorScroller'),
+                );
+
+                var colors = this.built.querySelectorAll('.hScrollerItem');
+
+                colors.forEach(function(el,k) {
+                    el.addEventListener('click', event => {
+                        color =  el.dataset.name;
+                        console.log(color);
+                    })
+                });
+
+                callback();
+            },
+            beforeShow: function() {
+                var selected = this.built.querySelector('[data-name="' + app.currentProfile.color + '"]');
+                selected.classList.add("selected");
+                    //debugger;
+                    this.built.querySelector('.colorScroller').scrollTo({left:selected.offsetLeft-200});
+               // if (this.lgScroller) {
+               // }
+            },
+            run: function() {console.log('running' + this.name);},
+            quit: function() {
+                this.built = false;
+                return true;
+            },
+            html: function() {
+            
+            var colorScrollerItems = '';
+
+            for (var [key, value] of Object.entries(kxColors)) {
+                colorScrollerItems +=`<div class="hScrollerItem" data-name="${key}" data-val="${value}">
+                    <div style="background-color:${value}">&nbsp;</div>
+                </div>`;
+            }
+
+
+
+            var rhtml = `
+
+           <div class="pageContent colors ${app.currentProfile.bkg} ${app.currentProfile.color}">
+           <div class="titleBlock wide light">
+           <span class="title">${_('color')}</span>
+           <div class="userTitleClip wide userBorderColor"></div>
+           </div>
+
+
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+                <style>
+                .colors .hScroller{
+                    top: 161px;
+                    height: 50px;
+                    padding-top: 10px;
+                }
+
+                .colors .hScrollerItem {
+                    width: 100px;
+                    height: 62px;
+                    text-align: center;
+                    margin-right: 0;
+                    background-color: transparent;
+                    border-right: solid 1px rgba(255,255,255,0.2);
+                    box-sizing: border-box;
+                }
+
+
+                .colors .hScrollerItem:last-child {
+                    border-right:none;
+                }
+
+                .colors .hScrollerItem div {
+                    display: inline-block;
+                    font-size: 6px;
+                    line-height: 37px;
+                    width: 70px;
+                    height: 9px;
+                    margin-top: 20px;
+                }
+
+                .colors .hScrollerItem.selected div {
+                    box-shadow: 0 0 22px 2px;
+                }
+
+
+
+                </style>
+
+                <div class="typeYourName" style="font-size:24px;position:absolute;top:70px;left:10px;width:460px;text-align:center">${_('chooseColor')}</div>
+
+
+
+                <div class=" hScroller colorScroller">
+                        ${colorScrollerItems}
+                </div>
+
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}</div>
+
+                </div>
+
+                `;
+            return rhtml;
+            },
+        },
 
         userSettingsHome: {
             name:"userSettingsHome",
@@ -2250,17 +2400,19 @@ var kxapp = function() {
             <div class="tiles" data-key="0">
 
             
-            <div class="atile settings"  data-val="0">
+            <div class="atile settings active" data-target="color" data-val="0" style="">
             <div class="titleBlock">
             <div class="title">
             <span>${_('color')}</span>
             </div>
             </div>
-                <div class="tileIcon">
-                <svg style="" viewBox="0 0 44 44">
-                    <use href="#plus"></use>
-                </svg>
-                </div>
+            <div class="atileContents">
+            <div class="ellipsis ">
+                <div class="userFIllColor" style="width : 51px;display:inline-block;height:3px;"></div>
+            </div>
+            </div>
+
+
             </div>
 
             <div class="atile settings active" data-target="firstName" data-val="0" style="">
@@ -2306,43 +2458,6 @@ var kxapp = function() {
             <span>${_('planning')}</span>
             </div>
             </div>
-            <style>
-
-            .atileContents{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                height: 82px;
-                overflow:hidden;
-            }
-            .atileContents .ellipsis{
-
-            width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            }
-
-            .atile.double .atileContents{
-                width: 103px;
-                position: absolute;
-            }
-            .atile.double .atileContents:first-child{
-            }
-            .atile.double .atileContents:last-child{
-
-                left:110px;
-            }
-
-            .atile.double .atileContents:last-child div{
-                width:100%;
-                border-left:solid 1px rgba(255,255,255,0.2);
-            }
-
-
-
-            </style>
 
                 <div class="atileContents">
                 <div>${_('week')}<br>${_('on').toUpperCase()}</div>
@@ -2994,6 +3109,188 @@ var kxapp = function() {
                     <path style="fill:#FFFFFF;" d="M16.7,20l3.3-3.3l3.3,3.3l0.7-0.7L20.7,16l3.3-3.3L23.3,12L20,15.3L16.7,12L16,12.7l3.3,3.3L16,19.3
                         L16.7,20z"/>
                 </g>
+                <g id="backLight" viewBox="0 0 44 44">
+
+                    <path style="fill:#FFFFFF;" d="M12.6,30.3c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.3,3.3c-0.2,0.2-0.3,0.2-0.6,0.2
+                    c-0.2,0-0.4-0.1-0.6-0.2C9,34.4,9,33.9,9.3,33.6L12.6,30.3z M30.3,30.2c0.3-0.3,0.8-0.3,1.1,0l3.3,3.3c0.3,0.3,0.3,0.8,0,1.1
+                    c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2l-3.3-3.3C30,31,30,30.5,30.3,30.2z M39.2,21.2c0.4,0,0.8,0.3,0.8,0.8
+                    s-0.3,0.8-0.8,0.8h-4.7c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H39.2z M9.5,21.2c0.5,0,0.8,0.3,0.8,0.8c0,0.4-0.4,0.8-0.9,0.8H4.8
+                    C4.3,22.8,4,22.5,4,22s0.3-0.8,0.8-0.8H9.5z M33.5,9.2c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.2,3.2c-0.2,0.2-0.3,0.2-0.6,0.2
+                    c-0.2,0-0.4-0.1-0.6-0.2c-0.3-0.3-0.3-0.8,0-1.1L33.5,9.2z M9.3,9.2c0.3-0.3,0.8-0.3,1.1,0l3.2,3.2c0.3,0.3,0.3,0.8,0,1.1
+                    c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2l-3.1-3.2C9,10,9,9.5,9.3,9.2L9.3,9.2z M22,3.9c0.5,0,0.8,0.3,0.8,0.8v4.4
+                    c0,0.5-0.3,0.8-0.8,0.8s-0.8-0.3-0.8-0.8V4.7C21.2,4.2,21.5,3.9,22,3.9z M22,40.1c-0.5,0-0.8-0.3-0.8-0.8v-4.4
+                    c0-0.5,0.3-0.8,0.8-0.8s0.8,0.3,0.8,0.8v4.4C22.8,39.8,22.5,40.1,22,40.1z"/>
+                <path style="fill:#FFFFFF;" d="M22,14.218c4.291,0,7.782,3.491,7.782,7.782S26.291,29.782,22,29.782S14.218,26.291,14.218,22
+                    S17.709,14.218,22,14.218 M22,12.718c-5.126,0-9.282,4.156-9.282,9.282s4.156,9.282,9.282,9.282s9.282-4.156,9.282-9.282
+                    S27.126,12.718,22,12.718L22,12.718z"/>
+                </g>
+
+<g id="backLightBig" viewBox="0 0 32 32">
+	<g>
+		<g>
+			<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FFFFFF;stroke-linecap:square;" d="M17.1,24.9v4.5h-2.2
+				v-4.5c0.4,0,0.7,0.1,1.1,0.1C16.4,24.9,16.8,24.9,17.1,24.9z M24.9,14.9h4.5v2.2h-4.5c0-0.4,0.1-0.7,0.1-1.1S24.9,15.2,24.9,14.9
+				z M7.1,14.9c0,0.4-0.1,0.7-0.1,1.1c0,0.4,0,0.8,0.1,1.1H2.6v-2.2H7.1z M17.1,2.6v4.5c-0.4,0-0.7-0.1-1.1-0.1s-0.8,0-1.1,0.1V2.6
+				H17.1z M10.5,23.1l-3.2,3.2l-1.6-1.6l3.2-3.2c0.2,0.3,0.5,0.6,0.7,0.8C9.9,22.6,10.2,22.8,10.5,23.1z M23.1,21.5l3.2,3.2
+				l-1.6,1.6l-3.2-3.2c0.3-0.2,0.6-0.5,0.8-0.7C22.6,22.1,22.8,21.8,23.1,21.5L23.1,21.5z M10.5,8.9c-0.3,0.2-0.6,0.5-0.8,0.7
+				c-0.3,0.3-0.5,0.5-0.7,0.8L5.7,7.3l1.6-1.6L10.5,8.9z M26.3,7.3l-3.2,3.2c-0.2-0.3-0.5-0.6-0.7-0.8c-0.3-0.3-0.5-0.5-0.8-0.7
+				l3.2-3.2L26.3,7.3L26.3,7.3z"/>
+		</g>
+		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M16,21c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5S18.8,21,16,21z"
+			/>
+	</g>
+</g>
+
+<g id="backLightSmall" viewBox="0 0 32 32">
+	<g>
+		<g>
+			<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FFFFFF;stroke-linecap:square;" d="M16.7,21.6l0,2.9h-1.4
+				v-2.9c0.2,0,0.5,0,0.7,0C16.2,21.6,16.5,21.6,16.7,21.6z M21.6,15.3l2.9,0v1.4h-2.9c0-0.2,0-0.5,0-0.7
+				C21.6,15.8,21.6,15.5,21.6,15.3z M10.4,15.3c0,0.2,0,0.5,0,0.7c0,0.2,0,0.5,0,0.7l-2.9,0v-1.4L10.4,15.3z M16.7,7.5v2.9
+				c-0.2,0-0.5,0-0.7,0c-0.2,0-0.5,0-0.7,0l0-2.9H16.7z M12.5,20.5l-2,2l-1-1l2-2c0.1,0.2,0.3,0.4,0.5,0.5
+				C12.2,20.2,12.4,20.3,12.5,20.5L12.5,20.5z M20.5,19.5l2,2l-1,1l-2-2c0.2-0.1,0.4-0.3,0.5-0.5C20.2,19.8,20.3,19.6,20.5,19.5
+				L20.5,19.5z M12.5,11.5c-0.2,0.1-0.4,0.3-0.5,0.5c-0.2,0.2-0.3,0.3-0.5,0.5l-2-2l1-1L12.5,11.5z M22.5,10.5l-2,2
+				c-0.1-0.2-0.3-0.4-0.5-0.5c-0.2-0.2-0.3-0.3-0.5-0.5l2-2L22.5,10.5L22.5,10.5z"/>
+		</g>
+		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M16,19.2c-1.7,0-3.2-1.4-3.2-3.2s1.4-3.2,3.2-3.2
+			c1.7,0,3.2,1.4,3.2,3.2S17.7,19.2,16,19.2z"/>
+	</g>
+</g>
+
+<g id="checkMark" viewBox="0 0 32 32">
+	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M5,15.4l2-2l6.4,6.4L24.9,8.2l2.1,2.1L13.5,23.8
+		C13.5,23.8,5,15.4,5,15.4z"/>
+</g>
+
+<g id="wrench" viewBox="0 0 32 32">
+	<path style="fill:#FFFFFF;" d="M15.7,23.1l8.2,8.1c0.2,0.2,0.4,0.2,0.6,0.2c0.2,0,0.4-0.1,0.6-0.2c0.3-0.3,0.3-0.8,0-1.1L16.9,22
+		c-1.3-1.3-3.1-2-5.1-1.8c-2.6,0.2-5.2-0.8-7-2.6c-2-2-3-4.9-2.6-7.7l3.4,3.3c0.8,0.7,1.7,1.1,2.8,1.1c1.1,0,2-0.4,2.8-1.1l1.8-1.8
+		c1.6-1.5,1.6-4,0-5.5L9.4,2.4c3-0.7,6.2,0.2,8.4,2.4c2,1.9,2.9,4.6,2.6,7.4c-0.2,2,0.4,3.9,1.9,5.3l7.8,7.8c0.3,0.3,0.8,0.3,1.2,0
+		c0.3-0.3,0.3-0.8,0-1.1l-7.8-7.8c-1-1-1.6-2.5-1.4-3.9c0.4-3.2-0.8-6.4-3.1-8.7C16,0.8,11.9-0.2,8,1.1C7.6,1.2,7.3,1.5,7.3,1.9
+		c-0.1,0.4,0,0.8,0.3,1l4.3,4.2c0.9,0.9,0.9,2.3,0,3.2L10,12.1c-0.4,0.4-1,0.7-1.6,0.7c-0.6,0-1.2-0.2-1.6-0.7l-4-4
+		C2.5,7.8,2.1,7.7,1.7,7.8C1.3,7.9,1,8.2,0.9,8.6c-0.9,3.7,0.1,7.4,2.8,10.1c2.1,2.1,5.2,3.2,8.3,3C13.4,21.7,14.8,22.2,15.7,23.1
+		L15.7,23.1z"/>
+</g>
+<g id="lightOff" viewBox="0 0 44 44">
+<path style="fill:#FFFFFF;" d="M22,9.3c-0.4,0-0.8,0-1.2,0.1c-4.5,0.5-8.3,4.1-9,8.6c-0.5,2.9,0.3,5.8,2.1,8c2,2.5,3,5.3,3,8.1
+c0,0.5,0.3,0.8,0.8,0.8h8.7c0.5,0,0.8-0.3,0.8-0.8c0-3,0.9-5.7,2.7-7.8c1.6-1.9,2.4-4.3,2.4-6.7C32.3,14,27.7,9.3,22,9.3z
+ M26.1,38.3c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M26.1,35.9
+c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M22,10.8c4.8,0,8.8,4,8.8,8.8
+c0,2.1-0.8,4.1-2.1,5.7c-1.8,2.1-2.9,5-3.1,8h-7.1c-0.2-2.9-1.3-5.8-3.3-8.3c-1.5-1.9-2.1-4.4-1.7-6.8c0.6-3.8,3.8-6.9,7.6-7.3
+C21.3,10.9,21.7,10.8,22,10.8L22,10.8z"/>
+<path style="fill:#FFFFFF;" d="M9.8,32.9c0.2,0,0.4-0.1,0.6-0.2L34.8,8.2c0.3-0.3,0.3-0.8,0-1.1c-0.3-0.3-0.8-0.3-1.1,0L9.2,31.6
+c-0.3,0.3-0.3,0.8,0,1.1C9.4,32.8,9.6,32.9,9.8,32.9z"/>
+</g>
+
+<g id="lightOn" viewBox="0 0 44 44">
+<path style="fill:#FFFFFF;" d="M22,9.2c-0.4,0-0.8,0-1.2,0.1c-4.5,0.5-8.3,4.1-9,8.6c-0.5,2.9,0.3,5.8,2.1,8c2,2.5,3,5.3,3,8.1
+c0,0.5,0.3,0.8,0.8,0.8h8.7c0.5,0,0.8-0.3,0.8-0.8c0-3,0.9-5.7,2.7-7.8c1.6-1.9,2.4-4.3,2.4-6.7C32.3,13.9,27.7,9.2,22,9.2z
+ M26.1,38.2c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M26.1,35.8
+c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M22,10.7c4.8,0,8.8,4,8.8,8.8
+c0,2.1-0.8,4.1-2.1,5.7c-1.8,2.1-2.9,5-3.1,8h-7.1c-0.2-2.9-1.3-5.8-3.3-8.3c-1.5-1.9-2.1-4.4-1.7-6.8c0.6-3.8,3.8-6.9,7.6-7.3
+C21.3,10.8,21.7,10.7,22,10.7L22,10.7z M12.6,28.2c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.3,3.3c-0.2,0.2-0.3,0.2-0.6,0.2
+c-0.2,0-0.4-0.1-0.6-0.2C9,32.3,9,31.8,9.3,31.5L12.6,28.2z M30.3,28.1c0.3-0.3,0.8-0.3,1.1,0l3.3,3.3c0.3,0.3,0.3,0.8,0,1.1
+c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2l-3.3-3.3C30,28.9,30,28.4,30.3,28.1z M39.2,19.1c0.4,0,0.8,0.3,0.8,0.8
+s-0.3,0.8-0.8,0.8h-4.7c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H39.2z M9.5,19.1c0.5,0,0.8,0.3,0.8,0.8c0,0.4-0.4,0.8-0.9,0.8H4.8
+c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H9.5z M33.5,7.1c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.2,3.2c-0.2,0.2-0.3,0.2-0.6,0.2
+c-0.2,0-0.4-0.1-0.6-0.2c-0.3-0.3-0.3-0.8,0-1.1L33.5,7.1z M9.3,7.1c0.3-0.3,0.8-0.3,1.1,0l3.2,3.2c0.3,0.3,0.3,0.8,0,1.1
+c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2L9.3,8.2C9,7.9,9,7.4,9.3,7.1L9.3,7.1z M22,1.8c0.5,0,0.8,0.3,0.8,0.8V7
+c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
+</g>
+
+<g id="cleanK" viewBox="0 0 44 44">
+<path style="fill:#FFFFFF;" d="M30.6,12.6h-4.6l-6.8,8.1v-8.1h-3.8v18.9h3.8v-8.8
+	h0.1l6.8,8.8h4.9l-8.1-10L30.6,12.6L30.6,12.6z M38.6,22c0,9.1-7.4,16.6-16.6,16.6c-9.2,0-16.6-7.4-16.6-16.6
+    c0-9.2,7.4-16.6,16.6-16.6C31.2,5.4,38.6,12.8,38.6,22z"/>
+</g>
+
+<g id="reset" viewBox="0 0 44 44">
+	<path style="fill:#FFFFFF;" d="M21.5,14.7c-1.4,0-2.5,0.5-3.2,1.5c-0.9,1.2-1.4,3.1-1.4,5.8c0,2.7,0.4,4.7,1.3,5.7
+		c0.9,1.1,2,1.6,3.4,1.6c1.4,0,2.5-0.5,3.2-1.5c0.9-1.2,1.4-3.1,1.4-5.8c0-2.7-0.5-4.7-1.4-5.8C24,15.2,22.9,14.7,21.5,14.7z
+		 M23,25.6c-0.1,0.5-0.3,0.9-0.6,1.1c-0.3,0.2-0.6,0.3-0.9,0.3c-0.3,0-0.6-0.1-0.9-0.3s-0.5-0.6-0.6-1.3c-0.2-0.6-0.3-1.8-0.3-3.5
+		s0.1-2.9,0.3-3.6c0.1-0.5,0.3-0.9,0.6-1.1c0.3-0.2,0.6-0.3,0.9-0.3c0.3,0,0.6,0.1,0.9,0.3c0.3,0.2,0.5,0.6,0.6,1.3
+		c0.2,0.6,0.3,1.8,0.3,3.5S23.2,24.9,23,25.6z"/>
+	<polygon style="fill:#FFFFFF;" points="42.5,19.6 34.9,19.6 37.9,16.6 36.5,15.2 31.1,20.6 36.5,26 37.9,24.6 34.9,21.6 42.5,21.6 
+			"/>
+	<polygon style="fill:#FFFFFF;" points="7.5,15.2 6.1,16.6 9.1,19.6 1.5,19.6 1.5,21.6 9.1,21.6 6.1,24.6 7.5,26 12.9,20.6 	"/>
+</g>
+
+<g id="cleanMilkAcc" viewBox="0 0 44 44">
+	<path style="fill:#FFFFFF;" d="M6.1,5.3h13.4c2.6,0,4.8,2.1,4.8,4.8v24.9c0,0.5-0.4,1-1,1H2.3
+		c-0.5,0-1-0.4-1-1V10C1.4,7.4,3.5,5.3,6.1,5.3z M4.2,36.8h3.8v1.9H4.2V36.8z M17.6,36.8h3.8v1.9h-3.8V36.8z"/>
+	<rect x="2.3" y="12" style="fill:#010101;" width="21.1" height="1"/>
+	<g>
+		<polygon style="fill:#010101;" points="7.9,20.7 7,20.7 5.8,22.1 5.8,20.7 5.2,20.7 5.2,24 5.8,24 5.8,22.5 5.9,22.5 7,24 7.9,24 
+			6.5,22.2 		"/>
+		<path style="fill:#010101;" d="M10.9,21.7L10.9,21.7c0-0.6-0.5-1-1-1H8.4V24h0.7v-1.6l1.2,1.6h0.9l-1.1-1.3
+			C10.5,22.5,10.9,22.2,10.9,21.7z M9.6,22.3H9.1v-1.1h0.5c0.3,0,0.5,0.2,0.5,0.5C10.2,22,9.9,22.3,9.6,22.3z"/>
+		<path style="fill:#010101;" d="M16.7,20.7h-1.3V24H16l0-1.3h0.7c0.5,0,1-0.5,1-1C17.7,21.1,17.2,20.7,16.7,20.7z M16.5,22.3H16
+			l0-1.1l0.5,0c0.3,0,0.5,0.2,0.5,0.6C17,22.1,16.8,22.3,16.5,22.3z"/>
+		<path style="fill:#010101;" d="M19.1,21.6c0-0.4,0.3-0.5,0.5-0.5c0.2,0,0.5,0.1,0.7,0.1v-0.6c-0.2-0.1-0.5-0.1-0.7-0.1
+			c-0.6,0-1.1,0.3-1.1,1c0,1.1,1.4,0.8,1.4,1.5c0,0.3-0.3,0.4-0.6,0.4c-0.3,0-0.6-0.1-0.9-0.2v0.5c0.3,0.1,0.5,0.2,0.9,0.2
+			c0.7,0,1.2-0.3,1.2-1C20.5,21.9,19.1,22.1,19.1,21.6z"/>
+		<path style="fill:#010101;" d="M13.7,22.9L13.7,22.9c0,0.4-0.3,0.7-0.7,0.7c-0.4,0-0.7-0.3-0.7-0.7v-2.2h-0.7v2.1
+			c0,0.9,0.5,1.2,1.3,1.2c0.8,0,1.3-0.4,1.3-1.2v-2.1h-0.7V22.9z"/>
+	</g>
+	<rect x="25.1" y="23" style="fill:#FFFFFF;" width="1" height="1"/>
+		<rect x="26" y="22.5" style="fill:#FFFFFF;" width="1.9" height="1.9"/>
+		<polygon style="fill:#FFFFFF;" points="34.9,22.1 34,22.1 34,21.5 33,21.5 33,22.1 
+			28.2,22.1 28.2,24.8 33,24.8 33,25.3 34,25.3 34,24.8 34.9,24.8 		"/>
+	<path style="fill:none;stroke:#FFFFFF;stroke-width:1.9138;" d="M35.3,23.4c3.8-0.1,6.3,3.2,7.3,9.9"/>
+</g>
+<g id="rinseCoffee" viewBox="0 0 44 44">
+			<rect x="20.4" y="34.1" style="fill:#FFFFFF;" width="3.1" height="4.6"/>
+			<polygon style="fill:#FFFFFF;" points="29.5,31.7 32.2,31.1 30.7,24.6 28.3,25.1 			"/>
+				<polygon style="fill:#FFFFFF;" points="5.9,14.1 8.3,13.7 4.4,-3.5 2.8,-3.2 				"/>
+			<polygon style="fill:#FFFFFF;" points="23.1,23.1 20.7,23.1 21.1,5.4 22.7,5.4 			"/>
+				<polygon style="fill:#FFFFFF;" points="5.3,1.6 2.3,1 3.4,-3.5 6.1,-2.9 				"/>
+				<polygon style="fill:#FFFFFF;" points="3.2,1.6 6.2,1 5.2,-3.5 2.4,-2.9 				"/>
+			<path style="fill:#FFFFFF;" d="M23.3,31.9h-2.8l0.1-6.7l2.5,0L23.3,31.9z M14.5,31.7
+				l-2.7-0.6l1.5-6.5l2.4,0.5L14.5,31.7z"/>
+				<polygon style="fill:#FFFFFF;" points="5.1,14.1 2.7,13.7 6.6,-3.5 8.2,-3.2 				"/>
+</g>
+<g id="rinseMilk" viewBox="0 0 44 44">
+			<rect x="12.1" y="38.7" style="fill:#FFFFFF;" width="3.1" height="4.6"/>
+		<g>
+			<polygon style="fill:#FFFFFF;" points="21.2,36.2 23.9,35.7 22.4,29.2 20,29.6 			"/>
+				<polygon style="fill:#FFFFFF;" points="-2.4,18.7 0,18.2 -3.9,1 -5.5,1.4 				"/>
+			<polygon style="fill:#FFFFFF;" points="14.8,27.6 12.4,27.6 12.8,10 14.4,10 			"/>
+				<polygon style="fill:#FFFFFF;" points="-3,6.2 -6,5.6 -4.9,1.1 -2.2,1.7 				"/>
+				<polygon style="fill:#FFFFFF;" points="-5.1,6.2 -2.1,5.6 -3.1,1.1 -5.9,1.7 				"/>
+			<path style="fill:#FFFFFF;" d="M15,36.4h-2.8l0.1-6.7l2.5,0L15,36.4z M6.2,36.2l-2.7-0.6
+				L5,29.2l2.4,0.5L6.2,36.2z"/>
+				<polygon style="fill:#FFFFFF;" points="-3.2,18.7 -5.6,18.2 -1.7,1 -0.1,1.4 				"/>
+		</g>
+			<path style="fill:#FFFFFF;" d="M-2.3,3.6h5.6V1.7h-5.6V3.6L-2.3,3.6z M-6,18.2v10.1
+				c-0.1,1.3,0.9,2.4,2.2,2.4h8.6c1.3-0.1,2.3-1.1,2.2-2.4V18.2c0-1.8-0.3-3.7-1-5.4L3.4,4.5h0.4C4,4.5,4.2,4.3,4.2,4V1.2
+				C4.2,1,4,0.7,3.7,0.7h-6.5C-3,0.7-3.2,1-3.2,1.2V4c0,0.3,0.2,0.5,0.5,0.5h0.4L-5,12.8C-5.7,14.5-6,16.3-6,18.2z"/>
+		</g>
+	</g>
+</g>
+<g id="filter" viewBox="0 0 44 44">
+	<path style="fill:#FFFFFF;" d="M27.5,6.4l-1.3,30.9h-0.7v3.3H26v1.4l-0.5,0V43h-6.8v-1.1
+		l-0.5,0v-1.4h0.5v-3.3H18L16.6,6.4H27.5z M26.4,1c0.6,0,1,0.4,1,1v1.7h1.4v1.4H15.2V3.7h1.4V2c0-0.6,0.4-1,1-1H26.4L26.4,1z"/>
+</g>
+
+<g id="tiles" viewBox="0 0 64 64">
+	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M8.1,14.9H21c0.4,0,0.6,0.3,0.6,0.6v14.2
+		c0,0.4-0.3,0.6-0.6,0.6H8.1c-0.4,0-0.6-0.3-0.6-0.6V15.5C7.4,15.2,7.7,14.9,8.1,14.9z M8.1,33.6H21c0.4,0,0.6,0.3,0.6,0.6v14.2
+		c0,0.4-0.3,0.6-0.6,0.6H8.1c-0.4,0-0.6-0.3-0.6-0.6V34.3C7.4,33.9,7.7,33.6,8.1,33.6z M25.5,14.9h12.9c0.4,0,0.6,0.3,0.6,0.6v14.2
+		c0,0.4-0.3,0.6-0.6,0.6H25.5c-0.4,0-0.6-0.3-0.6-0.6V15.5C24.9,15.2,25.2,14.9,25.5,14.9z M43,14.9h12.9c0.4,0,0.6,0.3,0.6,0.6
+		v14.2c0,0.4-0.3,0.6-0.6,0.6H43c-0.4,0-0.6-0.3-0.6-0.6V15.5C42.3,15.2,42.6,14.9,43,14.9z M25.5,33.6h12.9c0.4,0,0.6,0.3,0.6,0.6
+		v14.2c0,0.4-0.3,0.6-0.6,0.6H25.5c-0.4,0-0.6-0.3-0.6-0.6V34.3C24.9,33.9,25.2,33.6,25.5,33.6z M43,33.6h12.9
+		c0.4,0,0.6,0.3,0.6,0.6v14.2c0,0.4-0.3,0.6-0.6,0.6H43c-0.4,0-0.6-0.3-0.6-0.6V34.3C42.3,33.9,42.6,33.6,43,33.6z"/>
+</g>
+<g id="slider" viewBox="0 0 64 64">
+	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M9.1,22.9h12.3c0.4,0,0.6,0.3,0.6,0.6v16.8
+		c0,0.4-0.3,0.6-0.6,0.6H9.1c-0.4,0-0.6-0.3-0.6-0.6V23.6C8.4,23.2,8.7,22.9,9.1,22.9z"/>
+	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M25.9,22.9h12.3c0.4,0,0.6,0.3,0.6,0.6v16.8
+		c0,0.4-0.3,0.6-0.6,0.6H25.9c-0.4,0-0.6-0.3-0.6-0.6V23.6C25.2,23.2,25.5,22.9,25.9,22.9z"/>
+	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M42.7,22.9h12.3c0.4,0,0.6,0.3,0.6,0.6v16.8
+		c0,0.4-0.3,0.6-0.6,0.6H42.7c-0.4,0-0.6-0.3-0.6-0.6V23.6C42,23.2,42.3,22.9,42.7,22.9z"/>
+	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M64,32l-5.2,5.2V26.8L64,32z"/>
+	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M0,32l5.2,5.2V26.8L0,32z"/>
+</g>
 
 
                 </svg>
@@ -3683,6 +3980,8 @@ var kxapp = function() {
             display: none;
         }
 
+
+
         .hScroller{
             position: absolute;
             top: 71px;
@@ -3797,6 +4096,11 @@ var kxapp = function() {
             text-shadow: 0 0 2px #ffffff57, 0 0 6px #ffffff91, 0 0 10px white;
         }
 
+        .slides::-webkit-scrollbar {
+            /*display: none;*/
+            height:0;
+        }
+
         .slides {
             position: absolute;
             width: 480px;
@@ -3804,6 +4108,9 @@ var kxapp = function() {
             top: 53px;
             overflow-x: scroll;
             white-space: nowrap;
+            -ms-overflow-style: none;
+            scrollbar-width: 0;
+            scrollbar-height: 0;
         }
 
           .tilesBlock {
@@ -3830,7 +4137,7 @@ var kxapp = function() {
             margin: 0 0 3px 0;
             height: 125px;
             width: 110px;
-            padding: 8px;
+            padding: 3px 8px 8px 8px;
             box-sizing: border-box;
             position:relative;
             margin-right:3px;
@@ -3851,12 +4158,11 @@ var kxapp = function() {
         }
 
         .atile .titleBlock {
-            height: 24px;
-            overflow: hidden;
             position: relative;
             left: 0;
             width: 100%;
             border-bottom:none;
+            height:21px;
         }
 
             .atile .titleBlock .title {
@@ -3866,8 +4172,7 @@ var kxapp = function() {
                 width:100%;
                 height: 21px;
                 white-space: nowrap;
-                line-height: 13px;
-                text-overflow: ellipsis;
+                line-height: 20px;
                 border-bottom: solid 1px rgba(255, 255, 255, 0.2);
             }
 
@@ -3875,11 +4180,12 @@ var kxapp = function() {
                 font-weight: bold;
                 text-transform: uppercase;
                 font-size: 14px;
+                white-space: initial;
             }
 
             .atile .titleBlock .userTitleClip{
                 left:32px;
-                bottom:1px;
+                bottom:-3px;
             }
 
             .atile .tileIcon{
@@ -3887,7 +4193,14 @@ var kxapp = function() {
                 width:44px;
                 height:44px;
                 left:33px;
-                top:41px;
+                top:49px;
+            }
+            .atile .tileIcon.small{
+                position:absolute;
+                width:32px;
+                height:32px;
+                left:28px;
+                top:38px;
             }
             .atile .keyword{
                 position: absolute;
@@ -3904,6 +4217,39 @@ var kxapp = function() {
                 width:223px;
             }
 
+            .atileContents{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                height: 97px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: normal;
+            }
+            .atileContents .ellipsis{
+
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            }
+
+            .atile.double .atileContents{
+                width: 103px;
+                position: absolute;
+            }
+            .atile.double .atileContents:first-child{
+            }
+            .atile.double .atileContents:last-child{
+
+                left:110px;
+            }
+
+            .atile.double .atileContents:last-child div{
+                width:100%;
+                border-left:solid 1px rgba(255,255,255,0.2);
+            }
 
 
 
@@ -3955,6 +4301,111 @@ var kxapp = function() {
     });
     };
   
+
+      
+    var hslider = function(e, callback) {
+        var that = this;
+        that.element = e;
+        that.isDown = false;
+        that.startX = null;
+        that.scrollLeft = null;
+        that.mouseMove = false;
+        that.element = e;
+        that.isScrolling = false;
+
+        //that.element.classList.add(app.pointingDevice);
+        
+        that.align = function(automove){
+            console.log("align!");
+            console.log(that.element.scrollLeft);
+            if (that.element.scrollLeft >= 242) {
+               if (automove) that.element.scrollTo({ left: 484, behavior:'smooth'});
+                callback(2)
+            } else {
+                if (automove) that.element.scrollTo({ left: 0, behavior:'smooth'});
+                callback(1)
+            }
+        };
+
+
+        that.element.addEventListener('scroll', function(e) {
+          //   e.preventDefault();
+          //   console.log('scroll');
+        });
+
+        that.element.addEventListener('touchmove', function(e) {
+                window.clearTimeout( that.isScrolling );
+                that.isScrolling = setTimeout(function() {
+                    console.log( 'Scrolling has stopped.' );
+                    that.align(false);
+                }, 600);
+            }, { passive:false });
+
+    
+        that.element.addEventListener('mouseover', e => {
+            //console.log('mouseover');
+           // if (app.pointingDevice == 'touch') return;
+            that.element.style.scrollSnapType = 'unset';
+        });
+    
+        that.element.addEventListener('mousedown', e => {
+            //console.log(app.pointingDevice,' mousedown');
+           // if (app.pointingDevice == 'touch') return;
+            that.isDown = true;
+            that.mouseMove = false;
+            that.startX = e.pageX - that.element.offsetLeft;
+            that.scrollLeft = that.element.scrollLeft;
+        });
+    
+        that.element.addEventListener('mouseleave', e => {
+            // console.log('mouseleave');
+           // if (app.pointingDevice == 'touch') return;
+            that.isDown = false;
+            that.mouseMove = false;
+            that.align(true);
+        });
+    
+        that.element.addEventListener('click', e => {
+            if (that.mouseMove) return;
+            // that.isClicked = true;
+        });
+    
+        that.element.addEventListener('mouseup', e => {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            //  console.log('mouseup');
+            if (app.pointingDevice == 'touch') return;
+            that.isDown = false;
+            that.align(true);
+        });
+    
+        that.element.addEventListener('mousemove', e => {
+            console.log('mousemove',that.isDown);
+            //e.stopImmediatePropagation();
+          //  if (app.pointingDevice === 'touch') return;
+            that.mouseMove = true;
+            if (!that.isDown) return;
+            const x = e.pageX - that.element.offsetLeft;
+            const walk = (x - that.startX) * 2; // increase to scroll faster
+            that.element.scrollLeft = that.scrollLeft - walk;
+        });
+    
+        that.element.addEventListener('wheel', function(e) {
+            console.log(e);
+            e.preventDefault();
+        });
+    
+        that.element.addEventListener('touchstart', e => {
+          //  app.pointingDevice = 'touch';
+        });
+
+
+
+
+        };
+      
+
+
     var hscroller = function(e) {
     var that = this;
     that.element = e;
