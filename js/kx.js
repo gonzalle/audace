@@ -35,6 +35,7 @@ var kxapp = function() {
           hotwater: 'Hot Water',
           steam: 'Steam',
           preheat: 'Pre Heating',
+          seqCanceled : 'Drink canceled',
           none: 'None',
           week: 'Week',
           weekend: 'Week-end',
@@ -74,6 +75,8 @@ var kxapp = function() {
           coffeeTemp : "Coffee Temp",
           teaTemp :"Tea Temp",
           cafeTyp : "Coffee type",
+          greasyCoffee : "Greasy Coffee",
+          standardCoffee : "Stadard Coffee",
           reset : "Init unit",
           firstName: "first name",
           typeYourName : "Type your Name",
@@ -84,6 +87,9 @@ var kxapp = function() {
           on:"On",
           off:"Off",
           chooseColor:"Choose your color",
+          afterInactivity:"Shutdown after",
+          waterHardnessDesc:'Setup Water Hardness',
+
 
         }},
         fr: {
@@ -113,6 +119,7 @@ var kxapp = function() {
           hotwater: 'Eau Chaude',
           steam: 'Vapeur',
           preheat: 'Préchauffage',
+          seqCanceled : 'Boisson interrompue',
           none: 'Aucun',
           week: 'Semaine',
           weekend: 'Week-end',
@@ -136,7 +143,6 @@ var kxapp = function() {
           beforeThxs : "Votre boisson",
           afterThxs : "a&nbsp;été ajoutée à votre profil",
           settings:"Paramètres",
-          
           setups : "Réglages",
           care : "Entretien",
           informations : "Informations",
@@ -153,6 +159,8 @@ var kxapp = function() {
           coffeeTemp : "Température Café",
           teaTemp :"température Thé",
           cafeTyp : "type de café",
+          greasyCoffee : "Café huileux",
+          standardCoffee : "Café Standard",
           reset : "Réinitialiser produit",
           firstName: "Prénom",
           typeYourName : "Tapez votre prénom",
@@ -163,6 +171,8 @@ var kxapp = function() {
           on:"actif",
           off:"inactif",
           chooseColor:"Choisissez votre couleur",
+          afterInactivity:"Après une période d'inactivité de :",
+          waterHardnessDesc:"Régler la dureté de l'eau",
 
 
 
@@ -188,6 +198,40 @@ var kxapp = function() {
         'sweet',
         'yummy',
       ];
+
+      app.sliders = {
+          backlight:{
+              steps:false,
+              default:50,
+              icons:{left:"backLightSmall",right:"backLightSmall"},
+              title:("screenLight"),
+              desc:("BackLightDesc"),
+          },
+          autoOff :  {
+            steps:[
+                {val:null, desc1 : "15", desc2 : "min"},
+                {val:null, desc1 : "30", desc2 : "min"},
+                {val:null, desc1 : "60", desc2 : "min"},
+                {val:null, desc1 : "90", desc2 : "min"},
+                {val:null, desc1 : "120", desc2 : "min"},
+            ],
+            default:3,
+            title:("autoOff"),
+            desc:("afterInactivity"),
+        },
+        waterHardness :  {
+            steps:[
+                {val:null, desc1 : "0", desc2 : ""},
+                {val:null, desc1 : "1", desc2 : ""},
+                {val:null, desc1 : "2", desc2 : ""},
+                {val:null, desc1 : "3", desc2 : ""},
+                {val:null, desc1 : "4", desc2 : ""},
+            ],
+            default:4,
+            title:("waterHardness"),
+            desc:("waterHardnessDesc"),
+        },
+      };
   
       const kxColors = {
         orange: '#f38230',
@@ -218,14 +262,14 @@ var kxapp = function() {
       };
       app.profiles = {
         userOne: {
-          name: 'LAURA',
-          color: 'red',
+          name: 'Lucy',
+          color: 'blue',
           bkg: 'bkg13',
           favs: [
             {
-              recipe: 'ristretto',
-              rightmenuval: '20',
-              leftmenuval: '1',
+              recipe: 'lattemacchiato',
+              rightmenuval: '2',
+              leftmenuval: '3',
               keyword: 'morning',
               x2 : false,
 
@@ -249,16 +293,16 @@ var kxapp = function() {
           ],
         },
         userTwo: {
-          name: 'THOMAS',
+          name: 'Ben',
           color: 'green',
           bkg: 'bkg6',
           favs: [
             {
-              recipe: 'cappucino',
-              rightmenuval: '2',
+              recipe: 'espresso',
+              rightmenuval: '1',
               leftmenuval: '3',
               keyword: 'morning',
-              x2 : true,
+              x2 : false,
 
             },
             {
@@ -381,6 +425,7 @@ var kxapp = function() {
     };
   
     app.buildPage = function(pageId, data, callback) {
+    app.data.pages[pageId].data = data;
     var tempBuild = new DOMParser().parseFromString(
         app.data.pages[pageId].html(),
         'text/html',
@@ -433,31 +478,32 @@ var kxapp = function() {
         };
           
     app.loadPage = function(pageId, data) {
-    console.log('loading ' + pageId);
-    if (app.currentPage) {
-        //  app.currentPage.built = app.pageHolder.innerHTML;
-        //debugger;
-        if (app.currentPage.quit()) {
-        if (app.currentPage.built)
-            app.currentPage.built.classList.remove('onScreen');
-        } else {
-        //console.log("quitting screen is forbidden");
-        return;
+        console.log('loading ' + pageId);
+        if (app.currentPage) {
+            //  app.currentPage.built = app.pageHolder.innerHTML;
+            //debugger;
+            if (app.currentPage.quit()) {
+            if (app.currentPage.built)
+                app.currentPage.built.classList.remove('onScreen');
+            } else {
+            //console.log("quitting screen is forbidden");
+            return;
+            }
         }
-    }
 
-    if (app.data.pages[pageId].built == false) {
-        app.buildPage(pageId, data, function() {
-        app.currentPage = app.data.pages[pageId];
-        app.showPage(app.currentPage.built, true);
-        });
-    } else {
-        //debugger;
-        app.currentPage = app.data.pages[pageId];
-        // TODO Remove values for following function;
-        app.showPage(app.currentPage.built, true);
-    }
-    return;
+        if (app.data.pages[pageId].built == false) {
+
+            app.buildPage(pageId, data, function() {
+                app.currentPage = app.data.pages[pageId];
+                app.showPage(app.currentPage.built, true);
+            });
+        } else {
+            //debugger;
+            app.currentPage = app.data.pages[pageId];
+            // TODO Remove values for following function;
+            app.showPage(app.currentPage.built, true);
+        }
+        return;
     };
 
     app.init = function(kxhost) {
@@ -642,8 +688,8 @@ var kxapp = function() {
             //this.recipe = app.data.recipes[data];
             //console.log("PREP " , this.recipe);
             var thisBuilt = this.built;
-            var zat = this;
-            zat.recipeSequence = false;
+            var that = this;
+            that.recipeSequence = false;
             if (app.currentRecipe) {
 
 
@@ -703,47 +749,44 @@ var kxapp = function() {
             function runRecipe(){
                 var seqOutput = thisBuilt.querySelector('.sequence span');
                 thisBuilt.classList.add('running');
-                //debugger;
+                debugger;
                 app.currentRecipe.lastSelectedQuantity = thisBuilt.querySelector('.quantityScroller .wheelItem.selected').dataset.val;
                 if(app.currentRecipe.leftmenutyp === 'strength') {
                     app.currentRecipe.lastSelectedStrength = thisBuilt.querySelector('.strengthScroller .wheelItem.selected').dataset.val;
                 }
                 var seq = [
-                    {
-                    fn: () => { seqOutput.innerHTML = _('preheat'); },
-                    delay: 0,
-                    },
+                    { fn: () => { seqOutput.innerHTML = _('preheat'); }, delay: 0, },
                 ];
                 var addedseq = app.currentRecipe.sequences.split(';');
                 var intertime = recipeDuration / (addedseq.length + 1);
                 addedseq.forEach(function(val) {
-                    seq.push({
-                    fn: () => { seqOutput.innerHTML = _(val); },
-                     delay: intertime
-                    });
+                    seq.push({ fn: () => { seqOutput.innerHTML = _(val); }, delay: intertime });
                 });
-                seq.push({
-                    fn: () => {
-                    seqOutput.innerHTML = '';
-                    },
+                seq.push({ fn: () => { seqOutput.innerHTML = '';},
                     delay: intertime + 200,
                 });
-                zat.recipeSequence = new sequence(seq, completed => {
+                that.recipeSequence = new sequence(seq, completed => {
                     console.log('sync done');
                     if (completed) {
                     app.loadPage('ready', null);
                     } else {
                     console.log('stopped');
                     }
-                    zat.recipeSequence = false;
+                    that.recipeSequence = false;
                 });
             }
 
             thisBuilt.querySelector('.stopButton').addEventListener('click', function(e) {
                 console.log('stopping');
+                thisBuilt.querySelector('.sequence span').innerHTML = _('seqCanceled')
                 thisBuilt.classList.remove('running');
-                zat.recipeSequence.stop();
-                zat.recipeSequence = false;
+                thisBuilt.classList.add('canceled');
+                that.recipeSequence.stop();
+                that.recipeSequence = false;
+                that.canceltimout = setTimeout(()=>{
+                    app.loadPage("recettes",null);
+                },4000)
+                //debugger;
                 });
 
     
@@ -781,6 +824,7 @@ var kxapp = function() {
             quit: function() {
                 console.log(this.recipeSequence);
                 //debugger;
+                clearTimeout(this.canceltimout);
                 if (this.recipeSequence) this.recipeSequence.stop();
                 this.built = false; // We reset the built as next recipe will not be the same
                 //console.log('quitting '+this.name);
@@ -796,7 +840,7 @@ var kxapp = function() {
                             
                     <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
 
-                    <div class="wheel vWheel right quantityScroller">
+                    <div class="wheel vWheel right quantityScroller hideOnCancel">
                     <div class="wheelItem noAction"></div>`;
 
                 app.currentRecipe.rightmenuvalues
@@ -810,14 +854,14 @@ var kxapp = function() {
 
                 rightMenu += `<div class="wheelItem noAction last"></div>
                                 </div>
-                                <div class="vwheelCenter right userBorderColor">&nbsp;</div>
-                                <div class="vwheelUnit right">ml</div>
+                                <div class="vwheelCenter hideOnCancel right userBorderColor">&nbsp;</div>
+                                <div class="vwheelUnit hideOnCancel right">ml</div>
                                 `;
             } else if (app.currentRecipe.rightmenutyp == 'vol') {
                 rightMenu = `
                     <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
 
-                    <div class="wheel vWheel right quantityScroller">
+                    <div class="wheel vWheel right quantityScroller hideOnCancel">
                     <div class="wheelItem"></div>
 
                     <div data-val="M" class="wheelItem size">
@@ -840,16 +884,36 @@ var kxapp = function() {
 
                     <div class="wheelItem last"></div>
                     </div>
-                    <div class="vwheelCenter userBorderColor right">&nbsp;</div>
+                    <div class="vwheelCenter hideOnCancel userBorderColor right">&nbsp;</div>
                     `;
             }
             return `
                     <div class="pageContent prepare ${app.currentRecipe.bkg} ${(app.currentProfile)?app.currentProfile.color + ' userMode':'orange'}">
-                    <div class="backToMain backButton">
-                    <svg style="" viewBox="0 0 26 26" >
-                    <use href="#backArrow" />
-                    </svg>
+                    <style>
+                    .canceled .hideOnCancel{
+                        opacity:0;
+                    }
+                    .canceled .dimOnCancel{
+                        opacity:0.3;
+                    }
+                    .cancelIcon{
+                        display:none;
+                        position:absolute;
+                        width:80px;
+                        height:80px;
+                        left:73px;
+                        top:130px
+                    }
+
+                    .canceled .cancelIcon{
+                        display:block;
+                    }
+
+                    </style>
+                    <div class="backToMain backButton hideOnCancel">
+                      <svg style="" viewBox="0 0 26 26" > <use href="#backArrow" /> </svg>
                     </div>
+
 
                     <div class="centralArea" style="position:absolute;width:222px;left:129px;height:100%;background-color:rgba(255,255,255,.15)">
                         
@@ -862,9 +926,15 @@ var kxapp = function() {
                             <span></span>
                         </div>
 
-                        <div class="imageHolder">
+                        <div class="cancelIcon">
+                            <svg viewBox="0 0 64.4 64.4" class="">
+                                <use href="#canceled" />
+                            </svg>
+                        </div>
 
-                        <img class="recipeImage" nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style=" object-position:${
+                        <div class="imageHolder dimOnCancel">
+
+                        <img class="recipeImage " nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style=" object-position:${
                                 app.currentProfile ?
                                     app.currentRecipe.x2 ? 
                                     ' -' + app.currentRecipe.spritexy_x2.split(';')[0] * 150 + 'px'+
@@ -879,17 +949,11 @@ var kxapp = function() {
                             }
                         
                         "/>
-                        
-
+                    
                         </div>
-                        ${
-                        app.currentRecipe.canx2 && !app.currentProfile
+                        ${ app.currentRecipe.canx2 && !app.currentProfile
                             ? `
-                        <div class="plusMinusButton" style="position: absolute;
-                        left: 151px;
-                        top: 104px;
-                        width: 32px;
-                        height: 32px;">
+                        <div class="plusMinusButton hideOnCancel" style="position: absolute; left: 151px; top: 104px; width: 32px; height: 32px;">
                             <svg viewBox="0 0 32 32" class="">
                             <use href="#plusButton" />
                             </svg>
@@ -897,23 +961,22 @@ var kxapp = function() {
                         ` : ``
                         }
 
-                        <div class="progressBarBkg">
-                        <div class="progressBar">
-                        </div>
-
+                        <div class="progressBarBkg hideOnCancel">
+                            <div class="progressBar">
+                            </div>
                         </div>
 
                     </div>
-                    <div class="stopButton userBorderColor" style="text-transform:uppercase">${_('stop')}</div>
-                    <div class="startButton userBorderColor" style="text-transform:uppercase">${_('start')}</div>
+                    <div class="stopButton userBorderColor hideOnCancel" style="text-transform:uppercase">${_('stop')}</div>
+                    <div class="startButton userBorderColor hideOnCancel" style="text-transform:uppercase">${_('start')}</div>
 
                     ${rightMenu}
 
                     ${
                     app.currentRecipe.leftmenutyp === 'strength'
                         ? `
-                    <div class="target strengthScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:96px; top:160px"></div>
-                    <div class="wheel vWheel left strengthScroller">
+                    <div class="target strengthScroller_target " style = "position:absolute; width:5px; height:5px;background-color:transparent; left:96px; top:160px"></div>
+                    <div class="wheel vWheel left strengthScroller hideOnCancel">
                         <div class="wheelItem noAction"></div>
                             <div class="wheelItem  strength"  data-val="1">
                             <svg viewBox="0 0 57 54" class="">
@@ -932,7 +995,7 @@ var kxapp = function() {
                         </div>
                         <div class="wheelItem noAction"></div>
                     </div>
-                    <div class="vwheelCenter left userBorderColor">&nbsp;</div>
+                    <div class="vwheelCenter left userBorderColor hideOnCancel">&nbsp;</div>
                     `
                         : ''
                     }
@@ -1059,12 +1122,8 @@ var kxapp = function() {
             <div class="titleBlock light">
                 <span class="title">${_(app.currentRecipe.code)}</span>
             </div>
-            <div class="enjoy" style="    position: absolute;
-            width: 360px;
-            left: 101px;
-            top: 59px;
-            height: 46px;
-            font-size: 24px; text-align:center">
+            
+            <div class="enjoy settingsDesc" style="padding-left: 32px;">
 
             <div style="
             display: inline-block;
@@ -1359,7 +1418,7 @@ var kxapp = function() {
             build: function(callback) {
             var recipes = this.built.querySelectorAll('.atile.userRecipe');
             recipes.forEach(el => el.addEventListener('click', event => {
-                debugger;
+               // debugger;
                     var thisFav = app.currentProfile.favs[el.dataset.val];
                     app.currentRecipe = Object.assign({}, app.data.recipes[thisFav.recipe]);
                     console.log("click", app.currentRecipe);
@@ -1508,27 +1567,7 @@ var kxapp = function() {
             <div class="titleBlock light" style="left:99px;width:282px">
             <span class="title">${_("settings")}</span>
             </div>
-                <style>
-                .params {
-                    margin-top: 56px;
-                }
-                    .paramMenuButton{
-                        position:relative;
-                        width:412px;
-                        height:60px;
-                        line-height:60px;
-                        box-sizing:border-box;
-                        background-color: rgba(0, 0, 0, 0.4);
-                        border:solid 1px white;
-                        margin-left:38px;
-                        text-align:center;
-                        font-size:20px;
-                        font-weight:bold;
-                        text-transform:uppercase;
-                        margin-bottom:5px;
-                    }
-
-                </style>
+                
 
 
                 <section class="params" >
@@ -1568,7 +1607,7 @@ var kxapp = function() {
                 //console.log(keywordsElems);
                 buttons.forEach(function(el,k) {
                     el.addEventListener('click', event => {
-                        app.loadPage(el.dataset.target,null)
+                        app.loadPage(el.dataset.target,(el.dataset.data?el.dataset.data:null))
                     })
                 });
 
@@ -1637,7 +1676,7 @@ var kxapp = function() {
                     </div>
                 </div>
 
-                <div class="atile settings" data-val="0">
+                <div class="atile settings">
                 <div class="titleBlock">
                 <div class="title">
                 <span>${_('light')}</span>
@@ -1652,7 +1691,7 @@ var kxapp = function() {
 
 
 
-                <div class="atile settings" data-val="0">
+                <div class="atile settings active" data-val="0">
                 <div class="titleBlock">
                 <div class="title">
                 <span>${_('display')}</span>
@@ -1662,13 +1701,13 @@ var kxapp = function() {
                     height: 64px;
                     left: 23px;
                     top: 42px;">
-                    <svg viewBox="0 0 64 64"">
+                    <svg viewBox="0 0 64 64">
                         <use href="#tiles"></use>
                     </svg>
                     </div>
                 </div>
 
-                <div class="atile settings" data-val="0">
+                <div class="atile settings active" data-target="slider" data-data="autoOff">
                 <div class="titleBlock">
                 <div class="title">
                 <span>${_('autoOff')}</span>
@@ -1710,17 +1749,14 @@ var kxapp = function() {
             <div class="tiles" data-key="0">
 
 
-
-            <div class="atile settings" data-val="0">
+            <div class="atile settings active" data-target="slider" data-data="waterHardness">
             <div class="titleBlock">
             <div class="title">
             <span>${_('waterHardness')}</span>
             </div>
             </div>
-                <div class="tileIcon">
-                <svg style="" viewBox="0 0 44 44">
-                    <use href="#plus"></use>
-                </svg>
+                <div class="atileContents">
+                <div>${"3"}</div>
                 </div>
             </div>
 
@@ -1730,10 +1766,8 @@ var kxapp = function() {
             <span>${_('coffeeTemp')}</span>
             </div>
             </div>
-                <div class="tileIcon">
-                <svg style="" viewBox="0 0 44 44">
-                    <use href="#plus"></use>
-                </svg>
+                <div class="atileContents">
+                <div>${"T°2"}</div>
                 </div>
             </div>
 
@@ -1744,12 +1778,10 @@ var kxapp = function() {
             <span>${_('teaTemp')}</span>
             </div>
             </div>
-                <div class="tileIcon">
-                <svg style="" viewBox="0 0 44 44">
-                    <use href="#plus"></use>
-                </svg>
-                </div>
+            <div class="atileContents">
+            <div>${"T°3"}</div>
             </div>
+        </div>
 
             <div class="atile settings" data-val="0">
             <div class="titleBlock">
@@ -1757,13 +1789,10 @@ var kxapp = function() {
             <span>${_('cafeTyp')}</span>
             </div>
             </div>
-                <div class="tileIcon">
-                <svg style="" viewBox="0 0 44 44">
-                    <use href="#plus"></use>
-                </svg>
+                <div class="atileContents">
+                <div>${_("greasyCoffee")}</div>
                 </div>
-            </div>
-
+            </div>          
 
             <div class="atile settings" data-val="0">
             <div class="titleBlock">
@@ -1773,7 +1802,7 @@ var kxapp = function() {
             </div>
                 <div class="tileIcon">
                 <svg style="" viewBox="0 0 44 44">
-                    <use href="#plus"></use>
+                    <use href="#reset"></use>
                 </svg>
                 </div>
             </div>
@@ -2166,7 +2195,7 @@ var kxapp = function() {
 
                 </style>
 
-                <div class="typeYourName" style="font-size:24px;position:absolute;top:70px;left:10px;width:460px;text-align:center">${_('typeYourName')}</div>
+                <div class="settingsDesc">${_('typeYourName')}</div>
 
                 <div class = "nameFieldHolder" style="position:absolute;height:60px; width:282px;top:109px;left:99px;  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5);
                 background-color: rgba(0, 0, 0, 0.3);">
@@ -2318,9 +2347,9 @@ var kxapp = function() {
 
                 </style>
 
-                <div class="typeYourName" style="font-size:24px;position:absolute;top:70px;left:10px;width:460px;text-align:center">${_('chooseColor')}</div>
-
-
+                <div class="settingsDesc">${_('chooseColor')}</div>
+                
+                
 
                 <div class=" hScroller colorScroller">
                         ${colorScrollerItems}
@@ -2432,22 +2461,27 @@ var kxapp = function() {
             <span>${_('display')}</span>
             </div>
             </div>
-                <div class="tileIcon">
-                <svg style="" viewBox="0 0 44 44">
-                    <use href="#plus"></use>
+                <div class="tileIcon" style="width: 64px;
+                height: 64px;
+                left: 23px;
+                top: 42px;">
+                <svg viewBox="0 0 64 64">
+                    <use href="#tiles"></use>
                 </svg>
                 </div>
             </div>
 
+
+            
             <div class="atile settings" data-val="0">
             <div class="titleBlock">
             <div class="title">
             <span>${_('light')}</span>
             </div>
             </div>
-                <div class="tileIcon">
+                <div class="tileIcon ">
                 <svg style="" viewBox="0 0 44 44">
-                    <use href="#plus"></use>
+                    <use href="#lightOn"></use>
                 </svg>
                 </div>
             </div>
@@ -2480,6 +2514,94 @@ var kxapp = function() {
             return rhtml;
             },
         },
+
+        slider : {
+            name:"slider",
+            built: false,
+            build: function(callback) {
+                console.log("BUILD");
+                //debugger;
+                this.built.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('setups', null);
+                });
+                callback();
+            },
+            beforeShow: function() {
+                console.log("BEFORESHOW");
+
+
+            },
+            run: function() {},
+            quit: function() {
+                console.log("QUIT");
+
+            // fn called on quit ,, Must send true to allow quitting.
+            console.log('quitting ' + this.name);
+            this.data = false;
+            this.built = false;
+            return true;
+            },
+            html: function() {
+            var slider  = kx.sliders[this.data];
+            var width = 320;
+            var steps='';
+            function pxForPos(pos) {
+              //  return ((width+(width/(slider.steps.length-1)))/slider.steps.length*pos)-(width/(slider.steps.length-1));
+                return (pos-1) * (width)/(slider.steps.length-1);
+            }
+            slider.steps.forEach(function(el,k) {
+                 steps += `<div class="astep" style="left:${pxForPos(k+1)}px"><div class="l">${el.desc1}</div><div class="l l2">${el.desc2}</div></div>`
+            })
+
+            var rhtml = `
+
+            <div class="pageContent settings bkg16 orange">
+            <style>
+            .astep {
+                width:3px;
+                height:21px;
+                background-color:white;
+                position:absolute;
+                overflow:visible;
+                top:-8px;
+            }
+            .astep .l{
+                    position: absolute;
+                    margin-top: 34px;
+                    text-align: center;
+                    display: block;
+                    width: 60px;
+                    margin-left: -30px;
+                    font-weight:900;
+                    font-size:24px;
+            }
+
+            .astep .l2 {
+                margin-top: 60px;
+                font-weight:300;
+            }
+            
+            </style>
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+            <div class="titleBlock light" style="left:99px;width:282px">
+            <span class="title">${_(slider.title)}</span>
+            </div>
+            <div class="settingsDesc">${_(slider.desc)}</div>
+                <div class="barBkk userFIllColor" style="position:absolute;width:${width}px;height:5px;top:163px;left:81px">
+
+                <div class="fill" style="background-color:#FFFFFF;position:absolute;height:5px;width:${pxForPos(slider.default)}px"></div>
+                ${steps}
+                </div>
+            </div>
+
+                `;
+            return rhtml;
+            },
+        },
+
 
 
 },
@@ -2877,7 +2999,7 @@ var kxapp = function() {
         link.id = 'id2';
         link.rel = 'stylesheet';
         link.href =
-            'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap';
+            'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap';
         document.head.appendChild(link);
 
         var svgLib = document.createElement('div');
@@ -3291,6 +3413,14 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
 	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M64,32l-5.2,5.2V26.8L64,32z"/>
 	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M0,32l5.2,5.2V26.8L0,32z"/>
 </g>
+
+
+<g id="canceled" viewBox="0 0 64.4 64.4">
+	<circle style="fill:none;stroke:#FFFFFF;stroke-width:2.8828;" cx="32.2" cy="32.2" r="30.8"/>
+	<path style="fill:none;stroke:#FFFFFF;stroke-width:2.0847;" d="M16.7,19.2l27.5,28.1 M22.3,21.2v18.6c0.1,2.2,1,3.3,2.8,3.3h13.3
+		c1.8,0,2.7-1.1,2.7-3.3V21.2 M42.1,22.3h3.2c1.4,0.2,2.1,1.2,2.1,3.1c0,2.8,0.6,6.3-2.1,6.3h-3.4"/>
+</g>
+
 
 
                 </svg>
@@ -4251,7 +4381,26 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 border-left:solid 1px rgba(255,255,255,0.2);
             }
 
+            .settingsDesc{ font-size:24px;position:absolute;top:70px;left:10px;width:460px;text-align:center}
 
+            .params {
+                margin-top: 56px;
+            }
+                .paramMenuButton{
+                    position:relative;
+                    width:412px;
+                    height:60px;
+                    line-height:60px;
+                    box-sizing:border-box;
+                    background-color: rgba(0, 0, 0, 0.4);
+                    border:solid 1px white;
+                    margin-left:38px;
+                    text-align:center;
+                    font-size:20px;
+                    font-weight:bold;
+                    text-transform:uppercase;
+                    margin-bottom:5px;
+                }
 
         `;
     document.head.appendChild(sheet);
