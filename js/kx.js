@@ -1,372 +1,375 @@
 (function() {
-    'use strict';
-
+'use strict';
 
 var kxapp = function() {
-      // Check ES6
-      // return false;
-      var app = this;
-      app.lg = 'fr';
-      const kxLg = {
-        en: {
-            display : "english",
-            strings:{
-          unsupported:'Feature unavailable<br>in this demonstrator',
-          ristretto: 'Ristretto',
-          espresso: 'Espresso',
-          lungo: 'Lungo',
-          cafelong: 'Café Long',
-          doppio: 'Doppio',
-          americano: 'Americano',
-          espressomacchiato: 'e.Macchiato',
-          cappucino: 'Cappucino',
-          lattemacchiato: 'LMacchiato',
-          laitmousse: 'Lait Moussé',
-          caffelatte: 'Caffe Latte',
-          flatwhite: 'Flat White',
-          thevert: 'Thé Vert',
-          thenoir: 'Thé Noir',
-          infusion: 'Infusion',
-          drink: 'Drinks',
-          profile: 'Profile',
-          start: 'Start',
-          foaming: 'Milk Foaming',
-          cafe: 'Coffee Making',
-          hotwater: 'Hot Water',
-          steam: 'Steam',
-          preheat: 'Pre Heating',
-          seqCanceled : 'Drink canceled',
-          none: 'None',
-          week: 'Week',
-          weekend: 'Week-end',
-          morning: 'Morning',
-          lunch: 'Lunch',
-          afternoon: 'Afternoon',
-          dinner: 'Evening',
-          short: 'Short',
-          normal: 'Normal',
-          long: 'Long',
-          xlong: 'Extra-Long',
-          light: 'Light',
-          strong: 'Strong',
-          energy: 'Energy',
-          sweet: 'Sweet',
-          yummy: 'Yummy',
-          enjoy:'Enjoy your beverage',
-          selectYourProfile:'Select your Profile',
-          selectKeyword:"Choose Keyword",
-          finnished:"Finnished",
-          beforeThxs : "Your drink ",
-          afterThxs : "has&nbsp;been added to your profile",
-          settings:"settings",
-          setups : "Setups",
-          care : "Care",
-          informations : "informations",
-          help : "Help & Tutorials",
-          language : "Language",
-          dateTime : "Date/Time",
-          screenLight : "Backlight",
-          light : "Light",
-          display : "Display",
-          autoOff : "Auto Off",
-          volUnity : "Volume Unity",
-          autoRinse : " Auto Rinse",
-          waterHardness : "Water Hardness",
-          coffeeTemp : "Coffee Temp",
-          teaTemp :"Tea Temp",
-          cafeTyp : "Coffee type",
-          greasyCoffee : "Greasy Coffee",
-          standardCoffee : "Stadard Coffee",
-          reset : "Init unit",
-          firstName: "first name",
-          typeYourName : "Type your Name",
-          remain:"carachter left",
-          remains:"carachters left",
-          color:"Color",
-          planning:"Planning",
-          on:"On",
-          off:"Off",
-          chooseColor:"Choose your color",
-          afterInactivity:"Shutdown after",
-          waterHardnessDesc:'Setup Water Hardness',
+    // Check ES6
+    // return false;
+    var app = this;
+    app.lg = 'fr';
+
+    const kxLg = {
+    en: {
+        display : "english",
+        strings:{
+        unsupported:'Feature unavailable<br>in this demonstrator',
+        ristretto: 'Ristretto',
+        espresso: 'Espresso',
+        lungo: 'Lungo',
+        cafelong: 'Café Long',
+        doppio: 'Doppio',
+        americano: 'Americano',
+        espressomacchiato: 'e.Macchiato',
+        cappucino: 'Cappucino',
+        lattemacchiato: 'LMacchiato',
+        laitmousse: 'Lait Moussé',
+        caffelatte: 'Caffe Latte',
+        flatwhite: 'Flat White',
+        thevert: 'Thé Vert',
+        thenoir: 'Thé Noir',
+        infusion: 'Infusion',
+        drink: 'Drinks',
+        profile: 'Profile',
+        start: 'Start',
+        foaming: 'Milk Foaming',
+        cafe: 'Coffee Making',
+        hotwater: 'Hot Water',
+        steam: 'Steam',
+        preheat: 'Pre Heating',
+        seqCanceled : 'Drink canceled',
+        none: 'None',
+        week: 'Week',
+        weekend: 'Week-end',
+        morning: 'Morning',
+        lunch: 'Lunch',
+        afternoon: 'Afternoon',
+        dinner: 'Evening',
+        short: 'Short',
+        normal: 'Normal',
+        long: 'Long',
+        xlong: 'Extra-Long',
+        light: 'Light',
+        strong: 'Strong',
+        energy: 'Energy',
+        sweet: 'Sweet',
+        yummy: 'Yummy',
+        enjoy:'Enjoy your beverage',
+        selectYourProfile:'Select your Profile',
+        selectKeyword:"Choose Keyword",
+        finnished:"Finnished",
+        beforeThxs : "Your drink ",
+        afterThxs : "has&nbsp;been added to your profile",
+        settings:"settings",
+        setups : "Setups",
+        care : "Care",
+        informations : "informations",
+        help : "Help & Tutorials",
+        language : "Language",
+        dateTime : "Date/Time",
+        screenLight : "Backlight",
+        light : "Light",
+        display : "Display",
+        autoOff : "Auto Off",
+        volUnity : "Volume Unity",
+        autoRinse : " Auto Rinse",
+        waterHardness : "Water Hardness",
+        coffeeTemp : "Coffee Temp",
+        teaTemp :"Tea Temp",
+        cafeTyp : "Coffee type",
+        greasyCoffee : "Greasy Coffee",
+        standardCoffee : "Stadard Coffee",
+        reset : "Init unit",
+        firstName: "first name",
+        typeYourName : "Type your Name",
+        remain:"carachter left",
+        remains:"carachters left",
+        color:"Color",
+        planning:"Planning",
+        on:"On",
+        off:"Off",
+        chooseColor:"Choose your color",
+        afterInactivity:"Shutdown after",
+        waterHardnessDesc:'Setup Water Hardness',
 
 
-        }},
-        fr: {
-          display:"français",
-          strings :  {
-          unsupported:"Cette fonction n'est pas disponible<br>dans le cadre de ce démonstrateur",
-          ristretto: 'Ristretto',
-          espresso: 'Espresso',
-          lungo: 'Lungo',
-          cafelong: 'Café Long',
-          doppio: 'Doppio',
-          americano: 'Americano',
-          espressomacchiato: 'e.Macchiato',
-          cappucino: 'Cappucino',
-          lattemacchiato: 'LMacchiato',
-          laitmousse: 'Lait Moussé',
-          caffelatte: 'Caffe Latte',
-          flatwhite: 'Flat White',
-          thevert: 'Thé Vert',
-          thenoir: 'Thé Noir',
-          infusion: 'Infusion',
-          drink: 'Boissons',
-          profile: 'Profile',
-          start: 'Démarrer',
-          foaming: 'Moussage lait',
-          cafe: 'Café en cours',
-          hotwater: 'Eau Chaude',
-          steam: 'Vapeur',
-          preheat: 'Préchauffage',
-          seqCanceled : 'Boisson interrompue',
-          none: 'Aucun',
-          week: 'Semaine',
-          weekend: 'Week-end',
-          morning: 'Matin',
-          lunch: 'Midi',
-          afternoon: 'Après-midi',
-          dinner: 'Soir',
-          short: 'Court',
-          normal: 'Normal',
-          long: 'Long',
-          xlong: 'Extra-long',
-          light: 'Léger',
-          strong: 'Corsé',
-          energy: 'Energie',
-          sweet: 'Douceur',
-          yummy: 'Gourmand',
-          enjoy:'Bonne dégustation',
-          selectYourProfile:'Sélectionnez votre profil',
-          selectKeyword:"Choisissez un mot-clef",
-          finnished:"Terminé",
-          beforeThxs : "Votre boisson",
-          afterThxs : "a&nbsp;été ajoutée à votre profil",
-          settings:"Paramètres",
-          setups : "Réglages",
-          care : "Entretien",
-          informations : "Informations",
-          help : "Aide & Tutoriels",
-          language : "Langue",
-          dateTime : "Date/Heure",
-          screenLight : "Lumière écran",
-          light : "Lumière",
-          display : "affichage",
-          autoOff : "Arrêt auto",
-          volUnity : "Unité Volume",
-          autoRinse : "Rinçage auto",
-          waterHardness : "Dureté eau",
-          coffeeTemp : "Température Café",
-          teaTemp :"température Thé",
-          cafeTyp : "type de café",
-          greasyCoffee : "Café huileux",
-          standardCoffee : "Café Standard",
-          reset : "Réinitialiser produit",
-          firstName: "Prénom",
-          typeYourName : "Tapez votre prénom",
-          remain:"caractère restant",
-          remains:"caractères restants",
-          color:"couleur",
-          planning:"programmation",
-          on:"actif",
-          off:"inactif",
-          chooseColor:"Choisissez votre couleur",
-          afterInactivity:"Après une période d'inactivité de :",
-          waterHardnessDesc:"Régler la dureté de l'eau",
+    }},
+    fr: {
+        display:"français",
+        strings :  {
+        unsupported:"Cette fonction n'est pas disponible<br>dans le cadre de ce démonstrateur",
+        ristretto: 'Ristretto',
+        espresso: 'Espresso',
+        lungo: 'Lungo',
+        cafelong: 'Café Long',
+        doppio: 'Doppio',
+        americano: 'Americano',
+        espressomacchiato: 'e.Macchiato',
+        cappucino: 'Cappucino',
+        lattemacchiato: 'LMacchiato',
+        laitmousse: 'Lait Moussé',
+        caffelatte: 'Caffe Latte',
+        flatwhite: 'Flat White',
+        thevert: 'Thé Vert',
+        thenoir: 'Thé Noir',
+        infusion: 'Infusion',
+        drink: 'Boissons',
+        profile: 'Profile',
+        start: 'Démarrer',
+        foaming: 'Moussage lait',
+        cafe: 'Café en cours',
+        hotwater: 'Eau Chaude',
+        steam: 'Vapeur',
+        preheat: 'Préchauffage',
+        seqCanceled : 'Boisson interrompue',
+        none: 'Aucun',
+        week: 'Semaine',
+        weekend: 'Week-end',
+        morning: 'Matin',
+        lunch: 'Midi',
+        afternoon: 'Après-midi',
+        dinner: 'Soir',
+        short: 'Court',
+        normal: 'Normal',
+        long: 'Long',
+        xlong: 'Extra-long',
+        light: 'Léger',
+        strong: 'Corsé',
+        energy: 'Energie',
+        sweet: 'Douceur',
+        yummy: 'Gourmand',
+        enjoy:'Bonne dégustation',
+        selectYourProfile:'Sélectionnez votre profil',
+        selectKeyword:"Choisissez un mot-clef",
+        finnished:"Terminé",
+        beforeThxs : "Votre boisson",
+        afterThxs : "a&nbsp;été ajoutée à votre profil",
+        settings:"Paramètres",
+        setups : "Réglages",
+        care : "Entretien",
+        informations : "Informations",
+        help : "Aide & Tutoriels",
+        language : "Langue",
+        dateTime : "Date/Heure",
+        screenLight : "Lumière écran",
+        light : "Lumière",
+        display : "affichage",
+        autoOff : "Arrêt auto",
+        volUnity : "Unité Volume",
+        autoRinse : "Rinçage auto",
+        waterHardness : "Dureté eau",
+        coffeeTemp : "Température Café",
+        teaTemp :"température Thé",
+        cafeTyp : "type de café",
+        greasyCoffee : "Café huileux",
+        standardCoffee : "Café Standard",
+        reset : "Réinitialiser produit",
+        firstName: "Prénom",
+        typeYourName : "Tapez votre prénom",
+        remain:"caractère restant",
+        remains:"caractères restants",
+        color:"couleur",
+        planning:"programmation",
+        on:"actif",
+        off:"inactif",
+        chooseColor:"Choisissez votre couleur",
+        afterInactivity:"Après une période d'inactivité de :",
+        waterHardnessDesc:"Régler la dureté de l'eau",
 
 
 
 }
 
-        },
-      };
-      const kxkeywords = [
-        'none',
-        'week',
-        'weekend',
-        'morning',
-        'lunch',
-        'afternoon',
-        'dinner',
-        'short',
-        'normal',
-        'long',
-        'xlong',
-        'light',
-        'strong',
-        'energy',
-        'sweet',
-        'yummy',
-      ];
+    },
+    };
 
-      app.sliders = {
-          backlight:{
-              steps:false,
-              default:50,
-              icons:{left:"backLightSmall",right:"backLightSmall"},
-              title:("screenLight"),
-              desc:("BackLightDesc"),
-          },
-          autoOff :  {
-            steps:[
-                {val:null, desc1 : "15", desc2 : "min"},
-                {val:null, desc1 : "30", desc2 : "min"},
-                {val:null, desc1 : "60", desc2 : "min"},
-                {val:null, desc1 : "90", desc2 : "min"},
-                {val:null, desc1 : "120", desc2 : "min"},
-            ],
-            default:3,
-            title:("autoOff"),
-            desc:("afterInactivity"),
-        },
-        waterHardness :  {
-            steps:[
-                {val:null, desc1 : "0", desc2 : ""},
-                {val:null, desc1 : "1", desc2 : ""},
-                {val:null, desc1 : "2", desc2 : ""},
-                {val:null, desc1 : "3", desc2 : ""},
-                {val:null, desc1 : "4", desc2 : ""},
-            ],
-            default:4,
-            title:("waterHardness"),
-            desc:("waterHardnessDesc"),
-        },
-      };
-  
-      const kxColors = {
-        orange: '#f38230',
-        cyan: '#13aec0',
-        turquoise: '#0f8768',
-        green: '#6c9106',
-        gold: '#fffb01',
-        red: '#c80000',
-        fushia: '#c90563',
-        pink: '#ef52bb',
-        violet: '#8d3fcf',
-        blue: '#2855ff',
-      };
-      const recipeDuration = 4000; // ms
-  
-      app.ratio = 1;
-      app.currentPage = false;
-      app.currentRecipe = false;
-      app.currentProfile = false;
-      app.pointingDevice = 'mouse';
-      app.imgDB = {
-        unitbkg: { uri: 'unitbkg.png', hsrc: false },
-        unitfrg: { uri: 'unitfrg2.png', hsrc: false },
-        bkgSheet: { uri: 'bkgSheet.jpg', hsrc: false },
-        recipesSheet: { uri: 'recipesSheet.png', hsrc: false },
-        beep: { uri: 'beep.mp3', hsrc: false },
-        bleep: { uri: 'bleep.mp3', hsrc: false },
-      };
-      app.profiles = {
-        userOne: {
-          name: 'Lucy',
-          color: 'blue',
-          bkg: 'bkg13',
-          favs: [
-            {
-              recipe: 'lattemacchiato',
-              rightmenuval: '2',
-              leftmenuval: '3',
-              keyword: 'morning',
-              x2 : false,
+    const kxkeywords = [
+    'none',
+    'week',
+    'weekend',
+    'morning',
+    'lunch',
+    'afternoon',
+    'dinner',
+    'short',
+    'normal',
+    'long',
+    'xlong',
+    'light',
+    'strong',
+    'energy',
+    'sweet',
+    'yummy',
+    ];
 
+    app.sliders = {
+        backlight:{
+            steps:false,
+            default:50,
+            icons:{left:"backLightSmall",right:"backLightSmall"},
+            title:("screenLight"),
+            desc:("BackLightDesc"),
+        },
+        autoOff :  {
+        steps:[
+            {val:null, desc1 : "15", desc2 : "min"},
+            {val:null, desc1 : "30", desc2 : "min"},
+            {val:null, desc1 : "60", desc2 : "min"},
+            {val:null, desc1 : "90", desc2 : "min"},
+            {val:null, desc1 : "120", desc2 : "min"},
+        ],
+        default:3,
+        title:("autoOff"),
+        desc:("afterInactivity"),
+    },
+    waterHardness :  {
+        steps:[
+            {val:null, desc1 : "0", desc2 : ""},
+            {val:null, desc1 : "1", desc2 : ""},
+            {val:null, desc1 : "2", desc2 : ""},
+            {val:null, desc1 : "3", desc2 : ""},
+            {val:null, desc1 : "4", desc2 : ""},
+        ],
+        default:4,
+        title:("waterHardness"),
+        desc:("waterHardnessDesc"),
+    },
+    };
+
+    const kxColors = {
+    orange: '#f38230',
+    cyan: '#13aec0',
+    turquoise: '#0f8768',
+    green: '#6c9106',
+    gold: '#fffb01',
+    red: '#c80000',
+    fushia: '#c90563',
+    pink: '#ef52bb',
+    violet: '#8d3fcf',
+    blue: '#2855ff',
+    };
+    const recipeDuration = 4000; // ms
+
+    app.ratio = 1;
+    app.currentPage = false;
+    app.currentRecipe = false;
+    app.currentProfile = false;
+    app.pointingDevice = 'mouse';
+
+    app.imgDB = {
+    unitbkg: { uri: 'unitbkg.png', hsrc: false },
+    unitfrg: { uri: 'unitfrg2.png', hsrc: false },
+    bkgSheet: { uri: 'bkgSheet.jpg', hsrc: false },
+    recipesSheet: { uri: 'recipesSheet.png', hsrc: false },
+    beep: { uri: 'beep.mp3', hsrc: false },
+    bleep: { uri: 'bleep.mp3', hsrc: false },
+    };
+
+    app.profiles = {
+    userOne: {
+        name: 'LUCY',
+        color: 'blue',
+        bkg: 'bkg13',
+        favs: [
+        {
+            recipe: 'lattemacchiato',
+            rightmenuval: '2',
+            leftmenuval: '3',
+            keyword: 'morning',
+            x2 : false,
+
+        },
+        {
+            recipe: 'americano',
+            rightmenuval: '2',
+            leftmenuval: '3',
+            keyword: 'yummy',
+            x2 : false,
+
+        },
+        {
+            recipe: 'americano',
+            rightmenuval: '2',
+            leftmenuval: '3',
+            keyword: 'yummy',
+            x2 : false,
             },
-            {
-              recipe: 'americano',
-              rightmenuval: '2',
-              leftmenuval: '3',
-              keyword: 'yummy',
-              x2 : false,
 
-            },
-            {
-                recipe: 'americano',
-                rightmenuval: '2',
-                leftmenuval: '3',
-                keyword: 'yummy',
-                x2 : false,
-              },
-  
-          ],
+        ],
+    },
+    userTwo: {
+        name: 'BEN',
+        color: 'green',
+        bkg: 'bkg6',
+        favs: [
+        {
+            recipe: 'espresso',
+            rightmenuval: '40',
+            leftmenuval: '3',
+            keyword: 'morning',
+            x2 : false,
+
         },
-        userTwo: {
-          name: 'Ben',
-          color: 'green',
-          bkg: 'bkg6',
-          favs: [
-            {
-              recipe: 'espresso',
-              rightmenuval: '1',
-              leftmenuval: '3',
-              keyword: 'morning',
-              x2 : false,
+        {
+            recipe: 'lattemacchiato',
+            rightmenuval: '2',
+            leftmenuval: '3',
+            keyword: 'yummy',
+            x2 : false,
 
-            },
-            {
-              recipe: 'lattemacchiato',
-              rightmenuval: '2',
-              leftmenuval: '3',
-              keyword: 'yummy',
-              x2 : false,
-
-            },
-          ],
         },
-      };
+        ],
+    },
+    };
+
+    if (Cookies.get('lg') !== undefined) {
+    app.lg = Cookies.get('lg');
+    } else {
+    Cookies.set('lg', app.lg);
+    }
+
+    var Clock = function() {
+    var thisClock = this;
+    thisClock.getTime = function() {
+        console.log('tick');
+        var now = new Date();
+        thisClock.time =
+        (now.getHours() < 10 ? '0' : '') + now.getHours() + ':' + 
+        (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+        return thisClock.time;
+    };
+    thisClock.time = thisClock.getTime;
+    thisClock.run = function(clockDom) {
+        clearInterval(thisClock.timout);
+        clockDom.innerHTML = thisClock.getTime();
+        // On ne va rafarichir que toutes les 3 secondes.
+        thisClock.timout = setInterval(
+        () => (clockDom.innerHTML = thisClock.getTime()), 3000
+        );
+    };
+    thisClock.stop = function() {
+        clearInterval(thisClock.timout);
+    };
+    //thisClock.display = function() {};
+    };
+
+    app.clock = new Clock();
+
+    var _ = app.loc = function(string) {
+    if (kxLg[app.lg].strings[string]) return kxLg[app.lg].strings[string];
+    return string;
+    };
   
-      if (Cookies.get('lg') !== undefined) {
-        app.lg = Cookies.get('lg');
-      } else {
-        Cookies.set('lg', app.lg);
-      }
-  
-      var Clock = function() {
-        var thisClock = this;
-        thisClock.getTime = function() {
-          console.log('tick');
-          var now = new Date();
-          thisClock.time =
-            (now.getHours() < 10 ? '0' : '') + now.getHours() + ':' + 
-            (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
-          return thisClock.time;
-        };
-        thisClock.time = thisClock.getTime;
-        thisClock.run = function(clockDom) {
-          clearInterval(thisClock.timout);
-          clockDom.innerHTML = thisClock.getTime();
-          // On ne va rafarichir que toutes les 3 secondes.
-          thisClock.timout = setInterval(
-            () => (clockDom.innerHTML = thisClock.getTime()), 3000
-          );
-        };
-        thisClock.stop = function() {
-          clearInterval(thisClock.timout);
-        };
-        //thisClock.display = function() {};
-      };
-  
-      app.clock = new Clock();
-  
-      var _ = app.loc = function(string) {
-        if (kxLg[app.lg].strings[string]) return kxLg[app.lg].strings[string];
-        return string;
-      };
-  
-      app.beep = function() {
-        var snd = new Audio('images/beep.mp3');
-        snd.loop = false;
-        snd.play();
-      };
-  
-      app.bleep = function() {
-        var snd = new Audio('images/bleep.mp3');
-        snd.loop = false;
-        snd.play();
-      };
-  
+    app.beep = function() {
+    var snd = new Audio('images/beep.mp3');
+    snd.loop = false;
+    snd.play();
+    };
+
+    app.bleep = function() {
+    var snd = new Audio('images/bleep.mp3');
+    snd.loop = false;
+    snd.play();
+    };
+
     var baseHtml = (`
         <div id="kxUnit">
         <div id="kxBackdrop"></div>          
@@ -407,7 +410,6 @@ var kxapp = function() {
         </div> 
     `);
   
-  
     app.toast = function(msg) {
         Object.assign(app.toaster.style, {
             display: '',
@@ -425,15 +427,15 @@ var kxapp = function() {
     };
   
     app.buildPage = function(pageId, data, callback) {
-    app.data.pages[pageId].data = data;
-    var tempBuild = new DOMParser().parseFromString(
-        app.data.pages[pageId].html(),
-        'text/html',
-    ).body.firstChild;
-    app.data.pages[pageId].built = tempBuild;
-    app.data.pages[pageId].build(function() {
-        callback();
-    });
+        app.data.pages[pageId].data = data;
+        var tempBuild = new DOMParser().parseFromString(
+            app.data.pages[pageId].html(),
+            'text/html',
+        ).body.firstChild;
+        app.data.pages[pageId].built = tempBuild;
+        app.data.pages[pageId].build(function() {
+            callback();
+        });
     };
   
     app.isFading = false;
@@ -475,7 +477,7 @@ var kxapp = function() {
         }
         //app.currentPage = app.data.pages[pageId];
         //if ()
-        };
+    };
           
     app.loadPage = function(pageId, data) {
         console.log('loading ' + pageId);
@@ -690,8 +692,32 @@ var kxapp = function() {
             var thisBuilt = this.built;
             var that = this;
             that.recipeSequence = false;
-            if (app.currentRecipe) {
 
+            var showSingle = function(){
+                thisBuilt.querySelector( 'img.recipeImage', ).style.objectPosition = `${'-' +
+                app.currentRecipe.spritexy.split(';')[0] * 150 +
+                'px'} ${'-' +
+                app.currentRecipe.spritexy.split(';')[1] * 150 +
+                'px'}`;
+            };
+
+            var showDoubleDimmed = function(){
+                thisBuilt.querySelector( 'img.recipeImage', ).style.objectPosition = `${'-' +
+                    app.currentRecipe.spritexy_x1.split(';')[0] * 150 +
+                    'px'} ${'-' +
+                    app.currentRecipe.spritexy_x1.split(';')[1] * 150 +
+                    'px'}`;
+            };
+
+            var showDoubleFull = function(){
+                thisBuilt.querySelector('img.recipeImage').style.objectPosition = `${'-' +
+                app.currentRecipe.spritexy_x2.split(';')[0] * 150 +
+                'px'} ${'-' +
+                app.currentRecipe.spritexy_x2.split(';')[1] * 150 +
+                'px'}`;
+            };
+
+            if (app.currentRecipe) {
 
                 if (app.currentRecipe.leftmenutyp === 'strength') {
                 this.strengthScroller = new vscroller(
@@ -709,7 +735,6 @@ var kxapp = function() {
                     app.loadPage('recettes', null);
                 });
 
-            }
 
             if (app.currentRecipe.canx2 && !app.currentProfile) {
                 
@@ -717,26 +742,14 @@ var kxapp = function() {
                 .addEventListener('click', function(e) {
                     var svgUse = this.querySelector('use');
                     //console.log('PROD', app.currentRecipe);
-
                     if (svgUse.href.baseVal == '#plusButton') {
                     svgUse.setAttribute('href', '#minusButton');
                     app.currentRecipe.x2 = true;
-                    //console.log(thisBuilt.querySelector('img.recipeImage'));
-                    thisBuilt.querySelector('img.recipeImage').style.objectPosition = `${'-' +
-                        app.currentRecipe.spritexy_x2.split(';')[0] * 150 +
-                        'px'} ${'-' +
-                        app.currentRecipe.spritexy_x2.split(';')[1] * 150 +
-                        'px'}`;
-                    } else if (svgUse.href.baseVal == '#minusButton') {
+                    showDoubleFull();
+                } else if (svgUse.href.baseVal == '#minusButton') {
                     svgUse.setAttribute('href', '#plusButton');
                     app.currentRecipe.x2 = false;
-                    thisBuilt.querySelector(
-                        'img.recipeImage',
-                    ).style.objectPosition = `${'-' +
-                        app.currentRecipe.spritexy_x1.split(';')[0] * 150 +
-                        'px'} ${'-' +
-                        app.currentRecipe.spritexy_x1.split(';')[1] * 150 +
-                        'px'}`;
+                     showDoubleDimmed();
                     }
                 });
 
@@ -745,36 +758,6 @@ var kxapp = function() {
             thisBuilt.querySelector('.startButton').addEventListener('click', function(e) {
                 runRecipe();
             });
-
-            function runRecipe(){
-                var seqOutput = thisBuilt.querySelector('.sequence span');
-                thisBuilt.classList.add('running');
-                debugger;
-                app.currentRecipe.lastSelectedQuantity = thisBuilt.querySelector('.quantityScroller .wheelItem.selected').dataset.val;
-                if(app.currentRecipe.leftmenutyp === 'strength') {
-                    app.currentRecipe.lastSelectedStrength = thisBuilt.querySelector('.strengthScroller .wheelItem.selected').dataset.val;
-                }
-                var seq = [
-                    { fn: () => { seqOutput.innerHTML = _('preheat'); }, delay: 0, },
-                ];
-                var addedseq = app.currentRecipe.sequences.split(';');
-                var intertime = recipeDuration / (addedseq.length + 1);
-                addedseq.forEach(function(val) {
-                    seq.push({ fn: () => { seqOutput.innerHTML = _(val); }, delay: intertime });
-                });
-                seq.push({ fn: () => { seqOutput.innerHTML = '';},
-                    delay: intertime + 200,
-                });
-                that.recipeSequence = new sequence(seq, completed => {
-                    console.log('sync done');
-                    if (completed) {
-                    app.loadPage('ready', null);
-                    } else {
-                    console.log('stopped');
-                    }
-                    that.recipeSequence = false;
-                });
-            }
 
             thisBuilt.querySelector('.stopButton').addEventListener('click', function(e) {
                 console.log('stopping');
@@ -787,30 +770,104 @@ var kxapp = function() {
                     app.loadPage("recettes",null);
                 },4000)
                 //debugger;
+            });
+
+
+            function runRecipe(){
+                if (app.currentRecipe.x2){
+                    showDoubleFull();
+                } else {
+                    showSingle();
+                }
+                var seqOutput = thisBuilt.querySelector('.sequence span');
+                app.currentRecipe.lastSelectedQuantity = thisBuilt.querySelector('.quantityScroller .wheelItem.selected').dataset.val;
+                if(app.currentRecipe.leftmenutyp === 'strength') {
+                    app.currentRecipe.lastSelectedStrength = thisBuilt.querySelector('.strengthScroller .wheelItem.selected').dataset.val;
+                }
+                var seq = [
+                    { fn: () => { 
+                        seqOutput.innerHTML = "Préchauffage";
+                        thisBuilt.classList.add('preheat');
+                        app.showSpinner();
+                    }, delay: 0}, // DELAY : TRIGGERED AFTER THIS DELAY !
+                    { fn: () => { 
+                        app.hideSpinner();
+                        thisBuilt.classList.remove('preheat');
+                        thisBuilt.classList.add('running');
+                    }, delay: 1000},
+                    { fn: () => { 
+                        seqOutput.innerHTML = "Café";
+                    }, delay: 0},
+                    { fn: () => {
+                        seqOutput.innerHTML = _("Lait");
+                    }, delay: 2000},
+                    { fn: () => {
+                        seqOutput.innerHTML = _("");
+                        //thisBuilt.classList.add('running');
+                    }, delay: 2000},
+                    { fn: () => {
+                        seqOutput.innerHTML = _("");
+                        //seqOutput.innerHTML = _("Fin");
+                        //thisBuilt.classList.add('running');
+                    }, delay: 100},
+                ];
+                var addedseq = app.currentRecipe.sequences.split(';');
+                console.log(addedseq);
+                var intertime = recipeDuration / (addedseq.length );
+                addedseq.forEach(function(val) {
+                   // console.log(intertime, val);
+                  //  seq.push({ fn: () => { seqOutput.innerHTML = _(val); }, delay: intertime });
                 });
 
-    
+                console.log("SEQUENCE:",seq);
+
+                that.recipeSequence = new sequence(seq, completed => {
+                    console.log('sync done');
+                    if (completed) {
+                        app.loadPage('ready', null);
+                    } else {
+                        app.hideSpinner();
+                        console.log('stopped');
+                    }
+                    that.recipeSequence = false;
+                });
+            }
+
+            } else {
+                console.warn("ERROR");
+            }
+
             callback();
+
+
             },
             beforeShow: function() {
-            if (this.quantityScroller) {
-                let a = this.built.querySelector(
-                '[data-val="' + app.currentRecipe.rightmenudefault + '"]'
-                );
-                //debugger;
-                this.quantityScroller.scrollToFunction(a);
-                this.lastSelectedQuantity = app.currentRecipe.rightmenudefault;
+                if (app.currentProfile) {
+                    this.built.querySelector('.startButton').style.display="none";
+                    this.built.querySelector('.stopButton').style.display="initial";
+                }
+                if (this.quantityScroller) {
+                    let a = this.built.querySelector(
+                    '[data-val="' + app.currentRecipe.rightmenudefault + '"]'
+                    );
+                    //debugger;
+                    this.quantityScroller.scrollToFunction(a);
+                    this.lastSelectedQuantity = app.currentRecipe.rightmenudefault;
 
-            }
-            if (this.strengthScroller) {
-                let a = this.built.querySelector(
-                    '[data-val="' + app.currentRecipe.leftmenudefault + '"]'
-                );
-                this.strengthScroller.scrollToFunction(a);
-                this.lastSelectedStrength = app.currentRecipe.leftmenudefault;
+                }
+                if (this.strengthScroller) {
+                    let a = this.built.querySelector(
+                        '[data-val="' + app.currentRecipe.leftmenudefault + '"]'
+                    );
+                    this.strengthScroller.scrollToFunction(a);
+                    this.lastSelectedStrength = app.currentRecipe.leftmenudefault;
 
-            }
-            //  debugger;
+                }
+
+                if (app.currentProfile) {
+
+                }
+                //  debugger;
             },
             run: function() {
 
@@ -926,31 +983,30 @@ var kxapp = function() {
                             <span></span>
                         </div>
 
+                        <div class="imageHolder dimOnCancel">
+                            <img class="recipeImage " nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style=" object-position:${
+                                    app.currentProfile ?
+                                        app.currentRecipe.x2 ? 
+                                        ' -' + app.currentRecipe.spritexy_x2.split(';')[0] * 150 + 'px'+
+                                        ' -' + app.currentRecipe.spritexy_x2.split(';')[1] * 150 + 'px'
+                                        : 
+                                        ' -' + app.currentRecipe.spritexy.split(';')[0] * 150 + 'px'+
+                                        ' -' + app.currentRecipe.spritexy.split(';')[1] * 150 + 'px'
+                                    : 
+                                    ' -' + app.currentRecipe.spritexy_x1.split(';')[0] * 150 + 'px'+
+                                    ' -' + app.currentRecipe.spritexy_x1.split(';')[1] * 150 + 'px'
+
+                                }
+                            
+                            "/>
+                        </div>
+
                         <div class="cancelIcon">
                             <svg viewBox="0 0 64.4 64.4" class="">
                                 <use href="#canceled" />
                             </svg>
                         </div>
 
-                        <div class="imageHolder dimOnCancel">
-
-                        <img class="recipeImage " nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style=" object-position:${
-                                app.currentProfile ?
-                                    app.currentRecipe.x2 ? 
-                                    ' -' + app.currentRecipe.spritexy_x2.split(';')[0] * 150 + 'px'+
-                                    ' -' + app.currentRecipe.spritexy_x2.split(';')[1] * 150 + 'px'
-                                    : 
-                                    ' -' + app.currentRecipe.spritexy.split(';')[0] * 150 + 'px'+
-                                    ' -' + app.currentRecipe.spritexy.split(';')[1] * 150 + 'px'
-                                : 
-                                ' -' + app.currentRecipe.spritexy_x1.split(';')[0] * 150 + 'px'+
-                                ' -' + app.currentRecipe.spritexy_x1.split(';')[1] * 150 + 'px'
-
-                            }
-                        
-                        "/>
-                    
-                        </div>
                         ${ app.currentRecipe.canx2 && !app.currentProfile
                             ? `
                         <div class="plusMinusButton hideOnCancel" style="position: absolute; left: 151px; top: 104px; width: 32px; height: 32px;">
@@ -999,6 +1055,7 @@ var kxapp = function() {
                     `
                         : ''
                     }
+
                 </div>
                 `;
             },
@@ -1781,7 +1838,7 @@ var kxapp = function() {
             <div class="atileContents">
             <div>${"T°3"}</div>
             </div>
-        </div>
+            </div>
 
             <div class="atile settings" data-val="0">
             <div class="titleBlock">
@@ -2263,7 +2320,9 @@ var kxapp = function() {
 
                 colors.forEach(function(el,k) {
                     el.addEventListener('click', event => {
+                        thisBuilt.querySelector('.hScrollerItem.selected').classList.remove('selected');
                         color =  el.dataset.name;
+                        el.classList.add('selected');
                         console.log(color);
                     })
                 });
@@ -2541,6 +2600,7 @@ var kxapp = function() {
             this.built = false;
             return true;
             },
+
             html: function() {
             var slider  = kx.sliders[this.data];
             var width = 320;
@@ -2580,6 +2640,27 @@ var kxapp = function() {
                 margin-top: 60px;
                 font-weight:300;
             }
+
+            .sliderPointer{
+                position: absolute;
+                width: 44px;
+                height: 44px;
+                background-color: rgba(0, 0, 0, 0.4);
+                top: -21px;
+                border-radius: 50%;
+                margin-left: -22px;
+            }
+
+            .sliderPointer:after{
+                content: " ";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                left: 12px;
+                background-color: white;
+                border-radius: 50%;
+                top: 13px;
+            }
             
             </style>
             <div class="backToMain backButton">
@@ -2590,23 +2671,20 @@ var kxapp = function() {
             <span class="title">${_(slider.title)}</span>
             </div>
             <div class="settingsDesc">${_(slider.desc)}</div>
-                <div class="barBkk userFIllColor" style="position:absolute;width:${width}px;height:5px;top:163px;left:81px">
+                <div class="barBkg userFIllColor" style="position:absolute;width:${width}px;height:5px;top:163px;left:81px">
 
                 <div class="fill" style="background-color:#FFFFFF;position:absolute;height:5px;width:${pxForPos(slider.default)}px"></div>
                 ${steps}
+                <div class="sliderPointer" style="left:${pxForPos(slider.default)}px"></div>
                 </div>
             </div>
-
+            
+            </div>
                 `;
             return rhtml;
             },
         },
-
-
-
 },
-
-
 
     recipes: {
         ristretto: {
@@ -3004,7 +3082,7 @@ var kxapp = function() {
 
         var svgLib = document.createElement('div');
         svgLib.style = 'display:none';
-        var data = `
+        var data = `    
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="display:none">
 
                 <g id="circle" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet">
@@ -3801,9 +3879,7 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
             transition:opacity .3s;
             }
 
-            .running .backButton{
-            opacity : 0;
-            }
+
 
 
             .vWheel.wheel{
@@ -3918,10 +3994,13 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 transition:opacity .3s;
             }
 
+            .running .backButton{
+                opacity : 0;
+            }
+
             .running .vWheel.strengthScroller .wheelItem:not(.selected){
                 opacity:0;
             }
-
 
             .userMode .vWheel .wheelItem:not(.selected) {
                 opacity:0!important;
@@ -4019,11 +4098,13 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 transition:opacity .3s;
             }
 
-            .running .plusMinusButton{
+            .running .plusMinusButton, .preheat .plusMinusButton{
                 opacity:0;
             }
 
-
+            .preheat .imageHolder {
+                opacity:0.25;
+            }
 
             .startButton, .stopButton {
                 position: absolute;
@@ -4040,10 +4121,10 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
             .stopButton {
                 display:none;
             }
-            .running .stopButton {
+            .running .stopButton, .preheat .stopButton{
                 display:block;
             }
-            .running .startButton {
+            .running .startButton, .preheat .startButton{
                 display:none;
             }
 
@@ -4402,6 +4483,25 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                     margin-bottom:5px;
                 }
 
+                svg.kxSpin {
+                    width: 64px;
+                    position: absolute;
+                    left: calc(50% - 32px);
+                    top: calc(50% - 8px);
+                  }
+                  svg.kxSpin circle {
+                    animation: pulse .6s linear 0s infinite alternate;
+                    opacity: .2
+                  }
+                  svg.kxSpin .c2{animation-delay:.2s;}
+                  svg.kxSpin .c3{animation-delay:.4s;}
+                  
+                  @-webkit-keyframes pulse {
+                    from {opacity: .2}
+                    50% {opacity: .4}
+                    to {opacity:1}
+                  }
+
         `;
     document.head.appendChild(sheet);
     }
@@ -4419,39 +4519,55 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
         return 'images/' + app.imgDB[s].uri;
     }
     }
+
+    app.showSpinner = function(){
+        console.log(app.currentPage.built);
+        var spinnerSvg = `
+        <svg class="kxSpin" viewbox="0 0 64 16">
+            <circle class="c1" r="6" cx="8" cy="8" fill="white"/> 
+            <circle class="c2" r="6" cx="32" cy="8" fill="white"/> 
+            <circle class="c3" r="6" cx="56" cy="8" fill="white"/> 
+        </svg>`;
+        var template = document.createElement('div');
+        template.innerHTML = spinnerSvg.trim();
+        app.spinner = template.firstChild;
+        app.currentPage.built.appendChild(app.spinner);
+    }
+
+    app.hideSpinner = function(){
+        if(app.spinner) app.spinner.remove();
+    }
   
     var sequence = function(anarray, callback) {
-    var seq = this;
-    var timout;
-    seq.keepongoing = true;
-    seq.stop = function() {
-        seq.keepongoing = false;
-        callback(false);
-    };
-    var ret = function(t) {
-        return new Promise((resolve, reject) => {
-        timout = setTimeout(function() {
-            if (seq.keepongoing) {
+        var seq = this;
+        var timout;
+        seq.keepongoing = true;
+        seq.stop = function() {
+            seq.keepongoing = false;
+            callback(false);
+        };
+        var ret = function(t) {
             t.fn();
-            resolve(t);
-            } else {
-            clearTimeout(timout);
-            }
-        }, t.delay);
+            return new Promise((resolve, reject) => {
+            timout = setTimeout(function() {
+                if (seq.keepongoing) {
+                resolve(t);
+                } else {
+                clearTimeout(timout);
+                }
+            }, t.delay);
+            });
+        };
+        var result = anarray.reduce((accumulatorPromise, nextID) => {
+            return accumulatorPromise.then(() => {
+            return ret(nextID);
+            });
+        }, Promise.resolve());
+        result.then(() => {
+            callback(true);
         });
     };
-    var result = anarray.reduce((accumulatorPromise, nextID) => {
-        return accumulatorPromise.then(() => {
-        return ret(nextID);
-        });
-    }, Promise.resolve());
-    result.then(() => {
-        callback(true);
-    });
-    };
-  
 
-      
     var hslider = function(e, callback) {
         var that = this;
         that.element = e;
@@ -4547,14 +4663,8 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
         that.element.addEventListener('touchstart', e => {
           //  app.pointingDevice = 'touch';
         });
-
-
-
-
-        };
+    };
       
-
-
     var hscroller = function(e) {
     var that = this;
     that.element = e;
@@ -4743,7 +4853,6 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
 
 };
   
-
 window.kx = new kxapp();
 
 })();
