@@ -6,11 +6,13 @@ var kxapp = function() {
     // return false;
     var app = this;
     app.lg = 'fr';
-
     const kxLg = {
     en: {
         display : "english",
         strings:{
+        ok:"OK",
+        yes:"yes",
+        no:"no",
         unsupported:'Feature unavailable<br>in this demonstrator',
         ristretto: 'Ristretto',
         espresso: 'Espresso',
@@ -28,7 +30,6 @@ var kxapp = function() {
         thenoir: 'Thé Noir',
         infusion: 'Infusion',
         drink: 'Drinks',
-        profile: 'Profile',
         start: 'Start',
         foaming: 'Milk Foaming',
         cafe: 'Coffee Making',
@@ -52,7 +53,10 @@ var kxapp = function() {
         energy: 'Energy',
         sweet: 'Sweet',
         yummy: 'Yummy',
-        enjoy:'Enjoy your beverage',
+        enjoy:'Enjoy your drink',
+        profile: 'Profile',
+        profileSettings:'Profiles settings',
+        profileSettingsDesc:'Select profile to setup',
         selectYourProfile:'Select your Profile',
         selectKeyword:"Choose Keyword",
         finnished:"Finnished",
@@ -66,36 +70,72 @@ var kxapp = function() {
         language : "Language",
         dateTime : "Date/Time",
         screenLight : "Backlight",
-        light : "Light",
+        backLightDesc : "Set BackLight",
+        deviceLight : "Light",
+        deviceLightDesc : "Enable light guide",
         display : "Display",
+        displayDesc:"Select drinks display mode",
         autoOff : "Auto Off",
         volUnity : "Volume Unity",
-        autoRinse : " Auto Rinse",
+        VolUnitDesc : "Choose unit for volume",
+        autoRinse : "Auto Rinse",
+        autoRinseDesc : "Auto Rinse on each startup ?",
         waterHardness : "Water Hardness",
-        coffeeTemp : "Coffee Temp",
-        teaTemp :"Tea Temp",
+        coffeeTemp : "Coffee temperature",
+        waterTemp :"Water temperature",
+        tempDesc :"Select temperature",
+        teaTemp :"Tea temperature",
         cafeTyp : "Coffee type",
+        cafeTypDesc : "Choose coffee type",
         greasyCoffee : "Greasy Coffee",
-        standardCoffee : "Stadard Coffee",
+        standardCoffee : "Standard Coffee",
         reset : "Init unit",
+        resetDesc : "Reset operation will delete your preferences and settings<br><br>Proceed ?",
         firstName: "first name",
         typeYourName : "Type your Name",
         remain:"carachter left",
         remains:"carachters left",
         color:"Color",
         planning:"Planning",
-        on:"On",
-        off:"Off",
+        programDesc:"Setup auto switch on",
+        on:"ON",
+        off:"OFF",
         chooseColor:"Choose your color",
         afterInactivity:"Shutdown after",
         waterHardnessDesc:'Setup Water Hardness',
-
-
-    }},
+        tiles : "Tiles",
+        slider : "Slider",
+        calendarMonths:"Jan;Feb;Mar;Apr;May;June;July;Aug;Sept;Oct;Nov;Dec",
+        help_fav:'Comment créer et gérer vos favoris ?',
+        help_service:'Comment entretenir votre machine ?',
+        help_recipe:'Comment réaliser vos boissons ?',
+        videos:"vidéos",
+        roundsDesc:"Rounds count",
+        coffeeRinse :  "Rinçage café",
+        cleanup :   "Nettoyage",
+        descaling :   "Détartrage",
+        filter :   "Filtre",
+        milkRinse :  "Rinçage lait",
+        milkAccClean :   "Nettoyage acc. lait",
+        teaRinse :   "Rinçage thé",
+        cleanup_1_desc : "Une pastille de nettoyage est nécessaire <br><br> Durée estimée : 13 minutes",
+        cleanup_2_desc : "Videz les 2 bacs",
+        cleanup_3_desc : "Remplissez les réservoirs jusqu'au niveau MAX",
+        cleanup_4_desc : "Ouvrez la trappe et insérez une pastille de nettoyage dans la glissière",
+        cleanup_5_desc : "Placez un récipient de 600 ml sous les buses",
+        cleanup_6_desc : 'Nettoyage en cours <br>{x} minutes restantes',
+        cleanup_7_desc : 'Videz le récipient',
+        cleanup_8_desc : 'Videz le bac récolte gouttes',
+        cleanup_9_desc : 'nettoyage terminé',
+        addDrink:'Add Drink',
+        selectDrink:'Select a Drink',
+        next:'Next',
+    }}, 
     fr: {
         display:"français",
         strings :  {
-        unsupported:"Cette fonction n'est pas disponible<br>dans le cadre de ce démonstrateur",
+        ok:"OK",
+        unsupported:"Cette fonction n'est pas disponible<br>dans ce démonstrateur",
         ristretto: 'Ristretto',
         espresso: 'Espresso',
         lungo: 'Lungo',
@@ -112,8 +152,7 @@ var kxapp = function() {
         thenoir: 'Thé Noir',
         infusion: 'Infusion',
         drink: 'Boissons',
-        profile: 'Profile',
-        start: 'Démarrer',
+        start: 'Start',
         foaming: 'Moussage lait',
         cafe: 'Café en cours',
         hotwater: 'Eau Chaude',
@@ -137,6 +176,9 @@ var kxapp = function() {
         sweet: 'Douceur',
         yummy: 'Gourmand',
         enjoy:'Bonne dégustation',
+        profile: 'Profile',
+        profileSettings:'réglages profils',
+        profileSettingsDesc:'Sélectionner le profil à paramétrer',
         selectYourProfile:'Sélectionnez votre profil',
         selectKeyword:"Choisissez un mot-clef",
         finnished:"Terminé",
@@ -144,37 +186,74 @@ var kxapp = function() {
         afterThxs : "a&nbsp;été ajoutée à votre profil",
         settings:"Paramètres",
         setups : "Réglages",
-        care : "Entretien",
+        care : "Entretien machine",
         informations : "Informations",
         help : "Aide & Tutoriels",
         language : "Langue",
         dateTime : "Date/Heure",
+        dateTimeDesc : "Date/Heure",
         screenLight : "Lumière écran",
-        light : "Lumière",
+        backLightDesc : "Régler le rétro-éclairage",
+        deviceLight : "Lumière",
+        deviceLightDesc : "Activer le guide lumineux",
         display : "affichage",
+        displayDesc:"Choisir la présentation des boissons",
         autoOff : "Arrêt auto",
         volUnity : "Unité Volume",
+        VolUnitDesc : "Choisir l'affichage lors des réglages",
         autoRinse : "Rinçage auto",
+        autoRinseDesc : "Lancer un rinçage café à chaque démarrage",
         waterHardness : "Dureté eau",
         coffeeTemp : "Température Café",
+        waterTemp :"température de l'eau",
+        tempDesc :"Choisir la température",
         teaTemp :"température Thé",
         cafeTyp : "type de café",
+        cafeTypDesc : "Sélectionnez le type de grain",
         greasyCoffee : "Café huileux",
         standardCoffee : "Café Standard",
         reset : "Réinitialiser produit",
+        resetDesc : "La réinitialisation effacera vos préférences et vos réglages<br><br>Réinitialiser ?",
         firstName: "Prénom",
         typeYourName : "Tapez votre prénom",
         remain:"caractère restant",
         remains:"caractères restants",
         color:"couleur",
         planning:"programmation",
-        on:"actif",
-        off:"inactif",
+        programDesc:"Programmer l'allumage auto",
+        on:"ON",
+        off:"OFF",
         chooseColor:"Choisissez votre couleur",
         afterInactivity:"Après une période d'inactivité de :",
         waterHardnessDesc:"Régler la dureté de l'eau",
-
-
+        tiles : "Mosaïque",
+        slider : "Slider",
+        calendarMonths:"Jan;Fev;Mars;Avr;Mai;Juin;Juil;Aout;Sept;Oct;Nov;Dec",
+        help_fav:'Comment créer et gérer vos favoris ?',
+        help_service:'Comment entretenir votre<br>machine ?',
+        help_recipe:'Comment réaliser<br>vos boissons ?',
+        videos:"vidéos",
+        roundsDesc:"Nombre de cycles",
+        coffeeRinse :  "Rinçage café",
+        cleanup :   "Nettoyage",
+        descaling :   "Détartrage",
+        filter :   "Filtre",
+        milkRinse :  "Rinçage lait",
+        milkAccClean :   "Nettoyage acc. lait",
+        teaRinse :   "Rinçage thé",
+        onlyCleanup : 'Seule la fonction "Nettoyage" est disponible dans ce démonstrateur',
+        cleanup_1_desc : "Une pastille de nettoyage est nécessaire <br><br> Durée estimée : 13 minutes",
+        cleanup_2_desc : "Videz les 2 bacs",
+        cleanup_3_desc : "Remplissez les réservoirs jusqu'au niveau MAX",
+        cleanup_4_desc : "Ouvrez la trappe et insérez une pastille de nettoyage dans la glissière",
+        cleanup_5_desc : "Placez un récipient de 600 ml sous les buses",
+        cleanup_6_desc : 'Nettoyage en cours <br>{x} minutes restantes',
+        cleanup_7_desc : 'Videz le récipient',
+        cleanup_8_desc : 'Videz le bac récolte gouttes',
+        cleanup_9_desc : 'nettoyage terminé',
+        addDrink:'Ajout de boisson',
+        selectDrink:'choisissez votre boisson',
+        next:'Suivant',
 
 }
 
@@ -204,9 +283,9 @@ var kxapp = function() {
         backlight:{
             steps:false,
             default:50,
-            icons:{left:"backLightSmall",right:"backLightSmall"},
+            icons:{left:"backLightSmall",right:"backLightBig"},
             title:("screenLight"),
-            desc:("BackLightDesc"),
+            desc:("backLightDesc"),
         },
         autoOff :  {
         steps:[
@@ -232,6 +311,88 @@ var kxapp = function() {
         title:("waterHardness"),
         desc:("waterHardnessDesc"),
     },
+    waterTemp :  {
+        steps:[
+            {val:null, desc1 : "0", desc2 : ""},
+            {val:null, desc1 : "1", desc2 : ""},
+            {val:null, desc1 : "2", desc2 : ""},
+            {val:null, desc1 : "3", desc2 : ""},
+            {val:null, desc1 : "4", desc2 : ""},
+        ],
+        default:4,
+        title:("waterHardness"),
+        desc:("waterHardnessDesc"),
+    },
+    coffeeTemp :  {
+        steps:[
+            {val:null, desc1 : "T° 1", desc2 : ""},
+            {val:null, desc1 : "T° 2", desc2 : ""},
+            {val:null, desc1 : "T° 3", desc2 : ""},
+        ],
+        default:2,
+        title:("coffeeTemp"),
+        desc:("tempDesc"),
+    },
+
+    waterTemp :  {
+        steps:[
+            {val:null, desc1 : "T° 1", desc2 : ""},
+            {val:null, desc1 : "T° 2", desc2 : ""},
+            {val:null, desc1 : "T° 3", desc2 : ""},
+        ],
+        default:2,
+        title:("waterTemp"),
+        desc:("tempDesc"),
+    },
+    };
+
+    app.switches = {
+        deviceLight:{
+            iconLeft:"lightOff",
+            iconRight:"lightOn",
+            textLeft:"off",
+            textRight:"on",
+            title:("deviceLight"),
+            desc:("deviceLightDesc"),
+            default:2
+        },
+        display:{
+            iconLeft:"slider",
+            iconRight:"tiles",
+            textLeft:"off",
+            textRight:"on",
+            title:"display",
+            desc:"displayDesc",
+            default:2
+        },
+        unit:{
+            iconLeft:false,
+            iconRight:false,
+            textLeft:"oz",
+            textRight:"ml",
+            title:"volUnity",
+            desc:"VolUnitDesc",
+            default:2
+        },
+        autoRinse:{
+            iconLeft:false,
+            iconRight:false,
+            textLeft:"yes",
+            textRight:"no",
+            title:"autoRinse",
+            desc:"autoRinseDesc",
+            default:2
+        },
+        cafeTyp:{
+            iconLeft:false,
+            iconRight:false,
+            textLeft:"greasyCoffee",
+            textRight:"standardCoffee",
+            title:"cafeTyp",
+            desc:"cafeTypDesc",
+            default:2,
+        },
+
     };
 
     const kxColors = {
@@ -246,6 +407,7 @@ var kxapp = function() {
     violet: '#8d3fcf',
     blue: '#2855ff',
     };
+
     const recipeDuration = 4000; // ms
 
     app.ratio = 1;
@@ -255,7 +417,7 @@ var kxapp = function() {
     app.pointingDevice = 'mouse';
 
     app.imgDB = {
-    unitbkg: { uri: 'unitbkg.png', hsrc: false },
+    kbkg: { uri: 'kbkg.png', hsrc: false },
     unitfrg: { uri: 'unitfrg2.png', hsrc: false },
     bkgSheet: { uri: 'bkgSheet.jpg', hsrc: false },
     recipesSheet: { uri: 'recipesSheet.png', hsrc: false },
@@ -277,17 +439,10 @@ var kxapp = function() {
             x2 : false,
 
         },
-        {
-            recipe: 'americano',
-            rightmenuval: '2',
-            leftmenuval: '3',
-            keyword: 'yummy',
-            x2 : false,
 
-        },
         {
             recipe: 'americano',
-            rightmenuval: '2',
+            rightmenuval: '100',
             leftmenuval: '3',
             keyword: 'yummy',
             x2 : false,
@@ -310,7 +465,7 @@ var kxapp = function() {
         },
         {
             recipe: 'lattemacchiato',
-            rightmenuval: '2',
+            rightmenuval: 'XL',
             leftmenuval: '3',
             keyword: 'yummy',
             x2 : false,
@@ -327,47 +482,65 @@ var kxapp = function() {
     }
 
     var Clock = function() {
-    var thisClock = this;
-    thisClock.getTime = function() {
-        console.log('tick');
-        var now = new Date();
-        thisClock.time =
-        (now.getHours() < 10 ? '0' : '') + now.getHours() + ':' + 
-        (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
-        return thisClock.time;
-    };
-    thisClock.time = thisClock.getTime;
-    thisClock.run = function(clockDom) {
-        clearInterval(thisClock.timout);
-        clockDom.innerHTML = thisClock.getTime();
-        // On ne va rafarichir que toutes les 3 secondes.
-        thisClock.timout = setInterval(
-        () => (clockDom.innerHTML = thisClock.getTime()), 3000
-        );
-    };
-    thisClock.stop = function() {
-        clearInterval(thisClock.timout);
-    };
-    //thisClock.display = function() {};
+        var thisClock = this;
+        thisClock.getTime = function() {
+            console.log('tick');
+            var now = new Date();
+            thisClock.time =
+            (now.getHours() < 10 ? '0' : '') + now.getHours() + ':' + 
+            (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+            return thisClock.time;
+        };
+        thisClock.getDate = function() {
+            console.log('tick');
+            var now = new Date();
+            thisClock.date =
+            (now.getDate() < 10 ? '0' : '') + now.getDate() + '/' + 
+            (now.getMonth()+1 < 10 ? '0' : '') + (now.getMonth()+1) + '/' + 
+            now.getFullYear();
+            return thisClock.date;
+        };
+        thisClock.time = thisClock.getTime;
+        thisClock.date = thisClock.getDate;
+        thisClock.run = function(clockDom) {
+            clearInterval(thisClock.timout);
+            clockDom.innerHTML = thisClock.getTime();
+            // On ne va rafarichir que toutes les 3 secondes.
+            thisClock.timout = setInterval(
+            () => (clockDom.innerHTML = thisClock.getTime()), 3000
+            );
+        };
+        thisClock.runDate = function(dateDom) {
+            clearInterval(thisClock.dateTimout);
+            dateDom.innerHTML = thisClock.getDate();
+            thisClock.dateTimout = setInterval(
+            () => (dateDom.innerHTML = thisClock.getDate()), 3000
+            );
+        };
+        thisClock.stop = function() {
+            clearInterval(thisClock.timout);
+            clearInterval(thisClock.dateTimout);
+        };
+        //thisClock.display = function() {};
     };
 
     app.clock = new Clock();
 
     var _ = app.loc = function(string) {
-    if (kxLg[app.lg].strings[string]) return kxLg[app.lg].strings[string];
-    return string;
+        if (kxLg[app.lg].strings[string]) return kxLg[app.lg].strings[string];
+        return string;
     };
   
     app.beep = function() {
-    var snd = new Audio('images/beep.mp3');
-    snd.loop = false;
-    snd.play();
+        var snd = new Audio('images/beep.mp3');
+        snd.loop = false;
+        snd.play();
     };
 
     app.bleep = function() {
-    var snd = new Audio('images/bleep.mp3');
-    snd.loop = false;
-    snd.play();
+        var snd = new Audio('images/bleep.mp3');
+        snd.loop = false;
+        snd.play();
     };
 
     var baseHtml = (`
@@ -410,16 +583,19 @@ var kxapp = function() {
         </div> 
     `);
   
+   // app.toastTimeout = null;
     app.toast = function(msg) {
+        clearTimeout (app.toastTimeout);
+        clearTimeout (app.tastTimeOutOff);
         Object.assign(app.toaster.style, {
             display: '',
         });
-        setTimeout(()=>{
+        app.toastTimeout = setTimeout(()=>{
             app.toaster.querySelector('span').innerHTML=msg;
             app.toaster.classList.add('show');
-            setTimeout(()=>{
+            app.toastTimeout = setTimeout(()=>{
                 app.toaster.classList.add('hide');
-                setTimeout(()=>{
+                app.tastTimeOutOff = setTimeout(()=>{
                     app.toaster.classList.remove('show','hide');
                 },500)
             },1500)
@@ -427,13 +603,13 @@ var kxapp = function() {
     };
   
     app.buildPage = function(pageId, data, callback) {
-        app.data.pages[pageId].data = data;
+        app.pages[pageId].data = data;
         var tempBuild = new DOMParser().parseFromString(
-            app.data.pages[pageId].html(),
+            app.pages[pageId].html(),
             'text/html',
         ).body.firstChild;
-        app.data.pages[pageId].built = tempBuild;
-        app.data.pages[pageId].build(function() {
+        app.pages[pageId].built = tempBuild;
+        app.pages[pageId].build(function() {
             callback();
         });
     };
@@ -442,7 +618,7 @@ var kxapp = function() {
 
     app.showPage = function(page, fade) {
         if(app.isFading) {
-            console.log("wait a second !");
+           // console.log("wait a second !");
             return false
         };
         page.classList.remove('onScreen'); // if any
@@ -475,7 +651,7 @@ var kxapp = function() {
             app.currentPage.beforeShow();
             app.currentPage.run();
         }
-        //app.currentPage = app.data.pages[pageId];
+        //app.currentPage = app.pages[pageId];
         //if ()
     };
           
@@ -485,33 +661,36 @@ var kxapp = function() {
             //  app.currentPage.built = app.pageHolder.innerHTML;
             //debugger;
             if (app.currentPage.quit()) {
-            if (app.currentPage.built)
-                app.currentPage.built.classList.remove('onScreen');
+                if (app.currentPage.built){
+                    app.currentPage.built.classList.remove('onScreen');
+                }
+                var option = false;
+                if (app.currentPage.option) option = app.currentPage.option;
+                app.pages[pageId].referrer = {pageId:app.currentPage.name,option:option}
             } else {
             //console.log("quitting screen is forbidden");
             return;
             }
         }
 
-        if (app.data.pages[pageId].built == false) {
+
+
+        if (app.pages[pageId].built == false) {
 
             app.buildPage(pageId, data, function() {
-                app.currentPage = app.data.pages[pageId];
+                app.currentPage = app.pages[pageId];
                 app.showPage(app.currentPage.built, true);
             });
         } else {
             //debugger;
-            app.currentPage = app.data.pages[pageId];
+            app.currentPage = app.pages[pageId];
             // TODO Remove values for following function;
             app.showPage(app.currentPage.built, true);
         }
         return;
     };
-
-    app.init = function(kxhost) {
-    console.log('init');
-    app.data = {
-        pages: {
+  
+    app.pages = {
         off: {
             name: 'off',
             built: false,
@@ -539,7 +718,7 @@ var kxapp = function() {
             beforeShow: function() {},
             run: function() {
             var delay = 800;
-            app.data.pages.recettes.sliderPosition = 0;
+            app.pages.recettes.sliderPosition = 0;
             Object.assign(document.querySelector('.glowPoint').style, {
                 transitionDuration: delay + 'ms',
                 left: '350px',
@@ -604,8 +783,8 @@ var kxapp = function() {
                 el.addEventListener('click', event => {
                 // console.log("CLICK",selection.isClicked);
                 if (!selection.mouseMove) {
-                    app.currentRecipe = app.data.recipes[el.dataset.val];
-                    app.loadPage('prepare', el.dataset.val);
+                    app.currentRecipe = app.recipes[el.dataset.val];
+                    app.loadPage('prepare', 'fromHome');
                 }
                 }),
             );
@@ -637,7 +816,7 @@ var kxapp = function() {
             },
             html: function() {
             var rhtml = `
-                <div class="pageContent">
+                <div class="pageContent recettes home">
                 <!--   
                 <svg style="position:absolute; width:31px;height:25px;top:12px;left:31px" viewBox="0 0 32 27" >
                 <use href="#recette" />
@@ -655,7 +834,7 @@ var kxapp = function() {
 
                 <section id="recetteScroller" class="hScroller" >
                     `;
-            for (var [key, value] of Object.entries(app.data.recipes)) {
+            for (var [key, value] of Object.entries(app.recipes)) {
                 // console.log(`${key}: ${value}`);
                 rhtml += `
                 <div class="recetteScrollerItem recette" data-val="${key}">
@@ -683,11 +862,139 @@ var kxapp = function() {
             },
         },
 
+        addRecipe: {
+            name: 'addRecipe',
+            built: false,
+            build: function(callback) {
+            var thisBuilt = this.built;
+            var selection = new hscroller(
+                thisBuilt.querySelector('#recetteScroller'),
+            );
+            thisBuilt.querySelector('.validaterecipe').addEventListener('click', function(e) {
+                app.loadPage('prepare', null);
+            });
+            thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
+                app.loadPage('profile', null);
+                app.currentRecipe = false;
+            });
+            var recipes = this.built.querySelectorAll('.recetteScrollerItem.recette');
+            recipes.forEach(el =>
+                el.addEventListener('click', event => {
+                // console.log("CLICK",selection.isClicked);
+                if (!selection.mouseMove) {
+                    app.currentRecipe = app.recipes[el.dataset.val];
+                    thisBuilt.classList.add("selection")
+                    //app.loadPage('prepare', 'fromAddRecipe');
+                    if (this.built.querySelector('.recetteScrollerItem.selected')){
+                        this.built.querySelector('.recetteScrollerItem.selected').classList.remove("selected");
+                    }
+                    el.classList.add('selected');
+                }
+                })
+            );
+            callback();
+            },
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {
+                this.built = false;
+                return true;
+            },
+            html: function() {
+            var rhtml = `
+            <div class="pageContent addRecipe ${app.currentProfile.bkg} ${app.currentProfile.color}">
+            <style>
+            .validaterecipe{
+                opacity:.3;
+                pointer-events: none;
+            }
+            .selection .validaterecipe{
+                opacity:initial;
+                pointer-events: initial;
+            }
+            .addRecipe .recetteScrollerItem{
+                width:110px;
+            }
+
+            .addRecipe .recetteScrollerItem .title{
+                left: 13px;
+                font-size: 13px;
+                width: 81px;
+                height: 25px;
+            }
+            .addRecipe .recetteScrollerItem .thumb{
+                transform: scale(0.6);
+                transform-origin: 0 0;
+                top: 26px;
+                left: 10px;
+            }
+
+            .recetteScrollerItem.selected {
+                background: rgba(255, 255, 255, 0.38);
+            }
+            .addRecipe .hScroller{
+                top:113px;
+                height:125px;
+            }
+            .addRecipe .recetteScrollerItem:first-child {
+                margin-left: 71px;
+                transition-delay: 0;
+            }
+
+            .addRecipe .userTitleClip {
+                left: 26px;
+            }
+
+            </style>
+            <div class="titleBlock wide light">
+            <span class="title">${_('addDrink')}</span>
+            <div class="userTitleClip wide userBorderColor"></div>
+            </div>
+
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+            <div class="settingsDesc">${_('selectDrink')}</div>
+            <section id="recetteScroller" class="hScroller" >
+                    `;
+            for (var [key, value] of Object.entries(app.recipes)) {
+                // console.log(`${key}: ${value}`);
+                rhtml += `
+                <div class="recetteScrollerItem recette" data-val="${key}">
+                <div class="title">
+                <span>${_(value.code)}</span>
+                <div class="userTitleClip userBorderColor"></div>
+                </div>
+                <div class="thumb">
+                <img nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style="object-position: ${'-' + value.spritexy.split(';')[0] * 150 + 'px'} ${'-' + value.spritexy.split(';')[1] * 150 + 'px'}">
+                </div>
+                </div>`;
+            }
+
+            rhtml += `
+
+
+                </section>
+                <div class="validaterecipe startButton userBorderColor">
+                ${_('next')}
+                </div>
+                </div>
+                `;
+            return rhtml;
+            },
+        },
+
         prepare: {
             name: 'prepare',
             built: false,
             build: function(callback) {
-            //this.recipe = app.data.recipes[data];
+             //  debugger;
+            var adding = false;
+            if(this.referrer.pageId == 'addRecipe'){
+                adding = true;
+            }
+            //this.recipe = app.recipes[data];
             //console.log("PREP " , this.recipe);
             var thisBuilt = this.built;
             var that = this;
@@ -718,7 +1025,7 @@ var kxapp = function() {
             };
 
             if (app.currentRecipe) {
-
+                this.secondaryScroller = false;
                 if (app.currentRecipe.leftmenutyp === 'strength') {
                 this.strengthScroller = new vscroller(
                     thisBuilt.querySelector('.strengthScroller'),
@@ -726,18 +1033,30 @@ var kxapp = function() {
                 );
                 }
                 if (app.currentRecipe.rightmenutyp) {
-                this.quantityScroller = new vscroller(
-                    thisBuilt.querySelector('.quantityScroller'),
-                    thisBuilt.querySelector('.quantityScroller_target'),
-                );
+                    this.quantityScroller = new vscroller(
+                        thisBuilt.querySelector('.quantityScroller.primary'),
+                        thisBuilt.querySelector('.quantityScroller_target'),
+                    );
+                    if (app.currentRecipe.step2Typ !== "false") {
+                        debugger;
+                        this.secondaryScroller = new vscroller(
+                            thisBuilt.querySelector('.quantityScroller.secondary'),
+                            thisBuilt.querySelector('.quantityScroller_target'),
+                        );
+                    }
                 }
-                thisBuilt.querySelector('.backToMain').addEventListener('click', function(e) {
-                    app.loadPage('recettes', null);
+
+                thisBuilt.querySelector('.backToMain').addEventListener('click', function() {
+                    if(adding){
+                        app.loadPage('addRecipe', null);
+                    } else if (app.currentProfile) {
+                        app.loadPage('profile', null);
+                    } else {
+                        app.loadPage('recettes', null);
+                    }
                 });
 
-
-            if (app.currentRecipe.canx2 && !app.currentProfile) {
-                
+                if (app.currentRecipe.canx2 && (!app.currentProfile || adding)) {
                 thisBuilt.querySelector('.plusMinusButton')
                 .addEventListener('click', function(e) {
                     var svgUse = this.querySelector('use');
@@ -749,22 +1068,32 @@ var kxapp = function() {
                 } else if (svgUse.href.baseVal == '#minusButton') {
                     svgUse.setAttribute('href', '#plusButton');
                     app.currentRecipe.x2 = false;
-                     showDoubleDimmed();
+                    showDoubleDimmed();
                     }
                 });
-
             }
 
             thisBuilt.querySelector('.startButton').addEventListener('click', function(e) {
                 runRecipe();
             });
 
+            thisBuilt.querySelector('.nextButton').addEventListener('click', function() {
+                app.currentRecipe.lastSelectedQuantity = thisBuilt.querySelector('.quantityScroller.primary .wheelItem.selected').dataset.val;
+                if(app.currentRecipe.leftmenutyp === 'strength') {
+                    app.currentRecipe.lastSelectedStrength = thisBuilt.querySelector('.strengthScroller .wheelItem.selected').dataset.val;
+                }
+                console.log(app.currentRecipe);
+                app.loadPage('keywordSelection',null)
+            });
+
+
+
             thisBuilt.querySelector('.stopButton').addEventListener('click', function(e) {
                 console.log('stopping');
                 thisBuilt.querySelector('.sequence span').innerHTML = _('seqCanceled')
                 thisBuilt.classList.remove('running');
                 thisBuilt.classList.add('canceled');
-                that.recipeSequence.stop();
+                if (that.recipeSequence) that.recipeSequence.stop();
                 that.recipeSequence = false;
                 that.canceltimout = setTimeout(()=>{
                     app.loadPage("recettes",null);
@@ -772,15 +1101,29 @@ var kxapp = function() {
                 //debugger;
             });
 
+            var runRecipe = function (){
+                if (adding) return;
+                that.quantityScroller.pause = true;
+                that.strengthScroller.pause = true;
+                if (that.secondaryScroller ){
+                   // debugger;
+                    that.secondaryScroller.pause = true;
 
-            function runRecipe(){
+                    var aaa = that.built.querySelector('.quantityScroller.secondary [data-val="' + app.currentRecipe.step2Default + '"]');
+                        //debugger;
+                        that.secondaryScroller.scrollToFunction(aaa);
+
+
+                }
+
+
                 if (app.currentRecipe.x2){
                     showDoubleFull();
                 } else {
                     showSingle();
                 }
                 var seqOutput = thisBuilt.querySelector('.sequence span');
-                app.currentRecipe.lastSelectedQuantity = thisBuilt.querySelector('.quantityScroller .wheelItem.selected').dataset.val;
+                app.currentRecipe.lastSelectedQuantity = thisBuilt.querySelector('.quantityScroller.primary .wheelItem.selected').dataset.val;
                 if(app.currentRecipe.leftmenutyp === 'strength') {
                     app.currentRecipe.lastSelectedStrength = thisBuilt.querySelector('.strengthScroller .wheelItem.selected').dataset.val;
                 }
@@ -789,34 +1132,59 @@ var kxapp = function() {
                         seqOutput.innerHTML = "Préchauffage";
                         thisBuilt.classList.add('preheat');
                         app.showSpinner();
-                    }, delay: 0}, // DELAY : TRIGGERED AFTER THIS DELAY !
+                    }, delay: 1000}, // DELAY : TRIGGERED AFTER THIS DELAY !
                     { fn: () => { 
                         app.hideSpinner();
                         thisBuilt.classList.remove('preheat');
                         thisBuilt.classList.add('running');
-                    }, delay: 1000},
-                    { fn: () => { 
-                        seqOutput.innerHTML = "Café";
                     }, delay: 0},
-                    { fn: () => {
-                        seqOutput.innerHTML = _("Lait");
-                    }, delay: 2000},
-                    { fn: () => {
-                        seqOutput.innerHTML = _("");
-                        //thisBuilt.classList.add('running');
-                    }, delay: 2000},
-                    { fn: () => {
-                        seqOutput.innerHTML = _("");
-                        //seqOutput.innerHTML = _("Fin");
-                        //thisBuilt.classList.add('running');
-                    }, delay: 100},
                 ];
+                //debugger;
+                if (app.currentRecipe.step2Typ == "false" && app.currentRecipe.step2Typ !== "vol") {
+                    seq.push(
+                        { fn: () => { 
+                            seqOutput.innerHTML = "";
+                        }, delay: 4000}
+                    );
+                } else if (app.currentRecipe.step2Typ !== "vol")  {
+                    seq.push(
+                        { fn: () => { 
+                            seqOutput.innerHTML = _("cafe");
+                            thisBuilt.querySelectorAll('.secondary').forEach(el => {el.style.opacity=1;});
+                            thisBuilt.querySelectorAll('.primary').forEach(el => {el.style.opacity=0;});
+                        }, delay: 2000},
+                        { fn: () => {
+                            seqOutput.innerHTML = _("foaming");
+                            thisBuilt.querySelectorAll('.secondary').forEach(el => {el.style.opacity=0;});
+                            thisBuilt.querySelectorAll('.primary').forEach(el => {el.style.opacity=1;});
+                        }, delay: 2000},
+                    );
+                }
+
+                if (app.currentRecipe.step2Typ === "vol") {
+                    seq.push(
+                        { fn: () => { 
+                            seqOutput.innerHTML = _("foaming");
+                        }, delay: 2000},
+                        { fn: () => {
+                            seqOutput.innerHTML = _("cafe");
+                            thisBuilt.querySelectorAll('.primary').forEach(el => {el.style.opacity=0;})
+                            thisBuilt.querySelectorAll('.secondary').forEach(el => {el.style.opacity=1;})
+                        }, delay: 2000},
+                    );
+                }
+
+                seq.push(
+                    { fn: () => {seqOutput.innerHTML = _(""); }, delay: 100}
+                );
+
+
                 var addedseq = app.currentRecipe.sequences.split(';');
                 console.log(addedseq);
                 var intertime = recipeDuration / (addedseq.length );
                 addedseq.forEach(function(val) {
-                   // console.log(intertime, val);
-                  //  seq.push({ fn: () => { seqOutput.innerHTML = _(val); }, delay: intertime });
+                // console.log(intertime, val);
+                //  seq.push({ fn: () => { seqOutput.innerHTML = _(val); }, delay: intertime });
                 });
 
                 console.log("SEQUENCE:",seq);
@@ -831,7 +1199,7 @@ var kxapp = function() {
                     }
                     that.recipeSequence = false;
                 });
-            }
+            };
 
             } else {
                 console.warn("ERROR");
@@ -842,19 +1210,38 @@ var kxapp = function() {
 
             },
             beforeShow: function() {
-                if (app.currentProfile) {
+                var adding = false;
+                if(this.referrer.pageId == 'addRecipe'){
+                    adding = true;
+                }
+                if (app.currentProfile && !adding) {
                     this.built.querySelector('.startButton').style.display="none";
                     this.built.querySelector('.stopButton').style.display="initial";
+                    this.built.querySelector('.nextButton').style.display="none";
+                }
+                if (app.currentProfile && adding) {
+                    this.built.querySelector('.startButton').style.display="none";
+                    this.built.querySelector('.stopButton').style.display="none";
+                    this.built.querySelector('.nextButton').style.display="initial";
                 }
                 if (this.quantityScroller) {
                     let a = this.built.querySelector(
-                    '[data-val="' + app.currentRecipe.rightmenudefault + '"]'
+                    '.quantityScroller.primary [data-val="' + app.currentRecipe.rightmenudefault + '"]'
                     );
                     //debugger;
                     this.quantityScroller.scrollToFunction(a);
                     this.lastSelectedQuantity = app.currentRecipe.rightmenudefault;
-
                 }
+
+                if (this.secondaryScroller) {
+                    let a = this.built.querySelector(
+                    '.quantityScroller.secondary [data-val="' + app.currentRecipe.step2Default + '"]'
+                    );
+                    //debugger;
+                    this.secondaryScroller.scrollToFunction(a);
+                    //this.lastSelectedQuantity = app.currentRecipe.rightmenudefault;
+                }
+
                 if (this.strengthScroller) {
                     let a = this.built.querySelector(
                         '[data-val="' + app.currentRecipe.leftmenudefault + '"]'
@@ -864,15 +1251,16 @@ var kxapp = function() {
 
                 }
 
-                if (app.currentProfile) {
-
-                }
+        
                 //  debugger;
             },
             run: function() {
-
+                var adding = false;
+                if(this.referrer.pageId == 'addRecipe'){
+                    adding = true;
+                }
                 console.log('running prepare');
-                if (app.currentProfile) {
+                if (app.currentProfile && !adding) {
                     this.strengthScroller.pause = true;
                     this.quantityScroller.pause = true;
                     this.built.querySelector('.startButton').click(); // Olé !
@@ -880,10 +1268,10 @@ var kxapp = function() {
             },
             quit: function() {
                 console.log(this.recipeSequence);
+                this.built = false; // We reset the built as next recipe will not be the same
                 //debugger;
                 clearTimeout(this.canceltimout);
                 if (this.recipeSequence) this.recipeSequence.stop();
-                this.built = false; // We reset the built as next recipe will not be the same
                 //console.log('quitting '+this.name);
                 return true;
             },
@@ -891,64 +1279,86 @@ var kxapp = function() {
             // var recipe = app.currentRecipe;
             // console.log("RECIPE",recipe);
             //debugger;
-            var rightMenu = '';
-            if (app.currentRecipe.rightmenutyp == 'ml') {
-                rightMenu = `
-                            
-                    <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
 
-                    <div class="wheel vWheel right quantityScroller hideOnCancel">
-                    <div class="wheelItem noAction"></div>`;
+            var adding = false;
+            if(this.referrer.pageId == 'addRecipe'){
+                adding = true;
+            }
 
-                app.currentRecipe.rightmenuvalues
-                .split(';')
-                .forEach(function(val) {
-                    rightMenu += `
-                                <div data-val="${val}" class="wheelItem">${val}</div>
-                               `;
+            var mlScroller  = function(position, data){
+                var menu =  `
+                <div class="wheel vWheel right quantityScroller hideOnCancel ${position}">
+                <div class="wheelItem noAction"></div>`;
 
+                data.split(';').forEach(function(val) {
+                menu += `<div data-val="${val}" class="wheelItem">${val}</div>`;
                 });
 
-                rightMenu += `<div class="wheelItem noAction last"></div>
-                                </div>
-                                <div class="vwheelCenter hideOnCancel right userBorderColor">&nbsp;</div>
-                                <div class="vwheelUnit hideOnCancel right">ml</div>
-                                `;
-            } else if (app.currentRecipe.rightmenutyp == 'vol') {
-                rightMenu = `
-                    <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
+                menu += `
+                <div class="wheelItem noAction last"></div>
+                </div>
+                <div class="vwheelCenter ${position} hideOnCancel right userBorderColor">&nbsp;</div>
+                <div class="vwheelUnit ${position} hideOnCancel right">ml</div>
+                `
+                return menu;
+            }
 
-                    <div class="wheel vWheel right quantityScroller hideOnCancel">
+
+            var volScroller = function(position){ 
+                return `
+                   <div class="wheel vWheel right quantityScroller hideOnCancel ${position}">
                     <div class="wheelItem"></div>
-
                     <div data-val="M" class="wheelItem size">
                         <svg viewBox="0 0 32 32" class="">
                             <use href="#sizeM" />
                         </svg>
                     </div>
-
                     <div data-val="L" class="wheelItem size">
                         <svg viewBox="0 0 32 32" class="">
                             <use href="#sizeL" />
                         </svg>
                     </div>
-
                     <div data-val="XL" class="wheelItem size">
                         <svg viewBox="0 0 32 32" class="">
                             <use href="#sizeXL" />
                         </svg>
                     </div>
-
                     <div class="wheelItem last"></div>
                     </div>
                     <div class="vwheelCenter hideOnCancel userBorderColor right">&nbsp;</div>
-                    `;
+                `
+            };
+
+            var rightMenu = '';
+            var secondaryMenu ='';
+            
+             //   debugger;
+            if (app.currentRecipe.rightmenutyp == 'ml') {
+                rightMenu += mlScroller('primary',app.currentRecipe.rightmenuvalues)
             }
+            if (app.currentRecipe.rightmenutyp == 'vol') {
+                rightMenu += volScroller('primary');
+            }
+            if (app.currentRecipe.step2Typ) {
+                    secondaryMenu += mlScroller('secondary',app.currentRecipe.step2Values)
+            }
+
+            var additionnalClass = ' ';
+            if (app.currentProfile && !adding){
+                additionnalClass = app.currentProfile.color + " userMode ";
+            }
+            if (app.currentProfile && adding){
+                additionnalClass = " " + app.currentProfile.color + " adding";
+            }
+            if (!app.currentProfile){
+                additionnalClass = "orange";
+            }
+
             return `
-                    <div class="pageContent prepare ${app.currentRecipe.bkg} ${(app.currentProfile)?app.currentProfile.color + ' userMode':'orange'}">
+                    <div class="pageContent prepare ${app.currentRecipe.bkg} ${additionnalClass}">
                     <style>
                     .canceled .hideOnCancel{
-                        opacity:0;
+                        opacity:0!important;
                     }
                     .canceled .dimOnCancel{
                         opacity:0.3;
@@ -968,46 +1378,41 @@ var kxapp = function() {
 
                     </style>
                     <div class="backToMain backButton hideOnCancel">
-                      <svg style="" viewBox="0 0 26 26" > <use href="#backArrow" /> </svg>
+                    <svg style="" viewBox="0 0 26 26" > <use href="#backArrow" /> </svg>
                     </div>
-
 
                     <div class="centralArea" style="position:absolute;width:222px;left:129px;height:100%;background-color:rgba(255,255,255,.15)">
                         
                         <div class="titleBlock">
                             <span class="title">${_(app.currentRecipe.code)} </span>
-                       ${(app.currentProfile)?'<div class="userTitleClip userBorderColor"></div>':''}
+                            ${(app.currentProfile)?'<div class="userTitleClip userBorderColor"></div>':''}
                         </div>
 
                         <div class="sequence" style="position: absolute; width: 173px;left: 25px; top: 54px; height: 46px; text-align:center">
                             <span></span>
                         </div>
-
                         <div class="imageHolder dimOnCancel">
                             <img class="recipeImage " nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style=" object-position:${
-                                    app.currentProfile ?
+                                    app.currentProfile && !adding ?
                                         app.currentRecipe.x2 ? 
                                         ' -' + app.currentRecipe.spritexy_x2.split(';')[0] * 150 + 'px'+
                                         ' -' + app.currentRecipe.spritexy_x2.split(';')[1] * 150 + 'px'
                                         : 
                                         ' -' + app.currentRecipe.spritexy.split(';')[0] * 150 + 'px'+
                                         ' -' + app.currentRecipe.spritexy.split(';')[1] * 150 + 'px'
-                                    : 
-                                    ' -' + app.currentRecipe.spritexy_x1.split(';')[0] * 150 + 'px'+
-                                    ' -' + app.currentRecipe.spritexy_x1.split(';')[1] * 150 + 'px'
-
+                                        : 
+                                        ' -' + app.currentRecipe.spritexy_x1.split(';')[0] * 150 + 'px'+
+                                        ' -' + app.currentRecipe.spritexy_x1.split(';')[1] * 150 + 'px'
                                 }
-                            
                             "/>
                         </div>
-
                         <div class="cancelIcon">
                             <svg viewBox="0 0 64.4 64.4" class="">
                                 <use href="#canceled" />
                             </svg>
                         </div>
 
-                        ${ app.currentRecipe.canx2 && !app.currentProfile
+                        ${ app.currentRecipe.canx2 && (!app.currentProfile || adding)
                             ? `
                         <div class="plusMinusButton hideOnCancel" style="position: absolute; left: 151px; top: 104px; width: 32px; height: 32px;">
                             <svg viewBox="0 0 32 32" class="">
@@ -1021,17 +1426,22 @@ var kxapp = function() {
                             <div class="progressBar">
                             </div>
                         </div>
-
                     </div>
                     <div class="stopButton userBorderColor hideOnCancel" style="text-transform:uppercase">${_('stop')}</div>
+
                     <div class="startButton userBorderColor hideOnCancel" style="text-transform:uppercase">${_('start')}</div>
 
+                    <div class="nextButton userBorderColor hideOnCancel" style="text-transform:uppercase">${_('next')}</div>
+
+                    <div class="target quantityScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:384px; top:160px"></div>
+                    
+                    ${secondaryMenu}
                     ${rightMenu}
 
-                    ${
-                    app.currentRecipe.leftmenutyp === 'strength'
-                        ? `
+                    ${app.currentRecipe.leftmenutyp === 'strength'
+                    ? `
                     <div class="target strengthScroller_target " style = "position:absolute; width:5px; height:5px;background-color:transparent; left:96px; top:160px"></div>
+
                     <div class="wheel vWheel left strengthScroller hideOnCancel">
                         <div class="wheelItem noAction"></div>
                             <div class="wheelItem  strength"  data-val="1">
@@ -1087,6 +1497,7 @@ var kxapp = function() {
                 return true;
             },
             html: function() {
+
             return `
 
             <div class="pageContent ready ${app.currentRecipe.bkg} ${(app.currentProfile)?app.currentProfile.color + ' userMode':'orange'}">
@@ -1305,7 +1716,7 @@ var kxapp = function() {
             html: function() {
             return `
                         
-            <div class="pageContent keywordSelection bkg5 ${app.currentProfile.color}">
+            <div class="pageContent keywordSelection ${app.currentProfile.bkg} ${app.currentProfile.color}">
 
 
             <div class="backButton">
@@ -1407,7 +1818,7 @@ var kxapp = function() {
             html: function() {
             return `
                         
-            <div class="pageContent profileSuccess bkg5 ${app.currentProfile.color}" style="display: flex;
+            <div class="pageContent profileSuccess ${app.currentProfile.bkg} ${app.currentProfile.color}" style="display: flex;
             justify-content: center;">
 
 
@@ -1471,13 +1882,14 @@ var kxapp = function() {
         },
 
         profile: {
+            name: 'profile',
             built: false,
             build: function(callback) {
             var recipes = this.built.querySelectorAll('.atile.userRecipe');
             recipes.forEach(el => el.addEventListener('click', event => {
-               // debugger;
+            // debugger;
                     var thisFav = app.currentProfile.favs[el.dataset.val];
-                    app.currentRecipe = Object.assign({}, app.data.recipes[thisFav.recipe]);
+                    app.currentRecipe = Object.assign({}, app.recipes[thisFav.recipe]);
                     console.log("click", app.currentRecipe);
                     app.currentRecipe.leftmenudefault=thisFav.leftmenuval;
                     app.currentRecipe.rightmenudefault=thisFav.rightmenuval;
@@ -1495,12 +1907,10 @@ var kxapp = function() {
                 app.loadPage('userSettingsHome', null);
             });
 
-
             this.built.querySelector('.addFavToUser').addEventListener('click', event => {
                 console.log("addFavToUser");
-                app.toast(_("unsupported"))
+                app.loadPage('addRecipe', null);
             })
-
             
             callback();
             },
@@ -1536,7 +1946,7 @@ var kxapp = function() {
                         rhtml += `<div class="tilesBlock"><div class="tiles" data-key="${key}">`;
 
                         aChunk.forEach(function(v,k) {
-                            var thisRecipe = app.data.recipes[v.recipe];
+                            var thisRecipe = app.recipes[v.recipe];
                                 rhtml += `
                                 <div class="atile userRecipe" data-val="${k}">
                                 <div class="titleBlock">
@@ -1670,16 +2080,25 @@ var kxapp = function() {
 
                 callback();
             },
-            beforeShow: function() {},
+            beforeShow: function() {
+                var clockDom = this.built.querySelector('span.ftime');
+                app.clock.run(clockDom);
+                var dateDom = this.built.querySelector('span.fdate');
+                app.clock.runDate(dateDom)
+
+            },
             run: function() {console.log('running' + this.name);},
             quit: function() {
+                app.clock.stop();
                 console.log('quitting ' + this.name);
                 this.built = false;
                 return true;
             },
             html: function() {
-            var rhtml = `
+                
 
+            var rhtml = `
+                
             <div class="pageContent ${this.name} bkg16">
             <div class="titleBlock light wide">
             <span class="title">${_(this.name)}</span>
@@ -1706,21 +2125,19 @@ var kxapp = function() {
                     </div>
                 </div>
 
-                <div class="atile settings" data-val="0">
+                <div class="atile settings active" data-target="dateTime" data-val="0">
                 <div class="titleBlock">
                 <div class="title">
                 <span>${_('dateTime')}</span>
                 </div>
                 </div>
-                    <div class="tileIcon">
-                    <svg style="" viewBox="0 0 44 44">
-                        <use href="#plus"></use>
-                    </svg>
+                    <div class="atileContents">
+                    <div class="dateTimeFormated"><span class="fdate"></span><br><span class="ftime"></span></div>
                     </div>
                 </div>
 
 
-                <div class="atile settings" data-val="0">
+                <div class="atile settings active" data-target="slider" data-data="backlight" data-val="0">
                 <div class="titleBlock">
                 <div class="title">
                 <span>${_('screenLight')}</span>
@@ -1733,32 +2150,31 @@ var kxapp = function() {
                     </div>
                 </div>
 
-                <div class="atile settings">
-                <div class="titleBlock">
-                <div class="title">
-                <span>${_('light')}</span>
-                </div>
-                </div>
-                    <div class="tileIcon ">
-                    <svg style="" viewBox="0 0 44 44">
-                        <use href="#lightOn"></use>
-                    </svg>
+                <div class="atile settings active" data-target="switch" data-data="deviceLight">
+                    <div class="titleBlock">
+                    <div class="title">
+                        <span>${_('deviceLight')}</span>
+                    </div>
+                    </div>
+                    <div class="tileIcon">
+                        <svg style="" viewBox="0 0 44 44">
+                            <use href="#lightOn"></use>
+                        </svg>
                     </div>
                 </div>
 
 
-
-                <div class="atile settings active" data-val="0">
+                <div class="atile settings active" data-val="0" data-target="switch" data-data="display">
                 <div class="titleBlock">
                 <div class="title">
                 <span>${_('display')}</span>
                 </div>
                 </div>
-                    <div class="tileIcon" style="width: 64px;
-                    height: 64px;
-                    left: 23px;
+                    <div class="tileIcon" style="width: 65px;
+                    height: 44px;
+                    left: 24px;
                     top: 42px;">
-                    <svg viewBox="0 0 64 64">
+                    <svg viewBox="0 0 44 44" style="width:100%">
                         <use href="#tiles"></use>
                     </svg>
                     </div>
@@ -1775,19 +2191,19 @@ var kxapp = function() {
                 </div>
                 </div>
 
-                <div class="atile settings" data-val="0">
+                <div class="atile settings active" data-target="switch" data-data="unit">
                 <div class="titleBlock">
                 <div class="title">
                 <span>${_('volUnity')}</span>
                 </div>
                 </div>
                 <div class="atileContents">
-                <div>${"ml."}</div>
+                <div>${"ml"}</div>
                 </div>
                 </div>
 
 
-                <div class="atile settings" data-val="0">
+                <div class="atile settings active" data-target="switch" data-data="autoRinse">
                 <div class="titleBlock">
                 <div class="title">
                 <span>${_('autoRinse')}</span>
@@ -1817,7 +2233,7 @@ var kxapp = function() {
                 </div>
             </div>
 
-            <div class="atile settings" data-val="0">
+            <div class="atile settings active" data-target="slider" data-data="coffeeTemp">
             <div class="titleBlock">
             <div class="title">
             <span>${_('coffeeTemp')}</span>
@@ -1829,7 +2245,7 @@ var kxapp = function() {
             </div>
 
 
-            <div class="atile settings" data-val="0">
+            <div class="atile settings active" data-val="0" data-target="slider" data-data="waterTemp">
             <div class="titleBlock">
             <div class="title">
             <span>${_('teaTemp')}</span>
@@ -1840,7 +2256,7 @@ var kxapp = function() {
             </div>
             </div>
 
-            <div class="atile settings" data-val="0">
+            <div class="atile settings active" data-val="0" data-target="switch" data-data="cafeTyp">
             <div class="titleBlock">
             <div class="title">
             <span>${_('cafeTyp')}</span>
@@ -1851,7 +2267,20 @@ var kxapp = function() {
                 </div>
             </div>          
 
-            <div class="atile settings" data-val="0">
+            <div class="atile settings active" data-val="0" data-target="selectProfile" data-data="">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('profileSettings')}</span>
+            </div>
+            </div>
+                <div class="tileIcon">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#userSettings"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile settings active" data-val="0" data-target="reset" data-data="">
             <div class="titleBlock">
             <div class="title">
             <span>${_('reset')}</span>
@@ -1927,6 +2356,16 @@ var kxapp = function() {
                     app.loadPage('settings', null);
                 });
 
+                thisBuilt.querySelector('.atile.cleanup').addEventListener('click', function(e) {
+                    app.loadPage('cleanup', null);
+                });
+
+                (this.built.querySelectorAll('.atile.settings.inactive')).forEach(function(el,k) {
+                    el.addEventListener('click', event => {
+                        app.toast(_("onlyCleanup"));
+                    })
+                });
+
                 callback();
             },
             beforeShow: function() {},
@@ -1938,12 +2377,117 @@ var kxapp = function() {
             <div class="titleBlock light" style="left:99px;width:282px">
             <span class="title">${_(this.name)}</span>
             </div>
-            <div class=" backButton">
+
+            <div class="backToMain backButton">
                 <svg style="" viewBox="0 0 26 26" >
-            <use href="#backArrow" />
-                <style>
+                <use href="#backArrow" />
+            </div>
+
+            <section class="slides">
+
+            <div class="tilesBlock">
+            <div class="tiles" data-key="0">
+
+            <div class="atile settings inactive" data-target="unavailable">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('coffeeRinse')}</span>
+            </div>
+            </div>
+                <div class="tileIcon ">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#rinseCoffee"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile settings active cleanup" data-target="available">
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('cleanup')}</span>
+            </div>
+            </div>
+                <div class="tileIcon ">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#cleanK"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile settings inactive" data-target="unavailable" >
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('descaling')}</span>
+            </div>
+            </div>
+                <div class="tileIcon ">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#descaling"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile settings inactive" data-target="unavailable" >
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('filter')}</span>
+            </div>
+            </div>
+                <div class="tileIcon ">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#filter"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile settings inactive" data-target="unavailable" >
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('milkRinse')}</span>
+            </div>
+            </div>
+                <div class="tileIcon">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#rinseMilk"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile settings inactive" data-target="unavailable" >
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('milkAccClean')}</span>
+            </div>
+            </div>
+                <div class="tileIcon ">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#cleanMilkAcc"></use>
+                </svg>
+                </div>
+            </div>
+
+            <div class="atile settings inactive" data-target="unavailable" >
+            <div class="titleBlock">
+            <div class="title">
+            <span>${_('teaRinse')}</span>
+            </div>
+            </div>
+                <div class="tileIcon ">
+                <svg style="" viewBox="0 0 44 44">
+                    <use href="#rinseCoffee"></use>
+                </svg>
+                </div>
+            </div>
+
             
-                </style>
+
+
+
+            </div>
+            </div>
+
+
+            </section>
 
                 </div>
 
@@ -1974,44 +2518,107 @@ var kxapp = function() {
             </div>
             <div class=" backButton">
                 <svg style="" viewBox="0 0 26 26" >
-            <use href="#backArrow" />
+                <use href="#backArrow" />
+            </div>
                 <style>
-            
+
+                    .InfoBlock{
+                        width:350px;
+                        height:213px;
+                        display:inline-block;
+                        box-sizing:border-box;
+                        border-right : solid 1px white;
+                    }
+
+                    .InfoBlock:last-child{
+                        border-right : unset;
+                    }
+
+                    .InfoBlock .infoScrollerItem{
+                        width: 305px;
+                        height:75px;
+                        top:0;
+                        font-size:18px;
+                        padding-left:27px;
+                        position: absolute;
+                    }
+
+                    .InfoBlock .infoScrollerItem:nth-child(2){
+                        top:75px;
+                    }
+
+                    .InfoBlock .infoScrollerItem:nth-child(3){
+                        top:150px;
+                    }
+
+                    .InfoBlock .infoScrollerItem .title{
+                        position: absolute;
+                        left: 100px;
+                        top: 25px;
+                        font-size: 20px;
+                    }
+
+                    .InfoBlock .infoScrollerItem.totalLine .title{
+                        left: 24px;
+                        font-weight:bold;
+                    }
+
+                    .InfoBlock .infoScrollerItem .counter{
+                        position: absolute;
+                        right: 25px;
+                        top:25px;
+                        font-size: 20px;
+                        font-weight:bold;
+                    }
+
+                    .infoScrollerItem .thumb{
+                        position: absolute;
+                        width: 150px;
+                        height: 150px;
+                        top: 0;
+                        left: 0;
+                        overflow: hidden;
+                        transform: scale(0.5);
+                        transform-origin: 0 0;
+                    }
+
+                    .infoScrollerItem .thumb img {
+                        width: 900px;
+                        height: 900px;
+                        pointer-events: none;
+                    }
+
+
+
                 </style>
+
+                <section id="infoScroller" class="hScroller" >
+                    `;
+            var i = 0;
+            for (var [key, value] of Object.entries(app.recipes)) {
+                // console.log(`${key}: ${value}`);
+                i++;
+                // BOF BOF BOF....
+                rhtml += `
+                ${ (i == 1 || i == 3 || i == 6 || i == 9 || i == 12 || i == 15) ? '<div class="InfoBlock">' : ''}
+                ${ (i == 1) ? ` <div class="infoScrollerItem totalLine"><div class="title">${_('roundsDesc')}</div><div class="counter">0</div></div>` : ''}
+                <div class="infoScrollerItem" data-val="${key}">
+                    <div class="thumb">
+                        <img nopin = "nopin" data-alt="${imag('recipesSheet')}" src="${imag('recipesSheet')}" style="object-position: ${'-' + value.spritexy.split(';')[0] * 150 + 'px'} ${'-' + value.spritexy.split(';')[1] * 150 + 'px'}">
+                    </div>
+                    <div class="title">
+                        <span>${_(value.code)}</span>
+                    </div>
+                    <div class="counter">0</div>
 
                 </div>
-
+                ${ (i == 2 || i == 5 || i == 8 || i == 11|| i == 14 || i == 15) ? '</div>' : ''}
                 `;
-            return rhtml;
-            },
-        },
+            }
+            rhtml += `
 
-        help: {
-            name:"help",
-            built: false,
-            build: function(callback) {
-                var thisBuilt = this.built;
-                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
-                    app.loadPage('settings', null);
-                });
+            </section>
 
-                callback();
-            },
-            beforeShow: function() {},
-            run: function() {console.log('running' + this.name);},
-            quit: function() {console.log('quitting ' + this.name);return true;},
-            html: function() {
-            var rhtml = `
-            <div class="pageContent ${this.name} bkg16">
-            <div class="titleBlock light" style="left:99px;width:282px">
-            <span class="title">${_(this.name)}</span>
-            </div>
-            <div class="backToMain backButton">
-                <svg style="" viewBox="0 0 26 26" >
-            <use href="#backArrow" />
-                <style>
-            
-                </style>
 
                 </div>
 
@@ -2095,18 +2702,7 @@ var kxapp = function() {
                     text-transform:uppercase;
                 }
 
-                .okButton{
-                    position: absolute;
-                    right: 36px;
-                    bottom: 36px;
-                    border: solid 2px;
-                    height: 60px;
-                    width: 60px;
-                    text-transform: uppercase;
-                    line-height: 60px;
-                    text-align: center;
-                    font-weight: bold;
-                }
+
 
 
                 </style>
@@ -2122,7 +2718,8 @@ var kxapp = function() {
                 </div>
                 <div class="vwheelCenter left userBorderColor">&nbsp;</div>
 
-                <div class="okButton borderOrange">${_('ok')}</div>
+                <div class="okButton square borderOrange">${_('ok')}</div>
+
                 </div>
 
                 `;
@@ -2165,7 +2762,7 @@ var kxapp = function() {
                     }
                     console.log(maxChar - n.length);
                     nameField.innerHTML=str2field;
-                   // debugger;
+                // debugger;
                     remain.innerHTML = (maxChar - n.length <=1)
                     ? '( '+(maxChar - n.length) +' '+ _('remain')+' )'
                     : '( '+(maxChar - n.length) +' '+ _('remains')+' )'  ;
@@ -2191,8 +2788,8 @@ var kxapp = function() {
                 callback();
             },
             beforeShow: function() {
-               // if (this.lgScroller) {
-               // }
+            // if (this.lgScroller) {
+            // }
             },
             run: function() {console.log('running' + this.name);},
             quit: function() {this.built = false;return true;},
@@ -2208,11 +2805,11 @@ var kxapp = function() {
 
             var rhtml = `
 
-           <div class="pageContent firstName ${app.currentProfile.bkg} ${app.currentProfile.color}">
-           <div class="titleBlock wide light">
-           <span class="title">${_('firstName')}</span>
-           <div class="userTitleClip wide userBorderColor"></div>
-           </div>
+        <div class="pageContent firstName ${app.currentProfile.bkg} ${app.currentProfile.color}">
+        <div class="titleBlock wide light">
+        <span class="title">${_('firstName')}</span>
+        <div class="userTitleClip wide userBorderColor"></div>
+        </div>
 
 
             <div class="backToMain backButton">
@@ -2334,8 +2931,8 @@ var kxapp = function() {
                 selected.classList.add("selected");
                     //debugger;
                     this.built.querySelector('.colorScroller').scrollTo({left:selected.offsetLeft-200});
-               // if (this.lgScroller) {
-               // }
+            // if (this.lgScroller) {
+            // }
             },
             run: function() {console.log('running' + this.name);},
             quit: function() {
@@ -2352,16 +2949,13 @@ var kxapp = function() {
                 </div>`;
             }
 
-
-
             var rhtml = `
 
-           <div class="pageContent colors ${app.currentProfile.bkg} ${app.currentProfile.color}">
-           <div class="titleBlock wide light">
-           <span class="title">${_('color')}</span>
-           <div class="userTitleClip wide userBorderColor"></div>
-           </div>
-
+            <div class="pageContent colors ${app.currentProfile.bkg} ${app.currentProfile.color}">
+            <div class="titleBlock wide light">
+            <span class="title">${_('color')}</span>
+            <div class="userTitleClip wide userBorderColor"></div>
+            </div>
 
             <div class="backToMain backButton">
                 <svg style="" viewBox="0 0 26 26" >
@@ -2423,6 +3017,157 @@ var kxapp = function() {
             },
         },
 
+        program: {
+            name:"program",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                var color = app.currentProfile.color;
+                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('userSettingsHome', null);
+                });
+
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {
+                    app.currentProfile.color = color;
+                    app.loadPage('userSettingsHome', null);
+                })
+                callback();
+            },
+            beforeShow: function() {
+            },
+            run: function() {console.log('running' + this.name);},
+            quit: function() {
+                this.built = false;
+                return true;
+            },
+            html: function() {
+            
+            var rhtml = `
+
+            <div class="pageContent colors ${app.currentProfile.bkg} ${app.currentProfile.color}">
+            <div class="titleBlock wide light">
+            <span class="title">${_('planning')}</span>
+            <div class="userTitleClip wide userBorderColor"></div>
+            </div>
+
+                <div class="backToMain backButton">
+                    <svg style="" viewBox="0 0 26 26" >
+                    <use href="#backArrow" />
+                </div>
+                <style>
+                .block{
+                    position:absolute; left:20px; width:210px;top:119px;height:130px;
+                    background:rgba(255,255,255,0.2);
+                }
+                .block.right{
+                    left:249px;
+                }
+                .block .checkbox{
+                    position:absolute;
+                    width:25px;
+                    height:25px;
+                    top:10px;
+                    left:12px
+                    background-color:white;
+
+                }
+
+                .block .checkbox.checked{
+                    position:absolute;
+                    width:25px;
+                    height:25px;
+                    top:10px;
+                    left:12px;
+                }
+
+                .block .checkbox .inner{
+                    display:none;
+                    position:absolute;
+                    width:100%;
+                    height:100%;
+                }
+
+                .block .checkbox.checked .inner{
+                    display:block;
+                }
+
+
+                .block .drink{
+                    position: absolute;
+                    width: 49px;
+                    height: 49px;
+                    top: 73px;
+                    left: 140px;
+                }
+
+                .block .separator{
+                    width: 1px;
+                    height: 62px;
+                    background-color: #ffffff85;
+                    position: absolute;
+                    left: 104px;
+                    top: 59px;
+                }
+
+                .block .checkboxtitle{
+                    position: absolute;
+                    left: 48px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    top: 10px;
+                }
+
+                .block .time{
+                    position: absolute;
+                    left: 2px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    top: 76px;
+                    width: 101px;
+                    text-align: center;
+                }
+
+                </style>
+
+                <div class="settingsDesc">${_('programDesc')}</div>
+                
+                <div class= "block" >
+                    <div class="checkbox  checked">
+                        <div class="inner userFIllColor">
+                            <svg style="" viewBox="0 0 32 32" style="width:100%" >
+                            <use href="#checkMark" />
+                        </div>
+                    </div>
+                    <div class="checkboxtitle">weekend</div>
+                    <div class="time">10:00</div>
+                    <div class="separator"></div>
+                    <div class="drink">
+                        <svg style="" viewBox="0 0 32 32" style="width:100%" >
+                        <use href="#recette" />
+                    </div>
+                </div>
+
+                <div class=" block right" >
+                    <div class="checkbox"></div>
+                    <div class="checkboxtitle">week</div>
+                    <div class="time">07:30</div>
+                    <div class="separator"></div>
+                    <div class="drink">
+                        <svg style="" viewBox="0 0 32 32" style="width:100%" >
+                        <use href="#recette" />
+                    </div>
+                </div>
+
+
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}</div>
+
+                </div>
+
+                `;
+            return rhtml;
+            },
+        },
+
         userSettingsHome: {
             name:"userSettingsHome",
             built: false,
@@ -2431,33 +3176,23 @@ var kxapp = function() {
                 var name = app.currentProfile.name;
                 var maxChar = 12;
                 thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
-                    app.loadPage('profile', null);
+                    console.log('go home');
+                    app.loadPage("profile", null);
                 });
 
-                var buttons = thisBuilt.querySelectorAll('.atile.settings.active');
-                console.log(buttons);
+                var buttons = this.built.querySelectorAll('.atile.settings.active');
+                //console.log(keywordsElems);
                 buttons.forEach(function(el,k) {
-                    console.log('->',el.dataset.target)
                     el.addEventListener('click', event => {
-                        app.loadPage(el.dataset.target,null)
+                        app.loadPage(el.dataset.target,(el.dataset.data?el.dataset.data:null))
                     })
                 });
-
-                /*thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {
-                    app.currentProfile.name = name;
-                })*/
-
-               // this.lgScroller = new hscroller(
-                  //  thisBuilt.querySelector('.langScroller'),
-               // );
-
-               
 
                 callback();
             },
             beforeShow: function() {
-               // if (this.lgScroller) {
-               // }
+            // if (this.lgScroller) {
+            // }
             },
             run: function() {console.log('running' + this.name);},
             quit: function() {this.built = false;return true;},
@@ -2467,11 +3202,11 @@ var kxapp = function() {
 
             var rhtml = `
 
-           <div class="pageContent userSettingsHome ${app.currentProfile.bkg} ${app.currentProfile.color}">
-           <div class="titleBlock wide light">
-           <span class="title">${app.currentProfile.name}</span>
-           <div class="userTitleClip wide userBorderColor"></div>
-           </div>
+        <div class="pageContent userSettingsHome ${app.currentProfile.bkg} ${app.currentProfile.color}">
+        <div class="titleBlock wide light">
+        <span class="title">${app.currentProfile.name}</span>
+        <div class="userTitleClip wide userBorderColor"></div>
+        </div>
 
             <div class="backToMain backButton">
                 <svg style="" viewBox="0 0 26 26" >
@@ -2514,28 +3249,28 @@ var kxapp = function() {
                     </div>
             </div>
 
-            <div class="atile settings" data-val="0">
+            <div class="atile settings active" data-val="0" data-target="switch" data-data="display">
             <div class="titleBlock">
             <div class="title">
             <span>${_('display')}</span>
             </div>
             </div>
-                <div class="tileIcon" style="width: 64px;
-                height: 64px;
-                left: 23px;
+                <div class="tileIcon" style="width: 65px;
+                height: 44px;
+                left: 24px;
                 top: 42px;">
-                <svg viewBox="0 0 64 64">
-                    <use href="#tiles"></use>
+                <svg viewBox="0 0 44 44" style="width:100%">
+                    <use href="#slider"></use>
                 </svg>
                 </div>
             </div>
 
 
             
-            <div class="atile settings" data-val="0">
+            <div class="atile settings active" data-target="switch" data-data="deviceLight">
             <div class="titleBlock">
             <div class="title">
-            <span>${_('light')}</span>
+            <span>${_('deviceLight')}</span>
             </div>
             </div>
                 <div class="tileIcon ">
@@ -2545,11 +3280,11 @@ var kxapp = function() {
                 </div>
             </div>
 
-            <div class="atile double settings" data-val="0">
-            <div class="titleBlock">
-            <div class="title">
-            <span>${_('planning')}</span>
-            </div>
+            <div class="atile double settings active" data-val="0" data-target="program">
+                <div class="titleBlock">
+                <div class="title">
+                <span>${_('planning')}</span>
+                </div>
             </div>
 
                 <div class="atileContents">
@@ -2565,9 +3300,202 @@ var kxapp = function() {
 
             </div>
             </div>
-   
+
 
             </section>
+            </div>
+                `;
+            return rhtml;
+            },
+        },
+
+        dateTime : {
+            name:"dateTime",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built
+                console.log("BUILD");
+                //debugger;
+                this.built.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('setups', null);
+                });
+
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {
+                    app.loadPage('setups',null)
+                    //console.log(app.lg);
+                })
+
+                this.dayScroller = new vscroller(
+                    thisBuilt.querySelector('.dayScroller'),
+                    thisBuilt.querySelector('.dayScroller_target'),
+                );
+
+                this.monthScroller = new vscroller(
+                    thisBuilt.querySelector('.monthScroller'),
+                    thisBuilt.querySelector('.monthScroller_target'),
+                );
+
+                this.yearScroller = new vscroller(
+                    thisBuilt.querySelector('.yearScroller'),
+                    thisBuilt.querySelector('.yearScroller_target'),
+                );
+//wheel vWheel
+                thisBuilt.querySelectorAll('.vWheel.wheel').forEach((el) => {
+                    //console.log(el);
+                    el.addEventListener('click', function(e) {
+                        console.log(e);
+
+                       app.toast(_("unsupported"))
+                    }
+                    )
+                  //  debugger;
+                })
+
+
+
+                
+
+
+                callback();
+            },
+            beforeShow: function() {
+                console.log(this.build.dayScroller);
+                //debugger
+                var date = new Date;
+                this.dayScroller.scrollToFunction(this.built.querySelector('.dayScrollerItem[data-val="'+date.getDate()+'"]'))
+                this.monthScroller.scrollToFunction(this.built.querySelector('.monthScrollerItem[data-val="'+(date.getMonth()+1)+'"]'))
+                this.yearScroller.scrollToFunction(this.built.querySelector('.yearScrollerItem[data-val="'+(date.getFullYear())+'"]'))
+
+                this.dayScroller.pause = true;
+                this.monthScroller.pause = true;
+                this.yearScroller.pause = true;
+            },
+            run: function() {},
+            quit: function() {
+                console.log("QUIT");
+
+            // fn called on quit ,, Must send true to allow quitting.
+                console.log('quitting ' + this.name);
+                this.data = false;
+                this.built = false;
+                return true;
+            },
+
+            html: function() {
+                var daysArray = function(){
+                    var today = new Date();
+                    var month = today.getMonth() ;
+                    //var day = today.getDate()  ;
+                    var year = today.getFullYear();
+                    var date = new Date(year, month, 1);
+                    var days = [];
+                   // debugger;
+                    while (date.getMonth() === month || days.length > 31) {
+                      days.push(new Date(date));
+                      date.setDate(date.getDate() + 1);
+                    }
+                    return(days);
+                }
+
+                var dayScrollerItems = '';
+                var monthScrollerItems = '';
+                var yearScrollerItems = '';
+                var days = daysArray();
+                //debugger;
+                for (var i = 0, len = days.length; i < len; i++) {
+                    var el = days[i];
+                    dayScrollerItems +=`<div class="wheelItem dayScrollerItem" data-val="${el.getDate()}">${el.getDate()}</div>
+                    `;
+                }
+
+                ((_('calendarMonths')).split(';')).forEach(function(el,k) {
+                    monthScrollerItems +=`<div class="wheelItem monthScrollerItem" data-val="${k+1}">${el}</div>
+                    `;
+                })
+
+                for (var y = 2010; y < 2041; y++) {
+                    yearScrollerItems +=`<div class="wheelItem yearScrollerItem" data-val="${y}">${y}</div>
+                    `;
+                }
+
+                console.log(monthScrollerItems);
+
+
+                
+            
+            var rhtml = `
+
+            <div class="pageContent settings bkg16 orange">
+            <style>
+
+            .vwheelMask.wTitle{
+                position: absolute;
+                height: 274px;
+                top: 49px;
+                width: 80px;
+                left: 40px;
+                overflow: hidden;
+            }
+
+            .vWheel .wheelItem {
+             
+            }
+
+            .vwheelMask.wTitle .wheel.vWheel{
+                left:0;
+                top:-49px;
+            }
+            </style>
+
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+
+            <div class="titleBlock dateTime light" style="left:99px;width:282px">
+                <span class="title">${_("dateTime")}</span>
+            </div>
+
+            <!-- <div class="settingsDesc">${_('dateTimeDesc')}</div> -->
+
+
+                <div class="target dayScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:90px; top:160px"></div>
+
+                <div class="vwheelMask wTitle">
+                <div class="wheel vWheel left dayScroller">
+                    <div class="wheelItem noAction"></div>
+                        ${dayScrollerItems}
+                    <div class="wheelItem noAction"></div>
+                </div>
+                </div>
+
+
+                <div class="target monthScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:190px; top:160px"></div>
+
+                <div class="vwheelMask wTitle" style="left:155px">
+                <div class="wheel vWheel left monthScroller">
+                    <div class="wheelItem noAction"></div>
+                        ${monthScrollerItems}
+                    <div class="wheelItem noAction"></div>
+                </div>
+                </div>
+
+                <div class="target yearScroller_target" style = "position:absolute; width:5px; height:5px;background-color:transparent; left:311px; top:160px"></div>
+
+                <div class="vwheelMask wTitle" style="left:269px">
+                <div class="wheel vWheel left yearScroller">
+                    <div class="wheelItem noAction"></div>
+                        ${yearScrollerItems}
+                    <div class="wheelItem noAction"></div>
+                </div>
+                </div>
+
+                <div class="vwheelCenter left userBorderColor">&nbsp;</div>
+
+                <div class="okButton square borderOrange">${_('ok')}</div>
+
+
+
             </div>
                 `;
             return rhtml;
@@ -2580,9 +3508,26 @@ var kxapp = function() {
             build: function(callback) {
                 console.log("BUILD");
                 //debugger;
+
                 this.built.querySelector('.backButton').addEventListener('click', function(e) {
-                    app.loadPage('setups', null);
+
+                    app.loadPage(app.currentPage.referrer.pageId, null);
                 });
+
+                this.built.querySelector('.okButton').addEventListener('click', function(e) {
+                    app.loadPage(app.currentPage.referrer.pageId, null);
+                });
+                
+
+                this.built.querySelector('.sliderPointer').addEventListener('click', function(e) {
+                    app.toast(_("unsupported"))
+                });
+
+                this.built.querySelector('.theSlider').addEventListener('click', function(e) {
+                    app.toast(_("unsupported"))
+                });
+
+
                 callback();
             },
             beforeShow: function() {
@@ -2602,16 +3547,20 @@ var kxapp = function() {
             },
 
             html: function() {
-            var slider  = kx.sliders[this.data];
+            var slider  = app.sliders[this.data];
             var width = 320;
             var steps='';
             function pxForPos(pos) {
-              //  return ((width+(width/(slider.steps.length-1)))/slider.steps.length*pos)-(width/(slider.steps.length-1));
-                return (pos-1) * (width)/(slider.steps.length-1);
+            //  return ((width+(width/(slider.steps.length-1)))/slider.steps.length*pos)-(width/(slider.steps.length-1));
+                if (slider.steps) {
+                    return (pos-1) * (width)/(slider.steps.length-1)
+                } else {
+                    return width * (pos/100);
+                }
             }
-            slider.steps.forEach(function(el,k) {
-                 steps += `<div class="astep" style="left:${pxForPos(k+1)}px"><div class="l">${el.desc1}</div><div class="l l2">${el.desc2}</div></div>`
-            })
+            if (slider.steps ){slider.steps.forEach(function(el,k) {
+            steps += `<div class="astep" style="left:${pxForPos(k+1)}px"><div class="l">${el.desc1}</div><div class="l l2">${el.desc2}</div></div>`
+            })}
 
             var rhtml = `
 
@@ -2661,6 +3610,18 @@ var kxapp = function() {
                 border-radius: 50%;
                 top: 13px;
             }
+
+            .sliderIcon{
+                position: absolute;
+                width: 32px;
+                height: 32px;
+                left: 40px;
+                top: 149px;
+            }
+
+            .sliderIcon.sliderIconRight {
+                left:415px;
+            }
             
             </style>
             <div class="backToMain backButton">
@@ -2668,397 +3629,1109 @@ var kxapp = function() {
                 <use href="#backArrow" />
             </div>
             <div class="titleBlock light" style="left:99px;width:282px">
-            <span class="title">${_(slider.title)}</span>
+                <span class="title">${_(slider.title)}</span>
             </div>
+
+            ${slider.icons ? `<div class="sliderIcon sliderIconLeft">
+            <svg style="" viewBox="0 0 32 32" >
+            <use href="#${slider.icons.left}" />
+            </div>`:''}
+
+            ${slider.icons ? `<div class="sliderIcon sliderIconRight">
+            <svg style="" viewBox="0 0 32 32" >
+            <use href="#${slider.icons.right}" />
+            </div>`:''}
+
             <div class="settingsDesc">${_(slider.desc)}</div>
-                <div class="barBkg userFIllColor" style="position:absolute;width:${width}px;height:5px;top:163px;left:81px">
+                <div class="barBkg userFIllColor theSlider" style="position:absolute;width:${width}px;height:5px;top:163px;left:81px">
 
                 <div class="fill" style="background-color:#FFFFFF;position:absolute;height:5px;width:${pxForPos(slider.default)}px"></div>
                 ${steps}
                 <div class="sliderPointer" style="left:${pxForPos(slider.default)}px"></div>
                 </div>
+
+                <div class="startButton userBorderColor okButton">${_('ok')}</div>
+
             </div>
             
+
+                `;
+            return rhtml;
+            },
+        },
+
+        switch : {
+            name:"switch",
+            built: false,
+            build: function(callback) {
+                console.log("BUILD");
+                this.built.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage(app.currentPage.referrer.pageId, null);
+                });
+                this.built.querySelector('.okButton').addEventListener('click', function(e) {
+                    app.loadPage(app.currentPage.referrer.pageId, null);
+                });
+                callback();
+            },
+
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {
+                this.data = false;
+                this.built = false;
+                return true;
+            },
+
+            html: function() {
+            var thisSwitch = app.switches[this.data];
+            var largeTextStyle = ((_(thisSwitch.textLeft)).length > 7 || (_(thisSwitch.textRight)).length > 7)?'largeTextStyle':''
+            debugger;
+
+
+            var rhtml = `
+            <div class="pageContent switch_${thisSwitch.title} ${(app.currentProfile)?app.currentProfile.color:'orange'} ${(app.currentProfile)?app.currentProfile.bkg:'bkg16'}">
+            <style>
+            
+            .switchIcon{
+                position: absolute;
+                width: 44px;
+                height: 44px;
+                left: 139px;
+                top: 196px;
+            }
+
+            .switchIcon.switchIconRight {
+                left:300px;
+            }
+
+            .switchText{
+                position: absolute;
+                width: 160px;
+                height: 44px;
+                left: 79px;
+                top: 159px;
+                text-align: center;
+                overflow:hidden;
+                font-size:18px;
+            }
+
+            .switchText.switchTextRight {
+                left:240px;
+            }
+
+            .aSwitch.active .switchText.textOnly {
+                text-shadow: 0 0 9px white, 0 0 11px white;
+            }
+
+            .switchText.textOnly {
+                top: 190px;
+                font-size: 20px;
+            }
+
+            .switchText.largeTextStyle{
+                width: 218px;
+                left: 1px;
+                text-align: right;
+            }
+
+            .switchText.largeTextStyle.switchTextRight{
+                left:259px;
+                text-align:left;
+            }
+            .separator{
+                position:absolute;
+                width:1px;
+                height:80px;
+                top:161px;
+                left:239px;
+                background-color:rgba(255,255,255,.25);
+            }
+
+            .aSwitch.active .switchText{
+                font-weight:bold;
+            }
+
+            .aSwitch.active .switchIcon svg{
+                filter:drop-shadow(0 0 4px white) drop-shadow(0 0 6px white);
+            }
+            
+            
+            </style>
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+            <div class="titleBlock light" style="left:99px;width:282px">
+                <span class="title">${_(thisSwitch.title)}</span>
+                ${(app.currentProfile)?'<div class="userTitleClip wide userBorderColor"></div>':''}
+            </div>
+            <div class="aSwitch switchLeft">
+                <div class="switchText switchTextLeft ${thisSwitch.iconRight ?'':'textOnly'} ${largeTextStyle}">
+                ${_(thisSwitch.textLeft)}
+                </div>
+                ${thisSwitch.iconLeft ? `<div class="switchIcon switchIconLeft">
+                <svg viewBox="0 0 44 44" >
+                <use href="#${thisSwitch.iconLeft}" />
+                </div>`:''}
+            </div>
+            <div class="separator"></div>
+            <div class="aSwitch switchRight active">
+                <div class="switchText switchTextRight ${thisSwitch.iconRight ?'':'textOnly'} ${largeTextStyle}">
+                ${_(thisSwitch.textRight)}
+                </div>
+
+                ${thisSwitch.iconRight ? `<div class="switchIcon switchIconRight">
+                <svg style="" viewBox="0 0 44 44" >
+                <use href="#${thisSwitch.iconRight}" />
+                </div>`:''}
+            </div>
+            <div class="settingsDesc">${_(thisSwitch.desc)}</div>
+               
+
+                <div class="startButton userBorderColor okButton">${_('ok')}</div>
+
+            </div>
+            
+
+                `;
+            return rhtml;
+            },
+        },
+
+        reset : {
+            name:"reset",
+            built: false,
+            build: function(callback) {
+                console.log("BUILD");
+                this.built.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage(app.currentPage.referrer.pageId, null);
+                });
+                this.built.querySelector('.okButton').addEventListener('click', function(e) {
+                    //                app.toast(_("unsupported"))
+
+                    app.loadPage(app.currentPage.referrer.pageId, null);
+                });
+                callback();
+            },
+
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {
+                return true;
+            },
+
+            html: function() {
+
+            var rhtml = `
+
+            <div class="pageContent reset bkg16 orange">
+            <style>
+           
+            </style>
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+            <div class="titleBlock light" style="left:99px;width:282px">
+                <span class="title">${_("reset")}</span>
+            </div>
+
+            <div class="settingsDesc">${_("resetDesc")}</div>
+               
+
+            <div class="startButton userBorderColor okButton">${_('ok')}</div>
+
+            </div>
+            
+
+                `;
+            return rhtml;
+            },
+        },
+        
+        selectProfile : {
+            name:"selectProfile",
+            built: false,
+            build: function(callback) {
+                this.built.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage(app.currentPage.referrer.pageId, null);
+                });
+
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.profileOneButton').addEventListener('click', function(e) {
+                    app.currentProfile = app.profiles.userOne;
+                    app.loadPage("userSettingsHome",null);
+                });
+
+                thisBuilt.querySelector('.profileTwoButton').addEventListener('click', function(e) {
+                    app.currentProfile = app.profiles.userTwo;
+                    app.loadPage("userSettingsHome",null);
+                });
+
+                callback();
+            },
+
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {
+                return true;
+            },
+
+            html: function() {
+
+            var rhtml = `
+
+            <div class="pageContent selectProfile bkg16 orange">
+            <style>
+           
+            </style>
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+            <div class="titleBlock light" style="left:99px;width:282px">
+                <span class="title">${_("profileSettings")}</span>
+            </div>
+
+            <div class="settingsDesc">${_("profileSettingsDesc")}</div>
+               
+
+            <div class="profileOneButton"  style="border:solid 1px white; box-sizing:border-box; position:absolute;top: 141px; left: 38px; width:404px;height:60px; color:white;background-color:rgba(0,0,0,0.4)">
+                    
+            <svg viewBox="0 0 32 32" style="position:absolute;width 24px; height:24px; fill:white; top:18px;left:18px">
+                <use href="#profileIcon" />
+            </svg>
+            <div style="
+                text-align: center;
+                line-height: 60px;
+                font-size: 23px;
+                font-weight: 400;
+            "> ${app.profiles.userOne.name}</div>
+            </div>
+
+            <div class="profileTwoButton"  style="border:solid 1px white; box-sizing:border-box; position:absolute;top: 213px; left: 38px; width:404px;height:60px; color:white;background-color:rgba(0,0,0,0.4)">
+            
+            <svg viewBox="0 0 32 32" style="position:absolute;width 24px; height:24px; fill:white; top:18px;left:18px">
+                <use href="#profileIcon" />
+            </svg>
+            <div style="
+                text-align: center;
+                line-height: 60px;
+                font-size: 23px;
+                font-weight: 400;
+            "> ${app.profiles.userTwo.name} </div>
+            </div>
+
+            </div>
+            
+
+                `;
+            return rhtml;
+            },
+        },
+
+        help: {
+            name:"help",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {
+                    app.loadPage('settings', null);
+                });
+
+                callback();
+            },
+            beforeShow: function() {
+            },
+            run: function() {console.log('running' + this.name);},
+            quit: function() {
+                return true;
+            },
+            html: function() {
+            
+            var colorScrollerItems = '';
+
+            var rhtml = `
+
+            <div class="pageContent help bkg16 orange">
+            <div class="titleBlock wide light">
+            <span class="title">${_('help')}</span>
+            </div>
+
+            <div class="backToMain backButton">
+                <svg style="" viewBox="0 0 26 26" >
+                <use href="#backArrow" />
+            </div>
+                <style>
+                .help .hScroller{
+                    top: 71px;
+                    height: 220px;
+                    padding-top: 10px;
+                }
+
+                .help .hScrollerItem {
+                    width: 157px;
+                    height: 220px;
+                    text-align: center;
+                    margin-right: 5px;
+                    background-color : rgba(255,255,255,0.2);
+                    box-sizing: border-box;
+                    font-size:14px;
+                }
+
+                .help .hScrollerItem:first-child {
+                    margin-left:29px;
+                }
+
+                .help .hScrollerItem:last-child {
+                    margin-right:29px;
+                }
+
+                .help .hScrollerItem .icon {
+                    width: 122px;
+                    height: 40px;
+                    position: absolute;
+                    left: 19px;
+                    /* background: black; */
+                    top: 10px;
+                    border-bottom: solid 1px rgba(255, 255, 255, 0.4);
+                }
+
+                .help .hScrollerItem .video.icon {
+                    width: 122px;
+                    height: 40px;
+                    position: absolute;
+                    left: 19px;
+                    /* background: black; */
+                    top: 10px;
+                    border-bottom: solid 1px rgba(255, 255, 255, 0.4);
+                }
+
+                .help .hScrollerItem .icon svg {
+                    width:32px;
+                    height:32px;
+                }
+
+                .help .hScrollerItem .desc {
+                    position: absolute;
+                    top: 67px;
+                    width: 138px;
+                    left: 10px;
+                    font-size: 20px;
+                    font-weight: 300;
+                    text-align: center;
+                    white-space: initial;
+                }
+
+                .playBlock{
+                    position: absolute;
+                    width: 90%;
+                    height: 18px;
+                    bottom: 12px;
+                    font-size: 18px;
+                    line-height: 18px;
+                }
+
+                .playBlock .videoIcon{
+                    width: 25px;
+                    height: 19px;
+                    display: inline-block;
+                    vertical-align: top;
+                    line-height: 19px;
+                }
+
+                .playBlock .videoIcon svg{
+                    width:100%;
+                    height:100%;
+                }
+
+                </style>
+                    <div class=" hScroller helpScroller">
+
+                        <div class="hScrollerItem"> 
+                            <div class="icon">
+                                <svg  viewBox="0 0 32 32" >
+                                <use href="#recette" />
+                            </div>
+                            <div class="desc"> ${_('help_recipe')} </div>
+                            <div class="playBlock">
+                                <div class="videoIcon">
+                                    <svg viewBox="0 0 32 32" >
+                                    <use href="#play" />
+                                </div>
+                                2 ${_('videos')}
+                            </div>
+                        </div>
+
+                        <div class="hScrollerItem"> 
+                            <div class="icon">
+                                <svg  viewBox="0 0 32 32" >
+                                <use href="#fav" />
+                            </div>
+                            <div class="desc"> ${_('help_fav')} </div>
+                            <div class="playBlock">
+                                <div class="videoIcon">
+                                    <svg viewBox="0 0 32 32" >
+                                    <use href="#play" />
+                                </div>
+                                3 ${_('videos')}
+                            </div>
+                        </div>
+                        
+                        <div class="hScrollerItem"> 
+                            <div class="icon">
+                                <svg  viewBox="0 0 32 32" >
+                                <use href="#wrench" />
+                            </div>
+                            <div class="desc"> ${_('help_service')} </div>
+                            <div class="playBlock">
+                                <div class="videoIcon">
+                                    <svg viewBox="0 0 32 32" >
+                                    <use href="#play" />
+                                </div>
+                                5 ${_('videos')}
+                            </div>
+                        </div>
+
+                            
+                    </div>
+
+
+                </div>
+
+                `;
+            return rhtml;
+            },
+        },
+
+        cleanup: {
+            name:"cleanup",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.backButton').addEventListener('click', function(e) {app.loadPage('care', null);});
+                callback();
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {app.loadPage('cleanup_2', null);});
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {return true;},
+            html: function() {
+                
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+                <div class="titleBlock light wide">
+                <span class="title">${_("cleanup")}</span>
+                </div>
+                <div class="backButton">
+                    <svg style="" viewBox="0 0 26 26" >
+                    <use href="#backArrow" />
+                </div>
+                <div class="settingsDesc">${_('cleanup_1_desc')}</div>
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}
             </div>
                 `;
             return rhtml;
             },
         },
+
+        cleanup_2: {
+            name:"cleanup_2",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {app.loadPage('cleanup_3', null);});
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {return true;},
+            html: function() {
+                
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+                <div class="titleBlock light wide">
+                <span class="title">${_("cleanup")}</span>
+                </div>
+
+                <div class="settingsDesc">${_('cleanup_2_desc')}</div>
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}
+            </div>
+                `;
+            return rhtml;
+            },
+        },
+        
+        cleanup_3: {
+            name:"cleanup_3",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {app.loadPage('cleanup_4', null);});
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {return true;},
+            html: function() {
+                
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+                <div class="titleBlock light wide">
+                <span class="title">${_("cleanup")}</span>
+                </div>
+
+                <div class="settingsDesc">${_('cleanup_3_desc')}</div>
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}
+            </div>
+                `;
+            return rhtml;
+            },
+        },
+        
+        cleanup_4: {
+            name:"cleanup_4",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {app.loadPage('cleanup_5', null);});
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {return true;},
+            html: function() {
+                
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+                <div class="titleBlock light wide">
+                <span class="title">${_("cleanup")}</span>
+                </div>
+
+                <div class="settingsDesc">${_('cleanup_4_desc')}</div>
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}
+            </div>
+                `;
+            return rhtml;
+            },
+        },
+
+        cleanup_5: {
+            name:"cleanup_5",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {app.loadPage('cleanup_6', null);});
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {return true;},
+            html: function() {
+                
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+                <div class="titleBlock light wide">
+                <span class="title">${_("cleanup")}</span>
+                </div>
+
+                <div class="settingsDesc">${_('cleanup_5_desc')}</div>
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}
+            </div>
+                `;
+            return rhtml;
+            },
+        },
+        
+        cleanup_6: {
+            name:"cleanup_6",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {app.loadPage('cleanup_7', null);});
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {return true;},
+            html: function() {
+                
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+                <div class="titleBlock light wide">
+                <span class="title">${_("cleanup")}</span>
+                </div>
+
+                <div class="settingsDesc">${_('cleanup_6_desc')}</div>
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}
+            </div>
+                `;
+            return rhtml;
+            },
+        },
+
+        cleanup_7: {
+            name:"cleanup_7",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {app.loadPage('cleanup_8', null);});
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {return true;},
+            html: function() {
+                
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+                <div class="titleBlock light wide">
+                <span class="title">${_("cleanup")}</span>
+                </div>
+
+                <div class="settingsDesc">${_('cleanup_7_desc')}</div>
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}
+            </div>
+                `;
+            return rhtml;
+            },
+        },  
+
+        cleanup_8: {
+            name:"cleanup_8",
+            built: false,
+            build: function(callback) {
+                var thisBuilt = this.built;
+                thisBuilt.querySelector('.okButton').addEventListener('click', function() {app.loadPage('cleanup_9', null);});
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {},
+            quit: function() {return true;},
+            html: function() {
+                
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+                <div class="titleBlock light wide">
+                <span class="title">${_("cleanup")}</span>
+                </div>
+
+                <div class="settingsDesc">${_('cleanup_8_desc')}</div>
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}
+            </div>
+                `;
+            return rhtml;
+            },
+        }, 
+
+        cleanup_9: {
+            name:"cleanup_9",
+            built: false,
+            build: function(callback) {
+                callback();
+            },
+            beforeShow: function() {},
+            run: function() {
+                this.timout = setTimeout(
+                    function(e) {app.loadPage('recettes', null);}, 3000
+                )
+            },
+            quit: function() {
+                clearTimeout(this.timout);
+                return true;
+            },
+            html: function() {
+                
+            var rhtml = `
+            <div class="pageContent ${this.name} bkg16">
+                <div class="titleBlock light wide">
+                <span class="title">${_("cleanup")}</span>
+                </div>
+                <div class="settingsDesc">${_('cleanup_9_desc')}</div>
+                <div class="okButton startButton bottom userBorderColor">${_('OK')}
+            </div>
+                `;
+            return rhtml;
+            },
+        }, 
+};
+
+app.recipes = {
+ristretto:{code:'ristretto',
+spritexy:'0;0',
+spritexy_x1:'1;0',
+spritexy_x2:'2;0',
+bkg:'bkg2',
+family:'black',
+sequences:'cafe',
+canx2:true,
+leftmenutyp:'strength',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'2',
+rightmenutyp:'ml',
+rightmenuvalues:'20;25;30;35;40',
+rightmenudefault:'25',
+step2Typ:'false',
+step2Values:'false',
+step2Default:'false',
+invertSteps:false,
 },
+espresso:{code:'espresso',
+spritexy:'3;0',
+spritexy_x1:'4;0',
+spritexy_x2:'5;0',
+bkg:'bkg4',
+family:'black',
+sequences:'cafe',
+canx2:true,
+leftmenutyp:'strength',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'2',
+rightmenutyp:'ml',
+rightmenuvalues:'40;50;60;70',
+rightmenudefault:'40',
+step2Typ:'false',
+step2Values:'false',
+step2Default:'false',
+invertSteps:false,
+},
+lungo:{code:'lungo',
+spritexy:'0;1',
+spritexy_x1:'1;1',
+spritexy_x2:'2;1',
+bkg:'bkg4',
+family:'black',
+sequences:'cafe',
+canx2:true,
+leftmenutyp:'strength',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'2',
+rightmenutyp:'ml',
+rightmenuvalues:'70; 80;90;100',
+rightmenudefault:'70',
+step2Typ:'false',
+step2Values:'false',
+step2Default:'false',
+invertSteps:false,
+},
+cafelong:{code:'cafelong',
+spritexy:'3;1',
+spritexy_x1:'4;1',
+spritexy_x2:'5;1',
+bkg:'bkg3',
+family:'black',
+sequences:'cafe',
+canx2:true,
+leftmenutyp:'strength',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'2',
+rightmenutyp:'ml',
+rightmenuvalues:'80;90;100;110;120;120;140;150;160;170;180',
+rightmenudefault:'120',
+step2Typ:'false',
+step2Values:'false',
+step2Default:'false',
+invertSteps:false,
+},
+doppio:{code:'doppio',
+spritexy:'0;2',
+spritexy_x1:'0;2',
+spritexy_x2:'0;2',
+bkg:'bkg2',
+family:'black',
+sequences:'cafe',
+canx2:false,
+leftmenutyp:'strength',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'2',
+rightmenutyp:'ml',
+rightmenuvalues:'20;30;40;50;60;70',
+rightmenudefault:'50',
+step2Typ:'false',
+step2Values:'false',
+step2Default:'false',
+invertSteps:false,
+},
+americano:{code:'americano',
+spritexy:'3;2',
+spritexy_x1:'3;2',
+spritexy_x2:'3;2',
+bkg:'bkg3',
+family:'black',
+sequences:'cafe',
+canx2:false,
+leftmenutyp:'strength',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'2',
+rightmenutyp:'ml',
+rightmenuvalues:'80;90;100;110;120;120;140;150',
+rightmenudefault:'120',
+step2Typ:'false',
+step2Values:'false',
+step2Default:'false',
+invertSteps:false,
+},
+emacchiato:{code:'emacchiato',
+spritexy:'0;3',
+spritexy_x1:'1;3',
+spritexy_x2:'2;3',
+bkg:'bkg7',
+family:'latte',
+sequences:'foaming;cafe',
+canx2:true,
+leftmenutyp:'strength',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'2',
+rightmenutyp:'vol',
+rightmenuvalues:'M;L;XL',
+rightmenudefault:'L',
+step2Typ:'ml',
+step2Values:'40;50;60;70',
+step2Default:'50',
+invertSteps:false,
+},
+cappucino:{code:'cappucino',
+spritexy:'3;3',
+spritexy_x1:'4;3',
+spritexy_x2:'5;3',
+bkg:'bkg10',
+family:'latte',
+sequences:'foaming;cafe',
+canx2:true,
+leftmenutyp:'strength',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'2',
+rightmenutyp:'vol',
+rightmenuvalues:'M;L;XL',
+rightmenudefault:'L',
+step2Typ:'ml',
+step2Values:'20;30;40;50;60;70;80;190;100;110;120;130;140;150;160',
+step2Default:'70',
+invertSteps:false,
+},
+lattemacchiato:{code:'lattemacchiato',
+spritexy:'0;4',
+spritexy_x1:'1;4',
+spritexy_x2:'2;4',
+bkg:'bkg9',
+family:'latte',
+sequences:'foaming;cafe',
+canx2:true,
+leftmenutyp:'strength',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'2',
+rightmenutyp:'vol',
+rightmenuvalues:'M;L;XL',
+rightmenudefault:'L',
+step2Typ:'ml',
+step2Values:'20;30;40;50;60;70;80;190;100;110;120;130;140;150;160',
+step2Default:'70',
+invertSteps:false,
+},
+laitmousse:{code:'laitmousse',
+spritexy:'3;4',
+spritexy_x1:'4;4',
+spritexy_x2:'5;4',
+bkg:'bkg8',
+family:'latte',
+sequences:'foaming;',
+canx2:true,
+leftmenutyp:'false',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'false',
+rightmenutyp:'vol',
+rightmenuvalues:'M;L;XL',
+rightmenudefault:'L',
+step2Typ:'false',
+step2Values:'',
+step2Default:'false',
+invertSteps:false,
+},
+caffelatte:{code:'caffelatte',
+spritexy:'0;5',
+spritexy_x1:'1;5',
+spritexy_x2:'2;5',
+bkg:'bkg9',
+family:'latte',
+sequences:'foaming;cafe',
+canx2:true,
+leftmenutyp:'strength',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'2',
+rightmenutyp:'vol',
+rightmenuvalues:'M;L;XL',
+rightmenudefault:'L',
+step2Typ:'ml',
+step2Values:'20;30;40;50;60;70;80;190;100;110;120;130;140;150;160',
+step2Default:'70',
+invertSteps:false,
+},
+flatwhite:{code:'flatwhite',
+spritexy:'3;5',
+spritexy_x1:'3;5',
+spritexy_x2:'3;5',
+bkg:'bkg10',
+family:'latte',
+sequences:'cafe;foaming',
+canx2:false,
+leftmenutyp:'strength',
+leftmenuvalues:'1;2;3',
+leftmenudefault:'2',
+rightmenutyp:'vol',
+rightmenuvalues:'M;L;XL',
+rightmenudefault:'M',
+step2Typ:'vol',
+step2Values:'20;30;40;50;60;70;80;I90;100;110;120;130;140;150;160',
+step2Default:'70',
+invertSteps:true,
+},
+thevert:{code:'thevert',
+spritexy:'4;5',
+spritexy_x1:'4;5',
+spritexy_x2:'4;5',
+bkg:'bkg11',
+family:'water',
+sequences:'water',
+canx2:false,
+leftmenutyp:'false',
+leftmenuvalues:'false',
+leftmenudefault:'false',
+rightmenutyp:'ml',
+rightmenuvalues:'200; 210;220;230;240;250;260;270;280;290;300',
+rightmenudefault:'200',
+step2Typ:'false',
+step2Values:'false',
+step2Default:'false',
+invertSteps:false,
+},
+thenoir:{code:'thenoir',
+spritexy:'5;5',
+spritexy_x1:'5;5',
+spritexy_x2:'5;5',
+bkg:'bkg12',
+family:'water',
+sequences:'water',
+canx2:false,
+leftmenutyp:'false',
+leftmenuvalues:'false',
+leftmenudefault:'false',
+rightmenutyp:'ml',
+rightmenuvalues:'200; 210;220;230;240;250;260;270;280;290;300',
+rightmenudefault:'200',
+step2Typ:'false',
+step2Values:'false',
+step2Default:'false',
+invertSteps:false,
+},
+infusion:{code:'infusion',
+spritexy:'5;2',
+spritexy_x1:'5;2',
+spritexy_x2:'5;2',
+bkg:'bkg14',
+family:'water',
+sequences:'water',
+canx2:false,
+leftmenutyp:'false',
+leftmenuvalues:'false',
+leftmenudefault:'false',
+rightmenutyp:'ml',
+rightmenuvalues:'200; 210;220;230;240;250;260;270;280;290;300',
+rightmenudefault:'200',
+step2Typ:'false',
+step2Values:'false',
+step2Default:'false',
+invertSteps:false,
+}
+        
+};
 
-    recipes: {
-        ristretto: {
-            code: 'ristretto',
-            spritexy: '0;0',
-            spritexy_x1: '1;0',
-            spritexy_x2: '2;0',
-            bkg: 'bkg2',
-            family: 'black',
-            sequences: 'cafe',
-            canx2: true,
-            leftmenutyp: 'strength',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: '2',
-            rightmenutyp: 'ml',
-            rightmenuvalues: '20;25;30;35;40',
-            rightmenudefault: '20',
-            runmenutyp: 'ml',
-            runmenuvalues: '20;25;30;35;40;',
-            runmenudefault: '40',
-        },
-        espresso: {
-            code: 'espresso',
-            spritexy: '3;0',
-            spritexy_x1: '4;0',
-            spritexy_x2: '5;0',
-            bkg: 'bkg4',
-            family: 'black',
-            sequences: 'cafe',
-            canx2: true,
-            leftmenutyp: 'strength',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: '3',
-            rightmenutyp: 'ml',
-            rightmenuvalues: '40;50;60;70',
-            rightmenudefault: '60',
-            runmenutyp: 'ml',
-            runmenuvalues: '40;50;60;70',
-            runmenudefault: '70',
-        },
-        lungo: {
-            code: 'lungo',
-            spritexy: '0;1',
-            spritexy_x1: '1;1',
-            spritexy_x2: '2;1',
-            bkg: 'bkg4',
-            family: 'black',
-            sequences: 'cafe',
-            canx2: true,
-            leftmenutyp: 'strength',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: '2',
-            rightmenutyp: 'ml',
-            rightmenuvalues: '80;90;100;110;120;130;140;150;160;170;180',
-            rightmenudefault: '120',
-            runmenutyp: 'ml',
-            runmenuvalues: '80;90;100;110;120;130;140;150;160;170;180',
-            runmenudefault: '60',
-        },
-        cafelong: {
-            code: 'cafelong',
-            spritexy: '3;1',
-            spritexy_x1: '4;1',
-            spritexy_x2: '5;1',
-            bkg: 'bkg3',
-            family: 'black',
-            sequences: 'cafe',
-            canx2: true,
-            leftmenutyp: 'strength',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: '2',
-            rightmenutyp: 'ml',
-            rightmenuvalues: '20;25;30;35;40',
-            rightmenudefault: '30',
-            runmenutyp: 'ml',
-            runmenuvalues: '20;25;30;35;40',
-            runmenudefault: '60',
-        },
-        doppio: {
-            code: 'doppio',
-            spritexy: '0;2',
-            spritexy_x1: '1;2',
-            spritexy_x2: '2;2',
-            bkg: 'bkg2',
-            family: 'black',
-            sequences: 'cafe',
-            canx2: true,
-            leftmenutyp: 'strength',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: '2',
-            rightmenutyp: 'ml',
-            rightmenuvalues: '20;30;40;50;60;70',
-            rightmenudefault: '30',
-            runmenutyp: 'ml',
-            runmenuvalues: '20;30;40;50;60;70',
-            runmenudefault: '60',
-        },
-        americano: {
-            code: 'americano',
-            spritexy: '3;2',
-            spritexy_x1: '3;2',
-            spritexy_x2: '3;2',
-            bkg: 'bkg3',
-            family: 'black',
-            sequences: 'cafe;hotwater',
-            canx2: false,
-            leftmenutyp: 'strength',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: '2',
-            rightmenutyp: 'ml',
-            rightmenuvalues: '20;30;40;50;60;70',
-            rightmenudefault: '30',
-            runmenutyp: 'ml',
-            runmenuvalues: '20;30;40;50;60;70',
-            runmenudefault: '60',
-        },
-        emacchiato: {
-            code: 'emacchiato',
-            spritexy: '0;3',
-            spritexy_x1: '1;3',
-            spritexy_x2: '2;3',
-            bkg: 'bkg7',
-            family: 'latte',
-            sequences: 'steam;cafe',
-            canx2: true,
-            leftmenutyp: 'strength',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: '2',
-            rightmenutyp: 'vol',
-            rightmenuvalues: 'M;L;XL',
-            rightmenudefault: 'M',
-            runmenutyp: 'ml',
-            runmenuvalues: 'M;L;XL',
-            runmenudefault: 'M',
-        },
-        cappucino: {
-            code: 'cappucino',
-            spritexy: '3;3',
-            spritexy_x1: '4;3',
-            spritexy_x2: '5;3',
-            bkg: 'bkg10',
-            family: 'latte',
-            sequences: 'foaming;steam;cafe',
-            canx2: true,
-            leftmenutyp: 'strength',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: '1',
-            rightmenutyp: 'vol',
-            rightmenuvalues: 'M;L;XL',
-            rightmenudefault: 'M',
-            runmenutyp: 'ml',
-            runmenuvalues: 'M;L;XL',
-            runmenudefault: 'L',
-        },
-        lattemacchiato: {
-            code: 'lattemacchiato',
-            spritexy: '0;4',
-            spritexy_x1: '1;4',
-            spritexy_x2: '2;4',
-            bkg: 'bkg9',
-            family: 'latte',
-            sequences: 'steam;cafe',
-            canx2: true,
-            leftmenutyp: 'strength',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: '2',
-            rightmenutyp: 'vol',
-            rightmenuvalues: 'M;L;XL',
-            rightmenudefault: 'M',
-            runmenutyp: 'ml',
-            runmenuvalues: 'M;L;XL',
-            runmenudefault: 'M',
-        },
-        laitmousse: {
-            code: 'laitmousse',
-            spritexy: '3;4',
-            spritexy_x1: '4;4',
-            spritexy_x2: '5;4',
-            bkg: 'bkg8',
-            family: 'latte',
-            sequences: 'foaming;',
-            canx2: true,
-            leftmenutyp: 'false',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: 'false',
-            rightmenutyp: 'vol',
-            rightmenuvalues: 'M;L;XL',
-            rightmenudefault: 'L',
-            runmenutyp: 'sec',
-            runmenuvalues: 'M;L;XL',
-            runmenudefault: 'M',
-        },
-        caffelatte: {
-            code: 'caffelatte',
-            spritexy: '0;5',
-            spritexy_x1: '1;5',
-            spritexy_x2: '2;5',
-            bkg: 'bkg9',
-            family: 'latte',
-            sequences: 'steam;cafe',
-            canx2: true,
-            leftmenutyp: 'strength',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: '2',
-            rightmenutyp: 'vol',
-            rightmenuvalues: 'M;L;XL',
-            rightmenudefault: 'M',
-            runmenutyp: 'ml',
-            runmenuvalues: 'M;L;XL',
-            runmenudefault: 'M',
-        },
-        flatwhite: {
-            code: 'flatwhite',
-            spritexy: '3;5',
-            spritexy_x1: '3;5',
-            spritexy_x2: '3;5',
-            bkg: 'bkg10',
-            family: 'latte',
-            sequences: 'cafe;cafe;steam',
-            canx2: false,
-            leftmenutyp: 'strength',
-            leftmenuvalues: '1;2;3',
-            leftmenudefault: '2',
-            rightmenutyp: 'vol',
-            rightmenuvalues: 'M;L;XL',
-            rightmenudefault: 'M',
-            runmenutyp: 'ml',
-            runmenuvalues: 'M;L;XL',
-            runmenudefault: 'M',
-        },
-        thevert: {
-            code: 'thevert',
-            spritexy: '4;5',
-            spritexy_x1: '4;5',
-            spritexy_x2: '4;5',
-            bkg: 'bkg11',
-            family: 'water',
-            sequences: 'hotwater',
-            canx2: false,
-            leftmenutyp: 'false',
-            leftmenuvalues: 'false',
-            leftmenudefault: 'false',
-            rightmenutyp: 'vol',
-            rightmenuvalues: 'M;L;XL',
-            rightmenudefault: 'M',
-            runmenutyp: 'ml',
-            runmenuvalues: 'M;L;XL',
-            runmenudefault: 'M',
-        },
-        thenoir: {
-            code: 'thenoir',
-            spritexy: '5;5',
-            spritexy_x1: '5;5',
-            spritexy_x2: '5;5',
-            bkg: 'bkg12',
-            family: 'water',
-            sequences: 'hotwater',
-            canx2: false,
-            leftmenutyp: 'false',
-            leftmenuvalues: 'false',
-            leftmenudefault: 'false',
-            rightmenutyp: 'vol',
-            rightmenuvalues: 'M;L;XL',
-            rightmenudefault: 'M',
-            runmenutyp: 'ml',
-            runmenuvalues: 'M;L;XL',
-            runmenudefault: 'M',
-        },
-        infusion: {
-            code: 'infusion',
-            spritexy: '5;2',
-            spritexy_x1: '5;2',
-            spritexy_x2: '5;2',
-            bkg: 'bkg14',
-            family: 'water',
-            sequences: 'hotwater',
-            canx2: false,
-            leftmenutyp: 'false',
-            leftmenuvalues: 'false',
-            leftmenudefault: 'false',
-            rightmenutyp: 'vol',
-            rightmenuvalues: 'M;L;XL',
-            rightmenudefault: 'M',
-            runmenutyp: 'ml',
-            runmenuvalues: 'M;L;XL',
-            runmenudefault: 'M',
-        },
-    },
-    };
-    app.kxhost = document.querySelector(kxhost);
-    //debugger;
-    app.kxhost.innerHTML = baseHtml;
-    addStyles(app.kxhost);
-    app.kxunit = app.kxhost.querySelector('#kxUnit');
-    app.screen = app.kxhost.querySelector('#kxScreen');
-    app.pageHolder = app.kxhost.querySelector('.pageHolder');
-    app.toaster = app.kxhost.querySelector('.kxToast');
-    app.loadPage('recettes', null); // Show first page
+    app.init = function(kxhost) {
+        console.log('init');
 
-    // Global events    
+        app.kxhost = document.querySelector(kxhost);
+        //debugger;
+        app.kxhost.innerHTML = baseHtml;
+        addStyles(app.kxhost);
+        app.kxunit = app.kxhost.querySelector('#kxUnit');
+        app.screen = app.kxhost.querySelector('#kxScreen');
+        app.pageHolder = app.kxhost.querySelector('.pageHolder');
+        app.toaster = app.kxhost.querySelector('.kxToast');
+        app.loadPage('recettes', null); // Show first page
 
-    app.fit = function() {
-        // 768 x 400 (was 480x320)
-            //const kxScaler = document.querySelector('#kxScaler');
-            var parentRatio = app.kxunit.parentElement.offsetHeight / app.kxunit.parentElement.offsetWidth;
-            console.log("parentRatio:"+parentRatio);
+        // Global events    
 
-            var screenW = app.kxunit.offsetWidth;
-            var screenH = app.kxunit.offsetHeight;
-            var screenRatio = screenH / screenW;
-      
-            console.log("screenRatio:"+screenRatio);
+        app.fit = function() {
+            // 768 x 400 (was 480x320)
+                //const kxScaler = document.querySelector('#kxScaler');
+                var parentRatio = app.kxunit.parentElement.offsetHeight / app.kxunit.parentElement.offsetWidth;
+                console.log("parentRatio:"+parentRatio);
 
-            /*app.ratio = parentRatio > screenRatio
-            ? app.kxunit.parentElement.offsetWidth / screenW
-            : app.kxunit.parentElement.offsetHeight / screenH;*/
+                var screenW = app.kxunit.offsetWidth;
+                var screenH = app.kxunit.offsetHeight;
+                var screenRatio = screenH / screenW;
+        
+                console.log("screenRatio:"+screenRatio);
 
-            app.ratio = parentRatio > screenRatio
-            ? app.kxunit.parentElement.offsetWidth / screenW
-            : app.kxunit.parentElement.offsetHeight / screenH;
-            console.log("ratio:"+app.ratio);
+                /*app.ratio = parentRatio > screenRatio
+                ? app.kxunit.parentElement.offsetWidth / screenW
+                : app.kxunit.parentElement.offsetHeight / screenH;*/
 
-            //var shift = document.querySelector('#kxBackdrop').getBoundingClientRect().y;
-            // var shift = ;
-            //var shift = ((400-330)*ratio)>0?((400-330)*ratio):0;
-            //console.log(shift);
+                app.ratio = parentRatio > screenRatio
+                ? app.kxunit.parentElement.offsetWidth / screenW
+                : app.kxunit.parentElement.offsetHeight / screenH;
+                console.log("ratio:"+app.ratio);
+
+                //var shift = document.querySelector('#kxBackdrop').getBoundingClientRect().y;
+                // var shift = ;
+                //var shift = ((400-330)*ratio)>0?((400-330)*ratio):0;
+                //console.log(shift);
 
 
-            //app.ratio = window.innerWidth / 768;
-            Object.assign(app.kxunit.style, {
-                transform: 'scale(' + Math.min(1.5, app.ratio) + ') translate(-50%, -50%)',
-            });
-            // if (app.currentPage.name != undefined) app.reloadPage()
-    };
+                //app.ratio = window.innerWidth / 768;
+                Object.assign(app.kxunit.style, {
+                    transform: 'scale(' + Math.min(1.5, app.ratio) + ') translate(-50%, -50%)',
+                });
+                // if (app.currentPage.name != undefined) app.reloadPage()
+        };
 
-    app.fit();
-
-    window.addEventListener('resize', function() {
-        clearTimeout(app.resizeWindowTimeOut);
-        app.resizeWindowTimeOut = setTimeout(function() {
-        console.log('resized');
         app.fit();
-        //todo include method for checking mouse events
-        }, 100);
-    });
-      
-    app.reloadPage = function() {
-        app.loadPage(app.currentPage.name, null);
-    };
 
-    app.resetBuilds = function() {
-        for (var [key, value] of Object.entries(app.data.pages)) {
-            value.built = false;
-        }
-    }
-
-    app.kxunit.querySelector('#kxUnitButtonStart').addEventListener('click', event => {
-        if (app.currentPage.name == 'off') {
-            app.bleep();
-            app.loadPage('starting', null); // Show first page
-        } else {
-            app.beep();
-            app.loadPage('off', null); // Show first page
-            app.resetBuilds();
-        }
+        window.addEventListener('resize', function() {
+            clearTimeout(app.resizeWindowTimeOut);
+            app.resizeWindowTimeOut = setTimeout(function() {
+            console.log('resized');
+            app.fit();
+            //todo include method for checking mouse events
+            }, 100);
         });
+        
+        app.reloadPage = function() {
+            app.loadPage(app.currentPage.name, null);
+        };
 
-    app.kxunit.querySelector('#kxUnitButtonHome').addEventListener('click', event => {
+        app.resetBuilds = function() {
+            for (var [key, value] of Object.entries(app.pages)) {
+                value.built = false;
+            }
+        }
+
+        app.kxunit.querySelector('#kxUnitButtonStart').addEventListener('click', event => {
+            if (app.currentPage.name == 'off') {
+                app.bleep();
+                app.loadPage('starting', null); // Show first page
+            } else {
+                app.beep();
+                app.loadPage('off', null); // Show first page
+                app.resetBuilds();
+            }
+        });
+        app.kxunit.querySelector('#kxUnitButtonHome').addEventListener('click', event => {
         if (app.currentPage.name == 'off') return;
         console.log('click', this);
         app.loadPage('recettes', null);
         });
-        app.kxunit
-        .querySelector('#kxUnitButtonUserOne').addEventListener('click', event => {
+        app.kxunit.querySelector('#kxUnitButtonUserOne').addEventListener('click', event => {
         if (app.currentPage.name == 'off') return;
         app.currentProfile = app.profiles.userOne;
         app.loadPage('profile', null);
@@ -3069,7 +4742,6 @@ var kxapp = function() {
         app.loadPage('profile', null);
         });
 
-    
     };
 
     function addStyles(destination) {
@@ -3083,425 +4755,418 @@ var kxapp = function() {
         var svgLib = document.createElement('div');
         svgLib.style = 'display:none';
         var data = `    
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="display:none">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="display:none">
 
-                <g id="circle" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet">
-                    <circle r="10" cx="10" cy="10"/>
-                </g>
+        <g id="circle" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet">
+        <circle r="10" cx="10" cy="10"/>
+        </g>
 
-                <g id="recette" viewBox="0 0 32 27">
-                    <path fill="#FEFEFE" fill-rule="evenodd" stroke="#FFF" d="M26.433 10.14c.064-.001.24-.009.502-.052.301-.05.753-.157 1.202-.384.755-.398 1.628-1.094 1.646-2.951V5.88c-.011-1.5-.596-2.176-1.036-2.555-.62-.52-1.401-.71-1.812-.777-.319-.053-.512-.055-.52-.055h-3.37v7.649l3.388-.002zM5.854 26c-.303-.005-1.324-.063-2.386-.597-.747-.36-2.49-1.499-2.468-4.284V1.565h1.486v19.556c.01 1.501.596 2.175 1.034 2.55.613.52 1.4.712 1.815.782.314.052.506.054.518.054l12.355-.002c.062-.002.239-.008.501-.052.303-.05.757-.158 1.205-.385.755-.398 1.626-1.095 1.647-2.95V1h4.853c.394.01 1.366.086 2.389.596.695.335 2.268 1.358 2.449 3.773h.017v1.386c.021 2.782-1.719 3.924-2.468 4.286-1.02.51-1.993.587-2.364.596h-3.392v9.484c.022 2.783-1.72 3.923-2.47 4.283-1.06.533-2.082.59-2.369.596H5.854z"/>
-                </g>
+        <g id="recette" viewBox="0 0 32 27">
+        <path fill="#FEFEFE" fill-rule="evenodd" stroke="#FFF" d="M26.433 10.14c.064-.001.24-.009.502-.052.301-.05.753-.157 1.202-.384.755-.398 1.628-1.094 1.646-2.951V5.88c-.011-1.5-.596-2.176-1.036-2.555-.62-.52-1.401-.71-1.812-.777-.319-.053-.512-.055-.52-.055h-3.37v7.649l3.388-.002zM5.854 26c-.303-.005-1.324-.063-2.386-.597-.747-.36-2.49-1.499-2.468-4.284V1.565h1.486v19.556c.01 1.501.596 2.175 1.034 2.55.613.52 1.4.712 1.815.782.314.052.506.054.518.054l12.355-.002c.062-.002.239-.008.501-.052.303-.05.757-.158 1.205-.385.755-.398 1.626-1.095 1.647-2.95V1h4.853c.394.01 1.366.086 2.389.596.695.335 2.268 1.358 2.449 3.773h.017v1.386c.021 2.782-1.719 3.924-2.468 4.286-1.02.51-1.993.587-2.364.596h-3.392v9.484c.022 2.783-1.72 3.923-2.47 4.283-1.06.533-2.082.59-2.369.596H5.854z"/>
+        </g>
 
-                <g id="fav" viewBox="0 0 26 25">
-                    <path fill="#FFF" d="M18.398 0c-1.955 0-3.912.787-5.397 2.362C11.514.787 9.561 0 7.605 0c-1.943 0-3.887.776-5.37 2.333-2.983 3.11-3.051 8.138.227 11.587C6.12 17.763 11.977 23.924 13.002 25c1.025-1.076 6.88-7.237 10.536-11.08 3.279-3.449 3.209-8.477.23-11.587C22.283.776 20.338 0 18.398 0m3.912 3.877c1.044 1.088 1.62 2.52 1.623 4.032.002 1.623-.657 3.21-1.855 4.471l-7.87 8.277L13 21.925c-2.232-2.349-6.29-6.618-9.076-9.545-1.2-1.26-1.86-2.848-1.858-4.47.002-1.512.581-2.943 1.628-4.037 1.045-1.096 2.433-1.698 3.91-1.698 1.485 0 2.881.61 3.93 1.72L13 5.445l1.467-1.55c1.047-1.11 2.443-1.72 3.93-1.72 1.475 0 2.863.602 3.912 1.702z"/>
-                </g>
+        <g id="fav" viewBox="0 0 26 25">
+        <path fill="#FFF" d="M18.398 0c-1.955 0-3.912.787-5.397 2.362C11.514.787 9.561 0 7.605 0c-1.943 0-3.887.776-5.37 2.333-2.983 3.11-3.051 8.138.227 11.587C6.12 17.763 11.977 23.924 13.002 25c1.025-1.076 6.88-7.237 10.536-11.08 3.279-3.449 3.209-8.477.23-11.587C22.283.776 20.338 0 18.398 0m3.912 3.877c1.044 1.088 1.62 2.52 1.623 4.032.002 1.623-.657 3.21-1.855 4.471l-7.87 8.277L13 21.925c-2.232-2.349-6.29-6.618-9.076-9.545-1.2-1.26-1.86-2.848-1.858-4.47.002-1.512.581-2.943 1.628-4.037 1.045-1.096 2.433-1.698 3.91-1.698 1.485 0 2.881.61 3.93 1.72L13 5.445l1.467-1.55c1.047-1.11 2.443-1.72 3.93-1.72 1.475 0 2.863.602 3.912 1.702z"/>
+        </g>
 
-                <g id="backArrow" viewBox="0 0 26 26" preserveAspectRatio="xMidYMid meet">
-                    <path fill="#FFF" fill-rule="evenodd" d="M7.226 13l8.618-8.618 1.723 1.724-6.894 6.893 6.894 6.895-1.723 1.724L7.226 13z"/>
-                </g>
+        <g id="backArrow" viewBox="0 0 26 26" preserveAspectRatio="xMidYMid meet">
+        <path fill="#FFF" fill-rule="evenodd" d="M7.226 13l8.618-8.618 1.723 1.724-6.894 6.893 6.894 6.895-1.723 1.724L7.226 13z"/>
+        </g>
 
-                <g id="krupsLogo"  fill-rule="evenodd"  viewBox="0 0 146 34" preserveAspectRatio="xMidYMid meet">
-                    <path d="M17.693 1L6.318 15.182 6.318 1 0 1 0 34 6.318 34 6.318 18.683 6.409 18.683 17.737 34 26 34 12.502 16.555 25.457 1zM42.422 16.887H37.31l.01-10.685h5.138c2.817 0 5.065 2.39 5.065 5.342 0 2.953-2.284 5.343-5.1 5.343m11.595-5.707C54.017 5.56 49.683 1 44.314 1H31v33h6.319V18.68L48.74 34H57L46.465 20.779c4.099-1.194 7.552-4.925 7.552-9.599M80.753 22.641c0 3.586-2.802 6.494-6.253 6.494s-6.25-2.908-6.25-6.494V1H62v20.731C62 30.421 66.649 34 74.5 34 82.35 34 87 30.422 87 21.731V1h-6.249l.002 21.641zM107.947 16.887h-4.885l-.005-10.685 4.87.038c2.747 0 4.96 2.434 4.96 5.439 0 3.003-2.191 5.208-4.94 5.208M109.701 1H97v33h6.057l.027-12.64h6.6c5.146 0 9.316-4.556 9.316-10.18C119 5.56 114.845 1 109.701 1M132.544 9.749c0-3.58 2.725-4.568 4.837-4.568 2.154 0 4.536.572 6.472 1.466V1.105C141.61.304 139.49 0 136.852 0c-5.409 0-10.73 2.685-10.73 10.03 0 10.88 13.457 8.29 13.457 14.551 0 2.967-3.123 4.239-5.454 4.239-2.418 0-5.677-.689-8.125-1.763v5.416c2.996 1.032 5.134 1.527 8.477 1.527 6.2 0 11.523-2.731 11.523-9.937 0-11.019-13.456-8.616-13.456-14.314"/>
-                </g>
-                
-                <g id="plusButton" class="plusMinus" fill-rule="evenodd" viewBox="0 0 32 32"  preserveAspectRatio="xMidYMid meet">
-                    <circle  cx="16" cy="16" r="13.5" fill="white"/>
-                    <circle class="userFIllColor"  cx="16" cy="16" r="13"/>
-                    <path  d="M14.9,17.1h-3.8V15h3.8v-3.8h2.1V15h3.8v2.1h-3.8v3.8h-2.1V17.1z" fill="white"/>
-                </g>
+        <g id="krupsLogo"  fill-rule="evenodd"  viewBox="0 0 146 34" preserveAspectRatio="xMidYMid meet">
+        <path d="M17.693 1L6.318 15.182 6.318 1 0 1 0 34 6.318 34 6.318 18.683 6.409 18.683 17.737 34 26 34 12.502 16.555 25.457 1zM42.422 16.887H37.31l.01-10.685h5.138c2.817 0 5.065 2.39 5.065 5.342 0 2.953-2.284 5.343-5.1 5.343m11.595-5.707C54.017 5.56 49.683 1 44.314 1H31v33h6.319V18.68L48.74 34H57L46.465 20.779c4.099-1.194 7.552-4.925 7.552-9.599M80.753 22.641c0 3.586-2.802 6.494-6.253 6.494s-6.25-2.908-6.25-6.494V1H62v20.731C62 30.421 66.649 34 74.5 34 82.35 34 87 30.422 87 21.731V1h-6.249l.002 21.641zM107.947 16.887h-4.885l-.005-10.685 4.87.038c2.747 0 4.96 2.434 4.96 5.439 0 3.003-2.191 5.208-4.94 5.208M109.701 1H97v33h6.057l.027-12.64h6.6c5.146 0 9.316-4.556 9.316-10.18C119 5.56 114.845 1 109.701 1M132.544 9.749c0-3.58 2.725-4.568 4.837-4.568 2.154 0 4.536.572 6.472 1.466V1.105C141.61.304 139.49 0 136.852 0c-5.409 0-10.73 2.685-10.73 10.03 0 10.88 13.457 8.29 13.457 14.551 0 2.967-3.123 4.239-5.454 4.239-2.418 0-5.677-.689-8.125-1.763v5.416c2.996 1.032 5.134 1.527 8.477 1.527 6.2 0 11.523-2.731 11.523-9.937 0-11.019-13.456-8.616-13.456-14.314"/>
+        </g>
 
-                <g id="minusButton" class="plusMinus"  fill-rule="evenodd"  viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet">
-                    <circle  cx="16" cy="16" r="13.5" fill="white"/>
-                    <circle class="profileColor"  class="userFIllColor" cx="16" cy="16" r="13"/>
-                    <rect x="12.2" y="15"  width="7.7" height="2.1" fill="white"/>
-                </g>
+        <g id="plusButton" class="plusMinus" fill-rule="evenodd" viewBox="0 0 32 32"  preserveAspectRatio="xMidYMid meet">
+        <circle  cx="16" cy="16" r="13.5" fill="white"/>
+        <circle class="userFIllColor"  cx="16" cy="16" r="13"/>
+        <path  d="M14.9,17.1h-3.8V15h3.8v-3.8h2.1V15h3.8v2.1h-3.8v3.8h-2.1V17.1z" fill="white"/>
+        </g>
 
-                    <g id="sizeXL" style="fill:white" viewBox="0 0 32 32">
-                    <path  d="M27.1,3.2h-5.4V25c0,1.8-1.5,3.3-3.3,3.3H5c-1.8,0-3.3-1.5-3.3-3.3V3.2H0V25c0,2.8,2.3,5,5,5h13.4
-                        c2.8,0,5-2.3,5-5V14.7h3.6c2.7,0,4.9-2.2,4.9-4.9V8.1C32,5.4,29.8,3.2,27.1,3.2z M30.3,9.7c0,1.8-1.5,3.2-3.2,3.2h-3.6V4.9h3.6
-                        c1.8,0,3.2,1.5,3.2,3.2V9.7z"/>
-                    <path  d="M2.7,10.8V25c0,1.3,1.1,2.4,2.4,2.4h13.4c1.3,0,2.4-1.1,2.4-2.4V10.8H2.7z M10.7,22.3L9.3,20H9.3
-                        l-1.4,2.3H6.3L8.4,19l-1.9-3.1H8L9.3,18h0.1l1.2-2.1h1.5L10.1,19l2.1,3.4H10.7z M17.1,22.3h-3.9v-6.4h1.2v5.3h2.7V22.3z"/>
-                </g>
+        <g id="minusButton" class="plusMinus"  fill-rule="evenodd"  viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet">
+        <circle  cx="16" cy="16" r="13.5" fill="white"/>
+        <circle class="profileColor"  class="userFIllColor" cx="16" cy="16" r="13"/>
+        <rect x="12.2" y="15"  width="7.7" height="2.1" fill="white"/>
+        </g>
 
-                <g id="sizeL" style="fill:white" viewBox="0 0 32 32">
-                    <path  d="M24.1,6.7h-3.9v16.1c0,1.3-1.1,2.4-2.4,2.4H7.9c-1.3,0-2.4-1.1-2.4-2.4V6.7H4.2v16.1
-                        c0,2,1.7,3.7,3.7,3.7h9.8c2,0,3.7-1.7,3.7-3.7v-7.6h2.7c2,0,3.6-1.6,3.6-3.6v-1.2C27.8,8.3,26.1,6.7,24.1,6.7z M26.5,11.6
-                        c0,1.3-1.1,2.4-2.4,2.4h-2.7V8h2.7c1.3,0,2.4,1.1,2.4,2.4V11.6z"/>
-                    <path d="M6.2,12.4v10.5c0,1,0.8,1.7,1.7,1.7h9.8c1,0,1.7-0.8,1.7-1.7V12.4H6.2z M14.8,21.6h-4v-6.5h1.2v5.3
-                        h2.8V21.6z"/>
-                </g>
+        <g id="sizeXL" style="fill:white" viewBox="0 0 32 32">
+        <path  d="M27.1,3.2h-5.4V25c0,1.8-1.5,3.3-3.3,3.3H5c-1.8,0-3.3-1.5-3.3-3.3V3.2H0V25c0,2.8,2.3,5,5,5h13.4
+        c2.8,0,5-2.3,5-5V14.7h3.6c2.7,0,4.9-2.2,4.9-4.9V8.1C32,5.4,29.8,3.2,27.1,3.2z M30.3,9.7c0,1.8-1.5,3.2-3.2,3.2h-3.6V4.9h3.6
+        c1.8,0,3.2,1.5,3.2,3.2V9.7z"/>
+        <path  d="M2.7,10.8V25c0,1.3,1.1,2.4,2.4,2.4h13.4c1.3,0,2.4-1.1,2.4-2.4V10.8H2.7z M10.7,22.3L9.3,20H9.3
+        l-1.4,2.3H6.3L8.4,19l-1.9-3.1H8L9.3,18h0.1l1.2-2.1h1.5L10.1,19l2.1,3.4H10.7z M17.1,22.3h-3.9v-6.4h1.2v5.3h2.7V22.3z"/>
+        </g>
 
-                <g id="sizeM" style="fill:white" viewBox="0 0 32 32">
-                    <path  d="M21.8,9.6H19V21c0,0.9-0.8,1.7-1.7,1.7h-7c-0.9,0-1.7-0.8-1.7-1.7V9.6H7.7V21c0,1.4,1.2,2.6,2.6,2.6
-                        h7c1.4,0,2.6-1.2,2.6-2.6v-5.4h1.9c1.4,0,2.6-1.2,2.6-2.6v-0.9C24.3,10.8,23.2,9.6,21.8,9.6z M23.4,13c0,0.9-0.8,1.7-1.7,1.7h-1.9
-                        v-4.2h1.9c0.9,0,1.7,0.8,1.7,1.7V13z"/>
-                    <path  d="M9.1,13.6V21c0,0.7,0.5,1.2,1.2,1.2h7c0.7,0,1.2-0.5,1.2-1.2v-7.4H9.1z M17.1,21.2h-1.2V18l0.1-1.1
-                        h-0.1l-1.6,4.3h-1l-1.7-4.3h-0.1l0.1,1.1v3.2h-1.2v-6.5H12l1.7,4.6h0.1l1.7-4.6h1.6V21.2z"/>
-                </g>
+        <g id="sizeL" style="fill:white" viewBox="0 0 32 32">
+        <path  d="M24.1,6.7h-3.9v16.1c0,1.3-1.1,2.4-2.4,2.4H7.9c-1.3,0-2.4-1.1-2.4-2.4V6.7H4.2v16.1
+        c0,2,1.7,3.7,3.7,3.7h9.8c2,0,3.7-1.7,3.7-3.7v-7.6h2.7c2,0,3.6-1.6,3.6-3.6v-1.2C27.8,8.3,26.1,6.7,24.1,6.7z M26.5,11.6
+        c0,1.3-1.1,2.4-2.4,2.4h-2.7V8h2.7c1.3,0,2.4,1.1,2.4,2.4V11.6z"/>
+        <path d="M6.2,12.4v10.5c0,1,0.8,1.7,1.7,1.7h9.8c1,0,1.7-0.8,1.7-1.7V12.4H6.2z M14.8,21.6h-4v-6.5h1.2v5.3
+        h2.8V21.6z"/>
+        </g>
 
-                <g id="force1"  style="fill:white"  viewBox="0 0 57 54">
-                    <path d="M29.523,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
-                        c-4.791,0.51-8.564,5.429-8.564,11.411c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
-                        c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C37.884,21.102,34.217,16.235,29.523,15.61z M20.616,27
-                        c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007c0.759,1.392,1.367,3.199,1.095,5.211
-                        c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505c-0.129,1.652,0.241,3.712,0.686,5.484
-                        C22.951,35.25,20.616,31.463,20.616,27z M28.5,36.962c-0.23,0-0.457-0.019-0.682-0.044c-0.499-1.804-0.983-4.075-0.851-5.772
-                        c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98c0.26-1.925-0.137-3.659-0.753-5.101
-                        c3.408,1.099,5.939,4.999,5.939,9.643C36.384,32.493,32.847,36.962,28.5,36.962z"/>
-                </g>
+        <g id="sizeM" style="fill:white" viewBox="0 0 32 32">
+        <path  d="M21.8,9.6H19V21c0,0.9-0.8,1.7-1.7,1.7h-7c-0.9,0-1.7-0.8-1.7-1.7V9.6H7.7V21c0,1.4,1.2,2.6,2.6,2.6
+        h7c1.4,0,2.6-1.2,2.6-2.6v-5.4h1.9c1.4,0,2.6-1.2,2.6-2.6v-0.9C24.3,10.8,23.2,9.6,21.8,9.6z M23.4,13c0,0.9-0.8,1.7-1.7,1.7h-1.9
+        v-4.2h1.9c0.9,0,1.7,0.8,1.7,1.7V13z"/>
+        <path  d="M9.1,13.6V21c0,0.7,0.5,1.2,1.2,1.2h7c0.7,0,1.2-0.5,1.2-1.2v-7.4H9.1z M17.1,21.2h-1.2V18l0.1-1.1
+        h-0.1l-1.6,4.3h-1l-1.7-4.3h-0.1l0.1,1.1v3.2h-1.2v-6.5H12l1.7,4.6h0.1l1.7-4.6h1.6V21.2z"/>
+        </g>
 
-                <g id="force2" style="fill:white" viewBox="0 0 57 54">
-                    <path d="M19.388,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
-                        C12.755,16.099,8.982,21.018,8.982,27c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
-                        c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C27.749,21.102,24.083,16.235,19.388,15.61z M10.482,27
-                        c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007c0.759,1.392,1.367,3.199,1.095,5.211
-                        c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505c-0.129,1.652,0.241,3.712,0.686,5.484
-                        C12.817,35.25,10.482,31.463,10.482,27z M18.366,36.962c-0.23,0-0.457-0.019-0.682-0.044c-0.499-1.804-0.983-4.075-0.851-5.772
-                        c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98c0.26-1.925-0.137-3.659-0.753-5.101
-                        c3.408,1.099,5.939,4.999,5.939,9.643C26.249,32.493,22.712,36.962,18.366,36.962z"/>
-                        <path d="M39.657,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
-                        c-4.791,0.51-8.564,5.429-8.564,11.411c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
-                        c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C48.018,21.102,44.352,16.235,39.657,15.61z M30.751,27
-                        c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007c0.759,1.392,1.367,3.199,1.095,5.211
-                        c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505c-0.129,1.652,0.241,3.712,0.686,5.484
-                        C33.086,35.25,30.751,31.463,30.751,27z M38.635,36.962c-0.23,0-0.457-0.019-0.682-0.044c-0.499-1.804-0.983-4.075-0.851-5.772
-                        c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98c0.26-1.925-0.137-3.659-0.753-5.101
-                        c3.408,1.099,5.939,4.999,5.939,9.643C46.518,32.493,42.981,36.962,38.635,36.962z"/>
-                </g>
+        <g id="force1"  style="fill:white"  viewBox="0 0 57 54">
+        <path d="M29.523,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
+        c-4.791,0.51-8.564,5.429-8.564,11.411c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
+        c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C37.884,21.102,34.217,16.235,29.523,15.61z M20.616,27
+        c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007c0.759,1.392,1.367,3.199,1.095,5.211
+        c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505c-0.129,1.652,0.241,3.712,0.686,5.484
+        C22.951,35.25,20.616,31.463,20.616,27z M28.5,36.962c-0.23,0-0.457-0.019-0.682-0.044c-0.499-1.804-0.983-4.075-0.851-5.772
+        c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98c0.26-1.925-0.137-3.659-0.753-5.101
+        c3.408,1.099,5.939,4.999,5.939,9.643C36.384,32.493,32.847,36.962,28.5,36.962z"/>
+        </g>
 
-                <g id="force3" style="fill:white" viewBox="0 0 57 54">
-                        <path d="M10.756,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
-                        C4.122,16.099,0.349,21.018,0.349,27c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
-                        c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C19.116,21.102,15.45,16.235,10.756,15.61z M7.391,36.513
-                        C4.184,35.25,1.849,31.463,1.849,27c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007
-                        c0.759,1.392,1.367,3.199,1.095,5.211c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505
-                        C6.576,32.681,6.945,34.741,7.391,36.513z M9.733,36.962c-0.23,0-0.457-0.019-0.682-0.044c-0.499-1.804-0.983-4.075-0.851-5.772
-                        c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98c0.26-1.925-0.137-3.659-0.753-5.101
-                        c3.408,1.099,5.939,4.999,5.939,9.643C17.616,32.493,14.08,36.962,9.733,36.962z"/>
-    
-                        <path d="M48.29,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
-                            c-4.791,0.51-8.564,5.429-8.564,11.411c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
-                            c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C56.651,21.102,52.984,16.235,48.29,15.61z
-                            M44.925,36.513c-3.207-1.263-5.542-5.05-5.542-9.513c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007
-                            c0.759,1.392,1.367,3.199,1.095,5.211c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505
-                            C44.11,32.681,44.48,34.741,44.925,36.513z M47.267,36.962c-0.23,0-0.457-0.019-0.682-0.044
-                            c-0.499-1.804-0.983-4.075-0.851-5.772c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98
-                            c0.26-1.925-0.137-3.659-0.753-5.101c3.408,1.099,5.939,4.999,5.939,9.643C55.151,32.493,51.614,36.962,47.267,36.962z"/>
-                        <path d="M29.523,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
-                            c-4.791,0.51-8.564,5.429-8.564,11.411c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
-                            c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C37.884,21.102,34.217,16.235,29.523,15.61z M20.616,27
-                            c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007c0.759,1.392,1.367,3.199,1.095,5.211
-                            c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505c-0.129,1.652,0.241,3.712,0.686,5.484
-                            C22.951,35.25,20.616,31.463,20.616,27z M28.5,36.962c-0.23,0-0.457-0.019-0.682-0.044c-0.499-1.804-0.983-4.075-0.851-5.772
-                            c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98c0.26-1.925-0.137-3.659-0.753-5.101
-                            c3.408,1.099,5.939,4.999,5.939,9.643C36.384,32.493,32.847,36.962,28.5,36.962z"/>
-                    </g>
+        <g id="force2" style="fill:white" viewBox="0 0 57 54">
+        <path d="M19.388,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
+        C12.755,16.099,8.982,21.018,8.982,27c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
+        c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C27.749,21.102,24.083,16.235,19.388,15.61z M10.482,27
+        c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007c0.759,1.392,1.367,3.199,1.095,5.211
+        c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505c-0.129,1.652,0.241,3.712,0.686,5.484
+        C12.817,35.25,10.482,31.463,10.482,27z M18.366,36.962c-0.23,0-0.457-0.019-0.682-0.044c-0.499-1.804-0.983-4.075-0.851-5.772
+        c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98c0.26-1.925-0.137-3.659-0.753-5.101
+        c3.408,1.099,5.939,4.999,5.939,9.643C26.249,32.493,22.712,36.962,18.366,36.962z"/>
+        <path d="M39.657,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
+        c-4.791,0.51-8.564,5.429-8.564,11.411c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
+        c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C48.018,21.102,44.352,16.235,39.657,15.61z M30.751,27
+        c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007c0.759,1.392,1.367,3.199,1.095,5.211
+        c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505c-0.129,1.652,0.241,3.712,0.686,5.484
+        C33.086,35.25,30.751,31.463,30.751,27z M38.635,36.962c-0.23,0-0.457-0.019-0.682-0.044c-0.499-1.804-0.983-4.075-0.851-5.772
+        c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98c0.26-1.925-0.137-3.659-0.753-5.101
+        c3.408,1.099,5.939,4.999,5.939,9.643C46.518,32.493,42.981,36.962,38.635,36.962z"/>
+        </g>
 
-                    <g id="start" viewBox="0 0 64 64">
-                        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M61.089,24.79
-                            C58.431,14.033,49.967,5.569,39.21,2.911"/>
-                        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M2.911,39.21
-                            C5.569,49.967,14.033,58.431,24.79,61.089"/>
-                        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M24.79,2.911
-                            C14.033,5.569,5.569,14.033,2.911,24.79"/>
-                        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M39.21,61.089
-                            c10.757-2.658,19.221-11.122,21.879-21.879"/>
-                        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M39.21,38.247"/>
-                        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M24.79,20.865
-                            C21.144,23.231,18.727,27.33,18.727,32c0,7.331,5.943,13.273,13.273,13.273S45.273,39.331,45.273,32
-                            c0-4.67-2.417-8.769-6.064-11.135"/>
-                        <line fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" x1="32" y1="30.069" x2="32" y2="12.843"/>
-                    </g>
+        <g id="force3" style="fill:white" viewBox="0 0 57 54">
+        <path d="M10.756,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
+        C4.122,16.099,0.349,21.018,0.349,27c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
+        c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C19.116,21.102,15.45,16.235,10.756,15.61z M7.391,36.513
+        C4.184,35.25,1.849,31.463,1.849,27c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007
+        c0.759,1.392,1.367,3.199,1.095,5.211c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505
+        C6.576,32.681,6.945,34.741,7.391,36.513z M9.733,36.962c-0.23,0-0.457-0.019-0.682-0.044c-0.499-1.804-0.983-4.075-0.851-5.772
+        c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98c0.26-1.925-0.137-3.659-0.753-5.101
+        c3.408,1.099,5.939,4.999,5.939,9.643C17.616,32.493,14.08,36.962,9.733,36.962z"/>
+        <path d="M48.29,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
+        c-4.791,0.51-8.564,5.429-8.564,11.411c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
+        c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C56.651,21.102,52.984,16.235,48.29,15.61z
+        M44.925,36.513c-3.207-1.263-5.542-5.05-5.542-9.513c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007
+        c0.759,1.392,1.367,3.199,1.095,5.211c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505
+        C44.11,32.681,44.48,34.741,44.925,36.513z M47.267,36.962c-0.23,0-0.457-0.019-0.682-0.044
+        c-0.499-1.804-0.983-4.075-0.851-5.772c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98
+        c0.26-1.925-0.137-3.659-0.753-5.101c3.408,1.099,5.939,4.999,5.939,9.643C55.151,32.493,51.614,36.962,47.267,36.962z"/>
+        <path d="M29.523,15.61c-0.336-0.045-0.677-0.071-1.023-0.071c-0.277,0-0.549,0.022-0.82,0.051
+        c-4.791,0.51-8.564,5.429-8.564,11.411c0,5.539,3.234,10.172,7.517,11.232c0.531,0.132,1.081,0.199,1.64,0.215
+        c0.076,0.002,0.15,0.014,0.227,0.014c5.174,0,9.383-5.142,9.383-11.461C37.884,21.102,34.217,16.235,29.523,15.61z M20.616,27
+        c0-5.493,3.537-9.962,7.884-9.962c0.039,0,0.077,0.007,0.116,0.007c0.759,1.392,1.367,3.199,1.095,5.211
+        c-0.249,1.841-1.154,3.02-2.113,4.267c-0.971,1.264-1.976,2.571-2.126,4.505c-0.129,1.652,0.241,3.712,0.686,5.484
+        C22.951,35.25,20.616,31.463,20.616,27z M28.5,36.962c-0.23,0-0.457-0.019-0.682-0.044c-0.499-1.804-0.983-4.075-0.851-5.772
+        c0.117-1.49,0.906-2.518,1.821-3.708c0.988-1.286,2.108-2.744,2.41-4.98c0.26-1.925-0.137-3.659-0.753-5.101
+        c3.408,1.099,5.939,4.999,5.939,9.643C36.384,32.493,32.847,36.962,28.5,36.962z"/>
+        </g>
 
-                    <g id="userTwo" viewBox="0 0 64 64">
-                        <circle fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" cx="32" cy="32" r="21.621"/>
-                        <path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M46.36,39.518c-2.152-2.97-5.203-5.241-8.752-6.425
-                            c-1.568,1.165-3.504,1.863-5.608,1.863c-2.104,0-4.04-0.698-5.608-1.863c-3.549,1.185-6.6,3.456-8.752,6.425"/>
-                        <circle fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="32" cy="25.534" r="6.756"/>
-                        <path fill="#FFFFFF" d="M29.595,44.89c1.863-1.563,3.116-2.665,3.116-3.603c0-0.629-0.391-0.973-1.073-0.973
-                            c-0.518,0-0.94,0.318-1.308,0.659l-0.809-0.813c0.675-0.682,1.327-1.029,2.322-1.029c1.369,0,2.299,0.819,2.299,2.072
-                            c0,1.095-1.125,2.261-2.386,3.359c0.373-0.038,0.844-0.073,1.181-0.073h1.541v1.266h-4.884V44.89z"/>
-                    </g>
+        <g id="start" viewBox="0 0 64 64">
+        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M61.089,24.79
+        C58.431,14.033,49.967,5.569,39.21,2.911"/>
+        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M2.911,39.21
+        C5.569,49.967,14.033,58.431,24.79,61.089"/>
+        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M24.79,2.911
+        C14.033,5.569,5.569,14.033,2.911,24.79"/>
+        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M39.21,61.089
+        c10.757-2.658,19.221-11.122,21.879-21.879"/>
+        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M39.21,38.247"/>
+        <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="M24.79,20.865
+        C21.144,23.231,18.727,27.33,18.727,32c0,7.331,5.943,13.273,13.273,13.273S45.273,39.331,45.273,32
+        c0-4.67-2.417-8.769-6.064-11.135"/>
+        <line fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" x1="32" y1="30.069" x2="32" y2="12.843"/>
+        </g>
 
-                    <g id="userOne" viewBox="0 0 64 64">
-                        <circle fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" cx="32" cy="32" r="21.621"/>
-                        <path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M46.36,39.518c-2.152-2.97-5.203-5.241-8.752-6.425
-                            c-1.568,1.165-3.504,1.863-5.608,1.863c-2.104,0-4.04-0.698-5.608-1.863c-3.549,1.185-6.6,3.456-8.752,6.425"/>
-                        <circle fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="32" cy="25.534" r="6.756"/>
-                        <path fill="#FFFFFF" d="M32.492,45.935h-1.301v-4.908c-0.477,0.444-1.037,0.773-1.683,0.987v-1.182
-                            c0.34-0.111,0.709-0.322,1.107-0.633s0.672-0.673,0.82-1.087h1.056V45.935z"/>
-                    </g>
+        <g id="userTwo" viewBox="0 0 64 64">
+        <circle fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" cx="32" cy="32" r="21.621"/>
+        <path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M46.36,39.518c-2.152-2.97-5.203-5.241-8.752-6.425
+        c-1.568,1.165-3.504,1.863-5.608,1.863c-2.104,0-4.04-0.698-5.608-1.863c-3.549,1.185-6.6,3.456-8.752,6.425"/>
+        <circle fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="32" cy="25.534" r="6.756"/>
+        <path fill="#FFFFFF" d="M29.595,44.89c1.863-1.563,3.116-2.665,3.116-3.603c0-0.629-0.391-0.973-1.073-0.973
+        c-0.518,0-0.94,0.318-1.308,0.659l-0.809-0.813c0.675-0.682,1.327-1.029,2.322-1.029c1.369,0,2.299,0.819,2.299,2.072
+        c0,1.095-1.125,2.261-2.386,3.359c0.373-0.038,0.844-0.073,1.181-0.073h1.541v1.266h-4.884V44.89z"/>
+        </g>
 
-                    <g id="home" viewBox="0 0 64 64">
-                        <circle fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" cx="32" cy="32" r="21.621"/>
-                        <polygon fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" points="42.119,39.874 21.881,39.874 
-                            21.881,29.3 32,20.126 42.119,29.3 	"/>
-                    </g>
+        <g id="userOne" viewBox="0 0 64 64">
+        <circle fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" cx="32" cy="32" r="21.621"/>
+        <path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M46.36,39.518c-2.152-2.97-5.203-5.241-8.752-6.425
+        c-1.568,1.165-3.504,1.863-5.608,1.863c-2.104,0-4.04-0.698-5.608-1.863c-3.549,1.185-6.6,3.456-8.752,6.425"/>
+        <circle fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="32" cy="25.534" r="6.756"/>
+        <path fill="#FFFFFF" d="M32.492,45.935h-1.301v-4.908c-0.477,0.444-1.037,0.773-1.683,0.987v-1.182
+        c0.34-0.111,0.709-0.322,1.107-0.633s0.672-0.673,0.82-1.087h1.056V45.935z"/>
+        </g>
 
-
-                    <g id="profileButton" viewBox="0 0 32 32">
-                    <rect id="Rectangle" x="0.5" y="0.5" style="fill:none;stroke:#F38230;stroke-width:0.9887;" width="31" height="31"/>
-                    <path id="Shape" style="fill:#FFFFFF;" d="M20.3,19.1c0.9,0,1.8-0.4,2.4-1c0.6-0.6,1-1.5,1-2.4s-0.4-1.8-1-2.4c-0.6-0.6-1.5-1-2.4-1
-                        c-0.9,0-1.8,0.4-2.4,1c-0.6,0.6-1,1.5-1,2.4c0,0.9,0.4,1.8,1,2.4C18.5,18.8,19.4,19.1,20.3,19.1L20.3,19.1z M20.3,13.2
-                        c0.6,0,1.3,0.3,1.7,0.7c0.5,0.5,0.7,1.1,0.7,1.7c0,0.6-0.3,1.3-0.7,1.7c-0.5,0.5-1.1,0.7-1.7,0.7c-0.6,0-1.3-0.3-1.7-0.7
-                        c-0.5-0.5-0.7-1.1-0.7-1.7c0-0.6,0.3-1.3,0.7-1.7C19.1,13.5,19.7,13.2,20.3,13.2L20.3,13.2z"/>
-                    <path style="fill:#FFFFFF;" d="M14.9,26.1c0-3,2.4-5.5,5.5-5.5s5.5,2.4,5.5,5.5h1c0-1.7-0.7-3.4-1.9-4.6c-1.2-1.2-2.9-1.9-4.6-1.9
-                        c-1.7,0-3.4,0.7-4.6,1.9c-1.2,1.2-1.9,2.9-1.9,4.6H14.9z"/>
-                    <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" points="8.8,12.7 6.4,12.7 6.4,11.3 8.8,11.3 8.8,8.8 10.2,8.8 
-                        10.2,11.3 12.7,11.3 12.7,12.7 10.2,12.7 10.2,15.1 8.8,15.1 "/>
-                    </g>
-                    <g id="profileIcon" viewBox="0 0 32 32">
-                        <path id="Shape" fill="white" class="st0" d="M16,16.1c2,0,4-0.8,5.4-2.2c1.4-1.4,2.2-3.4,2.2-5.4s-0.8-4-2.2-5.4C20,1.6,18,0.8,16,0.8 s-4,0.8-5.4,2.2C9.2,4.5,8.4,6.5,8.4,8.5c0,2,0.8,4,2.2,5.4S14,16.1,16,16.1L16,16.1z M16,3.1c1.4,0,2.8,0.6,3.8,1.6 c1,1,1.6,2.4,1.6,3.8c0,1.4-0.6,2.8-1.6,3.8c-1,1-2.4,1.6-3.8,1.6c-1.4,0-2.8-0.6-3.8-1.6c-1-1-1.6-2.4-1.6-3.8 c0-1.4,0.6-2.8,1.6-3.8C13.2,3.7,14.6,3.1,16,3.1L16,3.1z"/>
-                        <path fill="white" class="st0" d="M3.9,31.4c0-6.6,5.4-12.1,12.1-12.1s12.1,5.4,12.1,12.1h2.3c0-3.8-1.5-7.4-4.2-10.1c-2.7-2.7-6.3-4.2-10.1-4.2 s-7.4,1.5-10.1,4.2c-2.7,2.7-4.2,6.3-4.2,10.1H3.9z"/>
-                    </g>
-
-                    <g id="userSettings" viewBox="0 0 44 44">
-                    <path style="fill:#FFFFFF;" d="M41.3,13.4c-0.1-0.2-0.2-0.3-0.4-0.4c-0.7-0.3-1.3-0.7-2-1l-0.1-0.9c0.4-0.5,0.8-1.1,1.2-1.6
-                        c0.1-0.1,0.1-0.2,0.2-0.3L40.3,9c0-0.1,0-0.2,0-0.4c0-0.2-0.1-0.4-0.2-0.5l-2-2.6l-0.3-0.4c-0.2-0.2-0.6-0.3-0.9-0.2
-                        c-0.7,0.3-1.5,0.6-2.2,0.9c0,0,0,0,0,0l-0.5-0.3c-0.2-0.6-0.3-1.2-0.5-1.8l-0.1-0.3c-0.1-0.4-0.5-0.7-0.9-0.7H29
-                        c-0.4,0-0.8,0.3-0.9,0.7c-0.2,0.7-0.4,1.4-0.6,2.1L27,5.8L25,5c-0.1,0-0.2-0.1-0.3-0.1c-0.3-0.1-0.7,0-0.9,0.2l-2,2.6l-0.3,0.4
-                        c-0.1,0.2-0.2,0.3-0.2,0.5c0,0.2,0,0.4,0.1,0.6c0.5,0.6,0.9,1.2,1.4,1.9c0,0,0,0,0,0l-0.1,0.9c-0.6,0.3-1.1,0.6-1.7,0.9
-                        c-0.1,0-0.2,0.1-0.3,0.1c-0.2,0.1-0.3,0.3-0.4,0.4c-0.1,0.2-0.1,0.4,0,0.6c0.2,1,0.4,2,0.6,3.1l0.1,0.4c0,0.2,0.2,0.4,0.3,0.5
-                        c0.2,0.1,0.3,0.2,0.5,0.2c0.7,0.1,1.5,0.1,2.2,0.2l0.4,0.6c-0.1,0.7-0.2,1.3-0.2,2l0,0.3c0,0.3,0.2,0.7,0.4,0.8l2.8,1.4l0.4,0.2
-                        c0.2,0.1,0.4,0.1,0.6,0.1c0.2,0,0.4-0.1,0.5-0.3l1.4-1.5h0.9l1.2,1.3c0.1,0.1,0.1,0.2,0.2,0.2c0.1,0.1,0.3,0.2,0.5,0.3
-                        c0.2,0,0.4,0,0.6-0.1c0.9-0.5,1.9-0.9,2.8-1.4c0.1-0.1,0.3-0.1,0.4-0.2c0.3-0.1,0.5-0.5,0.4-0.8c-0.1-0.7-0.2-1.5-0.3-2.2
-                        c0,0,0,0,0-0.1l0.4-0.6c0.6-0.1,1.2-0.1,1.9-0.2l0.3,0c0.2,0,0.4-0.1,0.5-0.2c0.1-0.1,0.3-0.3,0.3-0.5c0.2-1,0.4-2,0.6-3.1
-                        c0-0.1,0.1-0.3,0.1-0.4C41.4,13.8,41.4,13.6,41.3,13.4z M36.8,16.6c-0.2,0.1-0.4,0.2-0.5,0.4l0,0.1L36,17.4
-                        c-0.2,0.2-0.3,0.5-0.5,0.7c-0.1,0.2-0.2,0.3-0.2,0.6c0,0,0,0.1,0,0.1c0,0.3,0.1,0.5,0.1,0.8l0.1,1.1l-2,1c-0.2-0.2-0.3-0.4-0.5-0.5
-                        c-0.2-0.2-0.4-0.4-0.6-0.6l-0.2-0.2c-0.2-0.2-0.4-0.3-0.7-0.3c-0.5,0-1,0-1.6,0c-0.3,0-0.5,0.1-0.8,0.3c0,0-0.1,0.1-0.1,0.1
-                        l-0.5,0.6L28,21.6l-2-1l0.1-0.8c0-0.3,0.1-0.6,0.1-0.9c0-0.3,0.1-0.5-0.1-0.8c-0.3-0.4-0.6-0.8-0.8-1.2c-0.1-0.2-0.3-0.4-0.5-0.4
-                        c-0.2-0.1-0.2,0-0.2,0c0,0,0,0-0.1,0l-0.2,0c-0.3,0-0.6,0-0.8-0.1l-0.8-0.1c-0.1-0.7-0.3-1.4-0.4-2.1c0.2-0.1,0.5-0.2,0.7-0.3
-                        l0.8-0.4c0.3-0.2,0.6-0.3,0.7-0.7c0.1-0.5,0.2-1.1,0.3-1.6c0-0.3,0.1-0.6-0.1-0.8c0,0-0.1-0.1-0.1-0.1l-0.5-0.7
-                        c-0.2-0.3-0.4-0.6-0.6-0.9l1.5-1.9l0.7,0.3c0.4,0.2,0.9,0.4,1.3,0.5c0.4,0.1,0.8-0.1,1.1-0.3L28.6,7c0.2-0.1,0.4-0.3,0.5-0.6
-                        c0,0,0-0.1,0-0.1c0.1-0.3,0.1-0.5,0.2-0.8l0.3-0.9H32l0.2,0.6c0.1,0.3,0.2,0.6,0.2,0.9c0.1,0.3,0.2,0.7,0.5,0.8
-                        c0.4,0.2,0.8,0.4,1.2,0.7c0.2,0.1,0.5,0.2,0.8,0.1l0.2-0.1c0.3-0.1,0.5-0.2,0.8-0.3c0.3-0.1,0.6-0.2,0.9-0.4l1.5,1.9
-                        c-0.3,0.3-0.5,0.7-0.8,1c-0.1,0.2-0.3,0.4-0.4,0.6C36.9,10.6,37,11,37,11.2l0.1,0.5c0.1,0.3,0.1,0.7,0.2,1c0,0.2,0.2,0.4,0.4,0.5
-                        c0,0,0,0,0.1,0c0.6,0.3,1.1,0.6,1.7,0.9c-0.1,0.7-0.3,1.4-0.4,2.1c-0.6,0.1-1.3,0.1-1.9,0.2C37,16.5,37,16.5,36.8,16.6z"/>
-                    <path style="fill:#FFFFFF;" d="M13.2,29.9c1.5,0,2.9-0.6,4-1.7c1.1-1.1,1.6-2.5,1.6-4s-0.6-3-1.6-4c-1.1-1.1-2.5-1.7-4-1.7
-                        c-1.5,0-2.9,0.6-4,1.7c-1.1,1.1-1.6,2.5-1.6,4c0,1.5,0.6,3,1.7,4C10.3,29.3,11.7,29.9,13.2,29.9z M13.2,20.2c1,0,2.1,0.4,2.8,1.2
-                        c0.7,0.8,1.2,1.8,1.2,2.8c0,1.1-0.4,2.1-1.2,2.8c-0.7,0.8-1.7,1.2-2.8,1.2s-2.1-0.4-2.8-1.2c-0.7-0.8-1.2-1.8-1.2-2.8
-                        c0-1.1,0.4-2.1,1.2-2.8C11.1,20.6,12.2,20.2,13.2,20.2C13.2,20.2,13.2,20.2,13.2,20.2z M4.3,41.4c0-5,4-9,8.9-9c4.9,0,8.9,4,8.9,9
-                        h1.7c0-2.8-1.1-5.6-3.1-7.6c-2-2-4.7-3.1-7.5-3.1s-5.5,1.1-7.5,3.1c-2,2-3.1,4.7-3.1,7.6H4.3z"/>
-                    <g>
-                        <path style="fill:#FFFFFF;" d="M30.8,17.5c-2.4,0-4.3-1.9-4.3-4.3s1.9-4.3,4.3-4.3s4.3,1.9,4.3,4.3S33.2,17.5,30.8,17.5z
-                            M30.8,10.9c-1.3,0-2.3,1.1-2.3,2.3s1.1,2.3,2.3,2.3c1.3,0,2.3-1.1,2.3-2.3S32.1,10.9,30.8,10.9z"/>
-                    </g>
-                </g>
-
-                <g id="settings" viewBox="0 0 44 44">
-                <circle style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" cx="22" cy="22" r="6.5"/>
-                <polygon style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" points="36.3,20.3 
-                    35.7,17.6 38.6,13.4 34.2,7.9 29.4,9.8 27,8.6 25.5,3.7 18.5,3.7 17,8.6 14.6,9.8 9.8,7.9 5.4,13.4 8.3,17.6 7.7,20.3 3.2,22.8 
-                    4.8,29.7 9.9,30 11.6,32.2 10.8,37.2 17.2,40.3 20.6,36.5 23.4,36.5 26.8,40.3 33.2,37.3 32.4,32.2 34.1,30 39.2,29.7 40.8,22.8 "/>
-                </g>
+        <g id="home" viewBox="0 0 64 64">
+        <circle fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" cx="32" cy="32" r="21.621"/>
+        <polygon fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" points="42.119,39.874 21.881,39.874 
+        21.881,29.3 32,20.126 42.119,29.3 	"/>
+        </g>
 
 
-                <g id="plus" viewBox="0 0 44 44">
-                    <path style="fill:#FFFFFF;" d="M42.1,21.1H22.9V1.9C22.9,1.4,22.5,1,22,1s-0.9,0.4-0.9,0.9v19.2H1.9C1.4,21.1,1,21.5,1,22
-                        s0.4,0.9,0.9,0.9h19.2v19.2c0,0.5,0.4,0.9,0.9,0.9s0.9-0.4,0.9-0.9V22.9h19.2c0.5,0,0.9-0.4,0.9-0.9S42.6,21.1,42.1,21.1z"/>
-                </g>
+        <g id="profileButton" viewBox="0 0 32 32">
+        <rect id="Rectangle" x="0.5" y="0.5" style="fill:none;stroke:#F38230;stroke-width:0.9887;" width="31" height="31"/>
+        <path id="Shape" style="fill:#FFFFFF;" d="M20.3,19.1c0.9,0,1.8-0.4,2.4-1c0.6-0.6,1-1.5,1-2.4s-0.4-1.8-1-2.4c-0.6-0.6-1.5-1-2.4-1
+        c-0.9,0-1.8,0.4-2.4,1c-0.6,0.6-1,1.5-1,2.4c0,0.9,0.4,1.8,1,2.4C18.5,18.8,19.4,19.1,20.3,19.1L20.3,19.1z M20.3,13.2
+        c0.6,0,1.3,0.3,1.7,0.7c0.5,0.5,0.7,1.1,0.7,1.7c0,0.6-0.3,1.3-0.7,1.7c-0.5,0.5-1.1,0.7-1.7,0.7c-0.6,0-1.3-0.3-1.7-0.7
+        c-0.5-0.5-0.7-1.1-0.7-1.7c0-0.6,0.3-1.3,0.7-1.7C19.1,13.5,19.7,13.2,20.3,13.2L20.3,13.2z"/>
+        <path style="fill:#FFFFFF;" d="M14.9,26.1c0-3,2.4-5.5,5.5-5.5s5.5,2.4,5.5,5.5h1c0-1.7-0.7-3.4-1.9-4.6c-1.2-1.2-2.9-1.9-4.6-1.9
+        c-1.7,0-3.4,0.7-4.6,1.9c-1.2,1.2-1.9,2.9-1.9,4.6H14.9z"/>
+        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" points="8.8,12.7 6.4,12.7 6.4,11.3 8.8,11.3 8.8,8.8 10.2,8.8 
+        10.2,11.3 12.7,11.3 12.7,12.7 10.2,12.7 10.2,15.1 8.8,15.1 "/>
+        </g>
 
-                <g id="backspace" viewBox="0 0 32 32">
-                    <path style="fill:#FFFFFF;" d="M7.9,6C7.8,6,7.7,6,7.6,6.2l-7.5,9.5c-0.1,0.2-0.1,0.4,0,0.6l7.4,9.5C7.6,26,7.8,26,7.9,26h23.6
-                        c0.3,0,0.5-0.2,0.5-0.5V6.5C32,6.2,31.8,6,31.5,6H7.9z M31.1,25.1H8.2L1.1,16l7.1-9.1h22.9L31.1,25.1L31.1,25.1z"/>
-                    <path style="fill:#FFFFFF;" d="M16.7,20l3.3-3.3l3.3,3.3l0.7-0.7L20.7,16l3.3-3.3L23.3,12L20,15.3L16.7,12L16,12.7l3.3,3.3L16,19.3
-                        L16.7,20z"/>
-                </g>
-                <g id="backLight" viewBox="0 0 44 44">
+        <g id="profileIcon" viewBox="0 0 32 32">
+        <path id="Shape" fill="white" class="st0" d="M16,16.1c2,0,4-0.8,5.4-2.2c1.4-1.4,2.2-3.4,2.2-5.4s-0.8-4-2.2-5.4C20,1.6,18,0.8,16,0.8 s-4,0.8-5.4,2.2C9.2,4.5,8.4,6.5,8.4,8.5c0,2,0.8,4,2.2,5.4S14,16.1,16,16.1L16,16.1z M16,3.1c1.4,0,2.8,0.6,3.8,1.6 c1,1,1.6,2.4,1.6,3.8c0,1.4-0.6,2.8-1.6,3.8c-1,1-2.4,1.6-3.8,1.6c-1.4,0-2.8-0.6-3.8-1.6c-1-1-1.6-2.4-1.6-3.8 c0-1.4,0.6-2.8,1.6-3.8C13.2,3.7,14.6,3.1,16,3.1L16,3.1z"/>
+        <path fill="white" class="st0" d="M3.9,31.4c0-6.6,5.4-12.1,12.1-12.1s12.1,5.4,12.1,12.1h2.3c0-3.8-1.5-7.4-4.2-10.1c-2.7-2.7-6.3-4.2-10.1-4.2 s-7.4,1.5-10.1,4.2c-2.7,2.7-4.2,6.3-4.2,10.1H3.9z"/>
+        </g>
 
-                    <path style="fill:#FFFFFF;" d="M12.6,30.3c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.3,3.3c-0.2,0.2-0.3,0.2-0.6,0.2
-                    c-0.2,0-0.4-0.1-0.6-0.2C9,34.4,9,33.9,9.3,33.6L12.6,30.3z M30.3,30.2c0.3-0.3,0.8-0.3,1.1,0l3.3,3.3c0.3,0.3,0.3,0.8,0,1.1
-                    c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2l-3.3-3.3C30,31,30,30.5,30.3,30.2z M39.2,21.2c0.4,0,0.8,0.3,0.8,0.8
-                    s-0.3,0.8-0.8,0.8h-4.7c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H39.2z M9.5,21.2c0.5,0,0.8,0.3,0.8,0.8c0,0.4-0.4,0.8-0.9,0.8H4.8
-                    C4.3,22.8,4,22.5,4,22s0.3-0.8,0.8-0.8H9.5z M33.5,9.2c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.2,3.2c-0.2,0.2-0.3,0.2-0.6,0.2
-                    c-0.2,0-0.4-0.1-0.6-0.2c-0.3-0.3-0.3-0.8,0-1.1L33.5,9.2z M9.3,9.2c0.3-0.3,0.8-0.3,1.1,0l3.2,3.2c0.3,0.3,0.3,0.8,0,1.1
-                    c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2l-3.1-3.2C9,10,9,9.5,9.3,9.2L9.3,9.2z M22,3.9c0.5,0,0.8,0.3,0.8,0.8v4.4
-                    c0,0.5-0.3,0.8-0.8,0.8s-0.8-0.3-0.8-0.8V4.7C21.2,4.2,21.5,3.9,22,3.9z M22,40.1c-0.5,0-0.8-0.3-0.8-0.8v-4.4
-                    c0-0.5,0.3-0.8,0.8-0.8s0.8,0.3,0.8,0.8v4.4C22.8,39.8,22.5,40.1,22,40.1z"/>
-                <path style="fill:#FFFFFF;" d="M22,14.218c4.291,0,7.782,3.491,7.782,7.782S26.291,29.782,22,29.782S14.218,26.291,14.218,22
-                    S17.709,14.218,22,14.218 M22,12.718c-5.126,0-9.282,4.156-9.282,9.282s4.156,9.282,9.282,9.282s9.282-4.156,9.282-9.282
-                    S27.126,12.718,22,12.718L22,12.718z"/>
-                </g>
+        <g id="userSettings" viewBox="0 0 44 44">
+        <circle style="fill:none;stroke:#FFFFFF;stroke-width:1.6719;stroke-linejoin:round;stroke-miterlimit:10;" cx="30.3" cy="11" r="3.6"/>
+        <polygon style="fill:none;stroke:#FFFFFF;stroke-width:1.6719;stroke-linejoin:round;stroke-miterlimit:10;" points="38.2,10.1 
+        37.9,8.6 39.5,6.2 37.1,3.2 34.4,4.2 33,3.6 32.2,0.8 28.3,0.8 27.5,3.6 26.1,4.2 23.5,3.2 21,6.2 22.6,8.6 22.3,10.1 19.8,11.5 
+        20.7,15.3 23.5,15.5 24.5,16.7 24,19.5 27.6,21.2 29.5,19.1 31,19.1 32.9,21.2 36.5,19.6 36.1,16.7 37,15.5 39.8,15.3 40.7,11.5 
+        "/>
+        <circle style="fill:none;stroke:#FFFFFF;stroke-width:1.6719;stroke-linejoin:round;stroke-miterlimit:10;" cx="11.2" cy="22.5" r="5.2"/>
+        <path style="fill:none;stroke:#FFFFFF;stroke-width:1.6719;stroke-linejoin:round;stroke-miterlimit:10;" d="M0.8,39.9
+        c0-5.7,4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2"/>
+        </g>
 
-<g id="backLightBig" viewBox="0 0 32 32">
-	<g>
-		<g>
-			<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FFFFFF;stroke-linecap:square;" d="M17.1,24.9v4.5h-2.2
-				v-4.5c0.4,0,0.7,0.1,1.1,0.1C16.4,24.9,16.8,24.9,17.1,24.9z M24.9,14.9h4.5v2.2h-4.5c0-0.4,0.1-0.7,0.1-1.1S24.9,15.2,24.9,14.9
-				z M7.1,14.9c0,0.4-0.1,0.7-0.1,1.1c0,0.4,0,0.8,0.1,1.1H2.6v-2.2H7.1z M17.1,2.6v4.5c-0.4,0-0.7-0.1-1.1-0.1s-0.8,0-1.1,0.1V2.6
-				H17.1z M10.5,23.1l-3.2,3.2l-1.6-1.6l3.2-3.2c0.2,0.3,0.5,0.6,0.7,0.8C9.9,22.6,10.2,22.8,10.5,23.1z M23.1,21.5l3.2,3.2
-				l-1.6,1.6l-3.2-3.2c0.3-0.2,0.6-0.5,0.8-0.7C22.6,22.1,22.8,21.8,23.1,21.5L23.1,21.5z M10.5,8.9c-0.3,0.2-0.6,0.5-0.8,0.7
-				c-0.3,0.3-0.5,0.5-0.7,0.8L5.7,7.3l1.6-1.6L10.5,8.9z M26.3,7.3l-3.2,3.2c-0.2-0.3-0.5-0.6-0.7-0.8c-0.3-0.3-0.5-0.5-0.8-0.7
-				l3.2-3.2L26.3,7.3L26.3,7.3z"/>
-		</g>
-		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M16,21c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5S18.8,21,16,21z"
-			/>
-	</g>
-</g>
+        <g id="settings" viewBox="0 0 44 44">
+        <circle style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" cx="22" cy="22" r="6.5"/>
+        <polygon style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" points="36.3,20.3 
+        35.7,17.6 38.6,13.4 34.2,7.9 29.4,9.8 27,8.6 25.5,3.7 18.5,3.7 17,8.6 14.6,9.8 9.8,7.9 5.4,13.4 8.3,17.6 7.7,20.3 3.2,22.8 
+        4.8,29.7 9.9,30 11.6,32.2 10.8,37.2 17.2,40.3 20.6,36.5 23.4,36.5 26.8,40.3 33.2,37.3 32.4,32.2 34.1,30 39.2,29.7 40.8,22.8 "/>
+        </g>
 
-<g id="backLightSmall" viewBox="0 0 32 32">
-	<g>
-		<g>
-			<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FFFFFF;stroke-linecap:square;" d="M16.7,21.6l0,2.9h-1.4
-				v-2.9c0.2,0,0.5,0,0.7,0C16.2,21.6,16.5,21.6,16.7,21.6z M21.6,15.3l2.9,0v1.4h-2.9c0-0.2,0-0.5,0-0.7
-				C21.6,15.8,21.6,15.5,21.6,15.3z M10.4,15.3c0,0.2,0,0.5,0,0.7c0,0.2,0,0.5,0,0.7l-2.9,0v-1.4L10.4,15.3z M16.7,7.5v2.9
-				c-0.2,0-0.5,0-0.7,0c-0.2,0-0.5,0-0.7,0l0-2.9H16.7z M12.5,20.5l-2,2l-1-1l2-2c0.1,0.2,0.3,0.4,0.5,0.5
-				C12.2,20.2,12.4,20.3,12.5,20.5L12.5,20.5z M20.5,19.5l2,2l-1,1l-2-2c0.2-0.1,0.4-0.3,0.5-0.5C20.2,19.8,20.3,19.6,20.5,19.5
-				L20.5,19.5z M12.5,11.5c-0.2,0.1-0.4,0.3-0.5,0.5c-0.2,0.2-0.3,0.3-0.5,0.5l-2-2l1-1L12.5,11.5z M22.5,10.5l-2,2
-				c-0.1-0.2-0.3-0.4-0.5-0.5c-0.2-0.2-0.3-0.3-0.5-0.5l2-2L22.5,10.5L22.5,10.5z"/>
-		</g>
-		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M16,19.2c-1.7,0-3.2-1.4-3.2-3.2s1.4-3.2,3.2-3.2
-			c1.7,0,3.2,1.4,3.2,3.2S17.7,19.2,16,19.2z"/>
-	</g>
-</g>
+        <g id="plus" viewBox="0 0 44 44">
+        <path style="fill:#FFFFFF;" d="M42.1,21.1H22.9V1.9C22.9,1.4,22.5,1,22,1s-0.9,0.4-0.9,0.9v19.2H1.9C1.4,21.1,1,21.5,1,22
+        s0.4,0.9,0.9,0.9h19.2v19.2c0,0.5,0.4,0.9,0.9,0.9s0.9-0.4,0.9-0.9V22.9h19.2c0.5,0,0.9-0.4,0.9-0.9S42.6,21.1,42.1,21.1z"/>
+        </g>
 
-<g id="checkMark" viewBox="0 0 32 32">
-	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M5,15.4l2-2l6.4,6.4L24.9,8.2l2.1,2.1L13.5,23.8
-		C13.5,23.8,5,15.4,5,15.4z"/>
-</g>
+        <g id="backspace" viewBox="0 0 32 32">
+        <path style="fill:#FFFFFF;" d="M7.9,6C7.8,6,7.7,6,7.6,6.2l-7.5,9.5c-0.1,0.2-0.1,0.4,0,0.6l7.4,9.5C7.6,26,7.8,26,7.9,26h23.6
+        c0.3,0,0.5-0.2,0.5-0.5V6.5C32,6.2,31.8,6,31.5,6H7.9z M31.1,25.1H8.2L1.1,16l7.1-9.1h22.9L31.1,25.1L31.1,25.1z"/>
+        <path style="fill:#FFFFFF;" d="M16.7,20l3.3-3.3l3.3,3.3l0.7-0.7L20.7,16l3.3-3.3L23.3,12L20,15.3L16.7,12L16,12.7l3.3,3.3L16,19.3
+        L16.7,20z"/>
+        </g>
 
-<g id="wrench" viewBox="0 0 32 32">
-	<path style="fill:#FFFFFF;" d="M15.7,23.1l8.2,8.1c0.2,0.2,0.4,0.2,0.6,0.2c0.2,0,0.4-0.1,0.6-0.2c0.3-0.3,0.3-0.8,0-1.1L16.9,22
-		c-1.3-1.3-3.1-2-5.1-1.8c-2.6,0.2-5.2-0.8-7-2.6c-2-2-3-4.9-2.6-7.7l3.4,3.3c0.8,0.7,1.7,1.1,2.8,1.1c1.1,0,2-0.4,2.8-1.1l1.8-1.8
-		c1.6-1.5,1.6-4,0-5.5L9.4,2.4c3-0.7,6.2,0.2,8.4,2.4c2,1.9,2.9,4.6,2.6,7.4c-0.2,2,0.4,3.9,1.9,5.3l7.8,7.8c0.3,0.3,0.8,0.3,1.2,0
-		c0.3-0.3,0.3-0.8,0-1.1l-7.8-7.8c-1-1-1.6-2.5-1.4-3.9c0.4-3.2-0.8-6.4-3.1-8.7C16,0.8,11.9-0.2,8,1.1C7.6,1.2,7.3,1.5,7.3,1.9
-		c-0.1,0.4,0,0.8,0.3,1l4.3,4.2c0.9,0.9,0.9,2.3,0,3.2L10,12.1c-0.4,0.4-1,0.7-1.6,0.7c-0.6,0-1.2-0.2-1.6-0.7l-4-4
-		C2.5,7.8,2.1,7.7,1.7,7.8C1.3,7.9,1,8.2,0.9,8.6c-0.9,3.7,0.1,7.4,2.8,10.1c2.1,2.1,5.2,3.2,8.3,3C13.4,21.7,14.8,22.2,15.7,23.1
-		L15.7,23.1z"/>
-</g>
-<g id="lightOff" viewBox="0 0 44 44">
-<path style="fill:#FFFFFF;" d="M22,9.3c-0.4,0-0.8,0-1.2,0.1c-4.5,0.5-8.3,4.1-9,8.6c-0.5,2.9,0.3,5.8,2.1,8c2,2.5,3,5.3,3,8.1
-c0,0.5,0.3,0.8,0.8,0.8h8.7c0.5,0,0.8-0.3,0.8-0.8c0-3,0.9-5.7,2.7-7.8c1.6-1.9,2.4-4.3,2.4-6.7C32.3,14,27.7,9.3,22,9.3z
- M26.1,38.3c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M26.1,35.9
-c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M22,10.8c4.8,0,8.8,4,8.8,8.8
-c0,2.1-0.8,4.1-2.1,5.7c-1.8,2.1-2.9,5-3.1,8h-7.1c-0.2-2.9-1.3-5.8-3.3-8.3c-1.5-1.9-2.1-4.4-1.7-6.8c0.6-3.8,3.8-6.9,7.6-7.3
-C21.3,10.9,21.7,10.8,22,10.8L22,10.8z"/>
-<path style="fill:#FFFFFF;" d="M9.8,32.9c0.2,0,0.4-0.1,0.6-0.2L34.8,8.2c0.3-0.3,0.3-0.8,0-1.1c-0.3-0.3-0.8-0.3-1.1,0L9.2,31.6
-c-0.3,0.3-0.3,0.8,0,1.1C9.4,32.8,9.6,32.9,9.8,32.9z"/>
-</g>
+        <g id="backLight" viewBox="0 0 44 44">
+        <path style="fill:#FFFFFF;" d="M12.6,30.3c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.3,3.3c-0.2,0.2-0.3,0.2-0.6,0.2
+        c-0.2,0-0.4-0.1-0.6-0.2C9,34.4,9,33.9,9.3,33.6L12.6,30.3z M30.3,30.2c0.3-0.3,0.8-0.3,1.1,0l3.3,3.3c0.3,0.3,0.3,0.8,0,1.1
+        c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2l-3.3-3.3C30,31,30,30.5,30.3,30.2z M39.2,21.2c0.4,0,0.8,0.3,0.8,0.8
+        s-0.3,0.8-0.8,0.8h-4.7c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H39.2z M9.5,21.2c0.5,0,0.8,0.3,0.8,0.8c0,0.4-0.4,0.8-0.9,0.8H4.8
+        C4.3,22.8,4,22.5,4,22s0.3-0.8,0.8-0.8H9.5z M33.5,9.2c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.2,3.2c-0.2,0.2-0.3,0.2-0.6,0.2
+        c-0.2,0-0.4-0.1-0.6-0.2c-0.3-0.3-0.3-0.8,0-1.1L33.5,9.2z M9.3,9.2c0.3-0.3,0.8-0.3,1.1,0l3.2,3.2c0.3,0.3,0.3,0.8,0,1.1
+        c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2l-3.1-3.2C9,10,9,9.5,9.3,9.2L9.3,9.2z M22,3.9c0.5,0,0.8,0.3,0.8,0.8v4.4
+        c0,0.5-0.3,0.8-0.8,0.8s-0.8-0.3-0.8-0.8V4.7C21.2,4.2,21.5,3.9,22,3.9z M22,40.1c-0.5,0-0.8-0.3-0.8-0.8v-4.4
+        c0-0.5,0.3-0.8,0.8-0.8s0.8,0.3,0.8,0.8v4.4C22.8,39.8,22.5,40.1,22,40.1z"/>
+        <path style="fill:#FFFFFF;" d="M22,14.218c4.291,0,7.782,3.491,7.782,7.782S26.291,29.782,22,29.782S14.218,26.291,14.218,22
+        S17.709,14.218,22,14.218 M22,12.718c-5.126,0-9.282,4.156-9.282,9.282s4.156,9.282,9.282,9.282s9.282-4.156,9.282-9.282
+        S27.126,12.718,22,12.718L22,12.718z"/>
+        </g>
 
-<g id="lightOn" viewBox="0 0 44 44">
-<path style="fill:#FFFFFF;" d="M22,9.2c-0.4,0-0.8,0-1.2,0.1c-4.5,0.5-8.3,4.1-9,8.6c-0.5,2.9,0.3,5.8,2.1,8c2,2.5,3,5.3,3,8.1
-c0,0.5,0.3,0.8,0.8,0.8h8.7c0.5,0,0.8-0.3,0.8-0.8c0-3,0.9-5.7,2.7-7.8c1.6-1.9,2.4-4.3,2.4-6.7C32.3,13.9,27.7,9.2,22,9.2z
- M26.1,38.2c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M26.1,35.8
-c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M22,10.7c4.8,0,8.8,4,8.8,8.8
-c0,2.1-0.8,4.1-2.1,5.7c-1.8,2.1-2.9,5-3.1,8h-7.1c-0.2-2.9-1.3-5.8-3.3-8.3c-1.5-1.9-2.1-4.4-1.7-6.8c0.6-3.8,3.8-6.9,7.6-7.3
-C21.3,10.8,21.7,10.7,22,10.7L22,10.7z M12.6,28.2c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.3,3.3c-0.2,0.2-0.3,0.2-0.6,0.2
-c-0.2,0-0.4-0.1-0.6-0.2C9,32.3,9,31.8,9.3,31.5L12.6,28.2z M30.3,28.1c0.3-0.3,0.8-0.3,1.1,0l3.3,3.3c0.3,0.3,0.3,0.8,0,1.1
-c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2l-3.3-3.3C30,28.9,30,28.4,30.3,28.1z M39.2,19.1c0.4,0,0.8,0.3,0.8,0.8
-s-0.3,0.8-0.8,0.8h-4.7c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H39.2z M9.5,19.1c0.5,0,0.8,0.3,0.8,0.8c0,0.4-0.4,0.8-0.9,0.8H4.8
-c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H9.5z M33.5,7.1c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.2,3.2c-0.2,0.2-0.3,0.2-0.6,0.2
-c-0.2,0-0.4-0.1-0.6-0.2c-0.3-0.3-0.3-0.8,0-1.1L33.5,7.1z M9.3,7.1c0.3-0.3,0.8-0.3,1.1,0l3.2,3.2c0.3,0.3,0.3,0.8,0,1.1
-c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2L9.3,8.2C9,7.9,9,7.4,9.3,7.1L9.3,7.1z M22,1.8c0.5,0,0.8,0.3,0.8,0.8V7
-c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
-</g>
+        <g id="backLightBig" viewBox="0 0 32 32">
+        <g>
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FFFFFF;stroke-linecap:square;" d="M17.1,24.9v4.5h-2.2
+        v-4.5c0.4,0,0.7,0.1,1.1,0.1C16.4,24.9,16.8,24.9,17.1,24.9z M24.9,14.9h4.5v2.2h-4.5c0-0.4,0.1-0.7,0.1-1.1S24.9,15.2,24.9,14.9
+        z M7.1,14.9c0,0.4-0.1,0.7-0.1,1.1c0,0.4,0,0.8,0.1,1.1H2.6v-2.2H7.1z M17.1,2.6v4.5c-0.4,0-0.7-0.1-1.1-0.1s-0.8,0-1.1,0.1V2.6
+        H17.1z M10.5,23.1l-3.2,3.2l-1.6-1.6l3.2-3.2c0.2,0.3,0.5,0.6,0.7,0.8C9.9,22.6,10.2,22.8,10.5,23.1z M23.1,21.5l3.2,3.2
+        l-1.6,1.6l-3.2-3.2c0.3-0.2,0.6-0.5,0.8-0.7C22.6,22.1,22.8,21.8,23.1,21.5L23.1,21.5z M10.5,8.9c-0.3,0.2-0.6,0.5-0.8,0.7
+        c-0.3,0.3-0.5,0.5-0.7,0.8L5.7,7.3l1.6-1.6L10.5,8.9z M26.3,7.3l-3.2,3.2c-0.2-0.3-0.5-0.6-0.7-0.8c-0.3-0.3-0.5-0.5-0.8-0.7
+        l3.2-3.2L26.3,7.3L26.3,7.3z"/>
+        </g>
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M16,21c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5S18.8,21,16,21z"
+        />
+        </g>
 
-<g id="cleanK" viewBox="0 0 44 44">
-<path style="fill:#FFFFFF;" d="M30.6,12.6h-4.6l-6.8,8.1v-8.1h-3.8v18.9h3.8v-8.8
-	h0.1l6.8,8.8h4.9l-8.1-10L30.6,12.6L30.6,12.6z M38.6,22c0,9.1-7.4,16.6-16.6,16.6c-9.2,0-16.6-7.4-16.6-16.6
-    c0-9.2,7.4-16.6,16.6-16.6C31.2,5.4,38.6,12.8,38.6,22z"/>
-</g>
+        <g id="backLightSmall" viewBox="0 0 32 32">
+        <g>
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FFFFFF;stroke-linecap:square;" d="M16.7,21.6l0,2.9h-1.4
+        v-2.9c0.2,0,0.5,0,0.7,0C16.2,21.6,16.5,21.6,16.7,21.6z M21.6,15.3l2.9,0v1.4h-2.9c0-0.2,0-0.5,0-0.7
+        C21.6,15.8,21.6,15.5,21.6,15.3z M10.4,15.3c0,0.2,0,0.5,0,0.7c0,0.2,0,0.5,0,0.7l-2.9,0v-1.4L10.4,15.3z M16.7,7.5v2.9
+        c-0.2,0-0.5,0-0.7,0c-0.2,0-0.5,0-0.7,0l0-2.9H16.7z M12.5,20.5l-2,2l-1-1l2-2c0.1,0.2,0.3,0.4,0.5,0.5
+        C12.2,20.2,12.4,20.3,12.5,20.5L12.5,20.5z M20.5,19.5l2,2l-1,1l-2-2c0.2-0.1,0.4-0.3,0.5-0.5C20.2,19.8,20.3,19.6,20.5,19.5
+        L20.5,19.5z M12.5,11.5c-0.2,0.1-0.4,0.3-0.5,0.5c-0.2,0.2-0.3,0.3-0.5,0.5l-2-2l1-1L12.5,11.5z M22.5,10.5l-2,2
+        c-0.1-0.2-0.3-0.4-0.5-0.5c-0.2-0.2-0.3-0.3-0.5-0.5l2-2L22.5,10.5L22.5,10.5z"/>
+        </g>
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M16,19.2c-1.7,0-3.2-1.4-3.2-3.2s1.4-3.2,3.2-3.2
+        c1.7,0,3.2,1.4,3.2,3.2S17.7,19.2,16,19.2z"/>
+        </g>
 
-<g id="reset" viewBox="0 0 44 44">
-	<path style="fill:#FFFFFF;" d="M21.5,14.7c-1.4,0-2.5,0.5-3.2,1.5c-0.9,1.2-1.4,3.1-1.4,5.8c0,2.7,0.4,4.7,1.3,5.7
-		c0.9,1.1,2,1.6,3.4,1.6c1.4,0,2.5-0.5,3.2-1.5c0.9-1.2,1.4-3.1,1.4-5.8c0-2.7-0.5-4.7-1.4-5.8C24,15.2,22.9,14.7,21.5,14.7z
-		 M23,25.6c-0.1,0.5-0.3,0.9-0.6,1.1c-0.3,0.2-0.6,0.3-0.9,0.3c-0.3,0-0.6-0.1-0.9-0.3s-0.5-0.6-0.6-1.3c-0.2-0.6-0.3-1.8-0.3-3.5
-		s0.1-2.9,0.3-3.6c0.1-0.5,0.3-0.9,0.6-1.1c0.3-0.2,0.6-0.3,0.9-0.3c0.3,0,0.6,0.1,0.9,0.3c0.3,0.2,0.5,0.6,0.6,1.3
-		c0.2,0.6,0.3,1.8,0.3,3.5S23.2,24.9,23,25.6z"/>
-	<polygon style="fill:#FFFFFF;" points="42.5,19.6 34.9,19.6 37.9,16.6 36.5,15.2 31.1,20.6 36.5,26 37.9,24.6 34.9,21.6 42.5,21.6 
-			"/>
-	<polygon style="fill:#FFFFFF;" points="7.5,15.2 6.1,16.6 9.1,19.6 1.5,19.6 1.5,21.6 9.1,21.6 6.1,24.6 7.5,26 12.9,20.6 	"/>
-</g>
+        <g id="checkMark" viewBox="0 0 32 32">
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M5,15.4l2-2l6.4,6.4L24.9,8.2l2.1,2.1L13.5,23.8
+        C13.5,23.8,5,15.4,5,15.4z"/>
+        </g>
 
-<g id="cleanMilkAcc" viewBox="0 0 44 44">
-	<path style="fill:#FFFFFF;" d="M6.1,5.3h13.4c2.6,0,4.8,2.1,4.8,4.8v24.9c0,0.5-0.4,1-1,1H2.3
-		c-0.5,0-1-0.4-1-1V10C1.4,7.4,3.5,5.3,6.1,5.3z M4.2,36.8h3.8v1.9H4.2V36.8z M17.6,36.8h3.8v1.9h-3.8V36.8z"/>
-	<rect x="2.3" y="12" style="fill:#010101;" width="21.1" height="1"/>
-	<g>
-		<polygon style="fill:#010101;" points="7.9,20.7 7,20.7 5.8,22.1 5.8,20.7 5.2,20.7 5.2,24 5.8,24 5.8,22.5 5.9,22.5 7,24 7.9,24 
-			6.5,22.2 		"/>
-		<path style="fill:#010101;" d="M10.9,21.7L10.9,21.7c0-0.6-0.5-1-1-1H8.4V24h0.7v-1.6l1.2,1.6h0.9l-1.1-1.3
-			C10.5,22.5,10.9,22.2,10.9,21.7z M9.6,22.3H9.1v-1.1h0.5c0.3,0,0.5,0.2,0.5,0.5C10.2,22,9.9,22.3,9.6,22.3z"/>
-		<path style="fill:#010101;" d="M16.7,20.7h-1.3V24H16l0-1.3h0.7c0.5,0,1-0.5,1-1C17.7,21.1,17.2,20.7,16.7,20.7z M16.5,22.3H16
-			l0-1.1l0.5,0c0.3,0,0.5,0.2,0.5,0.6C17,22.1,16.8,22.3,16.5,22.3z"/>
-		<path style="fill:#010101;" d="M19.1,21.6c0-0.4,0.3-0.5,0.5-0.5c0.2,0,0.5,0.1,0.7,0.1v-0.6c-0.2-0.1-0.5-0.1-0.7-0.1
-			c-0.6,0-1.1,0.3-1.1,1c0,1.1,1.4,0.8,1.4,1.5c0,0.3-0.3,0.4-0.6,0.4c-0.3,0-0.6-0.1-0.9-0.2v0.5c0.3,0.1,0.5,0.2,0.9,0.2
-			c0.7,0,1.2-0.3,1.2-1C20.5,21.9,19.1,22.1,19.1,21.6z"/>
-		<path style="fill:#010101;" d="M13.7,22.9L13.7,22.9c0,0.4-0.3,0.7-0.7,0.7c-0.4,0-0.7-0.3-0.7-0.7v-2.2h-0.7v2.1
-			c0,0.9,0.5,1.2,1.3,1.2c0.8,0,1.3-0.4,1.3-1.2v-2.1h-0.7V22.9z"/>
-	</g>
-	<rect x="25.1" y="23" style="fill:#FFFFFF;" width="1" height="1"/>
-		<rect x="26" y="22.5" style="fill:#FFFFFF;" width="1.9" height="1.9"/>
-		<polygon style="fill:#FFFFFF;" points="34.9,22.1 34,22.1 34,21.5 33,21.5 33,22.1 
-			28.2,22.1 28.2,24.8 33,24.8 33,25.3 34,25.3 34,24.8 34.9,24.8 		"/>
-	<path style="fill:none;stroke:#FFFFFF;stroke-width:1.9138;" d="M35.3,23.4c3.8-0.1,6.3,3.2,7.3,9.9"/>
-</g>
-<g id="rinseCoffee" viewBox="0 0 44 44">
-			<rect x="20.4" y="34.1" style="fill:#FFFFFF;" width="3.1" height="4.6"/>
-			<polygon style="fill:#FFFFFF;" points="29.5,31.7 32.2,31.1 30.7,24.6 28.3,25.1 			"/>
-				<polygon style="fill:#FFFFFF;" points="5.9,14.1 8.3,13.7 4.4,-3.5 2.8,-3.2 				"/>
-			<polygon style="fill:#FFFFFF;" points="23.1,23.1 20.7,23.1 21.1,5.4 22.7,5.4 			"/>
-				<polygon style="fill:#FFFFFF;" points="5.3,1.6 2.3,1 3.4,-3.5 6.1,-2.9 				"/>
-				<polygon style="fill:#FFFFFF;" points="3.2,1.6 6.2,1 5.2,-3.5 2.4,-2.9 				"/>
-			<path style="fill:#FFFFFF;" d="M23.3,31.9h-2.8l0.1-6.7l2.5,0L23.3,31.9z M14.5,31.7
-				l-2.7-0.6l1.5-6.5l2.4,0.5L14.5,31.7z"/>
-				<polygon style="fill:#FFFFFF;" points="5.1,14.1 2.7,13.7 6.6,-3.5 8.2,-3.2 				"/>
-</g>
-<g id="rinseMilk" viewBox="0 0 44 44">
-			<rect x="12.1" y="38.7" style="fill:#FFFFFF;" width="3.1" height="4.6"/>
-		<g>
-			<polygon style="fill:#FFFFFF;" points="21.2,36.2 23.9,35.7 22.4,29.2 20,29.6 			"/>
-				<polygon style="fill:#FFFFFF;" points="-2.4,18.7 0,18.2 -3.9,1 -5.5,1.4 				"/>
-			<polygon style="fill:#FFFFFF;" points="14.8,27.6 12.4,27.6 12.8,10 14.4,10 			"/>
-				<polygon style="fill:#FFFFFF;" points="-3,6.2 -6,5.6 -4.9,1.1 -2.2,1.7 				"/>
-				<polygon style="fill:#FFFFFF;" points="-5.1,6.2 -2.1,5.6 -3.1,1.1 -5.9,1.7 				"/>
-			<path style="fill:#FFFFFF;" d="M15,36.4h-2.8l0.1-6.7l2.5,0L15,36.4z M6.2,36.2l-2.7-0.6
-				L5,29.2l2.4,0.5L6.2,36.2z"/>
-				<polygon style="fill:#FFFFFF;" points="-3.2,18.7 -5.6,18.2 -1.7,1 -0.1,1.4 				"/>
-		</g>
-			<path style="fill:#FFFFFF;" d="M-2.3,3.6h5.6V1.7h-5.6V3.6L-2.3,3.6z M-6,18.2v10.1
-				c-0.1,1.3,0.9,2.4,2.2,2.4h8.6c1.3-0.1,2.3-1.1,2.2-2.4V18.2c0-1.8-0.3-3.7-1-5.4L3.4,4.5h0.4C4,4.5,4.2,4.3,4.2,4V1.2
-				C4.2,1,4,0.7,3.7,0.7h-6.5C-3,0.7-3.2,1-3.2,1.2V4c0,0.3,0.2,0.5,0.5,0.5h0.4L-5,12.8C-5.7,14.5-6,16.3-6,18.2z"/>
-		</g>
-	</g>
-</g>
-<g id="filter" viewBox="0 0 44 44">
-	<path style="fill:#FFFFFF;" d="M27.5,6.4l-1.3,30.9h-0.7v3.3H26v1.4l-0.5,0V43h-6.8v-1.1
-		l-0.5,0v-1.4h0.5v-3.3H18L16.6,6.4H27.5z M26.4,1c0.6,0,1,0.4,1,1v1.7h1.4v1.4H15.2V3.7h1.4V2c0-0.6,0.4-1,1-1H26.4L26.4,1z"/>
-</g>
+        <g id="wrench" viewBox="0 0 32 32">
+        <path style="fill:#FFFFFF;" d="M15.7,23.1l8.2,8.1c0.2,0.2,0.4,0.2,0.6,0.2c0.2,0,0.4-0.1,0.6-0.2c0.3-0.3,0.3-0.8,0-1.1L16.9,22
+        c-1.3-1.3-3.1-2-5.1-1.8c-2.6,0.2-5.2-0.8-7-2.6c-2-2-3-4.9-2.6-7.7l3.4,3.3c0.8,0.7,1.7,1.1,2.8,1.1c1.1,0,2-0.4,2.8-1.1l1.8-1.8
+        c1.6-1.5,1.6-4,0-5.5L9.4,2.4c3-0.7,6.2,0.2,8.4,2.4c2,1.9,2.9,4.6,2.6,7.4c-0.2,2,0.4,3.9,1.9,5.3l7.8,7.8c0.3,0.3,0.8,0.3,1.2,0
+        c0.3-0.3,0.3-0.8,0-1.1l-7.8-7.8c-1-1-1.6-2.5-1.4-3.9c0.4-3.2-0.8-6.4-3.1-8.7C16,0.8,11.9-0.2,8,1.1C7.6,1.2,7.3,1.5,7.3,1.9
+        c-0.1,0.4,0,0.8,0.3,1l4.3,4.2c0.9,0.9,0.9,2.3,0,3.2L10,12.1c-0.4,0.4-1,0.7-1.6,0.7c-0.6,0-1.2-0.2-1.6-0.7l-4-4
+        C2.5,7.8,2.1,7.7,1.7,7.8C1.3,7.9,1,8.2,0.9,8.6c-0.9,3.7,0.1,7.4,2.8,10.1c2.1,2.1,5.2,3.2,8.3,3C13.4,21.7,14.8,22.2,15.7,23.1
+        L15.7,23.1z"/>
+        </g>
 
-<g id="tiles" viewBox="0 0 64 64">
-	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M8.1,14.9H21c0.4,0,0.6,0.3,0.6,0.6v14.2
-		c0,0.4-0.3,0.6-0.6,0.6H8.1c-0.4,0-0.6-0.3-0.6-0.6V15.5C7.4,15.2,7.7,14.9,8.1,14.9z M8.1,33.6H21c0.4,0,0.6,0.3,0.6,0.6v14.2
-		c0,0.4-0.3,0.6-0.6,0.6H8.1c-0.4,0-0.6-0.3-0.6-0.6V34.3C7.4,33.9,7.7,33.6,8.1,33.6z M25.5,14.9h12.9c0.4,0,0.6,0.3,0.6,0.6v14.2
-		c0,0.4-0.3,0.6-0.6,0.6H25.5c-0.4,0-0.6-0.3-0.6-0.6V15.5C24.9,15.2,25.2,14.9,25.5,14.9z M43,14.9h12.9c0.4,0,0.6,0.3,0.6,0.6
-		v14.2c0,0.4-0.3,0.6-0.6,0.6H43c-0.4,0-0.6-0.3-0.6-0.6V15.5C42.3,15.2,42.6,14.9,43,14.9z M25.5,33.6h12.9c0.4,0,0.6,0.3,0.6,0.6
-		v14.2c0,0.4-0.3,0.6-0.6,0.6H25.5c-0.4,0-0.6-0.3-0.6-0.6V34.3C24.9,33.9,25.2,33.6,25.5,33.6z M43,33.6h12.9
-		c0.4,0,0.6,0.3,0.6,0.6v14.2c0,0.4-0.3,0.6-0.6,0.6H43c-0.4,0-0.6-0.3-0.6-0.6V34.3C42.3,33.9,42.6,33.6,43,33.6z"/>
-</g>
-<g id="slider" viewBox="0 0 64 64">
-	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M9.1,22.9h12.3c0.4,0,0.6,0.3,0.6,0.6v16.8
-		c0,0.4-0.3,0.6-0.6,0.6H9.1c-0.4,0-0.6-0.3-0.6-0.6V23.6C8.4,23.2,8.7,22.9,9.1,22.9z"/>
-	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M25.9,22.9h12.3c0.4,0,0.6,0.3,0.6,0.6v16.8
-		c0,0.4-0.3,0.6-0.6,0.6H25.9c-0.4,0-0.6-0.3-0.6-0.6V23.6C25.2,23.2,25.5,22.9,25.9,22.9z"/>
-	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M42.7,22.9h12.3c0.4,0,0.6,0.3,0.6,0.6v16.8
-		c0,0.4-0.3,0.6-0.6,0.6H42.7c-0.4,0-0.6-0.3-0.6-0.6V23.6C42,23.2,42.3,22.9,42.7,22.9z"/>
-	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M64,32l-5.2,5.2V26.8L64,32z"/>
-	<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M0,32l5.2,5.2V26.8L0,32z"/>
-</g>
+        <g id="lightOff" viewBox="0 0 44 44">
+        <path style="fill:#FFFFFF;" d="M22,9.3c-0.4,0-0.8,0-1.2,0.1c-4.5,0.5-8.3,4.1-9,8.6c-0.5,2.9,0.3,5.8,2.1,8c2,2.5,3,5.3,3,8.1
+        c0,0.5,0.3,0.8,0.8,0.8h8.7c0.5,0,0.8-0.3,0.8-0.8c0-3,0.9-5.7,2.7-7.8c1.6-1.9,2.4-4.3,2.4-6.7C32.3,14,27.7,9.3,22,9.3z
+        M26.1,38.3c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M26.1,35.9
+        c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M22,10.8c4.8,0,8.8,4,8.8,8.8
+        c0,2.1-0.8,4.1-2.1,5.7c-1.8,2.1-2.9,5-3.1,8h-7.1c-0.2-2.9-1.3-5.8-3.3-8.3c-1.5-1.9-2.1-4.4-1.7-6.8c0.6-3.8,3.8-6.9,7.6-7.3
+        C21.3,10.9,21.7,10.8,22,10.8L22,10.8z"/>
+        <path style="fill:#FFFFFF;" d="M9.8,32.9c0.2,0,0.4-0.1,0.6-0.2L34.8,8.2c0.3-0.3,0.3-0.8,0-1.1c-0.3-0.3-0.8-0.3-1.1,0L9.2,31.6
+        c-0.3,0.3-0.3,0.8,0,1.1C9.4,32.8,9.6,32.9,9.8,32.9z"/>
+        </g>
+
+        <g id="lightOn" viewBox="0 0 44 44">
+        <path style="fill:#FFFFFF;" d="M22,9.2c-0.4,0-0.8,0-1.2,0.1c-4.5,0.5-8.3,4.1-9,8.6c-0.5,2.9,0.3,5.8,2.1,8c2,2.5,3,5.3,3,8.1
+        c0,0.5,0.3,0.8,0.8,0.8h8.7c0.5,0,0.8-0.3,0.8-0.8c0-3,0.9-5.7,2.7-7.8c1.6-1.9,2.4-4.3,2.4-6.7C32.3,13.9,27.7,9.2,22,9.2z
+        M26.1,38.2c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M26.1,35.8
+        c0.4,0,0.8,0.3,0.8,0.8s-0.3,0.8-0.8,0.8h-8.2c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H26.1z M22,10.7c4.8,0,8.8,4,8.8,8.8
+        c0,2.1-0.8,4.1-2.1,5.7c-1.8,2.1-2.9,5-3.1,8h-7.1c-0.2-2.9-1.3-5.8-3.3-8.3c-1.5-1.9-2.1-4.4-1.7-6.8c0.6-3.8,3.8-6.9,7.6-7.3
+        C21.3,10.8,21.7,10.7,22,10.7L22,10.7z M12.6,28.2c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.3,3.3c-0.2,0.2-0.3,0.2-0.6,0.2
+        c-0.2,0-0.4-0.1-0.6-0.2C9,32.3,9,31.8,9.3,31.5L12.6,28.2z M30.3,28.1c0.3-0.3,0.8-0.3,1.1,0l3.3,3.3c0.3,0.3,0.3,0.8,0,1.1
+        c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2l-3.3-3.3C30,28.9,30,28.4,30.3,28.1z M39.2,19.1c0.4,0,0.8,0.3,0.8,0.8
+        s-0.3,0.8-0.8,0.8h-4.7c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H39.2z M9.5,19.1c0.5,0,0.8,0.3,0.8,0.8c0,0.4-0.4,0.8-0.9,0.8H4.8
+        c-0.5,0-0.8-0.3-0.8-0.8s0.3-0.8,0.8-0.8H9.5z M33.5,7.1c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-3.2,3.2c-0.2,0.2-0.3,0.2-0.6,0.2
+        c-0.2,0-0.4-0.1-0.6-0.2c-0.3-0.3-0.3-0.8,0-1.1L33.5,7.1z M9.3,7.1c0.3-0.3,0.8-0.3,1.1,0l3.2,3.2c0.3,0.3,0.3,0.8,0,1.1
+        c-0.2,0.2-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2L9.3,8.2C9,7.9,9,7.4,9.3,7.1L9.3,7.1z M22,1.8c0.5,0,0.8,0.3,0.8,0.8V7
+        c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
+        </g>
+
+        <g id="cleanK" viewBox="0 0 44 44">
+        <path style="fill:#FFFFFF;" d="M30.6,12.6h-4.6l-6.8,8.1v-8.1h-3.8v18.9h3.8v-8.8
+        h0.1l6.8,8.8h4.9l-8.1-10L30.6,12.6L30.6,12.6z M38.6,22c0,9.1-7.4,16.6-16.6,16.6c-9.2,0-16.6-7.4-16.6-16.6
+        c0-9.2,7.4-16.6,16.6-16.6C31.2,5.4,38.6,12.8,38.6,22z"/>
+        </g>
+
+        <g id="reset" viewBox="0 0 44 44">
+        <path style="fill:#FFFFFF;" d="M21.5,14.7c-1.4,0-2.5,0.5-3.2,1.5c-0.9,1.2-1.4,3.1-1.4,5.8c0,2.7,0.4,4.7,1.3,5.7
+        c0.9,1.1,2,1.6,3.4,1.6c1.4,0,2.5-0.5,3.2-1.5c0.9-1.2,1.4-3.1,1.4-5.8c0-2.7-0.5-4.7-1.4-5.8C24,15.2,22.9,14.7,21.5,14.7z
+        M23,25.6c-0.1,0.5-0.3,0.9-0.6,1.1c-0.3,0.2-0.6,0.3-0.9,0.3c-0.3,0-0.6-0.1-0.9-0.3s-0.5-0.6-0.6-1.3c-0.2-0.6-0.3-1.8-0.3-3.5
+        s0.1-2.9,0.3-3.6c0.1-0.5,0.3-0.9,0.6-1.1c0.3-0.2,0.6-0.3,0.9-0.3c0.3,0,0.6,0.1,0.9,0.3c0.3,0.2,0.5,0.6,0.6,1.3
+        c0.2,0.6,0.3,1.8,0.3,3.5S23.2,24.9,23,25.6z"/>
+        <polygon style="fill:#FFFFFF;" points="42.5,19.6 34.9,19.6 37.9,16.6 36.5,15.2 31.1,20.6 36.5,26 37.9,24.6 34.9,21.6 42.5,21.6 
+        "/>
+        <polygon style="fill:#FFFFFF;" points="7.5,15.2 6.1,16.6 9.1,19.6 1.5,19.6 1.5,21.6 9.1,21.6 6.1,24.6 7.5,26 12.9,20.6 	"/>
+        </g>
+
+        <g id="cleanMilkAcc" viewBox="0 0 44 44">
+        <path style="fill:#FFFFFF;" d="M6.1,5.3h13.4c2.6,0,4.8,2.1,4.8,4.8v24.9c0,0.5-0.4,1-1,1H2.3
+        c-0.5,0-1-0.4-1-1V10C1.4,7.4,3.5,5.3,6.1,5.3z M4.2,36.8h3.8v1.9H4.2V36.8z M17.6,36.8h3.8v1.9h-3.8V36.8z"/>
+        <rect x="2.3" y="12" style="fill:#010101;" width="21.1" height="1"/>
+        <g>
+        <polygon style="fill:#010101;" points="7.9,20.7 7,20.7 5.8,22.1 5.8,20.7 5.2,20.7 5.2,24 5.8,24 5.8,22.5 5.9,22.5 7,24 7.9,24 
+        6.5,22.2 "/>
+        <path style="fill:#010101;" d="M10.9,21.7L10.9,21.7c0-0.6-0.5-1-1-1H8.4V24h0.7v-1.6l1.2,1.6h0.9l-1.1-1.3
+        C10.5,22.5,10.9,22.2,10.9,21.7z M9.6,22.3H9.1v-1.1h0.5c0.3,0,0.5,0.2,0.5,0.5C10.2,22,9.9,22.3,9.6,22.3z"/>
+        <path style="fill:#010101;" d="M16.7,20.7h-1.3V24H16l0-1.3h0.7c0.5,0,1-0.5,1-1C17.7,21.1,17.2,20.7,16.7,20.7z M16.5,22.3H16
+        l0-1.1l0.5,0c0.3,0,0.5,0.2,0.5,0.6C17,22.1,16.8,22.3,16.5,22.3z"/>
+        <path style="fill:#010101;" d="M19.1,21.6c0-0.4,0.3-0.5,0.5-0.5c0.2,0,0.5,0.1,0.7,0.1v-0.6c-0.2-0.1-0.5-0.1-0.7-0.1
+        c-0.6,0-1.1,0.3-1.1,1c0,1.1,1.4,0.8,1.4,1.5c0,0.3-0.3,0.4-0.6,0.4c-0.3,0-0.6-0.1-0.9-0.2v0.5c0.3,0.1,0.5,0.2,0.9,0.2
+        c0.7,0,1.2-0.3,1.2-1C20.5,21.9,19.1,22.1,19.1,21.6z"/>
+        <path style="fill:#010101;" d="M13.7,22.9L13.7,22.9c0,0.4-0.3,0.7-0.7,0.7c-0.4,0-0.7-0.3-0.7-0.7v-2.2h-0.7v2.1
+        c0,0.9,0.5,1.2,1.3,1.2c0.8,0,1.3-0.4,1.3-1.2v-2.1h-0.7V22.9z"/>
+        </g>
+        <rect x="25.1" y="23" style="fill:#FFFFFF;" width="1" height="1"/>
+        <rect x="26" y="22.5" style="fill:#FFFFFF;" width="1.9" height="1.9"/>
+        <polygon style="fill:#FFFFFF;" points="34.9,22.1 34,22.1 34,21.5 33,21.5 33,22.1 
+        28.2,22.1 28.2,24.8 33,24.8 33,25.3 34,25.3 34,24.8 34.9,24.8 "/>
+        <path style="fill:none;stroke:#FFFFFF;stroke-width:1.9138;" d="M35.3,23.4c3.8-0.1,6.3,3.2,7.3,9.9"/>
+        </g>
+
+        <g id="rinseCoffee" fill="white" viewBox="0 0 44 44">
+        <path style="" d="M29.2,31.3l2.6-0.5l-1.4-6.2L28,24.9L29.2,31.3z"/>
+        <path style="" d="M27.7,23l2.3-0.5L26.2,6l-1.5,0.3L27.7,23z"/>
+        <path style="" d="M23.1,23h-2.3l0.4-16.9h1.6L23.1,23z"/>
+        <path style="" d="M13.7,37.7l-2.9-0.6l1-4.2l2.7,0.6L13.7,37.7z"/>
+        <path style="" d="M23.4,38h-2.9l0.1-4.4h2.7L23.4,38z"/>
+        <path style="" d="M30.3,37.7l2.9-0.6l-1-4.2l-2.7,0.6L30.3,37.7z"/>
+        <polygon style="" points="23.3,31.4 20.6,31.4 20.7,25 23.1,25 	"/>
+        <polygon style="" points="14.8,31.3 12.2,30.7 13.6,24.5 16,24.9 	"/>
+        <path style="" d="M16.3,23l-2.3-0.5L17.8,6l1.5,0.3L16.3,23z"/>
+
+        </g>
+
+        <g id="rinseMilk"  fill="white" viewBox="0 0 44 44">
+
+<path style="" d="M23,32.1l-1-5.8l2.1-0.4l1.3,5.7L23,32.1z"/>
+<path style="" d="M21.6,24.5L18.9,9.2l1.4-0.3l3.4,15.1L21.6,24.5z"/>
+<path style="" d="M17.4,24.5L17.1,9h-1.4l-0.3,15.5H17.4z"/>
+<path style="" d="M8.8,38l0.7-3.9l-2.4-0.5l-0.9,3.9L8.8,38z"/>
+<path style="" d="M17.8,38.3l-0.1-4h-2.5l-0.1,4H17.8z"/>
+<path style="" d="M24.1,38l-0.7-3.9l2.4-0.5l0.9,3.9L24.1,38z"/>
+<polygon style="" points="17.6,32.3 17.5,26.4 15.3,26.4 15.2,32.3 "/>
+<polygon style="" points="9.9,32.1 10.9,26.3 8.8,25.9 7.5,31.6 "/>
+<path style="" d="M11.3,24.5L14,9.2l-1.4-0.3L9.2,24.1L11.3,24.5z"/>
+<path style="" d="M33.2,3.4L33.2,3.4V1.7h4.9v1.7H33.2z M29.9,16.2
+	c0-1.6,0.3-3.2,0.9-4.7l2.3-7.3h-0.3c-0.2,0-0.4-0.2-0.4-0.4V1.3c0-0.2,0.2-0.4,0.4-0.4h5.7c0.2,0,0.4,0.2,0.4,0.4v2.5
+	c0,0.2-0.2,0.4-0.4,0.4h-0.3l2.3,7.3c0.6,1.5,0.9,3.1,0.9,4.7v8.9c0,1.1-0.8,2.1-2,2.1h-7.5c-1.1-0.1-2-1-2-2.1V16.2z"/>
+
+        </g>
+
+        
+        <g id="descaling" fill="white" viewBox="0 0 44 44">
+        <path style="" d="M21.6,40.1c-2.5,0-4.5-1.8-4.5-4.1c0-3.5,4.3-11.1,4.6-11.5
+            c0.2,0.4,4.5,8,4.5,11.5C26.1,38.3,24.1,40.1,21.6,40.1"/>
+        <circle style="" cx="13.8" cy="5.6" r="2"/>
+        <circle style="" cx="21.6" cy="5.6" r="2"/>
+        <circle style="" cx="18.1" cy="12" r="2"/>
+        <circle style="" cx="25.9" cy="12" r="2"/>
+        <circle style="" cx="21.6" cy="18.7" r="2"/>
+        <circle style="" cx="29.3" cy="5.6" r="2"/>
+        </g>
 
 
-<g id="canceled" viewBox="0 0 64.4 64.4">
-	<circle style="fill:none;stroke:#FFFFFF;stroke-width:2.8828;" cx="32.2" cy="32.2" r="30.8"/>
-	<path style="fill:none;stroke:#FFFFFF;stroke-width:2.0847;" d="M16.7,19.2l27.5,28.1 M22.3,21.2v18.6c0.1,2.2,1,3.3,2.8,3.3h13.3
-		c1.8,0,2.7-1.1,2.7-3.3V21.2 M42.1,22.3h3.2c1.4,0.2,2.1,1.2,2.1,3.1c0,2.8,0.6,6.3-2.1,6.3h-3.4"/>
-</g>
+        <g id="filter" viewBox="0 0 44 44">
+        <path style="fill:#FFFFFF;" d="M27.5,6.4l-1.3,30.9h-0.7v3.3H26v1.4l-0.5,0V43h-6.8v-1.1
+        l-0.5,0v-1.4h0.5v-3.3H18L16.6,6.4H27.5z M26.4,1c0.6,0,1,0.4,1,1v1.7h1.4v1.4H15.2V3.7h1.4V2c0-0.6,0.4-1,1-1H26.4L26.4,1z"/>
+        </g>
+
+        <g id="tiles" viewBox="0 0 44 44">
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M5.7,9.9h8.8c0.3,0,0.4,0.2,0.4,0.4V20c0,0.3-0.2,0.4-0.4,0.4
+        H5.7c-0.3,0-0.4-0.2-0.4-0.4v-9.7C5.3,10.1,5.5,9.9,5.7,9.9z M5.7,22.6h8.8c0.3,0,0.4,0.2,0.4,0.4v9.7c0,0.3-0.2,0.4-0.4,0.4H5.7
+        c-0.3,0-0.4-0.2-0.4-0.4v-9.6C5.3,22.8,5.5,22.6,5.7,22.6z M17.6,9.9h8.8c0.3,0,0.4,0.2,0.4,0.4V20c0,0.3-0.2,0.4-0.4,0.4h-8.8
+        c-0.3,0-0.4-0.2-0.4-0.4v-9.7C17.2,10.1,17.4,9.9,17.6,9.9z M29.5,9.9h8.8c0.3,0,0.4,0.2,0.4,0.4V20c0,0.3-0.2,0.4-0.4,0.4h-8.8
+        c-0.3,0-0.4-0.2-0.4-0.4v-9.7C29,10.1,29.2,9.9,29.5,9.9z M17.6,22.6h8.8c0.3,0,0.4,0.2,0.4,0.4v9.7c0,0.3-0.2,0.4-0.4,0.4h-8.8
+        c-0.3,0-0.4-0.2-0.4-0.4v-9.6C17.2,22.8,17.4,22.6,17.6,22.6z M29.5,22.6h8.8c0.3,0,0.4,0.2,0.4,0.4v9.7c0,0.3-0.2,0.4-0.4,0.4
+        h-8.8c-0.3,0-0.4-0.2-0.4-0.4v-9.6C29,22.8,29.2,22.6,29.5,22.6z"/>
+        </g>
+
+        <g id="slider" viewBox="0 0 44 44" style="fill:inherit">
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M6.4,15.3h8.4c0.3,0,0.4,0.2,0.4,0.4v11.4
+        c0,0.3-0.2,0.4-0.4,0.4H6.4c-0.3,0-0.4-0.2-0.4-0.4V15.8C5.9,15.6,6.1,15.3,6.4,15.3z"/>
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M17.8,15.3h8.4c0.3,0,0.4,0.2,0.4,0.4v11.4
+        c0,0.3-0.2,0.4-0.4,0.4h-8.4c-0.3,0-0.4-0.2-0.4-0.4V15.8C17.4,15.6,17.6,15.3,17.8,15.3z"/>
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M29.3,15.3h8.4c0.3,0,0.4,0.2,0.4,0.4v11.4
+        c0,0.3-0.2,0.4-0.4,0.4h-8.4c-0.3,0-0.4-0.2-0.4-0.4V15.8C28.8,15.6,29,15.3,29.3,15.3z"/>
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M43.8,21.5l-3.5,3.5V18L43.8,21.5z"/>
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M0.2,21.5l3.5,3.5V18L0.2,21.5z"/>
+        </g>
+
+        <g id="canceled" viewBox="0 0 64.4 64.4">
+        <circle style="fill:none;stroke:#FFFFFF;stroke-width:2.8828;" cx="32.2" cy="32.2" r="30.8"/>
+        <path style="fill:none;stroke:#FFFFFF;stroke-width:2.0847;" d="M16.7,19.2l27.5,28.1 M22.3,21.2v18.6c0.1,2.2,1,3.3,2.8,3.3h13.3
+        c1.8,0,2.7-1.1,2.7-3.3V21.2 M42.1,22.3h3.2c1.4,0.2,2.1,1.2,2.1,3.1c0,2.8,0.6,6.3-2.1,6.3h-3.4"/>
+        </g>
+
+        <g id="play" viewBox="0 0 32 32">
+        <circle style="fill-rule:evenodd;clip-rule:evenodd;fill:#F38230;" cx="16" cy="16" r="15.4"/>
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M25.2,16l-14.3,7.2V8.8L25.2,16z"/>
+        </g>
 
 
-
-                </svg>
+    </svg>
     `;
     svgLib.innerHTML = data;
     data = null;
@@ -3600,7 +5265,7 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 border-color:var(--orange)!important;
             }
 
-            .cyan .userFIllColor{
+            .cyan .userFIllColor, .cyan use{
                 fill:#13aec0;
                 background-color:#13aec0;
             }
@@ -3608,7 +5273,7 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 border-color:#13aec0!important;
             }
 
-            .turquoise .userFIllColor{
+            .turquoise .userFIllColor, .turquoise use{
                 fill:#0f8768;
                 background-color:#0f8768;
             }
@@ -3624,7 +5289,7 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 border-color:#6c9106!important;
             }
 
-            .gold .userFIllColor{
+            .gold .userFIllColor, .gold use{
                 fill:#fffb01;
                 background-color:#fffb01;
             }
@@ -3640,7 +5305,7 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 border-color:#c80000!important;
             }
 
-            .fushia .userFIllColor{
+            .fushia .userFIllColor, .fushia use{
                 fill:#c90563;
                 background-color:#c90563;
             }
@@ -3648,7 +5313,7 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 border-color:#c90563!important;
             }
 
-            .pink .userFIllColor{
+            .pink .userFIllColor, .pink use{
                 fill:#ef52bb;
                 background-color:#ef52bb;
             }
@@ -3656,7 +5321,7 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 border-color:#ef52bb!important;
             }
 
-            .violet .userFIllColor{
+            .violet .userFIllColor, .violet use{
                 fill:#8d3fcf;
                 background-color:#8d3fcf;
             }
@@ -3664,7 +5329,7 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 border-color:#8d3fcf!important;
             }
 
-            .blue .userFIllColor{
+            .blue .userFIllColor, .blue use{
                 fill:#2855ff;
                 background-color:#2855ff;
             }
@@ -3685,7 +5350,6 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 left: 50%;
                 top: 50%;
                 overflow: visible;
-                background-image: url(${imag('unitbkg')});
                 -webkit-overflow-scrolling: auto;
                 -webkit-touch-callout: none;
                 -webkit-user-select: none;
@@ -3707,7 +5371,7 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 position: absolute;
                 width: 1789px;
                 height: 1789px;
-                background-image: url(images/kbkg.png);
+                background-image: url(${imag('kbkg')});
                 top: -781px;
                 left: -512px;
                 /* opacity: .2; */
@@ -3911,6 +5575,10 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 left: 33px;
             }
 
+            .secondary {
+                opacity:0;
+                pointer-events: none;       
+            }
 
             .wheel::-webkit-scrollbar {
                 display: none;
@@ -4106,7 +5774,7 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 opacity:0.25;
             }
 
-            .startButton, .stopButton {
+            .startButton, .stopButton, .nextButton {
                 position: absolute;
                 width: 175px;
                 height: 42px;
@@ -4118,9 +5786,10 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 font-weight: 600;
             }
 
-            .stopButton {
+            .stopButton, .nextButton {
                 display:none;
             }
+
             .running .stopButton, .preheat .stopButton{
                 display:block;
             }
@@ -4217,22 +5886,22 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
             margin-right:6px;
         }
 
-        .recetteScrollerItem:nth-child(1),.recetteScrollerItem:nth-child(2),.recetteScrollerItem:nth-child(3){
+        .home .recetteScrollerItem:nth-child(1), .home .recetteScrollerItem:nth-child(2), .home .recetteScrollerItem:nth-child(3){
         transform:translateX(480px);
         transition:transform .8s;
         }
 
-        .recetteScrollerItem:first-child{
+        .home .recetteScrollerItem:first-child{
         margin-left: 19px;
         transition-delay:0;
         }
-        .recetteScrollerItem:nth-child(2){
+        .home .recetteScrollerItem:nth-child(2){
         transition-delay:.2s;
         }
-        .recetteScrollerItem:nth-child(3){
+        .home .recetteScrollerItem:nth-child(3){
         transition-delay:.4s;
         }
-        .recetteScrollerItem:last-child{
+        .home .recetteScrollerItem:last-child{
             margin-right: 19px;
             transition-delay:0;
         }
@@ -4264,8 +5933,8 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
             position: absolute;
             width: 150px;
             height: 150px;
-            top: 37px;
-            left: 4px;
+            top: 44px;
+            left: 3px;
             overflow:hidden;
         }
 
@@ -4404,7 +6073,10 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                 width:44px;
                 height:44px;
                 left:33px;
-                top:49px;
+                top:59px;
+            }
+            .atile.addFavToUser .tileIcon, .atile.userSettings .tileIcon{
+                top:40px;
             }
             .atile .tileIcon.small{
                 position:absolute;
@@ -4502,12 +6174,25 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                     to {opacity:1}
                   }
 
+                  .okButton.square{
+                    position: absolute;
+                    right: 36px;
+                    bottom: 36px;
+                    border: solid 2px;
+                    height: 60px;
+                    width: 60px;
+                    text-transform: uppercase;
+                    line-height: 60px;
+                    text-align: center;
+                    font-weight: bold;
+                }
+
         `;
     document.head.appendChild(sheet);
     }
 
     function imag(s) {
-    //debugger;
+    debugger;
     //console.log(app.imgDB);
     //console.log(s);
     //console.log(app.imgDB[s]);
@@ -4747,15 +6432,14 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
         that.pause = false;
         var timout;
         that.element.addEventListener('scroll', function(e) {
+            console.warn("scroll");
             if (that.pause) return;
             clearTimeout(timout);
             timout = setTimeout(function() {
             if (that.element.querySelectorAll('.wheelItem.selected').length > 0) {
-                that.element
-                .querySelectorAll('.wheelItem.selected')[0]
-                .classList.remove('selected');
+                that.element.querySelector('.wheelItem.selected').classList.remove('selected');
             }
-            that.bb = that.centerTarget.getBoundingClientRect(); // Should be set once at init...
+            that.bb = that.centerTarget.getBoundingClientRect(); // TODO Should be set once at init...
             that.selected = document.elementFromPoint(that.bb.left, that.bb.top);
             //debugger;
             that.selected.classList.add('selected');
@@ -4769,6 +6453,7 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
                that.element.querySelector('.wheelItem.selected').classList.remove('selected');
             }
             var offset = that.element.querySelector('.wheelItem').offsetHeight;
+            //debugger;
             thisItem.classList.add('selected');
             that.element.scrollTo({ top: thisItem.offsetTop - offset, behavior: smooth ? 'smooth' : 'auto'});
             //console.log("SELECTEEEEEEED!")
@@ -4777,58 +6462,59 @@ c0,0.5-0.3,0.8-0.8,0.8S21.2,7.5,21.2,7V2.6C21.2,2.1,21.5,1.8,22,1.8z"/>
 
         var divs = that.element.querySelectorAll('div.wheelItem');
         divs.forEach(el => el.addEventListener('click', event => {
-            console.log('click', this);
+            console.log('click', that.element, this);
             if (that.mouseMove||that.pause) return;
             that.scrollToFunction(el, true); }),
         );
     
     
         that.element.addEventListener('mouseover', e => {
-        console.log('mouseover');
-        if (app.pointingDevice == 'touch') return;
-        that.element.style.scrollSnapType = 'unset';
+            console.log('mouseover');
+            if (that.pause) return;
+            if (app.pointingDevice == 'touch' || that.pause) return;
+            that.element.style.scrollSnapType = 'unset';
         });
 
         that.element.addEventListener('mousedown', e => {
-        if (app.pointingDevice == 'touch') return;
-        console.log('mousedown');
-        that.isDown = true;
-        that.mouseMove = false;
-        that.startY = e.pageY - that.element.offsetTop;
-        that.scrollTop = that.element.scrollTop;
+            if (app.pointingDevice == 'touch' || that.pause) return;
+            console.log('mousedown');
+            that.isDown = true;
+            that.mouseMove = false;
+            that.startY = e.pageY - that.element.offsetTop;
+            that.scrollTop = that.element.scrollTop;
         });
 
         that.element.addEventListener('mouseleave', e => {
-        console.log('mouseleave');
-        if (app.pointingDevice == 'touch') return;
-        that.isDown = false;
-        that.mouseMove = false;
+            console.log('mouseleave');
+            if (app.pointingDevice == 'touch'  || that.pause) return;
+            that.isDown = false;
+            that.mouseMove = false;
         });
 
         that.element.addEventListener('mouseup', e => {
-        //return;
-        // e.stopImmediatePropagation();
-        console.log('mouseup');
+            //return;
+            // e.stopImmediatePropagation();
+            console.log('mouseup');
 
-        if (app.pointingDevice == 'touch') return;
+            if (app.pointingDevice == 'touch' || that.pause) return;
 
-        //that.mouseMove = false;
-        that.isDown = false;
-        recenter();
+            //that.mouseMove = false;
+            that.isDown = false;
+            recenter();
         });
 
         that.element.addEventListener('mousemove', e => {
-        // console.log('mousemove');
-        if (that.pause) return;
+            // console.log('mousemove');
+            if (that.pause) return;
 
-        //e.stopImmediatePropagation();
-        //console.log("move");
-        if (app.pointingDevice == 'touch') return;
-        that.mouseMove = true;
-        if (!that.isDown) return;
-        const y = e.pageY - that.element.offsetTop;
-        const walk = (y - that.startY) * 1; // increase to scroll faster
-        that.element.scrollTop = that.scrollTop - walk;
+            //e.stopImmediatePropagation();
+            //console.log("move");
+            if (app.pointingDevice == 'touch') return;
+            that.mouseMove = true;
+            if (!that.isDown) return;
+            const y = e.pageY - that.element.offsetTop;
+            const walk = (y - that.startY) * 1; // increase to scroll faster
+            that.element.scrollTop = that.scrollTop - walk;
         });
 
         that.element.addEventListener('wheel', function(e) {
