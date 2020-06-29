@@ -7,257 +7,33 @@ var kxapp = function() {
     var app = this;
     app.lg = 'fr';
     const kxLg = {
-    en: {
-        display : "english",
-        strings:{
-        ok:"OK",
-        yes:"yes",
-        no:"no",
-        unsupported:'Feature unavailable<br>in this demonstrator',
-        ristretto: 'Ristretto',
-        espresso: 'Espresso',
-        lungo: 'Lungo',
-        cafelong: 'Café Long',
-        doppio: 'Doppio',
-        americano: 'Americano',
-        espressomacchiato: 'e.Macchiato',
-        cappucino: 'Cappucino',
-        lattemacchiato: 'LMacchiato',
-        laitmousse: 'Lait Moussé',
-        caffelatte: 'Caffe Latte',
-        flatwhite: 'Flat White',
-        thevert: 'Thé Vert',
-        thenoir: 'Thé Noir',
-        infusion: 'Infusion',
-        drink: 'Drinks',
-        start: 'Start',
-        foaming: 'Milk Foaming',
-        cafe: 'Coffee Making',
-        hotwater: 'Hot Water',
-        steam: 'Steam',
-        preheat: 'Pre Heating',
-        seqCanceled : 'Drink canceled',
-        none: 'None',
-        week: 'Week',
-        weekend: 'Week-end',
-        morning: 'Morning',
-        lunch: 'Lunch',
-        afternoon: 'Afternoon',
-        dinner: 'Evening',
-        short: 'Short',
-        normal: 'Normal',
-        long: 'Long',
-        xlong: 'Extra-Long',
-        light: 'Light',
-        strong: 'Strong',
-        energy: 'Energy',
-        sweet: 'Sweet',
-        yummy: 'Yummy',
-        enjoy:'Enjoy your drink',
-        profile: 'Profile',
-        profileSettings:'Profiles settings',
-        profileSettingsDesc:'Select profile to setup',
-        selectYourProfile:'Select your Profile',
-        selectKeyword:"Choose Keyword",
-        finnished:"Finnished",
-        beforeThxs : "Your drink ",
-        afterThxs : "has&nbsp;been added to your profile",
-        settings:"settings",
-        setups : "Setups",
-        care : "Care",
-        informations : "informations",
-        help : "Help & Tutorials",
-        language : "Language",
-        dateTime : "Date/Time",
-        screenLight : "Backlight",
-        backLightDesc : "Set BackLight",
-        deviceLight : "Light",
-        deviceLightDesc : "Enable light guide",
-        display : "Display",
-        displayDesc:"Select drinks display mode",
-        autoOff : "Auto Off",
-        volUnity : "Volume Unity",
-        VolUnitDesc : "Choose unit for volume",
-        autoRinse : "Auto Rinse",
-        autoRinseDesc : "Auto Rinse on each startup ?",
-        waterHardness : "Water Hardness",
-        coffeeTemp : "Coffee temperature",
-        waterTemp :"Water temperature",
-        tempDesc :"Select temperature",
-        teaTemp :"Tea temperature",
-        cafeTyp : "Coffee type",
-        cafeTypDesc : "Choose coffee type",
-        greasyCoffee : "Greasy Coffee",
-        standardCoffee : "Standard Coffee",
-        reset : "Init unit",
-        resetDesc : "Reset operation will delete your preferences and settings<br><br>Proceed ?",
-        firstName: "first name",
-        typeYourName : "Type your Name",
-        remain:"carachter left",
-        remains:"carachters left",
-        color:"Color",
-        planning:"Planning",
-        programDesc:"Setup auto switch on",
-        on:"ON",
-        off:"OFF",
-        chooseColor:"Choose your color",
-        afterInactivity:"Shutdown after",
-        waterHardnessDesc:'Setup Water Hardness',
-        tiles : "Tiles",
-        slider : "Slider",
-        calendarMonths:"Jan;Feb;Mar;Apr;May;June;July;Aug;Sept;Oct;Nov;Dec",
-        help_fav:'Comment créer et gérer vos favoris ?',
-        help_service:'Comment entretenir votre machine ?',
-        help_recipe:'Comment réaliser vos boissons ?',
-        videos:"vidéos",
-        roundsDesc:"Rounds count",
-        coffeeRinse :  "Rinçage café",
-        cleanup :   "Nettoyage",
-        descaling :   "Détartrage",
-        filter :   "Filtre",
-        milkRinse :  "Rinçage lait",
-        milkAccClean :   "Nettoyage acc. lait",
-        teaRinse :   "Rinçage thé",
-        cleanup_1_desc : "Une pastille de nettoyage est nécessaire <br><br> Durée estimée : 13 minutes",
-        cleanup_2_desc : "Videz les 2 bacs",
-        cleanup_3_desc : "Remplissez les réservoirs jusqu'au niveau MAX",
-        cleanup_4_desc : "Ouvrez la trappe et insérez une pastille de nettoyage dans la glissière",
-        cleanup_5_desc : "Placez un récipient de 600 ml sous les buses",
-        cleanup_6_desc : 'Nettoyage en cours <br>{x} minutes restantes',
-        cleanup_7_desc : 'Videz le récipient',
-        cleanup_8_desc : 'Videz le bac récolte gouttes',
-        cleanup_9_desc : 'nettoyage terminé',
-        addDrink:'Add Drink',
-        selectDrink:'Select a Drink',
-        next:'Next',
-    }}, 
-    fr: {
-        display:"français",
-        strings :  {
-        ok:"OK",
-        unsupported:"Cette fonction n'est pas disponible<br>dans ce démonstrateur",
-        ristretto: 'Ristretto',
-        espresso: 'Espresso',
-        lungo: 'Lungo',
-        cafelong: 'Café Long',
-        doppio: 'Doppio',
-        americano: 'Americano',
-        espressomacchiato: 'e.Macchiato',
-        cappucino: 'Cappucino',
-        lattemacchiato: 'LMacchiato',
-        laitmousse: 'Lait Moussé',
-        caffelatte: 'Caffe Latte',
-        flatwhite: 'Flat White',
-        thevert: 'Thé Vert',
-        thenoir: 'Thé Noir',
-        infusion: 'Infusion',
-        drink: 'Boissons',
-        start: 'Start',
-        foaming: 'Moussage lait',
-        cafe: 'Café en cours',
-        hotwater: 'Eau Chaude',
-        steam: 'Vapeur',
-        preheat: 'Préchauffage',
-        seqCanceled : 'Boisson interrompue',
-        none: 'Aucun',
-        week: 'Semaine',
-        weekend: 'Week-end',
-        morning: 'Matin',
-        lunch: 'Midi',
-        afternoon: 'Après-midi',
-        dinner: 'Soir',
-        short: 'Court',
-        normal: 'Normal',
-        long: 'Long',
-        xlong: 'Extra-long',
-        light: 'Léger',
-        strong: 'Corsé',
-        energy: 'Energie',
-        sweet: 'Douceur',
-        yummy: 'Gourmand',
-        enjoy:'Bonne dégustation',
-        profile: 'Profile',
-        profileSettings:'réglages profils',
-        profileSettingsDesc:'Sélectionner le profil à paramétrer',
-        selectYourProfile:'Sélectionnez votre profil',
-        selectKeyword:"Choisissez un mot-clef",
-        finnished:"Terminé",
-        beforeThxs : "Votre boisson",
-        afterThxs : "a&nbsp;été ajoutée à votre profil",
-        settings:"Paramètres",
-        setups : "Réglages",
-        care : "Entretien machine",
-        informations : "Informations",
-        help : "Aide & Tutoriels",
-        language : "Langue",
-        dateTime : "Date/Heure",
-        dateTimeDesc : "Date/Heure",
-        screenLight : "Lumière écran",
-        backLightDesc : "Régler le rétro-éclairage",
-        deviceLight : "Lumière",
-        deviceLightDesc : "Activer le guide lumineux",
-        display : "affichage",
-        displayDesc:"Choisir la présentation des boissons",
-        autoOff : "Arrêt auto",
-        volUnity : "Unité Volume",
-        VolUnitDesc : "Choisir l'affichage lors des réglages",
-        autoRinse : "Rinçage auto",
-        autoRinseDesc : "Lancer un rinçage café à chaque démarrage",
-        waterHardness : "Dureté eau",
-        coffeeTemp : "Température Café",
-        waterTemp :"température de l'eau",
-        tempDesc :"Choisir la température",
-        teaTemp :"température Thé",
-        cafeTyp : "type de café",
-        cafeTypDesc : "Sélectionnez le type de grain",
-        greasyCoffee : "Café huileux",
-        standardCoffee : "Café Standard",
-        reset : "Réinitialiser produit",
-        resetDesc : "La réinitialisation effacera vos préférences et vos réglages<br><br>Réinitialiser ?",
-        firstName: "Prénom",
-        typeYourName : "Tapez votre prénom",
-        remain:"caractère restant",
-        remains:"caractères restants",
-        color:"couleur",
-        planning:"programmation",
-        programDesc:"Programmer l'allumage auto",
-        on:"ON",
-        off:"OFF",
-        chooseColor:"Choisissez votre couleur",
-        afterInactivity:"Après une période d'inactivité de :",
-        waterHardnessDesc:"Régler la dureté de l'eau",
-        tiles : "Mosaïque",
-        slider : "Slider",
-        calendarMonths:"Jan;Fev;Mars;Avr;Mai;Juin;Juil;Aout;Sept;Oct;Nov;Dec",
-        help_fav:'Comment créer et gérer vos favoris ?',
-        help_service:'Comment entretenir votre<br>machine ?',
-        help_recipe:'Comment réaliser<br>vos boissons ?',
-        videos:"vidéos",
-        roundsDesc:"Nombre de cycles",
-        coffeeRinse :  "Rinçage café",
-        cleanup :   "Nettoyage",
-        descaling :   "Détartrage",
-        filter :   "Filtre",
-        milkRinse :  "Rinçage lait",
-        milkAccClean :   "Nettoyage acc. lait",
-        teaRinse :   "Rinçage thé",
-        onlyCleanup : 'Seule la fonction "Nettoyage" est disponible dans ce démonstrateur',
-        cleanup_1_desc : "Une pastille de nettoyage est nécessaire <br><br> Durée estimée : 13 minutes",
-        cleanup_2_desc : "Videz les 2 bacs",
-        cleanup_3_desc : "Remplissez les réservoirs jusqu'au niveau MAX",
-        cleanup_4_desc : "Ouvrez la trappe et insérez une pastille de nettoyage dans la glissière",
-        cleanup_5_desc : "Placez un récipient de 600 ml sous les buses",
-        cleanup_6_desc : 'Nettoyage en cours <br>{x} minutes restantes',
-        cleanup_7_desc : 'Videz le récipient',
-        cleanup_8_desc : 'Videz le bac récolte gouttes',
-        cleanup_9_desc : 'nettoyage terminé',
-        addDrink:'Ajout de boisson',
-        selectDrink:'choisissez votre boisson',
-        next:'Suivant',
+ fr:{display:'Français',
+ strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Lait Moussé',caffelatte:'Caffe Latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Café Long',americano:'Americano',thevert:'Thé vert',thenoir:'Thé noir',lattemacchiato:'L. Macchiato',infusion:'Infusion',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Lait Moussé',caffelatte_short:'Caffe Latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Café Long',americano_short:'Americano',thevert_short:'Thé vert',thenoir_short:'Thé noir',lattemacchiato_short:'L. Macchiato',infusion_short:'Infusion',profileSettings:'Réglages profils',setups:'Réglages',informations:'Informations',ml:'ml',oz:'oz',sec:'s',yes:'Oui',no:'Non',ok:'OK',beforeThxs:'Votre boisson <BOLD>%s %s',afterThxs:'</BOLD> a été ajoutée à votre profil !',drink:'Boissons',espressomacchiato:'E. Macchiato',addDrink:'Ajout de boisson',chooseColor:'Choisissez votre couleur',typeYourName:'Tapez votre prénom',next:'SUIVANT',finnished:'TERMINER',color:'Couleur',firstName:'Prénom',display:'Affichage',planning:'Programmation ',slider:'SLIDER',tiles:'MOSAIQUE',on:'ON',off:'OFF',displayDesc:'Choisir la présentation',deviceLightDesc:'Activer le guide lumineux',selectKeyword:'Choisissez un mot clef',enjoy:'Bonne dégustation !',coffeeTemp:'Température',teaTemp:'Température du thé',waterTemp:'Température de l\'eau',tempDesc:'Choisir la température',selectYourProfile:'Sélectionner votre profil',start:'Start',stop:'Stop',remains:'(%s caractères restants)',date:'Date',settings:'Paramètres',help:'Aide et tutoriels',language:'Langue',dateTime:'Date/Heure',dateTimeDesc:'Date/Heure',deviceLight:'Lumière',autoOff:'Arrêt auto',autoOff2:'Arrêt automatique',volUnity:'Unité de volume',autoRinse:'Rinçage<br>auto',waterHardness:'Dureté de l\'eau',backLightDesc:'Régler le rétro-éclairage',screenLight:'Luminosité écran',afterInactivity:'Après une période d\'inactivité de :',waterHardnessDesc:'Régler la dureté de l\'eau ',cafeTypDesc:'Sélectionner le type de grain ',cafeTyp:'Type de café',moreInfos:'Plus d\'infos',VolUnitDesc:'Choisir l\'affichage lors des réglages',resetDesc:'La réinitialisation effacera vos préférences et vos réglages.',reset:'Réinitialisation produit',profileSettingsDesc:'Sélectionner le profil à paramétrer<br>',cleanup_5_desc:'Placez un récipient de 600 ml sous les buses',cleanup_9_desc:'Nettoyage terminé',cleanup_6_desc:'Nettoyage en cours %s minutes restantes',cleanup_7_desc:'Videz le recipient',cleanup_8_desc:'Videz le bac recolte gouttes',cleanup_3_desc:'Remplissez le réservoir ',cleanup_4_desc:'Ouvrez la trappe et insérez une pastille de nettoyage dans la glissière<br><br>',cleanup_1_desc:'Une pastille de nettoyage XS3000 est nécessaire.<br><br>Durée estimée : 13 minutes ',descaling:'Détartrage',autoRinseDesc:'Lancer un rinçage à chaque démarrage<br>',coffeeRinse:'Rinçage café',care:'Entretien machine',standardCoffee:'Café standard',greasyCoffee:'Café huileux',cleanup_2_desc:'Videz les 2 bacs',pleaseWait:'Veuillez patienter ...',hourShort:'H',minuteShort:'min',selectDrink:'Choisissez votre boisson',preheat:'préchauffage',cafe:'café en cours ',foaming:'moussage lait',hotwater:'eau chaude',seqCanceled:'Boisson interrompue',week:'semaine',weekend:'weekend',morning:'matin',lunch:'midi',dinner:'soir',light:'léger',strong:'fort',short:'court',long:'long',none:'aucun',sweet:'onctueux',programDesc:'Programmer l\'allumage auto',cleanup:'Nettoyage',descaling_short:'Détartrage',filter:'Filtre',milkRinse:'Rinçage lait',milkAccClean:'Nettoyage acc. lait',help_fav:'Comment créer et gérer vos favoris ?',help_service:'Comment entretenir votre machine?',videos:'%s vidéos',roundsDesc:'Nombre de cycles',teaRinse:'Rinçage thé',profile:'Profil',calendarMonths:'Janv;Fév;Mars;Avril;Mai;Juin;Juil;Août;Sept;Oct;Nov;Déc',}},
+en:{display:'English',
+strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Frothy milk',caffelatte:'Caffe Latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Long coffee',americano:'Americano',thevert:'Green tea',thenoir:'Black tea',lattemacchiato:'No trad',infusion:'Herbal tea',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Frothy milk',caffelatte_short:'Caffe Latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Long coffee',americano_short:'Americano',thevert_short:'Green tea',thenoir_short:'Black tea',lattemacchiato_short:'No trad',infusion_short:'Herbal tea',profileSettings:'Profile settings',setups:'Adjustments',informations:'Information',ml:'ml',oz:'oz',sec:'s',yes:'Yes',no:'No',ok:'OK',beforeThxs:'Your drink <BOLD>%s %s</BOLD>',afterThxs:'has been added to your profile!',drink:'Drinks',espressomacchiato:'No trad',addDrink:'Add drink',chooseColor:'Choose your colour',typeYourName:'Enter your name',next:'NEXT',finnished:'FINISH',color:'Colour',firstName:'Name',display:'Display',planning:'Programing',slider:'SLIDER',tiles:'MOSAIC',on:'ON',off:'OFF',displayDesc:'Drink presentation',deviceLightDesc:'Activate the lighting guide',selectKeyword:'Choose a keyword',enjoy:'Enjoy!',coffeeTemp:'coffee ',teaTemp:'Tea temperature',waterTemp:'Water temperature',tempDesc:'Choose temperature',selectYourProfile:'Select your profile',start:'Start',stop:'Stop',remains:'',date:'Date',settings:'Settings',help:'Help and tutorials',language:'Language',dateTime:'Date/Time',dateTimeDesc:'Date/Time',deviceLight:'Light',autoOff:'Auto',autoOff2:'Automatic stop',volUnity:'Volume unit',autoRinse:'Auto<br>rinsing',waterHardness:'Water hardness',backLightDesc:'Adjust the backlight',screenLight:'Screen brightness',afterInactivity:'When idle for:',waterHardnessDesc:'Adjust water hardness',cafeTypDesc:'Select bean type',cafeTyp:'Coffee type',moreInfos:'More information',VolUnitDesc:'Choose the volume display unit',resetDesc:'Resetting will delete your preferences and settings.',reset:'Reset in progress',profileSettingsDesc:'Select the profile <br>to configure',cleanup_5_desc:'Place a 600ml container<br>below the coffee nozzles',cleanup_9_desc:'Cleaning completed',cleanup_6_desc:'Cleaning in progress<wbr>%s minutes remaining',cleanup_7_desc:'Empty the container',cleanup_8_desc:'Empty the drip tray',cleanup_3_desc:'Fill the water tank to maximum level',cleanup_4_desc:'Open the cover and insert<br>a cleaning tablet into the chute<br>',cleanup_1_desc:'A XS3000 cleaning tablet<br>is required.<br>Estimated duration: 13 minutes',descaling:'Descaling',autoRinseDesc:'Launch a rinsing<br>at every startup',coffeeRinse:'Coffee rinsing',care:'Machine maintenance',standardCoffee:'Regular coffee',greasyCoffee:'Oily coffee',cleanup_2_desc:'Empty the two containers',pleaseWait:'Please wait…',hourShort:'hr',minuteShort:'min.',selectDrink:'Choose your drink',preheat:'Preheating',cafe:'Coffee in progress',foaming:'Milk frothing',hotwater:'Hot water',seqCanceled:'Drink stopped',week:'Week',weekend:'Week-end',morning:'Morning',lunch:'Noon',dinner:'Evening',light:'Light',strong:'Strong',short:'Short',long:'Long',none:'None',sweet:'Smooth',programDesc:'Set the auto-on',cleanup:'Cleaning',descaling_short:'Descaling',filter:'Filter',milkRinse:'Milk rinsing',milkAccClean:'Milk acc. cleaning',help_fav:'How to create and manage your favourites',help_service:'How to maintain your machine?',videos:'%s videos',roundsDesc:'Number of cycles',teaRinse:'Tea pre-rinsing',profile:'Profile',calendarMonths:'Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sept;Oct;Nov;Dec',}},
+de:{display:'DE',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Milchschaum',caffelatte:'Café Latte',flatwhite:'Flat White',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Long Coffee',americano:'Americano',thevert:'Grüner Tee',thenoir:'Schwarztee',lattemacchiato:'L. Macchiato',infusion:'Kräutertee',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Milchschaum',caffelatte_short:'Café Latte',flatwhite_short:'Flat White',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Long Coffee',americano_short:'Americano',thevert_short:'Grüner Tee',thenoir_short:'Schwarztee',lattemacchiato_short:'L. Macchiato',infusion_short:'Kräutertee',profileSettings:'Profil-Einstellungen',setups:'Einstellungen',informations:'Informationen',ml:'ml',oz:'oz',sec:'s',yes:'Ja',no:'Nein',ok:'OK',beforeThxs:'Ihr Getränk <BOLD>%s</BOLD> ',afterThxs:'wurde Ihrem Profil hinzugefügt!',drink:'Getränke',espressomacchiato:'E. Macchiato',addDrink:'Getränk hinzufügen',chooseColor:'Wählen Sie Ihre Farbe',typeYourName:'Geben Sie Ihren Namen ein',next:'WEITER',finnished:'FERTIG',color:'Farbe',firstName:'Name',display:'Anzeige',planning:'Programmierung ',slider:'REGLER',tiles:'MOSAIK',on:'EIN',off:'AUS',displayDesc:'Getränk',deviceLightDesc:'Beleuchtungshilfe aktivieren',selectKeyword:'Schlüsselwort wählen',enjoy:'Genießen Sie es!',coffeeTemp:'Kaffee-',teaTemp:'Teetemperatur',waterTemp:'Wassertemperatur',tempDesc:'Temperatur wählen',selectYourProfile:'Wählen Sie Ihr Profil aus',start:'Start',stop:'Stopp',remains:'(%s verbleibende Zeichen)',date:'Datum',settings:'Einstellungen',help:'Hilfe und Tutorials',language:'Sprache',dateTime:'Datum/Uhrzeit',dateTimeDesc:'Datum/Uhrzeit',deviceLight:'Leicht',autoOff:'Automatische <wbr>Abschaltung',autoOff2:'Automatischer Stopp',volUnity:'Volumeneinheit',autoRinse:'Automatisch<br>spülen',waterHardness:'Wasserhärte',backLightDesc:'Beleuchtung anpassen',screenLight:'Bildschirmhelligkeit',afterInactivity:'Wenn keine Eingabe für:',waterHardnessDesc:'Wasserhärte einstellen ',cafeTypDesc:'Bohnentyp auswählen ',cafeTyp:'Kaffeesorte',moreInfos:'Weitere Informationen',VolUnitDesc:'Wählen Sie die <wbr>Volumenanzeigeeinheit aus',resetDesc:'Beim Zurücksetzen werden Ihre Einstellungen gelöscht',reset:'Zurücksetzen läuft',profileSettingsDesc:'Wählen Sie das<br>zu konfigurierende Profil aus',cleanup_5_desc:'Stellen Sie einen 600-ml-<br>Behälter unter die Düsen',cleanup_9_desc:'Reinigung abgeschlossen',cleanup_6_desc:'Reinigung läuft, noch %s Minuten',cleanup_7_desc:'Leeren Sie den Behälter',cleanup_8_desc:'Leeren Sie die Abtropfschale',cleanup_3_desc:'Füllen Sie den Wassertank ',cleanup_4_desc:'Öffnen Sie die Abdeckung und<br> geben Sie eine Reinigungstablette<br> in die Rutsche',cleanup_1_desc:'Eine XS3000-<br>Reinigungstablette ist erforderlich.<br>Geschätzte Dauer: 13 Minuten ',descaling:'Entkalken',autoRinseDesc:'Beginnen Sie bei jedem <br>Start einen Spülzyklus',coffeeRinse:'Kaffeespülung',care:'Maschinenwartung',standardCoffee:'Normaler Kaffee',greasyCoffee:'Öliger Kaffee',cleanup_2_desc:'Die 2 Behälter leeren',pleaseWait:'Bitte warten...',hourShort:'Std',minuteShort:'Min',selectDrink:'Wählen Sie Ihr Getränk',preheat:'Vorheizen',cafe:'Kaffee läuft ',foaming:'Milch wird aufgeschäumt',hotwater:'Heißes Wasser',seqCanceled:'Getränk angehalten',week:'Woche',weekend:'Wochenende',morning:'Morgen',lunch:'Mittag',dinner:'Abend',light:'Leicht',strong:'Stark',short:'Kurz',long:'Lang',none:'Keine',sweet:'Glatt',programDesc:'Automatische Einschaltung aktivieren',cleanup:'Reinigung',descaling_short:'Entkalken',filter:'Filter',milkRinse:'Milchspülung',milkAccClean:'Milch-Zubehör-Reinigung',help_fav:'So erstellen und verwalten Sie Favoriten',help_service:'So warten Sie Ihre Maschine',videos:'%s Videos',roundsDesc:'Anzahl der Zyklen',teaRinse:'Teevorspülung',profile:'Profil',calendarMonths:'Jan;Feb;Mär;Apr;Mai;Jun;Juli;Aug;Sep;Okt;Nov;Dez',}},
+nl:{display:'NL',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Melkschuim',caffelatte:'Cafe latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Koffie',americano:'Americano',thevert:'Groene thee',thenoir:'Zwarte thee',lattemacchiato:'L. macchiato',infusion:'Kruidenthee',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Melkschuim',caffelatte_short:'Cafe latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Koffie',americano_short:'Americano',thevert_short:'Groene thee',thenoir_short:'Zwarte thee',lattemacchiato_short:'L. macchiato',infusion_short:'Kruidenthee',profileSettings:'Profiel settings',setups:'Aanpassingen',informations:'Informatie',ml:'ml',oz:'oz',sec:'s',yes:'Ja',no:'Nee',ok:'OK',beforeThxs:'Uw drankje <BOLD>%s</BOLD>',afterThxs:' is toegevoegd aan uw profiel!',drink:'Drankjes',espressomacchiato:'E. macchiato',addDrink:'Voeg een drankje toe',chooseColor:'Kies uw kleur',typeYourName:'Voer uw naam in',next:'VOLGENDE',finnished:'VOLTOOIEN',color:'Kleur',firstName:'Naam',display:'Weergave',planning:'Programmeren ',slider:'SCHUIFKNOP',tiles:'MOZAÏEK',on:'AAN',off:'UIT',displayDesc:'Drankje',deviceLightDesc:'Activeer de lichtindicatoren',selectKeyword:'Kies een trefwoord',enjoy:'Geniet!',coffeeTemp:'Koffie',teaTemp:'Theetemperatuur',waterTemp:'Watertemperatuur',tempDesc:'Kies de temperatuur',selectYourProfile:'Selecteer uw profiel',start:'Starten',stop:'Stoppen',remains:'(%s tekens resterend)',date:'Datum',settings:'Instellingen',help:'Hulp en handleidingen',language:'Taal',dateTime:'Datum/tijd',dateTimeDesc:'Datum/tijd',deviceLight:'Verlichting',autoOff:'Automatisch <wbr>uitschakelen',autoOff2:'Automatisch stoppen',volUnity:'Volume-eenheid',autoRinse:'Automatisch<br>spoelen',waterHardness:'Waterhardheid',backLightDesc:'De schermverlichting <wbr>aanpassen',screenLight:'Helderheid scherm',afterInactivity:'Indien inactief gedurende:',waterHardnessDesc:'Pas de waterhardheid aan ',cafeTypDesc:'Selecteer het type boon ',cafeTyp:'Koffietype',moreInfos:'Meer informatie',VolUnitDesc:'Kies de volume-eenheid',resetDesc:'Als u een reset uitvoert, worden uw  voorkeuren en instellingen ',reset:'Bezig met resetten',profileSettingsDesc:'Selecteer het profiel dat u <br>wilt configureren',cleanup_5_desc:'Plaats een reservoir <br>van 600 ml onder de koffie-uitloop',cleanup_9_desc:'Reinigen voltooid',cleanup_6_desc:'Bezig met reinigen, <wbr>%s minuten resterend',cleanup_7_desc:'Leeg het reservoir',cleanup_8_desc:'Leeg de lekbak',cleanup_3_desc:'Vul het waterreservoir ',cleanup_4_desc:'Open de klep en plaats een <br>reinigingstablet in de trechter<br>',cleanup_1_desc:'Een XS3000-reinigingstablet <br>is vereist.<br>Geschatte duur: 13 minuten ',descaling:'Ontkalken',autoRinseDesc:'Start een spoelcyclus <br>bij elke start',coffeeRinse:'Koffiespoelbeurt',care:'Onderhoud van de machine',standardCoffee:'Normale koffie',greasyCoffee:'Vette koffie',cleanup_2_desc:'Leeg de twee reservoirs',pleaseWait:'Een ogenblik geduld...',hourShort:'uur',minuteShort:'min.',selectDrink:'Kies uw drankje',preheat:'voorverwarmen',cafe:'koffie wordt bereid ',foaming:'melk opschuimen',hotwater:'heet water',seqCanceled:'Drankje gestopt',week:'week',weekend:'weekend',morning:'ochtend',lunch:'middag',dinner:'avond',light:'slap',strong:'sterk',short:'kort',long:'lang',none:'geen',sweet:'vettig',programDesc:'Zet de functie voor automatisch inschakelen aan',cleanup:'Reinigen',descaling_short:'Ontkalken',filter:'Filter',milkRinse:'Melkspoelbeurt',milkAccClean:'Melkaccessoire reinigen',help_fav:'Hoe maak en beheer ik mijn favorieten?',help_service:'Hoe onderhoud ik mijn machine?',videos:'%s-video\'s',roundsDesc:'Aantal cycli',teaRinse:'Voorspoelen voor thee',profile:'Profiel',calendarMonths:'Jan;Feb;Mrt;Apr;Mei;Jun;Jul;Aug;Sep;Okt;Nov;Dec',}},
+da:{display:'DA',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Mælkeskum',caffelatte:'Caffe latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Sort kaffe',americano:'Americano',thevert:'Grøn te',thenoir:'Sort te',lattemacchiato:'L. macchiato',infusion:'Urtete',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Mælkeskum',caffelatte_short:'Caffe latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Sort kaffe',americano_short:'Americano',thevert_short:'Grøn te',thenoir_short:'Sort te',lattemacchiato_short:'L. macchiato',infusion_short:'Urtete',profileSettings:'Profil-indstillinger',setups:'Justeringer',informations:'Oplysninger',ml:'ml',oz:'oz',sec:'s',yes:'Ja',no:'Nej',ok:'OK',beforeThxs:'Din drik <BOLD>%s</BOLD>',afterThxs:'er blevet føjet til din profil!',drink:'Drikke',espressomacchiato:'E. macchiato',addDrink:'Tilføj drik',chooseColor:'Vælg din farve',typeYourName:'Indtast dit navn',next:'NÆSTE',finnished:'AFSLUT',color:'Farve',firstName:'Navn',display:'Display',planning:'Programmering ',slider:'SKYDER',tiles:'MOSAIK',on:'TÆND',off:'SLUK',displayDesc:'Drik',deviceLightDesc:'Aktivér lysguiden',selectKeyword:'Vælg et søgeord',enjoy:'God fornøjelse!',coffeeTemp:'Kaffens',teaTemp:'Teens temperatur',waterTemp:'Vandets temperatur',tempDesc:'Vælg temperatur',selectYourProfile:'Vælg din profil',start:'Start',stop:'Stop',remains:'(%s tegn tilbage)',date:'Dato',settings:'Indstillinger',help:'Hjælp og vejledninger',language:'Sprog',dateTime:'Dato/klokkeslæt',dateTimeDesc:'Dato/klokkeslæt',deviceLight:'Lys',autoOff:'Autosluk',autoOff2:'Automatisk stop',volUnity:'Mængdeenhed',autoRinse:'Automatisk<br>skylning',waterHardness:'Vandets hårdhedsgrad',backLightDesc:'Juster skærmens lysstyrke',screenLight:'Skærmlysstyrke',afterInactivity:'Når inaktiv i:',waterHardnessDesc:'Juster vandets hårdhedsgrad ',cafeTypDesc:'Vælg bønnetype ',cafeTyp:'Kaffetype',moreInfos:'Flere oplysninger',VolUnitDesc:'Vælg mængdeenhed',resetDesc:'Nulstilling sletter dine præferencer og indstillinger ',reset:'Nulstilling i gang',profileSettingsDesc:'Vælg den profil, <br>der skal konfigureres',cleanup_5_desc:'Sæt en 600 ml beholder under dyserne<br>',cleanup_9_desc:'Rengøring udført',cleanup_6_desc:'Rengøring i gang, <wbr>%s minutter tilbage',cleanup_7_desc:'Tøm beholderen',cleanup_8_desc:'Tøm drypbakken',cleanup_3_desc:'Fyld vandbeholderen ',cleanup_4_desc:'Åbn dækslet, og placer <br>en rengøringstablet i slisken<br>',cleanup_1_desc:'Du skal bruge en XS3000<br>rengøringstablet.<br>Forventet varighed: 13 minutter ',descaling:'Afkalkning',autoRinseDesc:'Start en gennemskylningscyklus <br>ved hver opstart',coffeeRinse:'Skylning af kaffesystem',care:'Vedligeholdelse af maskinen',standardCoffee:'Almindelig kaffe',greasyCoffee:'Olieholdig kaffe',cleanup_2_desc:'Tøm de to beholdere',pleaseWait:'Vent ...',hourShort:'t.',minuteShort:'min.',selectDrink:'Vælg din drik',preheat:'forvarmning',cafe:'kaffebrygning ',foaming:'mælkeskumning',hotwater:'varmt vand',seqCanceled:'Drik stoppet',week:'hverdag',weekend:'weekend',morning:'morgen',lunch:'middag',dinner:'aften',light:'mild',strong:'stærk',short:'lille',long:'stor',none:'ingen',sweet:'blød',programDesc:'Indstil autotænd',cleanup:'Rengøring',descaling_short:'Afkalkning',filter:'Filter',milkRinse:'Skylning af mælkesystem',milkAccClean:'Rengøring af mælketilbehør',help_fav:'Sådan gemmer og administrerer du dine favoritter',help_service:'Sådan vedligeholder du maskinen',videos:'%s videoer',roundsDesc:'Antal cyklusser',teaRinse:'Forskylning af tesystem',profile:'Profil',calendarMonths:'Jan;Feb;Mar;Apr;Maj;Jun;Jul;Aug;Sep;Okt;Nov;Dec',}},
+no:{display:'NO',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Skummet melk',caffelatte:'Kaffe latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Lang kaffe',americano:'Americano',thevert:'Grønn te',thenoir:'Svart te',lattemacchiato:'L. macchiato',infusion:'Urtete',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Skummet melk',caffelatte_short:'Kaffe latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Lang kaffe',americano_short:'Americano',thevert_short:'Grønn te',thenoir_short:'Svart te',lattemacchiato_short:'L. macchiato',infusion_short:'Urtete',profileSettings:'Profilinnstillinger',setups:'Justeringer',informations:'Informasjon',ml:'ml',oz:'oz',sec:'s',yes:'Ja',no:'Nei',ok:'OK',beforeThxs:'Drikken din <BOLD>%s %s</BOLD> ',afterThxs:'har blitt lagt til i profilen din!',drink:'Drikker',espressomacchiato:'E. macchiato',addDrink:'Legg til drikk',chooseColor:'Velg farge',typeYourName:'Skriv inn navnet ditt',next:'NESTE',finnished:'FULLFØR',color:'Farge',firstName:'Navn',display:'Skjerm',planning:'Programmering ',slider:'BRYTER',tiles:'MOSAIKK',on:'PÅ',off:'AV',displayDesc:'Drikk',deviceLightDesc:'Aktiver lysveiledningen',selectKeyword:'Velg et nøkkelord',enjoy:'Nyt!',coffeeTemp:'Kaffe',teaTemp:'Tetemperatur',waterTemp:'Vanntemperatur',tempDesc:'Velg temperatur',selectYourProfile:'Velg profil',start:'Start',stop:'Stopp',remains:'(% tegn gjenstår)',date:'Dato',settings:'Innstillinger',help:'Hjelp og opplæring',language:'Språk',dateTime:'Dato/klokkeslett',dateTimeDesc:'Dato/klokkeslett',deviceLight:'Lys',autoOff:'Auto av',autoOff2:'Automatisk stopp',volUnity:'Volumenhet',autoRinse:'Auto<br>skylling',waterHardness:'Vannhardhet',backLightDesc:'Juster<wbr>bakgrunnsbelysningen',screenLight:'Lysstyrke på skjermen',afterInactivity:'Når den har vært inaktiv i:',waterHardnessDesc:'Juster vannhardheten ',cafeTypDesc:'Velg bønnetype ',cafeTyp:'Kaffetype',moreInfos:'Mer informasjon',VolUnitDesc:'Velg volumvisningsenhet',resetDesc:'Preferansene og innstillingene dine slettes hvis du tilbakestiller. ',reset:'Tilbakestilling pågår',profileSettingsDesc:'Velg profilen du vil konfigurere<br>',cleanup_5_desc:'Plasser en beholder på <br>600 ml under dysene',cleanup_9_desc:'Rengjøring fullført',cleanup_6_desc:'Rengjøring pågår, <wbr>%s minutter gjenstår',cleanup_7_desc:'Tøm beholderen',cleanup_8_desc:'Tøm dryppbrettet',cleanup_3_desc:'Fyll vanntanken ',cleanup_4_desc:'Åpne dekselet og sett en <br>rengjøringstablett inn i sjakten<br>',cleanup_1_desc:'Bruk en XS3000-rengjøringstablett.<br><br>Beregnet varighet: 13 minutter ',descaling:'Avkalking',autoRinseDesc:'Start en skyllesyklus ved <br>hver oppstart',coffeeRinse:'Kaffeskylling',care:'Vedlikehold av maskinen',standardCoffee:'Vanlig kaffe',greasyCoffee:'Oljete kaffe',cleanup_2_desc:'Tøm de to beholderne',pleaseWait:'Vent litt ...',hourShort:'t',minuteShort:'min',selectDrink:'Velg drikk',preheat:'forvarming',cafe:'kaffe tilberedes ',foaming:'melkeskumming',hotwater:'varmt vann',seqCanceled:'Drikken stoppet',week:'uke',weekend:'helg',morning:'morgen',lunch:'ettermiddag',dinner:'kveld',light:'lys',strong:'sterk',short:'kort',long:'lang',none:'ingen',sweet:'jevn',programDesc:'Angi auto på',cleanup:'Rengjøring',descaling_short:'Avkalking',filter:'Filter',milkRinse:'Melkeskylling',milkAccClean:'Rengjøring av melkeutstyr med rensetabletter',help_fav:'Slik lager og administrerer du favorittene dine',help_service:'Slik vedlikeholder du maskinen',videos:'%s videoer',roundsDesc:'Antall sykluser',teaRinse:'Forhåndsskylling av te',profile:'Profil',calendarMonths:'Jan;Feb;Mar;Apr;Mai;Jun;Jul;Aug;Sep;Okt;Nov;Des',}},
+sv:{display:'SV',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Skummad mjölk',caffelatte:'Cafe latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Stor kaffe',americano:'Americano',thevert:'Grönt te',thenoir:'Svart te',lattemacchiato:'L. macchiato',infusion:'Örtte',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Skummad mjölk',caffelatte_short:'Cafe latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Stor kaffe',americano_short:'Americano',thevert_short:'Grönt te',thenoir_short:'Svart te',lattemacchiato_short:'L. macchiato',infusion_short:'Örtte',profileSettings:'Profilinställningar',setups:'Justeringar',informations:'Information',ml:'ml',oz:'oz',sec:'s',yes:'Ja',no:'Nej',ok:'OK',beforeThxs:'Drycken <BOLD>%s %s</BOLD> ',afterThxs:'har lagts till i din profil.',drink:'Drycker',espressomacchiato:'E. macchiato',addDrink:'Lägg till dryck',chooseColor:'Välj färg',typeYourName:'Ange ditt namn',next:'NÄSTA',finnished:'SLUTFÖR',color:'Färg',firstName:'Namn',display:'Skärm',planning:'Programmering ',slider:'REGLAGE',tiles:'MOSAIK',on:'PÅ',off:'AV',displayDesc:'Presentation av',deviceLightDesc:'Aktivera indikatorshjälpen',selectKeyword:'Välj nyckelord',enjoy:'Njut!',coffeeTemp:'Kaffets',teaTemp:'Teets temperatur',waterTemp:'Vattentemperatur',tempDesc:'Välj temperatur',selectYourProfile:'Välj profil',start:'Starta',stop:'Avbryt',remains:'(%s tecken återstår)',date:'Datum-',settings:'inställningar',help:'Hjälp och övningsexempel',language:'Språk',dateTime:'Datum/tid',dateTimeDesc:'Datum/tid',deviceLight:'Lampa',autoOff:'Automatisk <wbr>avstängning',autoOff2:'Automatiskt stopp',volUnity:'Volymenhet',autoRinse:'Automatisk<br>sköljning',waterHardness:'Vattenhårdhet',backLightDesc:'Justera <wbr>bakgrundsbelysningen',screenLight:'Skärmens ljusstyrka',afterInactivity:'Vid inaktivitet under:',waterHardnessDesc:'Justera vattenhårdheten ',cafeTypDesc:'Välj kaffeböna ',cafeTyp:'Kaffetyp',moreInfos:'Mer information',VolUnitDesc:'Välj volymvisningsenheten',resetDesc:'Alla dina inställningar tas bort vid återställning.',reset:'Återställning pågår',profileSettingsDesc:'Välj den profil som <br>ska konfigureras.',cleanup_5_desc:'Ställ en behållare som rymmer <br>600 ml under munstyckena',cleanup_9_desc:'Rengöring slutförd',cleanup_6_desc:'Rengöring pågår. <wbr>%s minuter återstår',cleanup_7_desc:'Töm behållaren',cleanup_8_desc:'Töm droppskålen',cleanup_3_desc:'Fyll vattentanken ',cleanup_4_desc:'Öppna luckan och lägg <br>en rengöringstablett i inkastet<br>',cleanup_1_desc:'Använd en XS3000-rengöringstablett.<br><br>Beräknad tidsåtgång: 13 minuter ',descaling:'Avkalkning',autoRinseDesc:'Starta en sköljningscykel <br>vid varje start',coffeeRinse:'Sköljning av kaffesystem',care:'Maskinunderhåll',standardCoffee:'Vanligt kaffe',greasyCoffee:'Oljigt kaffe',cleanup_2_desc:'Töm de två behållarna',pleaseWait:'Vänta ...',hourShort:'tim',minuteShort:'min',selectDrink:'Välj dryck',preheat:'förvärmning',cafe:'kaffet tillreds ',foaming:'mjölkskumning',hotwater:'varmt vatten',seqCanceled:'Tillredningen  avbröts',week:'vecka',weekend:'helg',morning:'morgon',lunch:'Klockan 12',dinner:'kväll',light:'svagt',strong:'starkt',short:'liten',long:'stor',none:'ingen',sweet:'krämig',programDesc:'Ställ in automatisk start',cleanup:'Rengöring',descaling_short:'Avkalkning',filter:'Filter',milkRinse:'Sköljning av mjölksystemet',milkAccClean:'Rengöring av mjölktillbehör',help_fav:'Så här skapar och hanterar du dina favoriter',help_service:'Så här underhåller du maskinen',videos:'%s videor',roundsDesc:'Antal cykler',teaRinse:'Försköljning vid tetillredning',profile:'Profil',calendarMonths:'Jan;Feb;Mar;Apr;Maj;Jun;Jul;Aug;Sep;Okt;Nov;Dec',}},
+fi:{display:'FI',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Maitovaahto',caffelatte:'Cafe Latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Long coffee',americano:'Americano',thevert:'Vihreä tee',thenoir:'Musta tee',lattemacchiato:'L. macchiato',infusion:'Yrttitee',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Maitovaahto',caffelatte_short:'Cafe Latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Long coffee',americano_short:'Americano',thevert_short:'Vihreä tee',thenoir_short:'Musta tee',lattemacchiato_short:'L. macchiato',infusion_short:'Yrttitee',profileSettings:'Profiiliasetukset',setups:'Säädöt',informations:'Tiedot',ml:'ml',oz:'oz',sec:'s',yes:'Kyllä',no:'Ei',ok:'OK',beforeThxs:'Juoma <BOLD>%s %s</BOLD>',afterThxs:'on lisätty profiiliin',drink:'Juomat',espressomacchiato:'E. macchiato',addDrink:'Lisää juoma',chooseColor:'Valitse väri',typeYourName:'Kirjoita nimesi',next:'SEUR.',finnished:'LOPETA',color:'Väri',firstName:'Nimi',display:'Näyttö',planning:'Ohjelma ',slider:'LIUKU',tiles:'RUUTU',on:'ON',off:'OFF',displayDesc:'Juoman',deviceLightDesc:'Aktivoi apuvalo',selectKeyword:'Valitse avainsana',enjoy:'Nauti!',coffeeTemp:'Kahvin',teaTemp:'Teen lämpötila',waterTemp:'Veden lämpötila',tempDesc:'Valitse lämpötila',selectYourProfile:'Valitse profiili',start:'Käynnistä',stop:'Pysäytä',remains:'(%s merkkiä jäljellä)',date:'Päivämäärä',settings:'Asetukset',help:'Ohjeet',language:'Kieli',dateTime:'Päivämäärä/aika',dateTimeDesc:'Päivämäärä',deviceLight:'Merkkivalo',autoOff:'Autom.<wbr>sammutus',autoOff2:'Autom. katkaisu',volUnity:'Tilavuusyksikkö',autoRinse:'Autom.<br>huuhtelu',waterHardness:'Veden kovuus',backLightDesc:'Säädä taustavaloa',screenLight:'Näytön kirkkaus',afterInactivity:'Kun ollut käyttämättömänä:',waterHardnessDesc:'Säädä veden kovuutta ',cafeTypDesc:'Valitse paputyyppi ',cafeTyp:'Kahvityyppi',moreInfos:'Lisätietoja',VolUnitDesc:'Valitse tilavuuden näyttöyksikkö',resetDesc:'Nollaaminen poistaa asetukset ja valinnat.',reset:'Nollaus käynnissä',profileSettingsDesc:'Valitse määritettävä profiili<br>',cleanup_5_desc:'Aseta 600 ml:n <br>säiliösuuttimien alapuolelle',cleanup_9_desc:'Puhdistus valmis',cleanup_6_desc:'Puhdistus käynnissä,<wbr>%s minuuttia jäljellä',cleanup_7_desc:'Tyhjennä säiliö',cleanup_8_desc:'Tyhjennä valumisastia',cleanup_3_desc:'Täytä vesisäiliö ',cleanup_4_desc:'Avaa kansi ja aseta<br>puhdistustabletti lokeroon<br>',cleanup_1_desc:'XS3000-puhdistustabletti tarvitaan.<br><br>Arvioitu kesto: 13 minuuttia ',descaling:'Kalkinpoisto',autoRinseDesc:'Käynnistä huuhtelu aina<br>käynnistyksen yhteydessä',coffeeRinse:'Kahvin huuhtelu',care:'Laitteen kunnossapito',standardCoffee:'Tavallinen kahvi',greasyCoffee:'Öljyinen kahvi',cleanup_2_desc:'Tyhjennä molemmat säiliöt',pleaseWait:'Odota...',hourShort:'h',minuteShort:'min',selectDrink:'Valitse juoma',preheat:'Esilämmitys',cafe:'Kahvin valmistus ',foaming:'Maidon vaahdotus',hotwater:'Kuuma vesi',seqCanceled:'Juoma pysäytetty',week:'viikko',weekend:'viikonloppu',morning:'aamu',lunch:'keskipäivä',dinner:'ilta',light:'laimea',strong:'vahva',short:'pieni',long:'suuri',none:'ei mitään',sweet:'pehmeä',programDesc:'Määritä automaattinen<br>käynnistys',cleanup:'Puhdistus',descaling_short:'Kalkinpoisto',filter:'Suodatin',milkRinse:'Maidon huuhtelu',milkAccClean:'Maitolisäos. puhd.',help_fav:'Suosikkien lisääminen ja hallinta',help_service:'Laitteen kunnossapito',videos:'%s videota',roundsDesc:'Jaksojen lukumäärä',teaRinse:'Teen esihuuhtelu',profile:'Profiili',calendarMonths:'Tammi;Helmi;Maa;Huhti;Touko;Kesä;Heinä;Elo;Syys;Loka;Marras;Joulu',}},
+es:{display:'Español',strings:{espresso:'Espresso',cappucino:'Capuchino',laitmousse:'Espuma de leche',caffelatte:'Caffe Latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Café largo',americano:'Americano',thevert:'Té verde',thenoir:'Té negro',lattemacchiato:'L. macchiato',infusion:'Infusión',espresso_short:'Espresso',cappucino_short:'Capuchino',laitmousse_short:'Espuma de leche',caffelatte_short:'Caffe Latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Café largo',americano_short:'Americano',thevert_short:'Té verde',thenoir_short:'Té negro',lattemacchiato_short:'L. macchiato',infusion_short:'Infusión',profileSettings:'Configurar perfil',setups:'Ajustes',informations:'Información',ml:'ml',oz:'oz',sec:'s',yes:'Sí',no:'No',ok:'OK',beforeThxs:'La bebida <BOLD>%s %s</BOLD> ',afterThxs:'se ha añadido al perfil',drink:'Bebidas',espressomacchiato:'E. macchiato',addDrink:'Añadir bebida',chooseColor:'Elige tu color',typeYourName:'Introduce tu nombre',next:'SIGUIENTE',finnished:'FINALIZAR',color:'Color',firstName:'Nombre',display:'Pantalla',planning:'Programar',slider:'DESLIZADOR',tiles:'MOSAICO',on:'ON',off:'OFF',displayDesc:'Presentación',deviceLightDesc:'Activar la guía luminosa',selectKeyword:'Elige una palabra clave',enjoy:'¡A disfrutar!',coffeeTemp:'Temperatura',teaTemp:'Temperatura del té',waterTemp:'Temperatura del agua',tempDesc:'Elegir temperatura',selectYourProfile:'Selecciona tu perfil',start:'Iniciar',stop:'Detener',remains:'(quedan %s caracteres)',date:'Fecha',settings:'Configuración',help:'Ayuda y tutoriales',language:'Idioma',dateTime:'Fecha/hora',dateTimeDesc:'Fecha/hora',deviceLight:'Luz',autoOff:'Apagado <wbr>automático',autoOff2:'Detención auto.',volUnity:'Unidad de volumen',autoRinse:'Enjuagado<br>automático',waterHardness:'Dureza del agua',backLightDesc:'Ajustar la retroiluminación',screenLight:'Brillo de la pantalla',afterInactivity:'Tras un periodo de inactividad de:',waterHardnessDesc:'Ajustar dureza del agua ',cafeTypDesc:'Seleccionar tipo de grano ',cafeTyp:'Tipo de café',moreInfos:'Más información',VolUnitDesc:'Selecciona la unidad <wbr>de visualización de volumen',resetDesc:'Al restablecer se eliminarán las preferencias y la configuración. ',reset:'Restablecim. en curso',profileSettingsDesc:'Selecciona el perfil <br>que deseas configurar',cleanup_5_desc:'Coloca un recipiente <br>de 600 ml bajo las boquillas',cleanup_9_desc:'Limpieza completa',cleanup_6_desc:'Limpieza en curso, <wbr>quedan %s minutos',cleanup_7_desc:'Vacía el depósito',cleanup_8_desc:'Vacía la bandeja recogegotas',cleanup_3_desc:'Llena el depósito de agua ',cleanup_4_desc:'Abre la tapa e inserta <br>una pastilla de limpieza <br>en el conducto',cleanup_1_desc:'Se necesita <br>una pastilla de limpieza XS3000.<br>Duración estimada: 13 minutos ',descaling:'Descalcificación',autoRinseDesc:'Iniciar un ciclo de enjuagado <br>en cada puesta en marcha',coffeeRinse:'Enjuagado de café',care:'Mantenimiento',standardCoffee:'Café normal',greasyCoffee:'Café oleoso',cleanup_2_desc:'Vacía depósitos',pleaseWait:'Espera...',hourShort:'h',minuteShort:'min',selectDrink:'Elige la bebida',preheat:'Precalentamiento',cafe:'Café en curso ',foaming:'Espuma de leche',hotwater:'Agua caliente',seqCanceled:'Bebida detenida',week:'semana',weekend:'fin semana',morning:'mañana',lunch:'mediodía',dinner:'tarde',light:'ligero',strong:'fuerte',short:'corto',long:'largo',none:'ninguno',sweet:'suave',programDesc:'Configurar encendido auto.',cleanup:'Limpieza',descaling_short:'Descalc.',filter:'Filtro',milkRinse:'Enjuag. leche',milkAccClean:'Limpieza acc. leche',help_fav:'Cómo crear y administrar favoritos',help_service:'Cómo mantener la cafetera',videos:'%s vídeos',roundsDesc:'Número de ciclos',teaRinse:'Enjuagado té',profile:'Perfil',calendarMonths:'Ene;Feb;Mar;Abr;May;Jun;Jul;Ago;Sep;Oct;Nov;Dic',}},
+it:{display:'Italiano',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Schiuma di latte',caffelatte:'Cafe Latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Caffè lungo',americano:'Americano',thevert:'Tè verde',thenoir:'Tè nero',lattemacchiato:'L. macchiato',infusion:'Infuso',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Schiuma di latte',caffelatte_short:'Cafe Latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Caffè lungo',americano_short:'Americano',thevert_short:'Tè verde',thenoir_short:'Tè nero',lattemacchiato_short:'L. macchiato',infusion_short:'Infuso',profileSettings:'Impostazioni profilo',setups:'Regolazioni',informations:'Informazioni',ml:'ml',oz:'oz',sec:'s',yes:'Sì',no:'No',ok:'OK',beforeThxs:'La bevanda <BOLD>%s %s</BOLD> ',afterThxs:'è stata aggiunta al tuo profilo',drink:'Bevande',espressomacchiato:'E. macchiato',addDrink:'Aggiungi bevanda',chooseColor:'Scegli il tuo colore',typeYourName:'Inserisci il tuo nome',next:'AVANTI',finnished:'FINE',color:'Colore',firstName:'Nome',display:'Display',planning:'Programma ',slider:'SLIDER',tiles:'MOSAICO',on:'ON',off:'OFF',displayDesc:'Bevanda',deviceLightDesc:'Attiva la guida all\'illuminazione',selectKeyword:'Scegli una parola chiave',enjoy:'Pronto!',coffeeTemp:'Caffè',teaTemp:'Temperatura del tè',waterTemp:'Temperatura dell\'acqua',tempDesc:'Scegli la temperatura',selectYourProfile:'Seleziona il tuo profilo',start:'Avvio',stop:'Stop',remains:'(%s caratteri rimanenti)',date:'Data',settings:'Impostazioni',help:'Guida e tutorial',language:'Lingua',dateTime:'Data/ora',dateTimeDesc:'Data/ora',deviceLight:'Luce',autoOff:'Spegnimento <wbr>Automatico',autoOff2:'Arresto automatico',volUnity:'Unità volume',autoRinse:'Automatico<br>risciacquo',waterHardness:'Durezza dell\'acqua',backLightDesc:'Regola la retroilluminazione',screenLight:'Luminosità dello schermo',afterInactivity:'Se inattivo per:',waterHardnessDesc:'Regola la durezza dell\'acqua ',cafeTypDesc:'Seleziona il tipo di chicco ',cafeTyp:'Tipo di caffè',moreInfos:'Ulteriori informazioni',VolUnitDesc:'Scegli l\'unità di visualizzazione <wbr>del volume',resetDesc:'La reimpostazione eliminerà le preferenze e le impostazioni.',reset:'Reimpostazione in corso',profileSettingsDesc:'Seleziona il profilo da configurare<br>',cleanup_5_desc:'Posiziona un contenitore <br>da 600 ml sotto gli ugelli',cleanup_9_desc:'Pulizia completata',cleanup_6_desc:'Pulizia in corso, <wbr>%s minuti rimanenti',cleanup_7_desc:'Svuota il contenitore',cleanup_8_desc:'Svuota il vassoio raccogligocce',cleanup_3_desc:'Riempi il serbatoio dell\'acqua ',cleanup_4_desc:'Apri il coperchio e inserisci <br>una pastiglia per la pulizia <br>nel piano inclinato',cleanup_1_desc:'Utilizza una pastiglia <br>per la pulizia XS3000.<br>Durata stimata: 13 minuti ',descaling:'Decalcificazione',autoRinseDesc:'Attiva un ciclo <br>di risciacquo a ogni avvio',coffeeRinse:'Risciacquo del caffè',care:'Manutenzione della macchina',standardCoffee:'Caffè normale',greasyCoffee:'Caffè oleoso',cleanup_2_desc:'Svuota i 2 contenitori',pleaseWait:'Attendi...',hourShort:'h',minuteShort:'min.',selectDrink:'Scegli la tua bevanda',preheat:'preriscaldamento',cafe:'preparazione caffè ',foaming:'schiumatura latte',hotwater:'acqua calda',seqCanceled:'Stop preparazione',week:'settimana',weekend:'week-end',morning:'mattina',lunch:'mezzogiorno',dinner:'sera',light:'leggero',strong:'forte',short:'ristretto',long:'lungo',none:'nessuno',sweet:'liscio',programDesc:'Imposta l\'accensione automatica',cleanup:'Pulizia',descaling_short:'Decalcificazione',filter:'Filtro',milkRinse:'Risciacquo del latte',milkAccClean:'Pulizia acc. latte',help_fav:'Come creare e gestire i preferiti',help_service:'Come eseguire la manutenzione della macchina',videos:'%s video',roundsDesc:'Numero di cicli',teaRinse:'Prerisciacquo del tè',profile:'Profilo',calendarMonths:'Gen;Feb;Mar;Apr;Mag;Giu;Lug;Ago;Set;Ott;Nov;Dic',}},
+pt:{display:'PT',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Espuma de leite',caffelatte:'Cafe Latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Café longo',americano:'Americano',thevert:'Chá verde',thenoir:'Chá preto',lattemacchiato:'L. Macchiato',infusion:'Chá de ervas',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Espuma de leite',caffelatte_short:'Cafe Latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Café longo',americano_short:'Americano',thevert_short:'Chá verde',thenoir_short:'Chá preto',lattemacchiato_short:'L. Macchiato',infusion_short:'Chá de ervas',profileSettings:'Definições<br>de perfil',setups:'Ajustes',informations:'Informação',ml:'ml',oz:'oz',sec:'s',yes:'Sim',no:'Não',ok:'OK',beforeThxs:'A bebida <BOLD>%s %s</BOLD>',afterThxs:'foi adicionada ao seu perfil!',drink:'Bebidas',espressomacchiato:'E. Macchiato',addDrink:'Adicionar bebida',chooseColor:'Escolha a sua cor',typeYourName:'Introduza o seu nome',next:'SEGUINTE',finnished:'TERMINAR',color:'Cor',firstName:'Nome',display:'Ecrã',planning:'Programação ',slider:'ROTATIVO',tiles:'MOSAICO',on:'ON',off:'OFF',displayDesc:'Bebida',deviceLightDesc:'Ativar o guia luminoso',selectKeyword:'Escolha uma palavra-chave',enjoy:'Desfrute!',coffeeTemp:'Café',teaTemp:'Temperatura do chá',waterTemp:'Temperatura da água',tempDesc:'Escolher temperatura',selectYourProfile:'Selecionar o seu perfil',start:'Iniciar',stop:'Parar',remains:'(restam %s carateres)',date:'Data',settings:'Definições',help:'Ajuda e tutoriais',language:'Idioma',dateTime:'Data/Hora',dateTimeDesc:'Data/Hora',deviceLight:'Luz',autoOff:'Desligar <wbr>automático',autoOff2:'Parar automático',volUnity:'Unidade de volume',autoRinse:'Enxaguamento<br>automático',waterHardness:'Dureza da água',backLightDesc:'Ajustar a luz de fundo',screenLight:'Luminosidade do ecrã',afterInactivity:'Quando inativo para:',waterHardnessDesc:'Ajustar dureza da água ',cafeTypDesc:'Selecionar tipo de grão ',cafeTyp:'Tipo de café',moreInfos:'Mais informação',VolUnitDesc:'Escolha a unidadede <wbr>volume apresentada',resetDesc:'A reposição irá eliminar as suas preferências e definições.',reset:'Reposição em curso',profileSettingsDesc:'Selecione o perfil a configurar<br>',cleanup_5_desc:'Coloque um recipientede <br>600 ml por baixo das saídas de café',cleanup_9_desc:'Limpeza concluída',cleanup_6_desc:'Limpeza em curso,<wbr>restam %s minutos',cleanup_7_desc:'Esvazie o recipiente',cleanup_8_desc:'Esvazie a gaveta de recolha de pingos',cleanup_3_desc:'Encha o reservatório de água ',cleanup_4_desc:'Abra a tampa e insira uma pastilha<br>de limpeza no compartimento<br>',cleanup_1_desc:'É necessária uma pastilha<br>de limpeza XS3000.<br>Duração prevista: 13 minutos ',descaling:'Descalcificação',autoRinseDesc:'Iniciar um ciclo de enxaguamento<br>a cada colocação em funcionamento',coffeeRinse:'Enxaguamento do café',care:'Manutenção da máquina',standardCoffee:'Café normal',greasyCoffee:'Café oleoso',cleanup_2_desc:'Esvazie os dois recipientes',pleaseWait:'Aguarde...',hourShort:'hr',minuteShort:'min.',selectDrink:'Escolha a sua bebida',preheat:'pré-aquecimento',cafe:'do café em curso ',foaming:'espuma de leite',hotwater:'água quente',seqCanceled:'A bebida parou',week:'semana',weekend:'fim de semana',morning:'manhã',lunch:'meio-dia',dinner:'noite',light:'luz',strong:'forte',short:'curto',long:'longo',none:'nenhum',sweet:'suave',programDesc:'Definir ligar automático',cleanup:'Limpeza',descaling_short:'Descalcificação',filter:'Filtro',milkRinse:'Enxaguamento do leite',milkAccClean:'Limpeza acess leite',help_fav:'Como criar e gerir os seus favoritos',help_service:'Como efetuar a manutenção da máquina',videos:'%s vídeos',roundsDesc:'Número de ciclos',teaRinse:'Pré-enxaguamento do chá',profile:'Perfil',calendarMonths:'Jan;Fev;Mar;Abr;Mai;Jun;Jul;Ago;Set;Out;Nov;Dez',}},
+el:{display:'EL',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Αφρόγαλα',caffelatte:'Cafe Latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Μεγ. καφές',americano:'Americano',thevert:'Πράσινο τσάι',thenoir:'Μαύρο τσάι',lattemacchiato:'L. macchiato',infusion:'Τσάι βοτάνων',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Αφρόγαλα',caffelatte_short:'Cafe Latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Μεγ. καφές',americano_short:'Americano',thevert_short:'Πράσινο τσάι',thenoir_short:'Μαύρο τσάι',lattemacchiato_short:'L. macchiato',infusion_short:'Τσάι βοτάνων',profileSettings:'Ρυθμίσεις προφίλ',setups:'Ρυθμίσεις',informations:'Πληροφορίες',ml:'ml',oz:'oz',sec:'s',yes:'Ναι',no:'Όχι',ok:'OK',beforeThxs:'Το ρόφημα <BOLD>%s %s</BOLD>',afterThxs:'έχει προστεθεί στο προφίλ σας!',drink:'Ροφήματα',espressomacchiato:'E. macchiato',addDrink:'Προσθέστε ρόφημα',chooseColor:'Επιλέξτε χρώμα',typeYourName:'Εισαγάγετε το όνομά σας',next:'ΕΠΟΜΕΝΟ',finnished:'ΤΕΛΟΣ',color:'Χρώμα',firstName:'Όνομα',display:'Προβολή',planning:'Προγραμματισμός ',slider:'ΡΥΘΜΙΣΤΙΚΟ',tiles:'ΜΩΣΑΪΚΟ',on:'ΕΝΕΡΓΟΠ.',off:'ΑΠΕΝΕΡΓΟΠ.',displayDesc:'Παρουσίαση',deviceLightDesc:'Ενεργοποίηση του οδηγού φωτισμού',selectKeyword:'Επιλέξτε λέξη-κλειδί',enjoy:'Απολαύστε!',coffeeTemp:'Θερμοκρασία',teaTemp:'Θερμοκρασία τσαγιού',waterTemp:'Θερμοκρασία νερού',tempDesc:'Επιλέξτε θερμοκρασία',selectYourProfile:'Επιλέξτε προφίλ',start:'Έναρξη',stop:'Διακοπή',remains:'(απομένουν %s χαρακτήρες)',date:'Ημερομηνία',settings:'Ρυθμίσεις',help:'Βοήθεια και εκπ. οδηγίες',language:'Γλώσσα',dateTime:'Ημερομηνία/ώρα',dateTimeDesc:'Ημερομηνία/ώρα',deviceLight:'Φωτ. ένδειξη',autoOff:'Αυτόματη <wbr>απενεργοπ.',autoOff2:'Αυτόματη διακοπή',volUnity:'Μονάδα όγκου',autoRinse:'Αυτόματη<br>έκπλυση',waterHardness:'Σκληρότητα νερού',backLightDesc:'Ρύθμιση οπισθοφωτισμού',screenLight:'Φωτεινότητα οθόνης',afterInactivity:'Όταν είναι σε αδράνεια για:',waterHardnessDesc:'Ρύθμιση σκληρότητας νερού ',cafeTypDesc:'Επιλογή τύπου κόκκων ',cafeTyp:'Τύπος καφέ',moreInfos:'Περισσότερες πληροφορίες',VolUnitDesc:'Επιλέξτε την μονάδα όγκου που <wbr>θα εμφανίζεται στην οθόνη',resetDesc:'Με την επαναφορά θα διαγραφούν οι προτιμήσεις και οι ρυθμίσεις σας.',reset:'Επαναφορά σε εξέλιξη',profileSettingsDesc:'Επιλέξτε προφίλ για διαμόρφωση<br>',cleanup_5_desc:'Τοποθετήστε ένα δοχείο 600 ml<br>κάτω από τα ακροφύσια',cleanup_9_desc:'Ο καθαρισμός ολοκληρώθηκε',cleanup_6_desc:'Καθαρισμός σε εξέλιξη, απομένουν<wbr>%s λεπτά',cleanup_7_desc:'Αδειάστε το δοχείο',cleanup_8_desc:'Αδειάστε τον δίσκο απόνερων',cleanup_3_desc:'Γεμίστε το δοχείο νερού ',cleanup_4_desc:'Ανοίξτε το καπάκι και τοποθετήστε<br>μια ταμπλέτα καθαρισμού στον σωλήνα<br>',cleanup_1_desc:'Χρειάζεται μια ταμπλέτα καθαρισμού<br>XS3000.<br>Εκτιμώμενη διάρκεια: 13 λεπτά ',descaling:'Αφαλάτωση',autoRinseDesc:'Ξεκίνημα κύκλου έκπλυσης σε<br>κάθε εκκίνηση',coffeeRinse:'Έκπλυση συστήματος καφέ',care:'Συντήρηση της μηχανής',standardCoffee:'Κανονικός καφές',greasyCoffee:'Λιπαρός καφές',cleanup_2_desc:'Αδειάστε τα 2 δοχεία',pleaseWait:'Περιμένετε...',hourShort:'ώ',minuteShort:'λ',selectDrink:'Επιλέξτε ρόφημα',preheat:'προθέρμανση',cafe:'προετοιμασία καφέ ',foaming:'άφρισμα γάλακτος',hotwater:'καυτό νερό',seqCanceled:'Διακοπή ροφήματος',week:'εβδομάδα',weekend:'σαββατ/κο',morning:'πρωί',lunch:'μεσημέρι',dinner:'βράδυ',light:'ελαφρύς',strong:'δυνατός',short:'μικρός',long:'μεγάλος',none:'κανένας',sweet:'με κρεμώδη υφή',programDesc:'Ρύθμιση αυτόματης ενεργοποίησης',cleanup:'Καθαρισμός',descaling_short:'Αφαλάτωση',filter:'Φίλτρο',milkRinse:'Έκπλυση του συστήματος γάλακτος',milkAccClean:'Καθαρισμός εξαρτημάτων γάλακτος',help_fav:'Πώς να δημιουργήσετε και να διαχειριστείτε τα Αγαπημένα σας',help_service:'Πώς να συντηρήσετε τη μηχανή σας',videos:'%s βίντεο',roundsDesc:'Αριθμός κύκλων',teaRinse:'Προέκπλυση για τσάι',profile:'Προφίλ',calendarMonths:'Ιαν.;Φεβ.;Μάρ.;Απρ.;Μάι.;Ιούν.;Ιούλ.;Αύγ.;Σεπ.;Οκτ.;Νοέ.;Δεκ.',}},
+cs:{display:'CS',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Mléčná pěna',caffelatte:'Cafe latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Káva ',americano:'Americano',thevert:'Zelený čaj',thenoir:'Černý čaj',lattemacchiato:'L. macchiato',infusion:'Bylinný čaj',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Mléčná pěna',caffelatte_short:'Cafe latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Káva ',americano_short:'Americano',thevert_short:'Zelený čaj',thenoir_short:'Černý čaj',lattemacchiato_short:'L. macchiato',infusion_short:'Bylinný čaj',profileSettings:'Nastavení profilu',setups:'Nastavení',informations:'Informace',ml:'ml',oz:'oz',sec:'s',yes:'Ano',no:'Ne',ok:'OK',beforeThxs:'Nápoj <BOLD>%s %s</BOLD>',afterThxs:'byl přidán do vašeho profilu!',drink:'Nápoje',espressomacchiato:'E. macchiato',addDrink:'Přidejte nápoj',chooseColor:'Zvolte barvu',typeYourName:'Zadejte své jméno',next:'DALŠÍ',finnished:'DOKONČIT',color:'Barva',firstName:'Jméno',display:'Zobrazení',planning:'Programování ',slider:'POSUVNÍK',tiles:'MOZAIKA',on:'ZAP',off:'VYP',displayDesc:'Představení',deviceLightDesc:'Aktivujte světelného průvodce',selectKeyword:'Zvolte klíčové slovo',enjoy:'Dobrou chuť!',coffeeTemp:'Teplota',teaTemp:'Teplota čaje',waterTemp:'Teplota vody',tempDesc:'Zvolte teplotu',selectYourProfile:'Vyberte svůj profil',start:'Start',stop:'Stop',remains:'(zbývá znaků: %s)',date:'Datum',settings:'Nastavení',help:'Nápověda a postupy',language:'Jazyk',dateTime:'Datum a čas',dateTimeDesc:'Datum a čas',deviceLight:'Kontrolka',autoOff:'Automatické <wbr>vypnutí',autoOff2:'Automatické zastavení',volUnity:'Jednotka objemu',autoRinse:'Automatické<br>vyplachování',waterHardness:'Tvrdost vody',backLightDesc:'Nastavte podsvícení',screenLight:'Jas displeje',afterInactivity:'Po nečinnosti trvající:',waterHardnessDesc:'Nastavte tvrdost vody ',cafeTypDesc:'Vyberte typ kávových zrn ',cafeTyp:'Typ kávy',moreInfos:'Další informace',VolUnitDesc:'Zvolte jednotku zobrazení objemu',resetDesc:'Při resetování budou odstraněny vaše předvolby a nastavení.',reset:'Probíhá resetování',profileSettingsDesc:'Vyberte profil ke konfiguraci<br>',cleanup_5_desc:'Umístěte 600ml nádobu pod trysky<br>',cleanup_9_desc:'Čištění dokončeno',cleanup_6_desc:'Probíhá čištění, zbývá %s min<wbr>',cleanup_7_desc:'Vyprázdněte nádobu',cleanup_8_desc:'Vyprázdněte odkapávací misku',cleanup_3_desc:'Naplňte nádržku na vodu ',cleanup_4_desc:'Otevřete kryt a vložte čisticí<br>tabletu do žlábku<br>',cleanup_1_desc:'Je nutné použít čisticí<br>tabletu XS3000.<br>Odhadovaná doba trvání: 13 minut ',descaling:'Odvápnění',autoRinseDesc:'Při každém zapnutí spusťte<br>cyklus vyplachování',coffeeRinse:'Vypláchnutí kávy',care:'Údržba zařízení',standardCoffee:'Běžná káva',greasyCoffee:'Olejnatá káva',cleanup_2_desc:'Vyprázdněte 2 nádoby',pleaseWait:'Čekejte...',hourShort:'h',minuteShort:'min',selectDrink:'Zvolte nápoj',preheat:'předehřev',cafe:'připravuje se káva ',foaming:'pěnění mléka',hotwater:'horká voda',seqCanceled:'Příprava nápoje zastavena',week:'týden',weekend:'víkend',morning:'ráno',lunch:'poledne',dinner:'večer',light:'slabá',strong:'silná',short:'krátké',long:'dlouhé',none:'žádný',sweet:'jemná',programDesc:'Nastavte automatické zapínání',cleanup:'Čištění',descaling_short:'Odvápnění',filter:'Filtr',milkRinse:'Vypláchnutí mléka',milkAccClean:'Čištění příslušenství pro mléko',help_fav:'Jak vytvářet oblíbené nápoje a provádět jejich správu?',help_service:'Jak provádět údržbu zařízení?',videos:'%s videí',roundsDesc:'Počet cyklů',teaRinse:'Propláchnutí pro čaj',profile:'Profil',calendarMonths:'Led;Úno;Bře;Dub;Kvě;Čvn;Čvc;Srp;Zář;Říj;Lis;Pro',}},
+sk:{display:'SK',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Mliečna pena',caffelatte:'Cafe latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Káva',americano:'Americano',thevert:'Zelený čaj',thenoir:'Čierny čaj',lattemacchiato:'L. macchiato',infusion:'Bylinný čaj',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Mliečna pena',caffelatte_short:'Cafe latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Káva',americano_short:'Americano',thevert_short:'Zelený čaj',thenoir_short:'Čierny čaj',lattemacchiato_short:'L. macchiato',infusion_short:'Bylinný čaj',profileSettings:'Nastavenia profilu',setups:'Úpravy',informations:'Informácie',ml:'ml',oz:'oz',sec:'s',yes:'Áno',no:'Nie',ok:'OK',beforeThxs:'Váš nápoj <BOLD>%s %s</BOLD>',afterThxs:'bol pridaný do vášho profilu!',drink:'Nápoje',espressomacchiato:'E. macchiato',addDrink:'Pridať nápoj',chooseColor:'Vyberte si farbu',typeYourName:'Zadajte svoje meno',next:'ĎALEJ',finnished:'KONIEC',color:'Farba',firstName:'Názov',display:'Zobraziť',planning:'Programovanie ',slider:'POSÚVAČ',tiles:'MOZAIKA',on:'ZAP',off:'VYP',displayDesc:'Prezentácia',deviceLightDesc:'Aktivovať sprievodné svetlo',selectKeyword:'Vyberte kľúčové slovo',enjoy:'Príjemný zážitok!',coffeeTemp:'Teplota',teaTemp:'Teplota čaju',waterTemp:'Teplota vody',tempDesc:'Zvoľte teplotu',selectYourProfile:'Vyberte váš profil',start:'Spustiť',stop:'Zastaviť',remains:'(zostáva znakov:%s)',date:'Dátum',settings:'Nastavenia',help:'Nápoveda a postupy',language:'Jazyk',dateTime:'Dátum/čas',dateTimeDesc:'Dátum/čas',deviceLight:'Svetlo',autoOff:'Automatické <wbr>vypnutie',autoOff2:'Automatické zastavenie',volUnity:'Jednotka objemu',autoRinse:'Automatické<br>oplachovanie',waterHardness:'Tvrdosť vody',backLightDesc:'Nastavenie podsvietenia',screenLight:'Jas obrazovky',afterInactivity:'Ak sa nepoužíva:',waterHardnessDesc:'Nastavte tvrdosť vody ',cafeTypDesc:'Zvoľte typ zŕn ',cafeTyp:'Typ kávy',moreInfos:'Viac informácií',VolUnitDesc:'Vyberte jednotku zobrazovania objemu',resetDesc:'Resetovaním odstránite svoje preferencie a nastavenia.',reset:'Prebieha resetovanie',profileSettingsDesc:'Vyberte profil na konfiguráciu<br>',cleanup_5_desc:'Položte pod trysky nádobu s<br>objemom 600 ml',cleanup_9_desc:'Čistenie dokončené',cleanup_6_desc:'Prebieha čistenie, ostáva %s min<wbr>',cleanup_7_desc:'Vyprázdnite nádobu',cleanup_8_desc:'Vyprázdnite odkvapkávaciu misku',cleanup_3_desc:'Naplňte nádržku na vodu ',cleanup_4_desc:'Otvorte kryt a vložte čistiacu<br>tabletu do žliabku<br>',cleanup_1_desc:'Použite čistiacu tabletu XS3000.<br><br>Odhadovaná dĺžka: 13 minút ',descaling:'Odvápnenie',autoRinseDesc:'Nastavte oplachovací cyklus pri<br>každom spustení',coffeeRinse:'Oplachovanie po káve',care:'Údržba zariadenia',standardCoffee:'Bežná káva',greasyCoffee:'Olejnatá káva',cleanup_2_desc:'Vyprázdnite obe nádoby',pleaseWait:'Čakajte, prosím...',hourShort:'h',minuteShort:'min',selectDrink:'Zvoľte si nápoj',preheat:'predhrievanie',cafe:'predohrev ',foaming:'mliečna pena',hotwater:'horúca voda',seqCanceled:'nápoj zastavený',week:'týždeň',weekend:'víkend',morning:'ráno',lunch:'poludnie',dinner:'večer',light:'svetlo',strong:'silné',short:'malé',long:'veľké',none:'žiadny',sweet:'jemná',programDesc:'Nastavte automatické zapnutie',cleanup:'Čistenie',descaling_short:'Odvápnenie',filter:'Filter',milkRinse:'Oplachovanie po mlieku',milkAccClean:'Čistenie príslušenstva na mlieko',help_fav:'Ako vytvoriť a spravovať obľúbené nápoje',help_service:'Správna údržba zariadenia',videos:'%s videá',roundsDesc:'Počet cyklov',teaRinse:'Preplachovanie pred čajom',profile:'Profil',calendarMonths:'Jan;Feb;Mar;Apr;Máj;Jún;Júl;Aug;Sep;Okt;Nov;Dec',}},
+hu:{display:'HU',strings:{espresso:'Eszpresszó',cappucino:'Cappuccino',laitmousse:'Tejhab',caffelatte:'Cafe Latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Hosszú kávé',americano:'Americano',thevert:'Zöld tea',thenoir:'Fekete tea',lattemacchiato:'L. macchiato',infusion:'Gyógynöv.tea',espresso_short:'Eszpresszó',cappucino_short:'Cappuccino',laitmousse_short:'Tejhab',caffelatte_short:'Cafe Latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Hosszú kávé',americano_short:'Americano',thevert_short:'Zöld tea',thenoir_short:'Fekete tea',lattemacchiato_short:'L. macchiato',infusion_short:'Gyógynöv.tea',profileSettings:'Profilbeállítások',setups:'Beállítások',informations:'Információk',ml:'ml',oz:'oz',sec:'mp',yes:'Igen',no:'Nem',ok:'OK',beforeThxs:'Az Ön <BOLD>%s %s</BOLD>',afterThxs:'itala bekerült a profiljába!',drink:'Italok',espressomacchiato:'E. macchiato',addDrink:'Ital hozzáadása',chooseColor:'Válasszon színt',typeYourName:'Adja meg a nevét',next:'TOVÁBB',finnished:'KÉSZ',color:'Szín',firstName:'Név',display:'Kijelző',planning:'Programozás ',slider:'CSÚSZKA',tiles:'MOZAIK',on:'BE',off:'KI',displayDesc:'Ital',deviceLightDesc:'Fényjelzéses útmutatás aktiválása',selectKeyword:'Kulcsszó kiválasztása',enjoy:'Egészségére!',coffeeTemp:'Kávé',teaTemp:'Tea hőmérséklete',waterTemp:'Víz hőmérséklete',tempDesc:'Hőmérséklet kiválasztása',selectYourProfile:'Profil kiválasztása',start:'Indítás',stop:'Leállítás',remains:'(%s karakter maradt)',date:'Dátum',settings:'Beállítások',help:'Súgó és oktatóanyagok',language:'Nyelv',dateTime:'Dátum/Idő',dateTimeDesc:'Dátum/Idő',deviceLight:'Fény',autoOff:'Automatikus <wbr>kikapcsolás',autoOff2:'Automatikus leállítás',volUnity:'Térfogat mértékegysége',autoRinse:'Automatikus<br>öblítés',waterHardness:'Vízkeménység',backLightDesc:'Háttérvilágítás beállítása',screenLight:'Képernyő fényereje',afterInactivity:'Ha alapjáraton van:',waterHardnessDesc:'Vízkeménység módosítása ',cafeTypDesc:'Kávébab típusának kiválasztása ',cafeTyp:'Kávé típusa',moreInfos:'További információk',VolUnitDesc:'Válassza ki a térfogat <wbr>mértékegységét',resetDesc:'A visszaállítás az Ön valamennyi beállítását törölni fogja.',reset:'Visszaállítás…',profileSettingsDesc:'Konfigurálandó profil kiválasztása<br>',cleanup_5_desc:'Helyezzen egy 600 ml-es<br>tartályt a fúvókák alá',cleanup_9_desc:'Tisztítás kész',cleanup_6_desc:'Tisztítás folyamatban,<wbr>%s perc van hátra',cleanup_7_desc:'Ürítse ki a tartályt',cleanup_8_desc:'Ürítse ki a csepegtető tálcát',cleanup_3_desc:'Töltse fel a víztartályt ',cleanup_4_desc:'Nyissa fel a fedelet, és helyezzen<br>egy tisztítótablettát a garatba<br>',cleanup_1_desc:'XS3000 tisztítótabletta szükséges.<br><br>Becsült időtartam: 13 perc ',descaling:'Vízkőmentesítés',autoRinseDesc:'Minden indításkor indítson el<br>egy öblítési ciklust',coffeeRinse:'Kávéöblítés',care:'Készülék karbantartása',standardCoffee:'Normál kávé',greasyCoffee:'Olajos kávé',cleanup_2_desc:'Ürítse ki a 2 tartályt',pleaseWait:'Várjon...',hourShort:'óra',minuteShort:'perc',selectDrink:'Válasszon italt',preheat:'előmelegítés',cafe:'Kávékészítés…',foaming:'tejhabosítás',hotwater:'forró víz',seqCanceled:'Italkészítés leállt',week:'hét',weekend:'hétvége',morning:'reggel',lunch:'dél',dinner:'este',light:'gyenge',strong:'erős',short:'rövid',long:'hosszú',none:'nincs',sweet:'selymes',programDesc:'Automatikus bekapcsolás beállítása',cleanup:'Tisztítás',descaling_short:'Vízkőmentesítés',filter:'Szűrő',milkRinse:'Tejöblítés',milkAccClean:'Tejadagoló tart. tisztítása',help_fav:'Hogyan hozza létre és kezelje a kedvenceit',help_service:'Hogyan tartsa karban a készülékét',videos:'%s videó',roundsDesc:'Ciklusok száma',teaRinse:'Tea előöblítés',profile:'Profil',calendarMonths:'Jan;Feb;Márc;Ápr;Máj;Jún;Júl;Aug;Szept;Okt;Nov;Dec',}},
+pl:{display:'PL',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Spienione mleko',caffelatte:'Caffe Latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Duża kawa',americano:'Americano',thevert:'Zielona herb.',thenoir:'Czarna herbata',lattemacchiato:'L. macchiato',infusion:'Herb. ziołowa',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Spienione mleko',caffelatte_short:'Caffe Latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Duża kawa',americano_short:'Americano',thevert_short:'Zielona herb.',thenoir_short:'Czarna herbata',lattemacchiato_short:'L. macchiato',infusion_short:'Herb. ziołowa',profileSettings:'Ustawienia profilu',setups:'Personalizacja',informations:'Informacje',ml:'ml',oz:'oz',sec:'s',yes:'Tak',no:'Nie',ok:'OK',beforeThxs:'Napój został dodany',afterThxs:'do <BOLD>Twojego profilu!</BOLD>',drink:'Napoje',espressomacchiato:'E. macchiato',addDrink:'Dodaj napój',chooseColor:'Wybierz kolor',typeYourName:'Wprowadź nazwę',next:'DALEJ',finnished:'ZAKOŃCZ',color:'Kolor',firstName:'Nazwa',display:'Wyświetlacz',planning:'Programowanie ',slider:'SLIDER',tiles:'KAFELKI',on:'ON',off:'OFF',displayDesc:'Wygląd',deviceLightDesc:'Włącz nawigację za pomocą podświetlenia',selectKeyword:'Wybierz słowo kluczowe',enjoy:'Smacznego!',coffeeTemp:'Temperatura',teaTemp:'Temperatura herbaty',waterTemp:'Temperatura wody',tempDesc:'Wybierz temperaturę',selectYourProfile:'Wybierz swój profil',start:'Rozpocznij',stop:'Zatrzymaj',remains:'(pozostało znaków: %s)',date:'Data',settings:'Ustawienia',help:'Pomoc i samouczki',language:'Język',dateTime:'Data/godzina',dateTimeDesc:'Data/godzina',deviceLight:'Światło',autoOff:'Automatyczne <wbr>wyłączanie',autoOff2:'Automatyczne zatrzymanie',volUnity:'Jednostka objętości',autoRinse:'Automatyczne<br>płukanie',waterHardness:'Twardość wody',backLightDesc:'Dostosuj podświetlenie',screenLight:'Jasność ekranu',afterInactivity:'Gdy bezczynny przez:',waterHardnessDesc:'Dostosuj twardość wody ',cafeTypDesc:'Wybierz typ ziarna ',cafeTyp:'Rodzaj kawy',moreInfos:'Więcej informacji',VolUnitDesc:'Wybierz jednostkę wyświetlania <wbr>objętości',resetDesc:'Zresetowanie spowoduje usunięcie preferencji i ustawień.',reset:'Trwa resetowanie',profileSettingsDesc:'Wybierz profil, który chcesz<br>skonfigurować',cleanup_5_desc:'Umieść pojemnik o pojemności<br>600 ml pod dyszą',cleanup_9_desc:'Czyszczenie zakończone',cleanup_6_desc:'Trwa czyszczenie, pozostało minut:<wbr>%s',cleanup_7_desc:'Opróżnij pojemnik',cleanup_8_desc:'Opróżnij tackę ociekową',cleanup_3_desc:'Napełnij zbiornik na wodę ',cleanup_4_desc:'Otwórz pokrywę i włóż tabletkę<br>czyszczącą do odpowiedniego otworu<br>',cleanup_1_desc:'Wymagana jest tabletka<br>czyszcząca XS3000.<br>Szacowany czas trwania: 13 min. ',descaling:'Usuwanie kamienia',autoRinseDesc:'Uruchom cykl płukania przy każdym uruchomieniu<br>',coffeeRinse:'Płukanie przewodu',care:'Konserwacja maszyny',standardCoffee:'Zwykła kawa',greasyCoffee:'Ziarna oleiste',cleanup_2_desc:'Opróżnij oba zbiorniki',pleaseWait:'Proszę czekać...',hourShort:'godz.',minuteShort:'min',selectDrink:'Wybierz napój',preheat:'nagrzewanie wstępne',cafe:'Przygotowanie kawy',foaming:'spienianie mleka',hotwater:'gorąca woda',seqCanceled:'Zatrzymano napój',week:'tydzień',weekend:'weekend',morning:'rano',lunch:'południe',dinner:'wieczór',light:'podświetlenie',strong:'mocna',short:'mała',long:'duża',none:'brak',sweet:'gładka',programDesc:'Ustaw automatyczne włączenie',cleanup:'Czyszczenie',descaling_short:'Usuwanie kamienia',filter:'Filtr',milkRinse:'Płukanie wężyka do mleka',milkAccClean:'Czyszczenie akcesorium do mleka',help_fav:'Jak tworzyć ulubione napoje i nimi zarządzać?',help_service:'Jak zadbać o maszynę?',videos:'filmy: %s',roundsDesc:'Liczba cykli',teaRinse:'Wstępne płukanie',profile:'Profil',calendarMonths:'sty;lut;mar;kwi;maj;cze;lip;sie;wrz;paź;lis;gru',}},
+ru:{display:'RU',strings:{espresso:'Эспрессо',cappucino:'Капучино',laitmousse:'Молочная пена',caffelatte:'Латте',flatwhite:'Флэт уайт',lungo:'Лунго',ristretto:'Ристретто',doppio:'Доппио',cafelong:'Черный кофе',americano:'Американо',thevert:'Зеленый чай',thenoir:'Черный чай',lattemacchiato:'Латт.макиато',infusion:'Травяной чай',espresso_short:'Эспрессо',cappucino_short:'Капучино',laitmousse_short:'Молочная пена',caffelatte_short:'Латте',flatwhite_short:'Флэт уайт',lungo_short:'Лунго',ristretto_short:'Ристретто',doppio_short:'Доппио',cafelong_short:'Черный кофе',americano_short:'Американо',thevert_short:'Зеленый чай',thenoir_short:'Черный чай',lattemacchiato_short:'Латт.макиато',infusion_short:'Травяной чай',profileSettings:'Настройки<br>профиля',setups:'Настройки',informations:'Информация',ml:'мл',oz:'унция',sec:'с',yes:'Да',no:'Нет',ok:'OK',beforeThxs:'Напиток <BOLD>%s',afterThxs:'%s</BOLD> добавлен в ваш профиль!',drink:'Напитки',espressomacchiato:'Эспр.макиато',addDrink:'Добавить напиток',chooseColor:'Выберите цвет',typeYourName:'Введите свое имя',next:'ДАЛЕЕ',finnished:'ЗАВЕРШИТЬ',color:'Цвет',firstName:'Имя',display:'Отображение',planning:'Программирование ',slider:'СЛАЙДЕР',tiles:'МОЗАИКА',on:'ВКЛ.',off:'ВЫКЛ.',displayDesc:'Режим',deviceLightDesc:'Активировать световой индикатор',selectKeyword:'Выберите ключевое слово',enjoy:'Наслаждайтесь!',coffeeTemp:'Температура',teaTemp:'Температура чая',waterTemp:'Температура воды',tempDesc:'Выбрать температуру',selectYourProfile:'Выберите свой профиль',start:'Старт',stop:'Стоп',remains:'(осталось символов: %s)',date:'Дата',settings:'Настройки',help:'Справка и руководства',language:'Язык',dateTime:'Дата/время',dateTimeDesc:'Дата/время',deviceLight:'Световой индикатор',autoOff:'Автовыкл.',autoOff2:'Автоматическая остановка',volUnity:'Единица измерения объема',autoRinse:'Промывка<br>системы кофе',waterHardness:'Жесткость воды',backLightDesc:'Настроить подсветку',screenLight:'Яркость экрана',afterInactivity:'При простое в течение:',waterHardnessDesc:'Отрегулировать жесткость воды ',cafeTypDesc:'Выбрать тип зерен ',cafeTyp:'Вид кофе',moreInfos:'Дополнительн. информация',VolUnitDesc:'Выбрать режим отображения<br>единицы измерения объема',resetDesc:'При выполнении сброса будут удалены<br>заданные настройки.',reset:'Выполняется сброс',profileSettingsDesc:'Выберите профиль для настройки<br>',cleanup_5_desc:'Поместите емкость 600 млпод сопла<br>',cleanup_9_desc:'Очистка завершена',cleanup_6_desc:'Выполняется очистка, осталось<wbr>%s мин',cleanup_7_desc:'Опустошите контейнер',cleanup_8_desc:'Опустошите поддон для капель',cleanup_3_desc:'Заполните резервуар для воды ',cleanup_4_desc:'Откройте крышку и опустите<br>чистящую таблетку<br>',cleanup_1_desc:'Требуется чистящая таблетка XS3000.<br><br>Предполагаемая продолжительность: 13 мин ',descaling:'Удаление накипи',autoRinseDesc:'Запускайте цикл промывки<br>при каждом использовании',coffeeRinse:'Промывка после приготовления кофе',care:'Техническое обслуживание прибора',standardCoffee:'Обычный кофе',greasyCoffee:'Маслянистый кофе',cleanup_2_desc:'Опустошите 2 контейнера',pleaseWait:'Подождите…',hourShort:'ч',minuteShort:'мин',selectDrink:'Выберите напиток',preheat:'подогрев',cafe:'приготовление кофе ',foaming:'вспенивание молока',hotwater:'горячая вода',seqCanceled:'Приготовлениенапитка остановлено',week:'неделя',weekend:'выходные',morning:'утро',lunch:'полдень',dinner:'вечер',light:'легкий',strong:'крепкий',short:'короткий',long:'длинный',none:'нет',sweet:'мягкий',programDesc:'Задать автоматическое включение',cleanup:'Очистка',descaling_short:'Удаление накипи',filter:'Фильтр',milkRinse:'Промывка после приготовления напитка с молоком',milkAccClean:'Очистка молочного блока',help_fav:'Как создавать рецепты любимых напитков',help_service:'Как ухаживать за прибором',videos:'%s видео',roundsDesc:'Количество циклов',teaRinse:'Промывка перед приготовлением чая',profile:'Профиль',calendarMonths:'Янв;Фев;Мар;Апр;Май;Июн;Июл;Авг;Сен;Окт;Ноя;Дек',}},
+uk:{display:'UK',strings:{espresso:'Еспресо',cappucino:'Капучино',laitmousse:'Пінисте молоко',caffelatte:'Кава лате',flatwhite:'Кава з молоком',lungo:'Лунго',ristretto:'Рістрето',doppio:'Допіо',cafelong:'Лонг блек',americano:'Американо',thevert:'Зелений чай',thenoir:'Чорний чай',lattemacchiato:'Лате макіато',infusion:'Трав. чай',espresso_short:'Еспресо',cappucino_short:'Капучино',laitmousse_short:'Пінисте молоко',caffelatte_short:'Кава лате',flatwhite_short:'Кава з молоком',lungo_short:'Лунго',ristretto_short:'Рістрето',doppio_short:'Допіо',cafelong_short:'Лонг блек',americano_short:'Американо',thevert_short:'Зелений чай',thenoir_short:'Чорний чай',lattemacchiato_short:'Лате макіато',infusion_short:'Трав. чай',profileSettings:'Налаштування профілю',setups:'Налаштування',informations:'Інформація',ml:'мл',oz:'oz',sec:'с',yes:'Так',no:'Ні',ok:'OK',beforeThxs:'Ваш напій <BOLD>%s',afterThxs:'%s</BOLD> додано до вашого профілю!',drink:'Напої',espressomacchiato:'Есп. макіато',addDrink:'Додати напій',chooseColor:'Виберіть ваш колір',typeYourName:'Введіть ваше ім’я',next:'ДАЛІ',finnished:'ЗАВЕРШИТИ',color:'Колір',firstName:'Ім’я',display:'Дисплей',planning:'Програмування ',slider:'СПИСОК',tiles:'МОЗАЇКА',on:'ВВІМКНЕННЯ',off:'ВИМКНЕННЯ',displayDesc:'Відображення',deviceLightDesc:'Переглянути посібник з налаштування',selectKeyword:'Виберіть ключове слово',enjoy:'Смачного!',coffeeTemp:'Температура',teaTemp:'Температура чаю',waterTemp:'Температура води',tempDesc:'Оберіть температуру',selectYourProfile:'Виберіть профіль',start:'Почати',stop:'Завершити',remains:'(залишилось % симв.)',date:'Дата',settings:'Налаштування',help:'Допомога й навчання',language:'Мова',dateTime:'Дата / час',dateTimeDesc:'Дата / час',deviceLight:'Світловий індикатор',autoOff:'Автоматичне <wbr>вимкнення',autoOff2:'Автоматичне припинення роботи',volUnity:'Одиниці об’єму',autoRinse:'Автоматичне<br>промивання',waterHardness:'Жорсткість води',backLightDesc:'Налаштування<br>підсвічування екрана',screenLight:'Яскравість екрана',afterInactivity:'У режимі очікування:',waterHardnessDesc:'Виберіть жорсткість води ',cafeTypDesc:'Виберіть тип зерен ',cafeTyp:'Тип кави',moreInfos:'Додаткова інформація',VolUnitDesc:'Виберіть одиниці відображення об’єму',resetDesc:'Перезапуск видалить ваші вподобання й налаштування.',reset:'Перезапуск',profileSettingsDesc:'Виберіть профіль для налаштування<br>',cleanup_5_desc:'Помістіть контейнер ємністю<br>600 млпід сопла',cleanup_9_desc:'Очищення завершено',cleanup_6_desc:'Триває очищення:<wbr>залишилось %s хвилин',cleanup_7_desc:'Спорожніть контейнер',cleanup_8_desc:'Спорожніть лоток для крапель',cleanup_3_desc:'Наповніть резервуар для води ',cleanup_4_desc:'Відкрите кришку та помістіть в отвір<br>таблетку для очищення<br>',cleanup_1_desc:'Необхідна таблетка для<br>очищення XS3000.<br>Приблизна тривалість: 13 хвилин ',descaling:'Видалення накипу',autoRinseDesc:'Запускати промивання при кожному<br>ввімкненні приладу',coffeeRinse:'Промивання після кави',care:'Обслуговування машини',standardCoffee:'Звичайна кава',greasyCoffee:'Масляниста кава',cleanup_2_desc:'Спорожніть 2 контейнери',pleaseWait:'Зачекайте…',hourShort:'год',minuteShort:'хв',selectDrink:'Виберіть напій',preheat:'попереднє<br>нагрівання',cafe:'приготування кави ',foaming:'Вспінювання молока',hotwater:'гаряча вода',seqCanceled:'Приготуваннянапою зупинено',week:'тиждень',weekend:'вихідні',morning:'ранок',lunch:'день',dinner:'вечір',light:'індикатор',strong:'міцна',short:'маленька',long:'велика',none:'ні',sweet:'м’яка',programDesc:'Задати автом. ввімкнення',cleanup:'Очищення',descaling_short:'Видалення накипу',filter:'Фільтр',milkRinse:'Промивання молочної системи',milkAccClean:'Очищення<br>молочної системи',help_fav:'Як створювати й зберігати рецепти улюблених напоїв',help_service:'Як обслуговувати машину',videos:'%s відео',roundsDesc:'Кількість циклів',teaRinse:'Попереднє промивання перед приготуванням чаю',profile:'Профіль',calendarMonths:'січ.;лют.;бер.;квіт.;трав.;черв.;лип.;серп.;вер.;жовт.;лист.;груд.',}},
+ro:{display:'RO',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Spumă din lapte',caffelatte:'Cafe Latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Cafea lungă',americano:'Americano',thevert:'Ceai verde',thenoir:'Ceai negru',lattemacchiato:'L. macchiato',infusion:'Ceai din plante',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Spumă din lapte',caffelatte_short:'Cafe Latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Cafea lungă',americano_short:'Americano',thevert_short:'Ceai verde',thenoir_short:'Ceai negru',lattemacchiato_short:'L. macchiato',infusion_short:'Ceai din plante',profileSettings:'Setări profil',setups:'Reglări',informations:'Informații',ml:'ml',oz:'oz',sec:'s',yes:'Da',no:'Nu',ok:'OK',beforeThxs:'Băutura <BOLD>%s %s</BOLD> a fost',afterThxs:'adăugată la profilul dvs.!',drink:'Băuturi',espressomacchiato:'E. macchiato',addDrink:'Adăugați băutură',chooseColor:'Alegeți o culoare',typeYourName:'Introduceți numele',next:'URMĂTOR',finnished:'FINALIZARE',color:'Culoare',firstName:'Nume',display:'Afișaj',planning:'Programare ',slider:'CURSOR',tiles:'MOZAIC',on:'PORNIRE',off:'OPRIRE',displayDesc:'Prezentare',deviceLightDesc:'Activare ghid luminos',selectKeyword:'Alegeți un cuvânt cheie',enjoy:'Poftă bună!',coffeeTemp:'Temperatură',teaTemp:'Temperatură ceai',waterTemp:'Temperatură apă',tempDesc:'Alegeți temperatura',selectYourProfile:'Selectați-vă profilul',start:'Start',stop:'Stop',remains:'(%s caractere rămase)',date:'Dată',settings:'Setări',help:'Ajutor și tutoriale',language:'Limbă',dateTime:'Dată/Oră',dateTimeDesc:'Dată/Oră',deviceLight:'Lumină',autoOff:'Oprire <wbr>automată',autoOff2:'Oprire automată',volUnity:'Unitate de volum',autoRinse:'Clătire<br>automată',waterHardness:'Duritate apă',backLightDesc:'Reglare lumină de fundal',screenLight:'Luminozitate ecran',afterInactivity:'După o perioadă de inactivitate de:',waterHardnessDesc:'Reglare duritate apă ',cafeTypDesc:'Selectare tip de boabe ',cafeTyp:'Tip de cafea',moreInfos:'Mai multe informații',VolUnitDesc:'Alegeți unitatea de afișare<wbr>a volumului',resetDesc:'Resetarea vă va șterge preferințele și setările.',reset:'Resetare în curs',profileSettingsDesc:'Selectați profilul de configurat<br>',cleanup_5_desc:'Puneți un vas de 600 ml sub duze<br>',cleanup_9_desc:'Curățare finalizată',cleanup_6_desc:'Curățare în curs, %s minute rămase<wbr>',cleanup_7_desc:'Goliți recipientul',cleanup_8_desc:'Goliți tava de picături',cleanup_3_desc:'Umpleți rezervorul de apă ',cleanup_4_desc:'Deschideți capacul și introduceți<br>o tabletă de curățare în pâlnie<br>',cleanup_1_desc:'Este necesară o tabletă de<br>curățare XS3000.<br>Durată estimată: 13 minute ',descaling:'Eliminarea calcarului',autoRinseDesc:'Lansați un ciclu de clătire<br>la fiecare pornire',coffeeRinse:'Clătire cafea',care:'Întreținerea aparatului',standardCoffee:'Cafea obișnuită',greasyCoffee:'Cafea uleioasă',cleanup_2_desc:'Goliți cele 2 rezervoare',pleaseWait:'Așteptați...',hourShort:'h',minuteShort:'min.',selectDrink:'Alegeți băutura',preheat:'preîncălzire',cafe:'cafea în curs ',foaming:'spumare lapte',hotwater:'apă caldă',seqCanceled:'Băutura s-a oprit',week:'săptămână',weekend:'weekend',morning:'dimineață',lunch:'prânz',dinner:'seară',light:'slabă',strong:'tare',short:'scurtă',long:'lungă',none:'lipsă',sweet:'fină',programDesc:'Setați pornire auto',cleanup:'Curățare',descaling_short:'Eliminarea calcarului',filter:'Filtru',milkRinse:'Clătire sistem de lapte',milkAccClean:'Curățare acc. lapte',help_fav:'Cum să vă creați și gestionați favoritele',help_service:'Cum să vă întrețineți aparatul',videos:'%s videoclipuri',roundsDesc:'Număr de cicluri',teaRinse:'Preclătire ceai',profile:'Profil',calendarMonths:'Ian;Feb;Mar;Apr;Mai;Iun;Iul;Aug;Sept;Oct;Noi;Dec',}},
+bg:{display:'BG',strings:{espresso:'Еспресо',cappucino:'Капучино',laitmousse:'Мляко с пяна',caffelatte:'Кафе лате',flatwhite:'Флет уайт',lungo:'Лунго',ristretto:'Ристрето',doppio:'Допио',cafelong:'Дълго кафе',americano:'Американо',thevert:'Зелен чай',thenoir:'Черен чай',lattemacchiato:'Лате макиато',infusion:'Билков чай',espresso_short:'Еспресо',cappucino_short:'Капучино',laitmousse_short:'Мляко с пяна',caffelatte_short:'Кафе лате',flatwhite_short:'Флет уайт',lungo_short:'Лунго',ristretto_short:'Ристрето',doppio_short:'Допио',cafelong_short:'Дълго кафе',americano_short:'Американо',thevert_short:'Зелен чай',thenoir_short:'Черен чай',lattemacchiato_short:'Лате макиато',infusion_short:'Билков чай',profileSettings:'Настройки на профила',setups:'Регулиране',informations:'Информация',ml:'ml',oz:'oz',sec:'s',yes:'Да',no:'Не',ok:'ОК',beforeThxs:'Вашата напитка <BOLD>%s %s</BOLD> е добавена',afterThxs:'към предпочитаните Ви напитки!',drink:'Напитки',espressomacchiato:'Кафе макиато',addDrink:'Добавете напитка',chooseColor:'Изберете Вашия цвят',typeYourName:'Въведете името си',next:'НАПРЕД',finnished:'ЗАВЪРШВАНЕ',color:'Цвят',firstName:'Име',display:'Дисплей',planning:'Програмиране ',slider:'ПЛЪЗГАЧ',tiles:'МОЗАЙКА',on:'ВКЛ.',off:'ИЗКЛ.',displayDesc:'Презентиране на',deviceLightDesc:'Активирайте светлинните указания',selectKeyword:'Изберете ключова дума',enjoy:'Насладете се!',coffeeTemp:'Температура на',teaTemp:'Температура на чая',waterTemp:'Температура на водата',tempDesc:'Изберете температура',selectYourProfile:'Изберете профил',start:'Стартиране',stop:'Спиране',remains:'(остават %s символа)',date:'Дата',settings:'Настройки',help:'Помощ и инструкции',language:'Език',dateTime:'Дата/час',dateTimeDesc:'Дата/час',deviceLight:'Светлина',autoOff:'Автоматично <wbr>изключване',autoOff2:'Автоматично спиране',volUnity:'Единица за обем',autoRinse:'Автоматично<br>изплакване',waterHardness:'Твърдост на водата',backLightDesc:'Регулиране на фоновото осветяване',screenLight:'Яркост на екрана',afterInactivity:'Когато не е използван за:',waterHardnessDesc:'Регулиране на твърдостта на водата ',cafeTypDesc:'Избор на вид зърна ',cafeTyp:'Вид кафе',moreInfos:'Повече информация',VolUnitDesc:'Изберете единицата за показване <wbr>на обем',resetDesc:'Нулирането ще изтрие Вашите предпочитания и настройки.',reset:'В процес на нулиране',profileSettingsDesc:'Изберете профил за конфигурация<br>',cleanup_5_desc:'Поставете контейнер от<br>600 ml под дюзите',cleanup_9_desc:'Почистването е завършено',cleanup_6_desc:'В процес на почистване, остават<wbr>%s минути',cleanup_7_desc:'Изпразнете контейнера',cleanup_8_desc:'Изпразнете тавата за отцеждане',cleanup_3_desc:'Напълнете резервоара за вода ',cleanup_4_desc:'Отворете капака и поставете таблетка<br>за почистване в улея<br>',cleanup_1_desc:'Необходима е таблетка за<br>почистване XS3000.<br>Очаквана продължителност: 13 минути',descaling:'Премахване на котлен камък',autoRinseDesc:'Стартирайте цикъл на изплакване<br>при всяко стартиране',coffeeRinse:'Изплакване от кафе',care:'Поддръжка на машината',standardCoffee:'Нормално кафе',greasyCoffee:'Мазно кафе',cleanup_2_desc:'Изпразнете 2-та контейнера',pleaseWait:'Моля, изчакайте ...',hourShort:'ч',minuteShort:'мин',selectDrink:'Изберете напитка',preheat:'Загряване',cafe:'Приготвя се кафето',foaming:'Разпенване на мляко',hotwater:'гореща вода',seqCanceled:'Напитката е спряна',week:'седмица',weekend:'уикенд',morning:'сутрин',lunch:'обед',dinner:'вечер',light:'светлина',strong:'силно',short:'късо',long:'дълго',none:'няма',sweet:'гладко',programDesc:'Задайте автоматичното включване',cleanup:'Почистване',descaling_short:'Премахване на котлен камък',filter:'Филтър',milkRinse:'Изплакване от мляко',milkAccClean:'Почистване на принадлежностите за мляко',help_fav:'Как да създавате и управлявате предпочитаните си напитки',help_service:'Как да поддържате Вашата машина',videos:'%s видеоклипове',roundsDesc:'Брой цикли',teaRinse:'Предварително изплакване при приготвяне на чай',profile:'Профил',calendarMonths:'Ян;Фев;Март;Апр;Май;Юни;Юли;Авг;Септ;Окт;Ноем;Дек',}},
+hr:{display:'HR',strings:{espresso:'Espresso',cappucino:'Cappuccino',laitmousse:'Zapjenjeno mlijeko',caffelatte:'Cafe Latte',flatwhite:'Flat white',lungo:'Lungo',ristretto:'Ristretto',doppio:'Doppio',cafelong:'Duga kava',americano:'Americano',thevert:'Zeleni čaj',thenoir:'Crni čaj',lattemacchiato:'L. macchiato',infusion:'Biljni čaj',espresso_short:'Espresso',cappucino_short:'Cappuccino',laitmousse_short:'Zapjenjeno mlijeko',caffelatte_short:'Cafe Latte',flatwhite_short:'Flat white',lungo_short:'Lungo',ristretto_short:'Ristretto',doppio_short:'Doppio',cafelong_short:'Duga kava',americano_short:'Americano',thevert_short:'Zeleni čaj',thenoir_short:'Crni čaj',lattemacchiato_short:'L. macchiato',infusion_short:'Biljni čaj',profileSettings:'Postavke profila',setups:'Prilagodbe',informations:'Informacije',ml:'ml',oz:'oz',sec:'s',yes:'Da',no:'Ne',ok:'U redu',beforeThxs:'Napitak <BOLD>%s %s</BOLD>',afterThxs:'dodan je u vaš profil!',drink:'Napitci',espressomacchiato:'E. macchiato',addDrink:'Dodaj napitak',chooseColor:'Odaberite svoju boju',typeYourName:'Unesite svoje ime',next:'SLJEDEĆE',finnished:'KRAJ',color:'Boja',firstName:'Ime',display:'Prikaz',planning:'Programiranje ',slider:'KLIZAČ',tiles:'MOZAIK',on:'UKLJUČENO',off:'ISKLJUČENO',displayDesc:'Prezentacija',deviceLightDesc:'Aktivirajte pomoć za svjetlo',selectKeyword:'Odaberite ključnu riječ',enjoy:'Uživajte!',coffeeTemp:'Temperatura',teaTemp:'Temperatura čaja',waterTemp:'Temperatura vode',tempDesc:'Odaberite temperaturu',selectYourProfile:'Odaberite svoj profil',start:'Pokreni',stop:'Zaustavi',remains:'(preostalo znakova: %)',date:'Datum',settings:'Postavke',help:'Pomoć i vodiči',language:'Jezik',dateTime:'Datum/vrijeme',dateTimeDesc:'Datum/vrijeme',deviceLight:'Svjetlo',autoOff:'Automatsko <wbr>isključivanje',autoOff2:'Automatsko zaustavljanje',volUnity:'Jedinica za količinu',autoRinse:'Automatsko<br>ispiranje',waterHardness:'Tvrdoća vode',backLightDesc:'Prilagodite pozadinsko svjetlo',screenLight:'Svjetlina zaslona',afterInactivity:'Kad nije aktivno:',waterHardnessDesc:'Prilagodite tvrdoću vode ',cafeTypDesc:'Odaberite vrstu zrna ',cafeTyp:'Vrsta kave',moreInfos:'Više informacija',VolUnitDesc:'Odaberite jedinicu za prikaz <wbr>količine',resetDesc:'Ponovnim postavljanjem izbrisat ćete svoje preferencije i postavke.',reset:'Ponovo se postavlja',profileSettingsDesc:'Odaberite profil koji želite<br>konfigurirati',cleanup_5_desc:'Stavite spremnik od 600 ml ispod<br>mlaznica',cleanup_9_desc:'Čišćenje dovršeno',cleanup_6_desc:'U tijeku je čišćenje, preostalo<wbr>%s min',cleanup_7_desc:'Ispraznite spremnik',cleanup_8_desc:'Ispraznite podložak za kapanje',cleanup_3_desc:'Napunite spremnik za vodu ',cleanup_4_desc:'Otvorite poklopac i stavite tabletu<br>za čišćenje u otvor<br>',cleanup_1_desc:'Potrebne su tablete za<br>čišćenje XS3000.<br>Procijenjeno trajanje: 13 minuta ',descaling:'Uklanjanje kamenca',autoRinseDesc:'Pokrenite ciklus ispiranja pri<br>svakom pokretanju',coffeeRinse:'Ispiranje kave',care:'Održavanje uređaja',standardCoffee:'Obična kava',greasyCoffee:'Masna kava',cleanup_2_desc:'Ispraznite dva spremnika',pleaseWait:'Pričekajte...',hourShort:'h',minuteShort:'min',selectDrink:'Odaberite svoj napitak',preheat:'Zagrijavanje',cafe:'Kava u radu',foaming:'pjenjenje mlijeka',hotwater:'vruća voda',seqCanceled:'Priprema napitka zaustavljena',week:'tjedan',weekend:'vikend',morning:'jutro',lunch:'podne',dinner:'večer',light:'lagana',strong:'jaka',short:'kratka',long:'duga',none:'ništa',sweet:'glatko',programDesc:'Postavi autom. uklj.',cleanup:'Čišćenje',descaling_short:'Uklanjanje kamenca',filter:'Filtar',milkRinse:'Ispiranje mlijeka',milkAccClean:'Čišćenje pribora za mlijeko',help_fav:'Kako stvoriti i upravljati favoritima',help_service:'Kako održavati vaš uređaj',videos:'% videozapisa',roundsDesc:'Broj ciklusa',teaRinse:'Prethodno ispiranje čaja',profile:'Profil',calendarMonths:'Sij;Velj;Ožu;Tra;Svi;Lip;Srp;Kol;Ruj;Lis;Stu;Pro',}},
+zh:{display:'ZH',strings:{espresso:'特濃咖啡',cappucino:'意式泡沫咖啡',laitmousse:'奶泡',caffelatte:'牛奶咖啡',flatwhite:'鮮奶濃縮咖啡',lungo:'濃黑咖啡',ristretto:'超濃咖啡',doppio:'雙份特濃咖啡',cafelong:'淡咖啡',americano:'美式咖啡',thevert:'綠茶',thenoir:'紅茶',lattemacchiato:'奶泡牛奶咖啡',infusion:'草本茶',espresso_short:'特濃咖啡',cappucino_short:'意式泡沫咖啡',laitmousse_short:'奶泡',caffelatte_short:'牛奶咖啡',flatwhite_short:'鮮奶濃縮咖啡',lungo_short:'濃黑咖啡',ristretto_short:'超濃咖啡',doppio_short:'雙份特濃咖啡',cafelong_short:'淡咖啡',americano_short:'美式咖啡',thevert_short:'綠茶',thenoir_short:'紅茶',lattemacchiato_short:'奶泡牛奶咖啡',infusion_short:'草本茶',profileSettings:'檔案設定',setups:'調整',informations:'資料',ml:'毫升',oz:'安士',sec:'秒',yes:'是',no:'否',ok:'好的',beforeThxs:'飲品<BOLD>%s %s</BOLD>',afterThxs:'已加至你的檔案！',drink:'飲品',espressomacchiato:'奶泡特濃咖啡',addDrink:'加入飲品',chooseColor:'選擇顏色',typeYourName:'輸入名稱',next:'下一步',finnished:'完成',color:'顏色',firstName:'名稱',display:'顯示',planning:'正在編制 ',slider:'滑動板',tiles:'馬賽克',on:'開',off:'關',displayDesc:'飲品',deviceLightDesc:'啟動燈光指示',selectKeyword:'選擇關鍵字',enjoy:'好好享受吧！',coffeeTemp:'咖啡',teaTemp:'茶溫',waterTemp:'水溫',tempDesc:'選擇溫度',selectYourProfile:'選擇檔案',start:'開始',stop:'停止',remains:'（剩餘 %s 個字符）',date:'日期',settings:'設定',help:'協助及教學',language:'語言',dateTime:'日期/時間',dateTimeDesc:'日期/時間',deviceLight:'燈光',autoOff:'自動關閉',autoOff2:'自動停止',volUnity:'容量單位',autoRinse:'自動<br>正在沖洗',waterHardness:'水硬度',backLightDesc:'調整背光',screenLight:'屏幕光度',afterInactivity:'閒置時：',waterHardnessDesc:'調整水硬度 ',cafeTypDesc:'選擇咖啡豆類型 ',cafeTyp:'咖啡類型',moreInfos:'更多資訊',VolUnitDesc:'選擇容量顯示單位',resetDesc:'重設將刪除你的偏好及設定。',reset:'正在重設',profileSettingsDesc:'選擇檔案以進行配置<br>',cleanup_5_desc:'放置 600 毫升的容器在噴嘴下<br>',cleanup_9_desc:'清潔完成',cleanup_6_desc:'正在清潔，剩餘 %s 分鐘<wbr>',cleanup_7_desc:'清空容器',cleanup_8_desc:'清空滴盤',cleanup_3_desc:'加滿水箱 ',cleanup_4_desc:'打開蓋子並將清潔片插入滑槽<br><br>',cleanup_1_desc:'需要使用 XS3000 清潔片。<br><br>預計時間： 13 分鐘 ',descaling:'正在除垢',autoRinseDesc:'於每次啟動時進行沖洗循環<br>',coffeeRinse:'咖啡沖洗',care:'機器保養',standardCoffee:'一般咖啡',greasyCoffee:'油性咖啡',cleanup_2_desc:'清空兩個容器',pleaseWait:'請稍候……',hourShort:'小時',minuteShort:'分鐘',selectDrink:'選擇飲品',preheat:'預熱',cafe:'正在製作咖啡 ',foaming:'沖打奶泡',hotwater:'熱水',seqCanceled:'飲品已停止',week:'平日',weekend:'週末',morning:'早上',lunch:'中午',dinner:'晚上',light:'燈光',strong:'強',short:'短',long:'長',none:'無',sweet:'順滑',programDesc:'設定自動開啟',cleanup:'正在清潔',descaling_short:'正在除垢',filter:'過濾器',milkRinse:'奶類沖洗',milkAccClean:'清潔奶類配件',help_fav:'如何建立及管理你的最愛',help_service:'如何保養機器',videos:'%s 段影片',roundsDesc:'循環次數',teaRinse:'茶預先沖洗',profile:'輪廓',calendarMonths:'一月;二月;三月;四月;五月;六月;七月;八月;九月;十月;十一月;十二月',}},
+ko:{display:'KO',strings:{espresso:'에스프레소',cappucino:'카푸치노',laitmousse:'스팀밀크',caffelatte:'카페라떼 ',flatwhite:'플랫 화이트',lungo:'룽고',ristretto:'리스트레토',doppio:'도피오',cafelong:'롱 커피',americano:'아메리카노',thevert:'녹차',thenoir:'홍차',lattemacchiato:'라떼 마키아토',infusion:'허브차',espresso_short:'에스프레소',cappucino_short:'카푸치노',laitmousse_short:'스팀밀크',caffelatte_short:'카페라떼 ',flatwhite_short:'플랫 화이트',lungo_short:'룽고',ristretto_short:'리스트레토',doppio_short:'도피오',cafelong_short:'롱 커피',americano_short:'아메리카노',thevert_short:'녹차',thenoir_short:'홍차',lattemacchiato_short:'라떼 마키아토',infusion_short:'허브차',profileSettings:'프로필 설정',setups:'조절',informations:'정보',ml:'ml',oz:'oz',sec:'초',yes:'예',no:'아니요',ok:'OK',beforeThxs:'<BOLD>%s %s</BOLD>이(가) 프로필에 추가됐습니다!',afterThxs:'',drink:'음료',espressomacchiato:'에스프레소 마키아토',addDrink:'음료 추가',chooseColor:'색상 선택',typeYourName:'이름 입력',next:'다음',finnished:'마침',color:'색상',firstName:'이름',display:'디스플레이',planning:'프로그래밍 ',slider:'슬라이더',tiles:'모자이크',on:'켜기',off:'끄기',displayDesc:'음료',deviceLightDesc:'조명 가이드 활성화',selectKeyword:'키워드 선택',enjoy:'맛있게 드세요!',coffeeTemp:'커피',teaTemp:'차 온도',waterTemp:'물 온도',tempDesc:'온도 선택',selectYourProfile:'프로필을 선택하십시오.',start:'시작',stop:'멈춤',remains:'(%s자 남음)',date:'날짜',settings:'설정',help:'도움말 및 튜토리얼',language:'언어',dateTime:'날짜/시간',dateTimeDesc:'날짜/시간',deviceLight:'조명',autoOff:'자동 꺼짐',autoOff2:'자동 멈춤',volUnity:'양 단위 ',autoRinse:'자동<br>헹굼',waterHardness:'물 경도',backLightDesc:'백라이트 조정',screenLight:'화면 밝기',afterInactivity:'다음의 경우 멈춤:',waterHardnessDesc:'물 경도 조절 ',cafeTypDesc:'원두 유형 선택 ',cafeTyp:'커피 유형',moreInfos:'추가 정보',VolUnitDesc:'양 표시 단위 선택',resetDesc:'재설정하면 사용자 설정이 삭제됩니다.',reset:'재설정 진행 중',profileSettingsDesc:'설정할 프로필 선택<br>',cleanup_5_desc:'600ml 용기 1개를 노즐 아래에 두십시오.<br>',cleanup_9_desc:'세척 완료',cleanup_6_desc:'세척 진행 중, %s분 남음<wbr>',cleanup_7_desc:'용기를 비우십시오.',cleanup_8_desc:'물받이를 비우십시오.',cleanup_3_desc:'물 탱크를 채우십시오. ',cleanup_4_desc:'뚜껑을 열고 세척용 알약을 알약 투입구에 넣으십시오.<br><br>',cleanup_1_desc:'XS3000 세척용 알약이 필요합니다.<br><br>예상 시간: 13분 ',descaling:'물때 제거',autoRinseDesc:'사용할 때마다 헹굼 사이클 시작<br>',coffeeRinse:'커피 헹굼',care:'기기 유지관리',standardCoffee:'일반 커피',greasyCoffee:'기름기 있는 커피',cleanup_2_desc:'2개 용기를 비우십시오.',pleaseWait:'기다려 주십시오...',hourShort:'시간',minuteShort:'분',selectDrink:'음료를 선택하십시오.',preheat:'예열',cafe:'커피 추출 중 ',foaming:'스팀밀크 만들기',hotwater:'온수',seqCanceled:'음료 중단',week:'주',weekend:'주말',morning:'아침',lunch:'점심',dinner:'저녁',light:'조명',strong:'강함',short:'짧음',long:'긺',none:'없음',sweet:'부드러움',programDesc:'자동으로 시작하게 설정합니다. ',cleanup:'세척',descaling_short:'물때 제거',filter:'필터',milkRinse:'우유 헹굼',milkAccClean:'우유 시스템 세척',help_fav:'즐겨찾기 생성 및 관리 방법',help_service:'기기 유지관리 방법',videos:'%s 비디오',roundsDesc:'사이클 수',teaRinse:'차 준비 헹굼',profile:'프로필',calendarMonths:'1월;2월;3월;4월;5월;6월;7월;8월;9월;10월;11월;12월',}},
 
-}
 
-    },
     };
 
     const kxkeywords = [
@@ -359,8 +135,8 @@ var kxapp = function() {
         display:{
             iconLeft:"slider",
             iconRight:"tiles",
-            textLeft:"off",
-            textRight:"on",
+            textLeft:"slider",
+            textRight:"tiles",
             title:"display",
             desc:"displayDesc",
             default:2
@@ -421,6 +197,7 @@ var kxapp = function() {
     unitfrg: { uri: 'unitfrg2.png', hsrc: false },
     bkgSheet: { uri: 'bkgSheet.jpg', hsrc: false },
     recipesSheet: { uri: 'recipesSheet.png', hsrc: false },
+    care: { uri: 'care.png', hsrc: false },
     beep: { uri: 'beep.mp3', hsrc: false },
     bleep: { uri: 'bleep.mp3', hsrc: false },
     };
@@ -797,6 +574,7 @@ var kxapp = function() {
             callback();
             },
             beforeShow: function() {
+               // debugger;
                 document.querySelector('#recetteScroller').scrollTo({left:this.sliderPosition})
             },
             run: function() {
@@ -1103,8 +881,8 @@ var kxapp = function() {
 
             var runRecipe = function (){
                 if (adding) return;
-                that.quantityScroller.pause = true;
-                that.strengthScroller.pause = true;
+                if (that.quantityScroller) that.quantityScroller.pause = true;
+                if (that.strengthScroller) that.strengthScroller.pause = true;
                 if (that.secondaryScroller ){
                    // debugger;
                     that.secondaryScroller.pause = true;
@@ -3288,11 +3066,11 @@ var kxapp = function() {
             </div>
 
                 <div class="atileContents">
-                <div>${_('week')}<br>${_('on').toUpperCase()}</div>
+                <div>${_('weekend')}<br>${_('on').toUpperCase()}</div>
                 </div>
 
                 <div class="atileContents">
-                <div>${_('weekend')}<br>${_('off').toUpperCase()}</div>
+                <div>${_('week')}<br>${_('off').toUpperCase()}</div>
                 </div>
 
             </div>
@@ -3518,14 +3296,11 @@ var kxapp = function() {
                     app.loadPage(app.currentPage.referrer.pageId, null);
                 });
                 
-
-                this.built.querySelector('.sliderPointer').addEventListener('click', function(e) {
+                (this.built.querySelectorAll('.unsupported')).forEach(el => el.addEventListener('click', event => {
                     app.toast(_("unsupported"))
-                });
+                }
+                ));
 
-                this.built.querySelector('.theSlider').addEventListener('click', function(e) {
-                    app.toast(_("unsupported"))
-                });
 
 
                 callback();
@@ -3559,7 +3334,7 @@ var kxapp = function() {
                 }
             }
             if (slider.steps ){slider.steps.forEach(function(el,k) {
-            steps += `<div class="astep" style="left:${pxForPos(k+1)}px"><div class="l">${el.desc1}</div><div class="l l2">${el.desc2}</div></div>`
+            steps += `<div class="astep unsupported" style="left:${pxForPos(k+1)}px"><div class="l">${el.desc1}</div><div class="l l2">${el.desc2}</div></div>`
             })}
 
             var rhtml = `
@@ -3632,22 +3407,22 @@ var kxapp = function() {
                 <span class="title">${_(slider.title)}</span>
             </div>
 
-            ${slider.icons ? `<div class="sliderIcon sliderIconLeft">
+            ${slider.icons ? `<div class="sliderIcon sliderIconLeft unsupported">
             <svg style="" viewBox="0 0 32 32" >
             <use href="#${slider.icons.left}" />
             </div>`:''}
 
-            ${slider.icons ? `<div class="sliderIcon sliderIconRight">
+            ${slider.icons ? `<div class="sliderIcon sliderIconRight unsupported">
             <svg style="" viewBox="0 0 32 32" >
             <use href="#${slider.icons.right}" />
             </div>`:''}
 
             <div class="settingsDesc">${_(slider.desc)}</div>
-                <div class="barBkg userFIllColor theSlider" style="position:absolute;width:${width}px;height:5px;top:163px;left:81px">
+                <div class="barBkg userFIllColor theSlider unsupported" style="position:absolute;width:${width}px;height:5px;top:163px;left:81px">
 
                 <div class="fill" style="background-color:#FFFFFF;position:absolute;height:5px;width:${pxForPos(slider.default)}px"></div>
                 ${steps}
-                <div class="sliderPointer" style="left:${pxForPos(slider.default)}px"></div>
+                <div class="sliderPointer unsupported" style="left:${pxForPos(slider.default)}px"></div>
                 </div>
 
                 <div class="startButton userBorderColor okButton">${_('ok')}</div>
@@ -3671,6 +3446,12 @@ var kxapp = function() {
                 this.built.querySelector('.okButton').addEventListener('click', function(e) {
                     app.loadPage(app.currentPage.referrer.pageId, null);
                 });
+                (this.built.querySelectorAll('.unsupported')).forEach(el => el.addEventListener('click', event => {
+                    app.toast(_("unsupported"))
+                }
+                ));
+
+
                 callback();
             },
 
@@ -3684,7 +3465,7 @@ var kxapp = function() {
 
             html: function() {
             var thisSwitch = app.switches[this.data];
-            var largeTextStyle = ((_(thisSwitch.textLeft)).length > 7 || (_(thisSwitch.textRight)).length > 7)?'largeTextStyle':''
+            var largeTextStyle = ((_(thisSwitch.textLeft)).length > 11 || (_(thisSwitch.textRight)).length > 8)?'largeTextStyle':''
             debugger;
 
 
@@ -3766,21 +3547,21 @@ var kxapp = function() {
                 ${(app.currentProfile)?'<div class="userTitleClip wide userBorderColor"></div>':''}
             </div>
             <div class="aSwitch switchLeft">
-                <div class="switchText switchTextLeft ${thisSwitch.iconRight ?'':'textOnly'} ${largeTextStyle}">
+                <div class="switchText switchTextLeft ${thisSwitch.iconRight ?'':'textOnly'} ${largeTextStyle} unsupported">
                 ${_(thisSwitch.textLeft)}
                 </div>
-                ${thisSwitch.iconLeft ? `<div class="switchIcon switchIconLeft">
+                ${thisSwitch.iconLeft ? `<div class="switchIcon switchIconLeft unsupported">
                 <svg viewBox="0 0 44 44" >
                 <use href="#${thisSwitch.iconLeft}" />
                 </div>`:''}
             </div>
             <div class="separator"></div>
             <div class="aSwitch switchRight active">
-                <div class="switchText switchTextRight ${thisSwitch.iconRight ?'':'textOnly'} ${largeTextStyle}">
+                <div class="switchText switchTextRight ${thisSwitch.iconRight ?'':'textOnly'} ${largeTextStyle} unsupported">
                 ${_(thisSwitch.textRight)}
                 </div>
 
-                ${thisSwitch.iconRight ? `<div class="switchIcon switchIconRight">
+                ${thisSwitch.iconRight ? `<div class="switchIcon switchIconRight unsupported">
                 <svg style="" viewBox="0 0 44 44" >
                 <use href="#${thisSwitch.iconRight}" />
                 </div>`:''}
@@ -3939,6 +3720,12 @@ var kxapp = function() {
                     app.loadPage('settings', null);
                 });
 
+                (this.built.querySelectorAll('.unsupported')).forEach(el => el.addEventListener('click', event => {
+                    app.toast(_("unsupported"))
+                }
+                ));
+
+
                 callback();
             },
             beforeShow: function() {
@@ -4048,7 +3835,7 @@ var kxapp = function() {
                 </style>
                     <div class=" hScroller helpScroller">
 
-                        <div class="hScrollerItem"> 
+                        <div class="hScrollerItem unsupported"> 
                             <div class="icon">
                                 <svg  viewBox="0 0 32 32" >
                                 <use href="#recette" />
@@ -4063,7 +3850,7 @@ var kxapp = function() {
                             </div>
                         </div>
 
-                        <div class="hScrollerItem"> 
+                        <div class="hScrollerItem unsupported"> 
                             <div class="icon">
                                 <svg  viewBox="0 0 32 32" >
                                 <use href="#fav" />
@@ -4078,7 +3865,7 @@ var kxapp = function() {
                             </div>
                         </div>
                         
-                        <div class="hScrollerItem"> 
+                        <div class="hScrollerItem unsupported"> 
                             <div class="icon">
                                 <svg  viewBox="0 0 32 32" >
                                 <use href="#wrench" />
@@ -4151,11 +3938,17 @@ var kxapp = function() {
                 
             var rhtml = `
             <div class="pageContent ${this.name} bkg16">
+            <style>
+
+            </style>
                 <div class="titleBlock light wide">
                 <span class="title">${_("cleanup")}</span>
                 </div>
+                <div class="careImg">
+                    <img nopin="nopin"  src="${imag('care')}" style="object-position: -0px -0px">
+                </div>
 
-                <div class="settingsDesc">${_('cleanup_2_desc')}</div>
+                <div class="settingsDesc care">${_('cleanup_2_desc')}</div>
                 <div class="okButton startButton bottom userBorderColor">${_('OK')}
             </div>
                 `;
@@ -4182,7 +3975,11 @@ var kxapp = function() {
                 <span class="title">${_("cleanup")}</span>
                 </div>
 
-                <div class="settingsDesc">${_('cleanup_3_desc')}</div>
+                <div class="careImg">
+                <img nopin="nopin"  src="${imag('care')}" style="object-position: -600px -0px">
+            </div>
+
+                <div class="settingsDesc care">${_('cleanup_3_desc')}</div>
                 <div class="okButton startButton bottom userBorderColor">${_('OK')}
             </div>
                 `;
@@ -4209,7 +4006,7 @@ var kxapp = function() {
                 <span class="title">${_("cleanup")}</span>
                 </div>
 
-                <div class="settingsDesc">${_('cleanup_4_desc')}</div>
+                <div class="settingsDesc care">${_('cleanup_4_desc')}</div>
                 <div class="okButton startButton bottom userBorderColor">${_('OK')}
             </div>
                 `;
@@ -4236,7 +4033,11 @@ var kxapp = function() {
                 <span class="title">${_("cleanup")}</span>
                 </div>
 
-                <div class="settingsDesc">${_('cleanup_5_desc')}</div>
+                <div class="careImg">
+                <img nopin="nopin"  src="${imag('care')}" style="object-position: -800px -0px">
+            </div>
+
+                <div class="settingsDesc care">${_('cleanup_5_desc')}</div>
                 <div class="okButton startButton bottom userBorderColor">${_('OK')}
             </div>
                 `;
@@ -4249,24 +4050,57 @@ var kxapp = function() {
             built: false,
             build: function(callback) {
                 var thisBuilt = this.built;
-                thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {app.loadPage('cleanup_7', null);});
+              /*  thisBuilt.querySelector('.okButton').addEventListener('click', function(e) {app.loadPage('cleanup_7', null);});*/
                 callback();
             },
             beforeShow: function() {},
-            run: function() {},
-            quit: function() {return true;},
+            run: function() {
+                this.built.classList.add('running');
+                var x = 13;
+                var cdspan = this.built.querySelector('.countdown');
+                this.countdown = setInterval(()=>{
+                    console.log(x);
+                    cdspan.innerHTML = x;
+                    x--;
+                    if (x == 0) {
+                        console.log("stopped");
+                        clearInterval(this.countdown);
+                        this.countdown = null;
+                        app.loadPage('cleanup_7', null)
+                    };
+                },4000/13 )
+            },
+            quit: function() {
+                clearInterval(this.countdown);
+                this.built=false;
+                return true;
+            },
             html: function() {
                 
             var rhtml = `
             <div class="pageContent ${this.name} bkg16">
+                <style>
+                .${this.name}.running .startButton{
+                    display:block;
+                }
+                .${this.name}.running .progressBarBkg{
+                    left:154px;
+                }
+                </style>
                 <div class="titleBlock light wide">
                 <span class="title">${_("cleanup")}</span>
                 </div>
 
-                <div class="settingsDesc">${_('cleanup_6_desc')}</div>
-                <div class="okButton startButton bottom userBorderColor">${_('OK')}
+                <div class="settingsDesc care">${_('cleanup_6_desc')}</div>
+
+                <div class="progressBarBkg">
+                <div class="progressBar"></div>
+                </div>
+
+                <div class="okButton startButton bottom userBorderColor">${_('pause')}
             </div>
                 `;
+
             return rhtml;
             },
         },
@@ -4289,6 +4123,10 @@ var kxapp = function() {
                 <div class="titleBlock light wide">
                 <span class="title">${_("cleanup")}</span>
                 </div>
+
+                <div class="careImg">
+                <img nopin="nopin"  src="${imag('care')}" style="object-position: -1000px -0px">
+            </div>
 
                 <div class="settingsDesc">${_('cleanup_7_desc')}</div>
                 <div class="okButton startButton bottom userBorderColor">${_('OK')}
@@ -4316,6 +4154,10 @@ var kxapp = function() {
                 <div class="titleBlock light wide">
                 <span class="title">${_("cleanup")}</span>
                 </div>
+
+                <div class="careImg">
+                <img nopin="nopin"  src="${imag('care')}" style="object-position: -410px -0px">
+            </div>
 
                 <div class="settingsDesc">${_('cleanup_8_desc')}</div>
                 <div class="okButton startButton bottom userBorderColor">${_('OK')}
@@ -4345,12 +4187,32 @@ var kxapp = function() {
                 
             var rhtml = `
             <div class="pageContent ${this.name} bkg16">
+            <style>
+                .iconAllGood{
+                    width:64px;
+                    height:64px;
+                    position:absolute;
+                    top:94px;
+                    left:216px;
+                }
+                .iconAllGood svg{
+                    width:100%;
+                }
+
+                .settingsDesc{
+                    top:190px;
+                    font-weight:bold;
+                }
+            </style>
                 <div class="titleBlock light wide">
                 <span class="title">${_("cleanup")}</span>
                 </div>
                 <div class="settingsDesc">${_('cleanup_9_desc')}</div>
-                <div class="okButton startButton bottom userBorderColor">${_('OK')}
-            </div>
+                <div class="iconAllGood">
+                    <svg style="" viewBox="0 0 64 64" >
+                    <use href="#allGood" />
+                </div>
+
                 `;
             return rhtml;
             },
@@ -4427,7 +4289,7 @@ leftmenutyp:'strength',
 leftmenuvalues:'1;2;3',
 leftmenudefault:'2',
 rightmenutyp:'ml',
-rightmenuvalues:'80;90;100;110;120;120;140;150;160;170;180',
+rightmenuvalues:'80;90;100;110;120;130;140;150;160;170;180',
 rightmenudefault:'120',
 step2Typ:'false',
 step2Values:'false',
@@ -4525,7 +4387,7 @@ rightmenutyp:'vol',
 rightmenuvalues:'M;L;XL',
 rightmenudefault:'L',
 step2Typ:'ml',
-step2Values:'20;30;40;50;60;70;80;190;100;110;120;130;140;150;160',
+step2Values:'20;30;40;50;60;70;80;90;100;110;120;130;140;150;160',
 step2Default:'70',
 invertSteps:false,
 },
@@ -4561,11 +4423,11 @@ leftmenuvalues:'1;2;3',
 leftmenudefault:'2',
 rightmenutyp:'vol',
 rightmenuvalues:'M;L;XL',
-rightmenudefault:'L',
-step2Typ:'ml',
-step2Values:'20;30;40;50;60;70;80;190;100;110;120;130;140;150;160',
+rightmenudefault:'M',
+step2Typ:'vol',
+step2Values:'20;30;40;50;60;70;80;90;100;110;120;130;140;150;160',
 step2Default:'70',
-invertSteps:false,
+invertSteps:true,
 },
 flatwhite:{code:'flatwhite',
 spritexy:'3;5',
@@ -4582,7 +4444,7 @@ rightmenutyp:'vol',
 rightmenuvalues:'M;L;XL',
 rightmenudefault:'M',
 step2Typ:'vol',
-step2Values:'20;30;40;50;60;70;80;I90;100;110;120;130;140;150;160',
+step2Values:'20;30;40;50;60;70;80;90;100;110;120;130;140;150;160',
 step2Default:'70',
 invertSteps:true,
 },
@@ -4717,6 +4579,8 @@ invertSteps:false,
         }
 
         app.kxunit.querySelector('#kxUnitButtonStart').addEventListener('click', event => {
+        //    debugger;
+
             if (app.currentPage.name == 'off') {
                 app.bleep();
                 app.loadPage('starting', null); // Show first page
@@ -4726,16 +4590,26 @@ invertSteps:false,
                 app.resetBuilds();
             }
         });
+
         app.kxunit.querySelector('#kxUnitButtonHome').addEventListener('click', event => {
+        //debugger;
+        app.pages.recettes.sliderPosition = 0;
+         //     debugger;
+        if (app.currentPage.name == 'recettes') {
+          if(document.querySelector('#recetteScroller'))  document.querySelector('#recetteScroller').scrollTo({left:0})
+       }
         if (app.currentPage.name == 'off') return;
         console.log('click', this);
         app.loadPage('recettes', null);
         });
+
+
         app.kxunit.querySelector('#kxUnitButtonUserOne').addEventListener('click', event => {
         if (app.currentPage.name == 'off') return;
         app.currentProfile = app.profiles.userOne;
         app.loadPage('profile', null);
         });
+
         app.kxunit.querySelector('#kxUnitButtonUserTwo').addEventListener('click', event => {
         if (app.currentPage.name == 'off') return;
         app.currentProfile = app.profiles.userTwo;
@@ -5166,6 +5040,15 @@ invertSteps:false,
         </g>
 
 
+        <g id="allGood" viewBox="0 0 64 64">
+
+        <circle style="fill:#00000055;stroke:#7ED321;stroke-width:2.3;" cx="32" cy="32" r="30"/>
+        <path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M19.9,29.3l9.2,9.2l17.4-17.4l2.9,2.9L32,41.4l0.1,0.1l-2.9,2.9
+            l-0.1-0.1L29,44.4l-2.9-2.9l0.1-0.1L17,32.2L19.9,29.3L19.9,29.3z"/>
+        </g>
+
+
+
     </svg>
     `;
     svgLib.innerHTML = data;
@@ -5410,7 +5293,6 @@ invertSteps:false,
                 transition: transform .5s, opacity .5s;
                 pointer-events: none;
                 z-index: 10;
-                font-weight: 900;
             }
 
             .kxToast.show{
@@ -6065,7 +5947,7 @@ invertSteps:false,
 
             .atile .titleBlock .userTitleClip{
                 left:32px;
-                bottom:-3px;
+                bottom:-2px;
             }
 
             .atile .tileIcon{
@@ -6187,12 +6069,31 @@ invertSteps:false,
                     font-weight: bold;
                 }
 
+
+            .settingsDesc.care{
+                top:60px
+            }
+
+            
+            .careImg{
+                width: 200px;
+                height: 150px;
+                position: absolute;
+                top: 118px;
+                left: 143px;
+                overflow: hidden;
+            }
+
+            .careImg img{
+                width:1200px;
+                height:150px;
+            }
+
         `;
     document.head.appendChild(sheet);
     }
 
     function imag(s) {
-    debugger;
     //console.log(app.imgDB);
     //console.log(s);
     //console.log(app.imgDB[s]);
