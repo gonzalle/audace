@@ -19,5 +19,9 @@
   "homepage": "https://github.com/gonzalle/audace#readme",
   "dependencies": {
     "jshint": "^2.11.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.3.1",
+    "eslint-config-google": "^0.14.0"
   }
 }
