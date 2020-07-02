@@ -234,7 +234,6 @@
                   leftmenuval: '3',
                   keyword: 'morning',
                   x2: false,
-
               },
               {
                   recipe: 'americano',
@@ -262,16 +261,25 @@
                   leftmenuval: '3',
                   keyword: 'strong',
                   x2: false,
-
               }, ],
           },
       };
 
-     /* if (Cookies.get('lg') !== undefined) {
-          app.lg = Cookies.get('lg');
-      } else {
-          Cookies.set('lg', app.lg);
-      }*/
+        if (localStorage.getItem('profiles'))  {
+            app.profiles = JSON.parse(localStorage.getItem('profiles'));
+        } else {
+            localStorage.setItem('profiles', JSON.stringify(app.profiles));
+        }
+
+        if (localStorage.getItem('lg'))  {
+            app.lg = localStorage.getItem('lg');
+        } else {
+            localStorage.setItem('lg', app.lg);
+        }
+
+        app.saveProfile = function(){
+            localStorage.setItem('profiles', JSON.stringify(app.profiles));
+        } 
 
       const Clock = function() {
           const thisClock = this;
@@ -1499,7 +1507,7 @@
                       x2: app.currentRecipe.x2,
                   };
                   app.currentProfile.favs.push(newFav);
-
+                  app.saveProfile();
                   setTimeout(function() {
                       app.loadPage('profile', null);
                   }, 2000);
@@ -2278,6 +2286,7 @@
                   thisBuilt.querySelector('.okButton').addEventListener('click', function() {
                       app.lg = thisBuilt.querySelector('.langScroller .wheelItem.selected').dataset.val;
                       //Cookies.set('lg', app.lg);
+                      localStorage.setItem('lg', app.lg);
                       app.resetBuilds();
                       app.loadPage('setups', null);
                   });
@@ -2366,6 +2375,7 @@
 
                   thisBuilt.querySelector('.okButton').addEventListener('click', function() {
                       app.currentProfile.name = name;
+                      app.saveProfile();
                       app.loadPage('userSettingsHome', null);
                   });
 
@@ -2520,6 +2530,7 @@
 
                   thisBuilt.querySelector('.okButton').addEventListener('click', function() {
                       app.currentProfile.color = color;
+                      app.saveProfile();
                       app.loadPage('userSettingsHome', null);
                   });
 
