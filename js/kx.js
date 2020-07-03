@@ -493,7 +493,6 @@
                 });
             } else {
                 app.currentPage = app.pages[pageId];
-                // TODO Remove values for following function;
                 app.showPage(app.currentPage.built, true, ready);
             }
             return;
