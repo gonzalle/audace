@@ -41,7 +41,11 @@
 
             //then init the app in whatever element of the DOM with its ID.
             //WIP : As long as the destination element has calculated dimensions.
-            kx.init("#instance");
+            if (kx.canRun()) {
+                kx.init("#instance");
+            } else {
+                alert("The experience can't run, please update your navigator")
+            }
         }
           
     </script>

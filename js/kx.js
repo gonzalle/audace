@@ -322,35 +322,30 @@ ko:{display:'조선말',strings:{espresso:'에스프레소',cappucino:'카푸치
                 thisClock.time = (now.getHours() < 10 ? '0' : '') + now.getHours() 
                 + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
                 return thisClock.time;
-            }
-            ;
-            thisClock.getDate = function() {
+            };
+thisClock.getDate = function() {
                 const now = new Date();
                 thisClock.date = (now.getDate() < 10 ? '0' : '') + now.getDate() 
                 + '/' + (now.getMonth() + 1 < 10 ? '0' : '') + (now.getMonth() + 1) + '/' + now.getFullYear();
                 return thisClock.date;
-            }
-            ;
-            thisClock.time = thisClock.getTime;
+            };
+thisClock.time = thisClock.getTime;
             thisClock.date = thisClock.getDate;
             thisClock.run = function(clockDom) {
                 clearInterval(thisClock.timout);
                 clockDom.innerHTML = thisClock.getTime();
                 thisClock.timout = setInterval(()=>(clockDom.innerHTML = thisClock.getTime()), 3000, );
-            }
-            ;
-            thisClock.runDate = function(dateDom) {
+            };
+thisClock.runDate = function(dateDom) {
                 clearInterval(thisClock.dateTimout);
                 dateDom.innerHTML = thisClock.getDate();
                 thisClock.dateTimout = setInterval(()=>(dateDom.innerHTML = thisClock.getDate()), 3000, );
-            }
-            ;
-            thisClock.stop = function() {
+            };
+thisClock.stop = function() {
                 clearInterval(thisClock.timout);
                 clearInterval(thisClock.dateTimout);
-            }
-            ;
-        };
+            };
+};
   
         app.clock = new Clock();
   
@@ -358,24 +353,18 @@ ko:{display:'조선말',strings:{espresso:'에스프레소',cappucino:'카푸치
             if (kxLg[app.lg].strings[string])
                 return kxLg[app.lg].strings[string];
             return string;
-        }
-        ;
-  
-        app.beep = function() {
+        };
+app.beep = function() {
             const snd = new Audio('images/beep.mp3');
             snd.loop = false;
             snd.play();
-        }
-        ;
-  
-        app.bleep = function() {
+        };
+app.bleep = function() {
             const snd = new Audio('images/bleep.mp3');
             snd.loop = false;
             snd.play();
-        }
-        ;
-  
-        const baseHtml = (`
+        };
+const baseHtml = (`
         <div class="kxfullScreen">
             <svg style="" viewBox="0 0 32 32">
                 <use href="#kxFullScreen" />
@@ -449,10 +438,8 @@ ko:{display:'조선말',strings:{espresso:'에스프레소',cappucino:'카푸치
                 , 1500);
             }
             , 1);
-        }
-        ;
-  
-        app.buildPage = function(pageId, data, callback) {
+        };
+app.buildPage = function(pageId, data, callback) {
             app.pages[pageId].data = data;
             const tempBuild = new DOMParser().parseFromString(app.pages[pageId].html(), 'text/html', ).body.firstChild;
             app.pages[pageId].built = tempBuild;
@@ -503,9 +490,8 @@ ko:{display:'조선말',strings:{espresso:'에스프레소',cappucino:'카푸치
                 app.canSwitchPage = true;
             }
             callback();
-        }
-        ;
-        app.canSwitchPage = true;
+        };
+app.canSwitchPage = true;
   
         app.loadPage = function(pageId, data) {
             if (!app.canSwitchPage) {
@@ -513,7 +499,7 @@ ko:{display:'조선말',strings:{espresso:'에스프레소',cappucino:'카푸치
                 return false;
             }
             app.canSwitchPage = false;
-            console.log('loading ' + pageId);
+            //console.log('loading ' + pageId);
             if (app.currentPage) {
                 if (app.currentPage.quit()) {
                     // app.canSwitchPage = true;
@@ -546,11 +532,11 @@ ko:{display:'조선말',strings:{espresso:'에스프레소',cappucino:'카푸치
         };
   
         function ready(){
-            console.log(app.isInited)
+            //console.log(app.isInited)
             // check once if a page is ready 
-            console.log('page ready');
+           // console.log('page ready');
            if (!app.isInited) {
-              console.log('app ready');
+             // console.log('app ready');
               app.isInited = true;
               let img = new Image();
                 img.onload = function () {
@@ -558,7 +544,7 @@ ko:{display:'조선말',strings:{espresso:'에스프레소',cappucino:'카푸치
                 setTimeout(function(){
                     // for Safari
                     Object.assign(app.kxunit.style, {
-                        'transition': 'transform .5s',
+                        'transition' : 'transform .5s',
                     });
                     app.fit();
                   },800);
@@ -4426,7 +4412,7 @@ ko:{display:'조선말',strings:{espresso:'에스프레소',cappucino:'카푸치
         };
   
         app.init = function(kxhost) {
-            console.log('init');
+            //console.log('init');
             app.kxhost = document.querySelector(kxhost);
 
             app.kxhost.innerHTML = baseHtml;
@@ -4533,10 +4519,8 @@ ko:{display:'조선말',strings:{espresso:'에스프레소',cappucino:'카푸치
 
             app.loadPage('recettes', null);
 
-        }
-        ;
-  
-        function addStyles(destination) {
+        };
+function addStyles(destination) {
             const link = document.createElement('link');
             link.id = 'id2';
             link.rel = 'stylesheet';
@@ -6061,25 +6045,20 @@ ko:{display:'조선말',strings:{espresso:'에스프레소',cappucino:'카푸치
             template.innerHTML = spinnerSvg.trim();
             app.spinner = template.firstChild;
             app.currentPage.built.appendChild(app.spinner);
-        }
-        ;
-  
-        app.hideSpinner = function() {
+        };
+app.hideSpinner = function() {
             if (app.spinner)
                 app.spinner.remove();
-        }
-        ;
-  
-        let sequence = function(anarray, callback) {
+        };
+let sequence = function(anarray, callback) {
             const seq = this;
             let timout;
             seq.keepongoing = true;
             seq.stop = function() {
                 seq.keepongoing = false;
                 callback(false);
-            }
-            ;
-            const ret = function(t) {
+            };
+const ret = function(t) {
                 t.fn();
                 return new Promise((resolve)=>{
                     timout = setTimeout(function() {

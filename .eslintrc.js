@@ -8,5 +8,6 @@ module.exports = {
         "ecmaVersion": 8
     },
     "rules": {
+        "semi-style": ["error", "last"],
     }
 };
